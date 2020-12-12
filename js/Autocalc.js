@@ -1,3 +1,24 @@
+function ExectCalc(sys,type,dtfrom,dtto){
+	//Systema de aplicação
+	switch(sys){
+		case "dnd":
+		//Tipo de Resolução necessaria (Modificador, Proficiencia, Outros)
+			switch(type){
+				case "mod":
+					document.getElementById(dtto).value = DnDHabmod(document.getElementById(dtfrom).value);
+				break;
+				case "prof":
+					document.getElementById(dtto).value = DnDProficiency(document.getElementById(dtfrom).value);
+				break;
+			}
+			break;
+		default:
+			break;
+	}
+	return;
+}
+//Calculos Dungeons & Dragons
+//Faz o calculo de Modificador com base no valor @dtfrom
 function DnDHabmod(hab){
 	var vh;
 	if(hab <=1){
@@ -35,7 +56,7 @@ function DnDHabmod(hab){
 	}
 	return vh;
 }
-
+//Faz o calculo de Proficiencia com base na Variavel @level
 function DnDProficiency(level){
 	var pro;
 	if (level == 1 || level <= 4){
@@ -46,7 +67,8 @@ function DnDProficiency(level){
 		pro = 4;
 	}else if(level == 13 || level <= 16){
 		pro = 5;
-	}else if(level == 17 || level < 20){
+	}else if(level >= 17){
 		pro = 6;
 	}
+	return pro;
 }

@@ -25,7 +25,7 @@
 		<br>
 	<!-- Nivel Total -->	
 		<label for="Clevel" pattern="[0-100]{1}">Nivel:</label><br>
-		<input type="text" id="Clevel" name="Clevel">
+		<input type="number" id="Clevel" name="Clevel" onchange='ExectCalc("dnd","prof","Clevel","Cpro")'>
 		<br>
 	<!-- Raça -->	
 		<label for="Cfolk">Raça:</label><br>
@@ -43,6 +43,10 @@
 		<label for="Cxp">Experiência:</label><br>
 		<input type="text" id="Cxp" name="Cxp">
 		<br>
+	<!-- Proficiência -->	
+		<label for="Cpro">Proficiência:</label><br>
+		<input type="text" id="Cpro" name="Cpro" readonly>
+		<br>	
 </div>
 		
 <!-- Habilidades -->
@@ -50,42 +54,42 @@
 	<p>Habilidades</p>
 	<!-- Força -->
 		<label for="Cstr">Força</label><br>
-		<input type="number" id="Cstr" name="Cstr" onchange='document.getElementById("Cmstr").value = DnDHabmod(document.getElementById("Cstr").value)'>
+		<input type="number" id="Cstr" name="Cstr" onchange='ExectCalc("dnd","mod","Cstr","Cmstr")'>
 		<br>
 		<!-- Mod Força -->
 		<input type="text" id="Cmstr" name="Cmstr" readonly>
 		<br>
 	<!-- Destreza -->
 		<label for="Cdex">Destreza</label><br>
-		<input type="number" id="Cdex" name="Cdex" onchange='document.getElementById("Cmdex").value = DnDHabmod(document.getElementById("Cdex").value)'>
+		<input type="number" id="Cdex" name="Cdex" onchange='ExectCalc("dnd","mod","Cdex","Cmdex")'>
 		<br>
 		<!-- Mod Destreza -->
 		<input type="number" id="Cmdex" name="Cmdex" readonly>
 		<br>
 	<!-- Constituição -->
 		<label for="Ccon">Constituição</label><br>
-		<input type="text" id="Ccon" name="Ccon" onchange='document.getElementById("Cmcon").value = DnDHabmod(document.getElementById("Ccon").value)'>
+		<input type="number" id="Ccon" name="Ccon" onchange='ExectCalc("dnd","mod","Ccon","Cmcon")'>
 		<br>
 		<!-- Mod Constituição -->
 		<input type="number" id="Cmcon" name="Cmcon" readonly>
 		<br>
 	<!-- Inteligência -->
 		<label for="Cint">Inteligência</label><br>
-		<input type="number" id="Cint" name="Cint" onchange='document.getElementById("Cmint").value = DnDHabmod(document.getElementById("Cint").value)'>
+		<input type="number" id="Cint" name="Cint" onchange='ExectCalc("dnd","mod","Cint","Cmint")'>
 		<br>
 		<!-- Mod Inteligência -->
 		<input type="text" id="Cmint" name="Cmint" readonly>
 		<br>
 	<!-- Sabedoria -->
 		<label for="Cwis">Sabedoria</label><br>
-		<input type="number" id="Cwis" name="Cwis" onchange='document.getElementById("Cmwis").value = DnDHabmod(document.getElementById("Cwis").value)'>
+		<input type="number" id="Cwis" name="Cwis" onchange='ExectCalc("dnd","mod","Cwis","Cmwis")'>
 		<br>
 		<!-- Mod Sabedoria -->
 		<input type="text" id="Cmwis" name="Cmwis" readonly>
 		<br>
 	<!-- Carisma -->
 		<label for="Ccar">Carisma</label><br>
-		<input type="number" id="Ccar" name="Ccar" onchange='document.getElementById("Cmcar").value = DnDHabmod(document.getElementById("Ccar").value)'>
+		<input type="number" id="Ccar" name="Ccar" onchange='ExectCalc("dnd","mod","Ccar","Cmcar")'>
 		<br>
 		<!-- Mod Carisma -->
 		<input type="text" id="Cmcar" name="Cmcar" readonly>
