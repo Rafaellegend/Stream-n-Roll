@@ -23,6 +23,10 @@ function ExectCalc(sys,type,dtfrom,dtto,dtex1,dtex2){
 						document.getElementById(dtto).value = x-y;
 					}
 				break;
+				case "dis":
+				var x = document.getElementsByClassName(dtto).length;
+				Dnddistribution(dtto,x,dtfrom);
+				break;
 			}
 			break;
 		default:
@@ -84,4 +88,13 @@ function DnDProficiency(level){
 		pro = 6;
 	}
 	return pro;
+}
+//
+function Dnddistribution(hab,length,dtfrom){
+	var i;
+	var res;
+	for(i=0;i < length; i++){
+	res= document.getElementsByClassName(hab)[i].value = DnDHabmod(document.getElementById(dtfrom).value);	
+	}
+	return res;
 }
