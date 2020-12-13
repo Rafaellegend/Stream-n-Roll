@@ -1,14 +1,27 @@
-function ExectCalc(sys,type,dtfrom,dtto){
+//ExectCalc(sys = Sistema Utilizado, dtfrom = Origem do Dado, dtto = Local de Recebimento do Dado, dtex = Dado extra para o cauculo
+function ExectCalc(sys,type,dtfrom,dtto,dtex1,dtex2){
 	//Systema de aplicação
 	switch(sys){
 		case "dnd":
 		//Tipo de Resolução necessaria (Modificador, Proficiencia, Outros)
 			switch(type){
+				//Recebendo "mod" como parametro, ira ser executado o cauculo e o retorno do Modificador
 				case "mod":
 					document.getElementById(dtto).value = DnDHabmod(document.getElementById(dtfrom).value);
 				break;
+				//Recebendo "prof" como parametro, ira ser executado o cauculo e o retorno da Proficiencia
 				case "prof":
 					document.getElementById(dtto).value = DnDProficiency(document.getElementById(dtfrom).value);
+				break;
+				//Recebendo "per" como parametro, ira ser executado o cauculo e o retorno do Pericias
+				case "per":
+				var x = parseInt(document.getElementById(dtfrom).value);
+				var y = parseInt(document.getElementById(dtex2).value);
+					if(document.getElementById(dtex1).checked == true){
+						document.getElementById(dtto).value = x+y;
+					}else{
+						document.getElementById(dtto).value = x-y;
+					}
 				break;
 			}
 			break;
