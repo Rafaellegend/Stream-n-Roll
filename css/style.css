@@ -1,2 +1,11 @@
 /* Folha de Estilo - Stream'n'Roll */
 @charset utf-8;
+/* Imagens portraits*/
+#pic{
+     display: none;
+	 }
+#portrait{
+  cursor: pointer;
+  border: 4px solid #bf9534;
+  object-fit: cover;  
+}

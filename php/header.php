@@ -4,7 +4,7 @@
 	<title>Stream & Roll</title>
 	<meta charset="utf-8">
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<link rel="icon" href="adventure_map.ico">
+	<link rel="icon" href="favicon.ico">
 <!-- Responsividade/CSS -->
 	<meta name="viewport" content="width=device-width">
 	<link rel="stylesheet" href="css/style.css">

@@ -1,12 +1,12 @@
 <title>Login/Cadastre-se - Stream & Roll </title>
 
 <!-- Botão Modal de Login -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#MdLogin">
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#MdLogin" data-backdrop="static">
   Login
 </button>
 
 <!-- Botão Modal de Registro -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#MdRegister">
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#MdRegister" data-backdrop="static">
   Registre-se
 </button>
 
@@ -34,7 +34,7 @@
 	  <!-- Botão transição de Modal - Registro -->
       <div class="modal-footer">
 		<p>Não tem uma conta?</p>
-		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#MdRegister" data-dismiss="modal">
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#MdRegister" data-dismiss="modal" data-backdrop="static">
 			Cadastre-se
 		</button>
       </div>
@@ -80,7 +80,7 @@
 	  <!-- Botão transição de Modal - Login -->
       <div class="modal-footer">
 		<p>Já possui conta?</p>
-		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#MdLogin" data-dismiss="modal">
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#MdLogin" data-dismiss="modal" data-backdrop="static">
 			Login
 		</button>
       </div>

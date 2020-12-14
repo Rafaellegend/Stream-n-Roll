@@ -1,5 +1,4 @@
-
-	<title>D&D - Editar Ficha </title>
+<title>D&D - Editar Ficha </title>
 <script src="js/Autocalc.js" type="text/javascript"></script>
 <!-- Nome do Jogador e Id da ficha-->
 	<!-- Jogador -->
@@ -10,7 +9,8 @@
 		<label for="Pname">Id:</label><br>
 		<input type="text" id="Pid" name="Pid" readonly>
 		<br>
-		
+
+
 <!-- Informações do Personagem -->
 <div class="sheetInfo" id="sheetInfo">
 	<p>Caracteristicas do Personagem</p>
@@ -101,9 +101,9 @@
 		<input type="text" id="Cmcar" name="Cmcar" value='0' readonly>
 		<br>
 </div>
+<!-- Teste de Resistencia -->
 <div class="sheetRes" id="sheetRes">
 <p>Teste de Resistencia</p>
-<!-- Teste de Resistencia -->
 	<!-- Teste de Força -->
 		<label for="Ctstr">Teste de Força</label><br>
 		<input type="checkbox" id="Ctstr" name="Ctstr" onchange='ExectCalc("dnd","per","Cmtstr","Cmtstr","Ctstr","Cpro")'>
@@ -222,6 +222,52 @@
 		<label for="Csurv">Sobrevivência (Sab)</label><br>
 		<input type="checkbox" id="Csurv" name="Surv" onchange='ExectCalc("dnd","per","Cmsurv","Cmsurv","Csurv","Cpro")'>
 		<input type="text" class='wis' id="Cmsurv" name="Cmsurv" value='0' readonly>
-		<br>
-</div>		
+		<br>	
+</div>
+<!-- Aparência -->
+<div>
+	<!--Imagem-->
+	<script src="js/functions.js" type="text/javascript"></script>
+	<label class="charperfil">
+	    <img id="portrait" class="rounded-circle" href="#pic" src="http://placehold.it/400x400" 
+		style="width:100px;height:100px;margin-top:20px;">
+	    <input id="pic" class='pic' onchange='readURL(this,"portrait");' type="file" >
+	</label>
+	<br>
+	<!--Idade-->
+	<label for="Cage">Idade:</label>
+	<input type="number" id="Cage">
+	<br>
+	<!--Altura-->
+	<label for="Cheight">Altura:</label>
+	<input type="number" id="Cheight">
+	<br>
+	<!--Peso-->
+	<label for="Cweight">Peso:</label>
+	<input type="number" id="Cweight">
+	<br>
+	<!--Tamanho-->
+	<label for="Csize">Tamanho:</label>
+	  <select id="Csize" name="Csize">
+		<option value="volvo">Minusculo</option>
+		<option value="saab">Pequeno</option>
+		<option value="fiat" selected>Médio</option>
+		<option value="audi">Grande</option>
+		<option value="audi">Enorme</option>
+		<option value="audi">Gigante</option>
+	  </select>
+	<br>
+	<!--Olhos-->
+	<label for="Ceyes">Olhos:</label>
+	<input type="text" id="Ceyes">
+	<br>
+	<!--Pele-->
+	<label for="Cskin">Pele:</label>
+	<input type="text" id="Cskin">
+	<br>
+	<!--Cabelo-->
+	<label for="Chair">Cabelo:</label>
+	<input type="text" id="Chair">
+	<br>
+</div>
 	</form>
