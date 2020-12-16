@@ -3,7 +3,8 @@
 include_once("php/header.php");
 
 //verificação da url em busca da variavel page
-if(!isset($_GET['page'])){$page= 'reglogm';} else{$page = $_GET['page'];};
+if(!isset($_GET['page'])){$page= 'main';} else{$page = $_GET['page'];};
+
 
 //verificação da varaiavel page para redirecionamento de pagina
 	//Menu principal
