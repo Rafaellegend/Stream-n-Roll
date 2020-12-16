@@ -1,9 +1,9 @@
-<h1 id="titulo1"> Stream & Roll - Lidere, siga… ou saia do caminho...  </h1>
+<h1 id="titulo1"> Stream & Roll -  Seu coração é livre, tenha coragem de segui-lo...  </h1>
 <!-- Caixa do Login -->
 <div class="container" id="clogin">
 	<div class="center">
 		<!-- Texto de Teste - Login -->
-		<h2 id="titulo2"> Roll your Initiative </h2>
+		<h2 id="titulo2"> Role sua Iniciativa </h2>
 		<!-- Botão Modal de Login -->
 		<button id="btnlogin" type="button" class="btn btn-primary" data-toggle="modal" data-target="#MdLogin" data-backdrop="static">
 			Login
