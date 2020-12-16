@@ -33,16 +33,17 @@
 	
 		<!-- Tab do perfil do usuário e informações pessoais -->
 		<div class="tab-pane fade" id="perfil">
-			<div>
-				<script src="js/functions.js" type="text/javascript"></script>
-					<label class="charperfil">
-					<img id="userPhoto" class="rounded-circle" href="#pic" src="http://placehold.it/400x400" 
-					style="width:100px;height:100px;margin-top:20px;">
-					<input id="pic" class='pic' onchange='readURL(this,"userPhoto");' type="file" >
-				</label>
-			</div></hr><br>
 			<h5>Painel de Edição de dados do usuário:</h5>
 			<form>
+				<!-- Envio de imagem -->
+				<div>
+					<script src="js/functions.js" type="text/javascript"></script>
+						<label class="charperfil">
+						<img id="userPhoto" class="rounded-circle" href="#pic" src="http://placehold.it/400x400" 
+						style="width:100px;height:100px;margin-top:20px;">
+						<input id="pic" class='pic' onchange='readURL(this,"userPhoto");' type="file" >
+					</label>
+				</div></hr><br>
 				<label for="Username">Username:</label>
 				<input type="text" id="Username" name="Username"><br>
 				<label for="Nome">Nome: </label>
