@@ -1,5 +1,60 @@
 /* Folha de Estilo - Stream'n'Roll */
 @charset utf-8;
+
+/*Login e Registrar */
+#titulo1 {
+	text-align:center; 
+	margin: 50px;
+}
+
+#clogin {
+	background: url(../img/teste.jpg);
+	position: relative; 
+	background-size: cover; 
+	height: 640px; 
+	width: 1200px;
+}
+
+.center {
+	margin: 0px;
+	position: absolute;
+	top: 35%; 
+	left: 50%;
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+
+#titulo2 {
+	color: #fff;
+	text-align:center;
+	font-family: 'Press Start 2P', cursive;
+}	
+
+#btnlogin {
+	width:140px;
+	height:60px;
+	margin:140px 70px 0px 40px;
+}
+
+#btnregister {
+	width:140px;
+	height:60px;
+	margin:140px 0px 0px 70px;
+}
+
+#btnor {
+	margin:140px 0px 0px 0px;
+	width:70px;
+    height:70px;
+    border-radius:45px;
+    font-size:20px;
+    color:#fff;
+    line-height:50px;
+    text-align:center
+	background: yellow;
+}
+
+
 /* Imagens portraits*/
 #pic{
      display: none;

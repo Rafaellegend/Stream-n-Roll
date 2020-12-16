@@ -1,15 +1,21 @@
-<title>Login/Cadastre-se - Stream & Roll </title>
-
-<!-- Botão Modal de Login -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#MdLogin" data-backdrop="static">
-  Login
-</button>
-
-<!-- Botão Modal de Registro -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#MdRegister" data-backdrop="static">
-  Registre-se
-</button>
-
+<h1 id="titulo1"> Stream & Roll - Lidere, siga… ou saia do caminho...  </h1>
+<!-- Caixa do Login -->
+<div class="container" id="clogin">
+	<div class="center">
+		<!-- Texto de Teste - Login -->
+		<h2 id="titulo2"> Roll your Initiative </h2>
+		<!-- Botão Modal de Login -->
+		<button id="btnlogin" type="button" class="btn btn-primary" data-toggle="modal" data-target="#MdLogin" data-backdrop="static">
+			Login
+		</button>
+		<!-- Parte apenas para indicar um "ou" -->
+		<button id="btnor" class="btn btn-outline-warning" disabled>OU</button>
+		<!-- Botão Modal de Registro -->
+		<button  id="btnregister" type="button" class="btn btn-success" data-toggle="modal" data-target="#MdRegister" data-backdrop="static">
+			Registre-se
+		</button>
+	</div>
+</div>
 <!-- Modal de Login -->
 <div class="modal fade" id="MdLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -34,7 +40,7 @@
 	  <!-- Botão transição de Modal - Registro -->
       <div class="modal-footer">
 		<p>Não tem uma conta?</p>
-		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#MdRegister" data-dismiss="modal" data-backdrop="static">
+		<button type="button" class="btn btn-success" data-toggle="modal" data-target="#MdRegister" data-dismiss="modal" data-backdrop="static">
 			Cadastre-se
 		</button>
       </div>
