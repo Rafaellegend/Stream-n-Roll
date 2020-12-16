@@ -12,7 +12,7 @@
 		<button id="btnor" class="btn btn-outline-warning" disabled>OU</button>
 		<!-- Botão Modal de Registro -->
 		<button  id="btnregister" type="button" class="btn btn-success" data-toggle="modal" data-target="#MdRegister" data-backdrop="static">
-			Registre-se
+			Cadastre-se
 		</button>
 	</div>
 </div>
@@ -54,7 +54,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Cadastro</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Cadastrar</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
