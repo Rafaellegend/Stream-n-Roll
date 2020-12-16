@@ -10,7 +10,16 @@
 		<input type="text" id="Pid" name="Pid" readonly>
 		<br>
 
+<!-- Botão para inicial a Criação -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Csinfo">
+  Open modal
+</button>
 
+<!--Modal-->
+<div class="modal" id="Csinfo">
+  <div class="modal-dialog">
+    <div class="modal-content">
+	
 <!-- Informações do Personagem -->
 <div class="sheetInfo" id="sheetInfo">
 	<p>Caracteristicas do Personagem</p>
@@ -46,9 +55,24 @@
 	<!-- Proficiência -->	
 		<label for="Cpro">Proficiência:</label><br>
 		<input type="text" id="Cpro" name="Cpro" value='2' readonly>
-		<br>	
+		<br>
+	<!-- botão Proximo-->
+	<button type="button" class="btn btn-primary" data-toggle="modal" 
+	data-target="#Cshab" data-dismiss="modal" data-backdrop="static">
+	Proximo
+	</button>		
 </div>
-		
+
+<!-- Fechando modal-->	
+</div>
+</div>
+</div>
+
+<!--Modal Habilidades-->
+<div class="modal" id="Cshab">
+  <div class="modal-dialog">
+    <div class="modal-content">
+	
 <!-- Habilidades -->
 <div class="sheetHab" id="sheetHab">
 	<p>Habilidades</p>
@@ -99,8 +123,10 @@
 		<br>
 		<!-- Mod Carisma -->
 		<input type="text" id="Cmcar" name="Cmcar" value='0' readonly>
-		<br>
+		<br>	
 </div>
+
+
 <!-- Teste de Resistencia -->
 <div class="sheetRes" id="sheetRes">
 <p>Teste de Resistencia</p>
@@ -134,7 +160,28 @@
 		<input type="checkbox" id="Ctcar" name="Ctcar" onchange='ExectCalc("dnd","per","Cmtcar","Cmtcar","Ctcar","Cpro")'>
 		<input type="text" class='car' id="Cmtcar" name="Cmtcar" value='0' readonly>
 		<br>
+	<!-- botão Proximo-->	
+	<button type="button" class="btn btn-primary" data-toggle="modal" 
+	data-target="#Csinfo" data-dismiss="modal" data-backdrop="static">
+	Voltar
+	</button>	
+	<!-- botão Voltar-->
+	<button type="button" class="btn btn-primary" data-toggle="modal" 
+	data-target="#Csper" data-dismiss="modal" data-backdrop="static">
+	Proximo
+	</button>	
 </div>
+
+<!-- Fechando modal-->	
+</div>
+</div>
+</div>
+
+<!--Modal Pericias-->
+<div class="modal" id="Csper">
+  <div class="modal-dialog">
+    <div class="modal-content">
+	
 <!-- Pericias -->
 <div class='sheetPer' id='sheetPer'>
 <p>Pericias</p>
@@ -223,7 +270,29 @@
 		<input type="checkbox" id="Csurv" name="Surv" onchange='ExectCalc("dnd","per","Cmsurv","Cmsurv","Csurv","Cpro")'>
 		<input type="text" class='wis' id="Cmsurv" name="Cmsurv" value='0' readonly>
 		<br>	
+	
+	<!-- botão Proximo-->	
+	<button type="button" class="btn btn-primary" data-toggle="modal" 
+	data-target="#Cshab" data-dismiss="modal" data-backdrop="static">
+	Voltar
+	</button>	
+	<!-- botão Voltar-->
+	<button type="button" class="btn btn-primary" data-toggle="modal" 
+	data-target="#Csapa" data-dismiss="modal" data-backdrop="static">
+	Proximo
+	</button>	
 </div>
+
+<!-- Fechando modal-->	
+</div>
+</div>
+</div>
+
+<!--Modal Aparência-->
+<div class="modal" id="Csapa">
+  <div class="modal-dialog">
+    <div class="modal-content">
+	
 <!-- Aparência -->
 <div>
 	<!--Imagem-->
@@ -257,6 +326,10 @@
 		<option value="audi">Gigante</option>
 	  </select>
 	<br>
+	<!--Genero-->
+	<label for="Cgender">Genero:</label>
+	<input type="text" id="Cgender">
+	<br>
 	<!--Olhos-->
 	<label for="Ceyes">Olhos:</label>
 	<input type="text" id="Ceyes">
@@ -270,4 +343,9 @@
 	<input type="text" id="Chair">
 	<br>
 </div>
+	<input type="submit" value ="Enviar">
 	</form>
+<!-- Fechando modal-->	
+</div>
+</div>
+</div>
