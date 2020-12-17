@@ -1,19 +1,33 @@
 <!-- Div que transita entre as Tabs do perfil do usuário -->
-<div class="well"> 
+<div class="well">
 	<!-- Tabs determinadas -->
-    <ul class="nav nav-tabs">	
-		<li class="active"><a href="#sessoes" data-toggle="tab">Sessões</a></li>
-		<li><a href="#perfil" data-toggle="tab">Perfil</a></li>
-		<li><a href="#senha" data-toggle="tab">Senha</a></li>
-		<li><a href="#email" data-toggle="tab">Email</a></li>
-		<button>Deslogar</button>
-    </ul>
-	
-	
+	<div class="bottom bg-light sticky-top shadow-sm">
+        <div class="container-nav">
+            <ul class="nav nav-bottom nav-fill">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" id="namesession" href="#sessoes" data-toggle="tab"> Sessões </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" id="namesession" href="#perfil" data-toggle="tab"> Perfil </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" id="namesession" href="#senha" data-toggle="tab"> Alterar Senha </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" id="namesession" href="#email" data-toggle="tab"> Alterar E-mail </a>
+                </li>
+				<button id="btnlogout" type="button" class="btn btn-success">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+						<path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
+						<path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+					</svg> Sair
+				</button>
+        </div>
+    </div>
 	<!-- Div que armazena as Tabs -->
     <div id="myTabContent" class="tab-content">
 	
-		<!-- Tab das Sessões que usuário está participando -->
+		<!-- Tab das Sessões que usuário está participando (SERÁ ALTERADO)-->
 		<div class="tab-pane active in" id="sessoes">
 			<div>
 				<h5>Sessões que o usuário criou:</h5>
@@ -33,39 +47,42 @@
 	
 		<!-- Tab do perfil do usuário e informações pessoais -->
 		<div class="tab-pane fade" id="perfil">
-			<h5>Painel de Edição de dados do usuário:</h5>
-			<form>
-				<!-- Envio de imagem -->
-				<div>
-					<script src="js/functions.js" type="text/javascript"></script>
-						<label class="charperfil">
-						<img id="userPhoto" class="rounded-circle" href="#pic" src="http://placehold.it/400x400" 
-						style="width:100px;height:100px;margin-top:20px;">
-						<input id="pic" class='pic' onchange='readURL(this,"userPhoto");' type="file" >
-					</label>
-				</div></hr><br>
-				<label for="Username">Username:</label>
-				<input type="text" id="Username" name="Username"><br>
-				<label for="Nome">Nome: </label>
-				<input type="text" id="Nome" name="Nome"><br>
-				<label for="Sobrenome">Sobrenome: </label>
-				<input type="text" id="Sobrenome" name="Sobrenome"><br>
-				<label for="Email">Email:</label>
-				<input type="email" id="Email" name="Email"><br>
-				<label for="Genero">Gênero:</label>
-				<select name="Genero" id="Genero" name="Genero">
-					<option>Não Definido</option>
-					<option>Masculino</option>
-					<option>Feminino</option>
-				</select><br>
-				<label for="Aniversário">Data de Aniversário:</label>
-				<input name="Aniversário" type="date" name="Aniversario">				
-				<div>
-					<button class="btn btn-primary">Atualizar Dados</button>
+			<div class="container"	id="perfilcontainer">
+			<h3 id="perfiltitulo">Painel de Edição de dados do usuário:</h3>
+				<div class="row" id="perfilrow">
+					<form>
+						<!-- Envio de imagem -->
+						<div id="avatarimg">
+							<script src="js/functions.js" type="text/javascript"></script>
+								<label class="charperfil">
+								<img id="userPhoto" class="rounded-circle" href="#pic" src="http://placehold.it/400x400" 
+								style="width:100px;height:100px;margin-top:20px;">
+								<input id="pic" class='pic' onchange='readURL(this,"userPhoto");' type="file" >
+							</label>
+						</div><br>
+						<label  id="txtperfil" for="Username">Username:</label>
+						<input id="txtperfil" type="text" id="Username" name="Username">
+						<label id="txtperfil" for="Email">Email:</label>
+						<input id="txtperfil" type="email" id="Email" name="Email"><br>
+						<label id="txtperfil" for="Nome">Nome: </label>
+						<input id="txtperfil" type="text" id="Nome" name="Nome">
+						<label id="txtperfil" for="Sobrenome">Sobrenome: </label>
+						<input id="txtperfil" type="text" id="Sobrenome" name="Sobrenome"><br>
+						<label id="txtperfil" for="Genero">Gênero:</label>
+						<select name="Genero" id="Genero" name="Genero">
+							<option>Não Definido</option>
+							<option>Masculino</option>
+							<option>Feminino</option>
+						</select>
+						<label id="txtperfil" for="Aniversário">Data de Nascimento:</label>
+						<input name="Aniversário" type="date" name="Aniversario">				
+						<div>
+							<p id="btnperfil"><button class="btn btn-primary">Atualizar Dados</button></p>
+						</div>
+					</form>
 				</div>
-			</form>
-		</div>
-	  
+			</div>
+	    </div>
 		<!-- Tab da senha do usuário -->
 		<div class="tab-pane fade" id="senha">
 			<h5>Painel de Edição da senha:</h5>
