@@ -1,5 +1,8 @@
-<title>Criar Campanha</title>
-
+<!--Modal-->
+<div class="modal" id="Csinfo">
+  <div class="modal-dialog">
+    <div class="modal-content">
+	
 <form>
 <!-- Digite Nome da Campanha-->
 <label for="Campaing">Nome da Campanha:</label>
@@ -34,3 +37,8 @@
 
 <input type="submit" value="Criar Campanha">
 </form>
+
+<!-- Fechando modal-->	
+</div>
+</div>
+</div>

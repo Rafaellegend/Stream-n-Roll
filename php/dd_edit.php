@@ -9,10 +9,10 @@
 		<label for="Pname">Id:</label><br>
 		<input type="text" id="Pid" name="Pid" readonly>
 		<br>
-
+<i class="bi bi-watch"></i>
 <!-- Botão para inicial a Criação -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Csinfo">
-  Open modal
+  Criar Personagem
 </button>
 
 <!--Modal-->
@@ -22,45 +22,60 @@
 	
 <!-- Informações do Personagem -->
 <div class="sheetInfo" id="sheetInfo">
-	<p>Caracteristicas do Personagem</p>
-	<form>
-	<!-- Nome de Personagem -->
-		<label for="Cname">Nome de Personagem:</label><br>
-		<input type="text" id="Cname" name="Cname">
-		<br>
-	<!-- Classe -->	
-		<label for="Cclass">Classe:</label><br>
-		<input type="text" id="Cclass" name="Cclass">
-		<br>
-	<!-- Nivel Total -->	
-		<label for="Clevel" pattern="[0-100]{1}">Nivel:</label><br>
-		<input type="number" id="Clevel" name="Clevel" value='1' onchange='ExectCalc("dnd","prof","Clevel","Cpro")'>
-		<br>
-	<!-- Raça -->	
-		<label for="Cfolk">Raça:</label><br>
-		<input type="text" id="Cfolk" name="Cfolk">
-		<br>
-	<!-- Antecedente -->	
-		<label for="Cback">Antecedente:</label><br>
-		<input type="text" id="Cback" name="Cback">
-		<br>
-	<!-- Tendência -->	
-		<label for="Calignment">Tendência:</label><br>
-		<input type="text" id="Caligment" name="Caligment">
-		<br>
-	<!-- Experiência -->	
-		<label for="Cxp">Experiência:</label><br>
-		<input type="text" id="Cxp" name="Cxp">
-		<br>
-	<!-- Proficiência -->	
-		<label for="Cpro">Proficiência:</label><br>
-		<input type="text" id="Cpro" name="Cpro" value='2' readonly>
-		<br>
+	<!-- Modal header-->
+	<div class="modal-header">
+		<p>Caracteristicas do Personagem</p>
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+	</div>
+	
+	<!-- Modal body-->
+	<div class="modal-body">
+		<form>
+		<!-- Nome de Personagem -->
+			<label for="Cname">Nome de Personagem:</label><br>
+			<input type="text" id="Cname" name="Cname">
+			<br>
+		<!-- Classe -->	
+			<label for="Cclass">Classe:</label><br>
+			<input type="text" id="Cclass" name="Cclass">
+			<br>
+		<!-- Nivel Total -->	
+			<label for="Clevel" pattern="[0-100]{1}">Nivel:</label><br>
+			<input type="number" id="Clevel" name="Clevel" value='1' onchange='ExectCalc("dnd","prof","Clevel","Cpro")'>
+			<br>
+		<!-- Raça -->	
+			<label for="Cfolk">Raça:</label><br>
+			<input type="text" id="Cfolk" name="Cfolk">
+			<br>
+		<!-- Antecedente -->	
+			<label for="Cback">Antecedente:</label><br>
+			<input type="text" id="Cback" name="Cback">
+			<br>
+		<!-- Tendência -->	
+			<label for="Calignment">Tendência:</label><br>
+			<input type="text" id="Caligment" name="Caligment">
+			<br>
+		<!-- Experiência -->	
+			<label for="Cxp">Experiência:</label><br>
+			<input type="text" id="Cxp" name="Cxp">
+			<br>
+		<!-- Proficiência -->	
+			<label for="Cpro">Proficiência:</label><br>
+			<input type="text" id="Cpro" name="Cpro" value='2' readonly>
+			<br>
+	</div>
+	
+	<!--Modal footer-->
+	<div class="modal-footer">
 	<!-- botão Proximo-->
-	<button type="button" class="btn btn-primary" data-toggle="modal" 
-	data-target="#Cshab" data-dismiss="modal" data-backdrop="static">
-	Proximo
-	</button>		
+		<button type="button" class="btn btn-primary" data-toggle="modal" 
+		data-target="#Cshab" data-dismiss="modal" data-backdrop="static">
+		Proximo
+		</button>
+	</div>
+<!-- fechamento div #sheetInfo-->
 </div>
 
 <!-- Fechando modal-->	
@@ -72,10 +87,20 @@
 <div class="modal" id="Cshab">
   <div class="modal-dialog">
     <div class="modal-content">
-	
+
+<!-- Modal header-->
+	<div class="modal-header">
+		<p>Habilidades</p>
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<!-- Modal body-->
+	<div class="modal-body">
+
 <!-- Habilidades -->
 <div class="sheetHab" id="sheetHab">
-	<p>Habilidades</p>
+	
 	<!-- Força -->
 		<label for="Cstr">Força</label><br>
 		<input type="number" id="Cstr" name="Cstr" value='10' 
@@ -123,8 +148,9 @@
 		<br>
 		<!-- Mod Carisma -->
 		<input type="text" id="Cmcar" name="Cmcar" value='0' readonly>
-		<br>	
-</div>
+		<br>
+	<!-- fechamento div #sheetHab-->
+	</div>
 
 
 <!-- Teste de Resistencia -->
@@ -160,16 +186,22 @@
 		<input type="checkbox" id="Ctcar" name="Ctcar" onchange='ExectCalc("dnd","per","Cmtcar","Cmtcar","Ctcar","Cpro")'>
 		<input type="text" class='car' id="Cmtcar" name="Cmtcar" value='0' readonly>
 		<br>
-	<!-- botão Proximo-->	
-	<button type="button" class="btn btn-primary" data-toggle="modal" 
-	data-target="#Csinfo" data-dismiss="modal" data-backdrop="static">
-	Voltar
-	</button>	
-	<!-- botão Voltar-->
-	<button type="button" class="btn btn-primary" data-toggle="modal" 
-	data-target="#Csper" data-dismiss="modal" data-backdrop="static">
-	Proximo
-	</button>	
+	<!-- fechamento modal body-->
+	</div>
+	
+	<!--Modal footer-->
+	<div class="modal-footer">
+		<!-- botão Proximo-->	
+		<button type="button" class="btn btn-primary" data-toggle="modal" 
+		data-target="#Csinfo" data-dismiss="modal" data-backdrop="static">
+		Voltar
+		</button>	
+		<!-- botão Voltar-->
+		<button type="button" class="btn btn-primary" data-toggle="modal" 
+		data-target="#Csper" data-dismiss="modal" data-backdrop="static">
+		Proximo
+		</button>
+	</div>
 </div>
 
 <!-- Fechando modal-->	
@@ -184,7 +216,15 @@
 	
 <!-- Pericias -->
 <div class='sheetPer' id='sheetPer'>
-<p>Pericias</p>
+<!-- Modal header-->
+	<div class="modal-header">
+		<p>Pericias</p>
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+	</div>
+<!-- Modal body-->
+	<div class="modal-body">
 	<!-- Acrobacia -->
 		<label for="Cacrbt">Acrobacia (Des)</label><br>
 		<input type="checkbox" id="Cacrbt" name="Cacrbt" onchange='ExectCalc("dnd","per","Cmacrbt","Cmacrbt","Cacrbt","Cpro")'>
@@ -270,7 +310,9 @@
 		<input type="checkbox" id="Csurv" name="Surv" onchange='ExectCalc("dnd","per","Cmsurv","Cmsurv","Csurv","Cpro")'>
 		<input type="text" class='wis' id="Cmsurv" name="Cmsurv" value='0' readonly>
 		<br>	
-	
+	</div>
+	<!--Modal footer-->
+	<div class="modal-footer">
 	<!-- botão Proximo-->	
 	<button type="button" class="btn btn-primary" data-toggle="modal" 
 	data-target="#Cshab" data-dismiss="modal" data-backdrop="static">
@@ -280,7 +322,8 @@
 	<button type="button" class="btn btn-primary" data-toggle="modal" 
 	data-target="#Csapa" data-dismiss="modal" data-backdrop="static">
 	Proximo
-	</button>	
+	</button>
+	</div>
 </div>
 
 <!-- Fechando modal-->	
@@ -294,7 +337,16 @@
     <div class="modal-content">
 	
 <!-- Aparência -->
+<!-- Modal header-->
+	<div class="modal-header">
+		<p>Aparência</p>
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+	</div>
 <div>
+<!-- Modal body-->
+	<div class="modal-body">
 	<!--Imagem-->
 	<script src="js/functions.js" type="text/javascript"></script>
 	<label class="charperfil">
@@ -342,9 +394,14 @@
 	<label for="Chair">Cabelo:</label>
 	<input type="text" id="Chair">
 	<br>
+	</div>
 </div>
-	<input type="submit" value ="Enviar">
+	<!--Modal footer-->
+	<div class="modal-footer">
+		<input type="submit" value ="Enviar">
+	</div>
 	</form>
+	
 <!-- Fechando modal-->	
 </div>
 </div>
