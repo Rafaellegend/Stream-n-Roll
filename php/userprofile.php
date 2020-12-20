@@ -48,38 +48,39 @@
 		<!-- Tab do perfil do usuário e informações pessoais -->
 		<div class="tab-pane fade" id="perfil">
 			<div class="container"	id="perfilcontainer">
-			<h3 id="perfiltitulo">Painel de Edição de dados do usuário:</h3>
-				<div class="row" id="perfilrow">
-					<form>
-						<!-- Envio de imagem -->
-						<div id="avatarimg">
-							<script src="js/functions.js" type="text/javascript"></script>
-								<label class="charperfil">
-								<img id="userPhoto" class="rounded-circle" href="#pic" src="http://placehold.it/400x400" 
-								style="width:100px;height:100px;margin-top:20px;">
-								<input id="pic" class='pic' onchange='readURL(this,"userPhoto");' type="file" >
-							</label>
-						</div><br>
-						<label  id="txtperfil" for="Username">Username:</label>
-						<input id="txtperfil" type="text" id="Username" name="Username">
-						<label id="txtperfil" for="Email">Email:</label>
-						<input id="txtperfil" type="email" id="Email" name="Email"><br>
-						<label id="txtperfil" for="Nome">Nome: </label>
-						<input id="txtperfil" type="text" id="Nome" name="Nome">
-						<label id="txtperfil" for="Sobrenome">Sobrenome: </label>
-						<input id="txtperfil" type="text" id="Sobrenome" name="Sobrenome"><br>
-						<label id="txtperfil" for="Genero">Gênero:</label>
-						<select name="Genero" id="Genero" name="Genero">
-							<option>Não Definido</option>
-							<option>Masculino</option>
-							<option>Feminino</option>
-						</select>
-						<label id="txtperfil" for="Aniversário">Data de Nascimento:</label>
-						<input name="Aniversário" type="date" name="Aniversario">				
-						<div>
-							<p id="btnperfil"><button class="btn btn-primary">Atualizar Dados</button></p>
-						</div>
-					</form>
+			<h2 id="perfiltitulo"> Perfil do Usuário </h2>
+				<div class="row">
+					<div class="col-sm-8" id="formcentralizar">
+						<form>
+							<!-- Envio de imagem -->
+							<div id="avatarimg">
+								<script src="js/functions.js" type="text/javascript"></script>
+									<label class="charperfil">
+									<img id="userPhoto" class="rounded-circle" href="#pic" src="http://placehold.it/400x400">
+									<input id="pic" class='pic' onchange='readURL(this,"userPhoto");' type="file" >
+								</label>
+							</div><br>
+							<label  id="txtperfil" for="Username">Username:</label>
+							<input id="txtperfil" type="text" id="Username" name="Username">
+							<label id="txtperfil" for="Email">Email:</label>
+							<input id="txtperfil" type="email" id="Email" name="Email"><br>
+							<label id="txtperfil" for="Nome">Nome: </label>
+							<input id="txtperfil" type="text" id="Nome" name="Nome">
+							<label id="txtperfil" for="Sobrenome">Sobrenome: </label>
+							<input id="txtperfil" type="text" id="Sobrenome" name="Sobrenome"><br>
+							<label id="txtperfil" for="Genero">Gênero:</label>
+							<select name="Genero" id="Genero" name="Genero">
+								<option>Não Definido</option>
+								<option>Masculino</option>
+								<option>Feminino</option>
+							</select>
+							<label id="txtperfil" for="Aniversário">Data de Nascimento:</label>
+							<input name="Aniversário" type="date" name="Aniversario">				
+							<div>
+								<p id="btnperfil"><button class="btn btn-primary">Atualizar Dados</button></p>
+							</div>
+						</form>
+					</div>
 				</div>
 			</div>
 	    </div>

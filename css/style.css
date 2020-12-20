@@ -78,6 +78,12 @@
 	width:15%;
 }
 
+#userPhoto {
+	width:200px;
+	height:200px;
+	margin:80px 0px 20px 250px;
+}
+
 #returnMain:hover {
 	text-decoration: none; 
 }
@@ -95,14 +101,6 @@
 	position: center;
 }
 
-#avatarimg {
-	position:relative;
-	margin-bottom:80px;
-	top: 20%; 
-	left: 95%;
-	-ms-transform: translate(-50%, -50%);
-	transform: translate(-50%, -50%);
-}
  #btnperfil {
 	 margin: 70px 0px 0px 0px;
 	 text-align:right;
@@ -119,11 +117,14 @@
  }
  
  #perfilcontainer {
-	 border: 15px solid #A0522D;
+	 border: 25px solid #A0522D;
+	 border-radius: 40px 20px;
 	 border-style: outset;
+	 padding: 0px 0px 50px 0px;
  }
  
- #perfilrow {
-	margin-left:220px;
-	padding: 0px 0px 100px 0px;
+ #formcentralizar {
+	 margin: 0 auto;
+	 width: 50%;
  }
+ 
