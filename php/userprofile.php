@@ -60,19 +60,19 @@
 									<input id="pic" class='pic' onchange='readURL(this,"userPhoto");' type="file" >
 								</label>
 							</div><br>
-							<label  id="txtperfil" for="Username">Username:</label>
-							<input id="txtperfil" type="text" id="Username" name="Username">
-							<label id="txtperfil" for="Email">Email:</label>
-							<input id="txtperfil" type="email" id="Email" name="Email"><br>
-							<label id="txtperfil" for="Nome">Nome: </label>
-							<input id="txtperfil" type="text" id="Nome" name="Nome">
-							<label id="txtperfil" for="Sobrenome">Sobrenome: </label>
-							<input id="txtperfil" type="text" id="Sobrenome" name="Sobrenome"><br>
-							<label id="txtperfil" for="Genero">Gênero:</label>
+							<label id="txtperfil" for="Username"> Username: </label>
+							<input type="text" size="30" id="Username" name="Username">
+							<label id="txtperfil" for="Email"> Email: </label>
+							<input type="email" size="30" id="Email" name="Email"><br>
+							<label id="txtperfil" for="Nome"> Nome: </label>
+							<input type="text" size="30" id="Nome" name="Nome">
+							<label id="txtperfil" for="Sobrenome"> Sobrenome: </label>
+							<input type="text" size="30" id="Sobrenome" name="Sobrenome"><br>
+							<label id="txtperfil" for="Genero"> Gênero: </label>
 							<select name="Genero" id="Genero" name="Genero">
-								<option>Não Definido</option>
-								<option>Masculino</option>
-								<option>Feminino</option>
+								<option> Não Definido </option>
+								<option> Masculino </option>
+								<option> Feminino </option>
 							</select>
 							<label id="txtperfil" for="Aniversário">Data de Nascimento:</label>
 							<input name="Aniversário" type="date" name="Aniversario">				
