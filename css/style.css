@@ -65,7 +65,31 @@
 }
 
 
-/* Perfil do Usuario */
+/* Para uso em todas as abas */
+ #txtboxgeral {
+	 margin:30px 0px 30px 20px;
+	 font-size:18px;
+ }
+ 
+ #titulogeral {
+	 text-align:center;
+	 margin-top:30px;
+ }
+ 
+ #containergeral {
+	 border: 25px solid #A0522D;
+	 border-radius: 40px 20px;
+	 border-style: outset;
+	 padding: 0px 0px 50px 0px;
+ }
+ 
+ #formcentralizar {
+	 margin: 0 auto;
+	 width: 50%;
+ }
+
+
+/* Aba - Perfil do Usuario */
 #namesession:hover {
     color: 	#A0522D !important;
 }
@@ -98,34 +122,35 @@
 }
 
 #perfil {
-    margin: 30px 0px 0px 0px;
+    margin: 30px 0px 30px 0px;
 	position: center;
 }
 
  #btnperfil {
 	 margin: 70px 0px 0px 0px;
 	 text-align:right;
- }
+}
  
- #txtperfil {
-	 margin:30px 0px 30px 20px;
-	 font-size:18px;
- }
- 
- #perfiltitulo {
-	 text-align:center;
-	 margin-top:30px;
- }
- 
- #perfilcontainer {
-	 border: 25px solid #A0522D;
-	 border-radius: 40px 20px;
-	 border-style: outset;
-	 padding: 0px 0px 50px 0px;
- }
- 
- #formcentralizar {
-	 margin: 0 auto;
-	 width: 50%;
- }
- 
+
+ /* Aba - Alteração de Senha */
+ #senha {
+    margin: 30px 0px 30px 0px;
+	position: center;
+}
+
+ #btnsenha {
+	 margin: 20px 0px 0px 0px;
+	 text-align:right;
+}
+
+
+ /* Aba - Alteração de E-mail*/
+ #email {
+    margin: 30px 0px 30px 0px;
+	position: center;
+}
+
+ #btnemail {
+	 margin: 20px 0px 0px 0px;
+	 text-align:right;
+}

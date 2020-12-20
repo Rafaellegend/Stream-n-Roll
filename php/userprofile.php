@@ -14,7 +14,7 @@
                     <a class="nav-link text-dark" id="namesession" href="#senha" data-toggle="tab"> Alterar Senha </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark" id="namesession" href="#email" data-toggle="tab"> Alterar E-mail </a>
+                    <a class="nav-link text-dark" id="namesession" href="#email" data-toggle="tab"> Alterar Email </a>
                 </li>
 				<button id="btnlogout" type="button" class="btn btn-success">
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
@@ -47,8 +47,8 @@
 	
 		<!-- Tab do perfil do usuário e informações pessoais -->
 		<div class="tab-pane fade" id="perfil">
-			<div class="container"	id="perfilcontainer">
-			<h2 id="perfiltitulo"> Perfil do Usuário </h2>
+			<div class="container"	id="containergeral">
+			<h2 id="titulogeral"> Painel do Usuário </h2>
 				<div class="row">
 					<div class="col-sm-8" id="formcentralizar">
 						<form>
@@ -60,21 +60,21 @@
 									<input id="pic" class='pic' onchange='readURL(this,"userPhoto");' type="file" >
 								</label>
 							</div><br>
-							<label id="txtperfil" for="Username"> Username: </label>
+							<label id="txtboxgeral" for="Username"> Username: </label>
 							<input type="text" size="30" id="Username" name="Username">
-							<label id="txtperfil" for="Email"> Email: </label>
+							<label id="txtboxgeral" for="Email"> Email: </label>
 							<input type="email" size="30" id="Email" name="Email"><br>
-							<label id="txtperfil" for="Nome"> Nome: </label>
+							<label id="txtboxgeral" for="Nome"> Nome: </label>
 							<input type="text" size="30" id="Nome" name="Nome">
-							<label id="txtperfil" for="Sobrenome"> Sobrenome: </label>
+							<label id="txtboxgeral" for="Sobrenome"> Sobrenome: </label>
 							<input type="text" size="30" id="Sobrenome" name="Sobrenome"><br>
-							<label id="txtperfil" for="Genero"> Gênero: </label>
+							<label id="txtboxgeral" for="Genero"> Gênero: </label>
 							<select name="Genero" id="Genero" name="Genero">
 								<option> Não Definido </option>
 								<option> Masculino </option>
 								<option> Feminino </option>
 							</select>
-							<label id="txtperfil" for="Aniversário">Data de Nascimento:</label>
+							<label id="txtboxgeral" for="Aniversário">Data de Nascimento:</label>
 							<input name="Aniversário" type="date" name="Aniversario">				
 							<div>
 								<p id="btnperfil"><button class="btn btn-primary">Atualizar Dados</button></p>
@@ -86,103 +86,107 @@
 	    </div>
 		<!-- Tab da senha do usuário -->
 		<div class="tab-pane fade" id="senha">
-			<h5>Painel de Edição da senha:</h5>
-			<form>
-				<label for="Npassword">Nova Senha:</label>
-				<input type="password" id="Npassword" name="Npassword" required>
-				<label for="CNpassword">Confirmar Nova Senha:</label>
-				<input type="password" id="CNpassword" name="CNpassword" required>
-				
-				
-				<!-- Modal alteração de senha -->
-				<div>
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ASenha" data-backdrop="static">
-					Alterar Senha
-					</button>
-					
-					<!-- Modal de Senha -->
-					<div class="modal fade" id="ASenha" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-					<div class="modal-dialog" role="document">
-					<div class="modal-content">
-					<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Confirme a Mudança de Senha</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					</div>
-					<!-- Confirmação da Alteração de Senha -->
-					<div class="modal-body">
+			<div class="container"	id="containergeral">
+			<h2 id="titulogeral"> Painel de Alteração de Senha </h2>
+				<div class="row">
+					<div class="col-sm-8" id="formcentralizar">
 						<form>
-							<label for="Password">Senha Atual:</label>
-							<input type="password" id="Password" name="Password" required>
+							<label for="Npassword" id="txtboxgeral">Nova Senha:</label>
+							<input type="password" id="Npassword" name="Npassword" required>
+							<label for="CNpassword" id="txtboxgeral">Confirmar Nova Senha:</label>
+							<input type="password" id="CNpassword" name="CNpassword" required>
 							
-							<button>Atualizar Senha</button>
-				
+							
+							<!-- Modal alteração de senha -->
+							<div>
+								<p id="btnsenha"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ASenha" data-backdrop="static">
+								Alterar Senha
+								</button></p>
+								<!-- Modal de Senha -->
+								<div class="modal fade" id="ASenha" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+								<div class="modal-content">
+								<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">Confirme a Mudança de Senha</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+								</div>
+								<!-- Confirmação da Alteração de Senha -->
+								<div class="modal-body">
+									<form>
+										<label for="Password">Senha Atual:</label>
+										<input type="password" id="Password" name="Password" required>
+										<button>Atualizar Senha</button>
+									</form>
+									  </div>
+									  <!-- Botão de Confirmação -->
+									  <div class="modal-footer">
+										<p>Não fazer nada e cancelar a alteração</p>
+										<button type="refresh" class="btn btn-primary" data-toggle="modal" data-dismiss="modal" data-backdrop="static">
+											Cancelar
+										</button>
+									  </div>
+									</div>
+								  </div>
+								</div>
+							</div>
 						</form>
-						  </div>
-						  <!-- Botão de Confirmação -->
-						  <div class="modal-footer">
-							<p>Não fazer nada e cancelar a alteração</p>
-							<button type="refresh" class="btn btn-primary" data-toggle="modal" data-dismiss="modal" data-backdrop="static">
-								Cancelar
-							</button>
-						  </div>
-						</div>
-					  </div>
 					</div>
-					
 				</div>
-			</form>
+			</div>
 		</div>
 		
 		<!-- Tab do email do usuário -->
 		<div class="tab-pane fade" id="email">
-			<h5>Painel de Edição do Email:</h5>
-			<form>
-				<label for="Nemail">Novo Email:</label>
-				<input type="email" id="Nemail" name="Nemail" required>
-				<label for="CNemail">Confirmar Novo Email:</label>
-				<input type="email" id="CNemail" name="CNemail" required>
-				
-				<!-- Modal alteração de Email -->
-				<div>
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AEmail" data-backdrop="static">
-					Alterar Email
-					</button>
-					
-					<!-- Modal de Email -->
-					<div class="modal fade" id="AEmail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-					<div class="modal-dialog" role="document">
-					<div class="modal-content">
-					<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Confirme a Mudança de Email</h5>
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					</div>
-					<!-- Confirmação da Alteração de Email -->
-					<div class="modal-body">
+			<div class="container"	id="containergeral">
+			<h2 id="titulogeral"> Painel de Alteração de Email </h2>
+				<div class="row">
+					<div class="col-sm-8" id="formcentralizar">
 						<form>
-							<label for="Password">Senha Atual:</label>
-							<input type="password" id="Password" name="Password" required>
+							<label for="Nemail" id="txtboxgeral">Novo Email:</label>
+							<input type="email" id="Nemail" name="Nemail" required>
+							<label for="CNemail" id="txtboxgeral">Confirmar Novo Email:</label>
+							<input type="email" id="CNemail" name="CNemail" required>
 							
-							<button>Atualizar Email</button>
-				
+							<!-- Modal alteração de Email -->
+							<div>
+								<p id="btnemail"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AEmail" data-backdrop="static">
+								Alterar Email
+								</button></p>
+								<!-- Modal de Email -->
+								<div class="modal fade" id="AEmail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+								<div class="modal-content">
+								<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">Confirme a Mudança de Email</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+								</div>
+								<!-- Confirmação da Alteração de Email -->
+								<div class="modal-body">
+									<form>
+										<label for="Password">Senha Atual:</label>
+										<input type="password" id="Password" name="Password" required>
+										<button>Atualizar Email</button>
+									</form>
+									  </div>
+									  <!-- Botão de Confirmação -->
+									  <div class="modal-footer">
+										<p>Não fazer nada e cancelar a alteração</p>
+										<button type="refresh" class="btn btn-primary" data-toggle="modal" data-dismiss="modal" data-backdrop="static">
+											Cancelar
+										</button>
+									  </div>
+									</div>
+								  </div>
+								</div>
+							</div>
 						</form>
-						  </div>
-						  <!-- Botão de Confirmação -->
-						  <div class="modal-footer">
-							<p>Não fazer nada e cancelar a alteração</p>
-							<button type="refresh" class="btn btn-primary" data-toggle="modal" data-dismiss="modal" data-backdrop="static">
-								Cancelar
-							</button>
-						  </div>
-						</div>
-					  </div>
 					</div>
-				
 				</div>
-			</form>
+			</div>
 		</div>
 	</div>
  </div>
