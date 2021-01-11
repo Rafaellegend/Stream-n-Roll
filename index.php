@@ -1,6 +1,10 @@
 <?php
 //Abrindo o HTML
+include_once("php/head.php");
+//header
+if(!$page=='stream'){
 include_once("php/header.php");
+};
 
 //verificação da url em busca da variavel page
 if(!isset($_GET['page'])){$page= 'main';} else{$page = $_GET['page'];};
@@ -22,6 +26,9 @@ if($page=='userprofile'){include_once'php/userprofile.php';};
 
 	//Tela de Registro
 // if($page=='register'){include_once'php/register.php';};
+	
+	//Overlay
+if($page=='stream'){include_once'php/overlay.php';};
 
 //Fechando o HTML
 include_once("php/footer.php");

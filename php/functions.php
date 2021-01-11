@@ -1,20 +1,20 @@
 <?php
-$db= 
-function dbconnect($db,$host,$user,$pass){
-	// Tenta conectar no banco 
+dbconnect();
+function dbconnect(){
+	$servername = "localhost";
+	$username = "root";
+	$password = "usbw";
+
 	try {
-		$dbh = new PDO('mysql:host='+$host+';dbname='+$db, $user, $pass);
-		foreach($dbh->query('SELECT * from FOO') as $row) {
-			print_r($row);
-		}
-		$dbh = null;
-	} catch (PDOException $e) {
-		print "Error!: " . $e->getMessage() . "<br/>";
-		die();
+	  $conn = new PDO("mysql:host=$servername;dbname=streamnroll", $username, $password);
+	  // set the PDO error mode to exception
+	  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	  echo "foi porra";
+	  echo "Connected successfully";
+	} catch(PDOException $e) {
+	  echo "Connection failed: " . $e->getMessage();
 	}
+	return;
 }
 
-function dbquery($query){
-	
-}
 ?>
