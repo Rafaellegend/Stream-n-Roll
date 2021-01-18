@@ -1,14 +1,16 @@
 <?php
 //Abrindo o HTML
 include_once("php/head.php");
-//header
-if(!$page=='stream'){
-include_once("php/header.php");
-};
+
 
 //verificação da url em busca da variavel page
 if(!isset($_GET['page'])){$page= 'main';} else{$page = $_GET['page'];};
 
+//header
+if($page=='stream'){}
+else{
+include_once("php/header.php");
+};
 
 //verificação da varaiavel page para redirecionamento de pagina
 	//Menu principal

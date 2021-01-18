@@ -1,0 +1,22 @@
+body{
+	background-image: url("../img/overlay/base-01.png");
+}
+#hostcam{
+	background-color: #05fa1f;
+	position:relative;
+	top:137px;
+	left:117px;
+}
+#pcam{
+	background-color: #05fa1f;
+	position:relative;
+	top:112px;
+	right:100px;
+	margin:25px;
+}
+#mview{
+	background-color: #05fa1f;
+	position:relative;
+	top:167px;
+	left:117px;
+}
