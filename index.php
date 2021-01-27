@@ -2,7 +2,6 @@
 //Abrindo o HTML
 include_once("php/head.php");
 
-
 //verificação da url em busca da variavel page
 if(!isset($_GET['page'])){$page= 'main';} else{$page = $_GET['page'];};
 

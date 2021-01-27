@@ -1,5 +1,4 @@
 <?php
-dbconnect();
 function dbconnect(){
 	$servername = "localhost";
 	$username = "root";
@@ -17,4 +16,13 @@ function dbconnect(){
 	return;
 }
 
+function themes(t){
+	switch(t){
+		case 'dnd': $theme = "img\overlay\dnd";
+		break;
+		default: $theme = "img\overlay\template";
+		break;
+	}
+	return $theme;
+}
 ?>

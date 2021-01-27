@@ -9,9 +9,9 @@ body{
 }
 #pcam{
 	background-color: #05fa1f;
-	position:relative;
+	/*position:relative;
 	top:112px;
-	right:100px;
+	right:100px;*/
 	margin:25px;
 }
 #mview{
@@ -19,4 +19,15 @@ body{
 	position:relative;
 	top:167px;
 	left:117px;
+}
+#players{
+	/*background-color: red;*/
+	height:884px;
+	width:1090px;
+	position:relative;
+	top:114px;
+	right:80px;
+}
+.image-fluid{
+	max-height:100%;
 }
