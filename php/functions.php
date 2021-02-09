@@ -14,7 +14,7 @@ function dbconnect(){
 	  echo "Connection failed: " . $e->getMessage();
 	}
 	return;
-}
+};
 
 function themes(t){
 	switch(t){
@@ -24,5 +24,5 @@ function themes(t){
 		break;
 	}
 	return $theme;
-}
+};
 ?>

@@ -19,6 +19,8 @@ if($page=='reglogm'){include_once'php/reglogm.php';};
 	//Criar Sessão
 if($page=='csession'){include_once'php/csession.php';};
 	//d&d - Editar Ficha 
+if($page=='ddsheet'){include_once'php/ddsheet.php';};
+	//d&d - Editar Ficha 
 if($page=='ddedit'){include_once'php/dd_edit.php';};
 	//RegLogM - Registro e Login
 if($page=='reglogm'){include_once'php/reglogm.php';};
