@@ -12,15 +12,7 @@ include_once("php/header.php");
 };
 
 //Criando conexão com o Banco de Dados e Verificando a conexão
-	$hostname="localhost";
-	$username="root";
-	$password="usbw";
-	$dbname="StreamNRoll";
-	
-	mysqli_connect($hostname,$username, $password) or die 
-	("Erro ao conectar ao bando de dados");
-	mysqli_select_db($dbname);
-	
+include_once("php/conection.php");
 
 //verificação da varaiavel page para redirecionamento de pagina
 	//Menu principal
