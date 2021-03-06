@@ -11,6 +11,9 @@ else{
 include_once("php/header.php");
 };
 
+//Criando conexão com o Banco de Dados e Verificando a conexão
+include_once("php/conection.php");
+
 //verificação da varaiavel page para redirecionamento de pagina
 	//Menu principal
 if($page=='main'){include_once'php/main.php';};
