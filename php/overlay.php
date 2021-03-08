@@ -54,3 +54,5 @@
 		</div>
 	</div>
 </div>
+<script src="js/functions.js" type="text/javascript"></script>
+<button onclick="Cam()">botão</button>

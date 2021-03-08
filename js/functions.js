@@ -15,3 +15,21 @@ function Roll(d,Atr1,Atr2,Atr3,pos){
 	var Res = document.getElementById("dado").innerHTML = r;
 	return Res;
 }
+function Cam(){
+  var myWindow = window.open("overlay.php", "myWindow", "width=1920,height=1080");
+}
+function reload(){
+	window.opener.location.reload();
+}
+function start(){
+	setInterval();
+}
+function XMLRequest(url){
+	obj.onreadystatechange = function(){
+		if(this.readyState ==4 && this.status == 200){
+			document.
+		}
+	}
+	obj.open("GET",url,false);
+	obj.send();
+} 
