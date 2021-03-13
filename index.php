@@ -12,7 +12,7 @@ include_once("php/header.php");
 };
 
 //Criando conexão com o Banco de Dados e Verificando a conexão
-include_once("php/conection.php");
+//include_once("php/conection.php");
 
 //verificação da varaiavel page para redirecionamento de pagina
 	//Menu principal
@@ -37,5 +37,8 @@ if($page=='userprofile'){include_once'php/userprofile.php';};
 if($page=='stream'){include_once'php/overlay.php';};
 
 //Fechando o HTML
+if($page=='stream'){}
+else{
 include_once("php/footer.php");
+};
 ?>

@@ -7,6 +7,7 @@ body{
 	top:137px;
 	left:117px;
 }
+
 #pcam{
 	background-color: #05fa1f;
 	/*position:relative;
@@ -27,6 +28,17 @@ body{
 	position:relative;
 	top:114px;
 	right:80px;
+}
+.dados{
+	text-align:center;
+	width:60px;
+	height:60px;
+	font-size:50px;
+	background-color: pink;
+
+}
+.bar{
+	text-align:center;
 }
 .image-fluid{
 	max-height:100%;

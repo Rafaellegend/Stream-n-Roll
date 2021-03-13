@@ -2,17 +2,21 @@
 
 	
 	//Criando conexão com o Banco de Dados e Verificando a conexão
-	$hostname="localhost";
-	$username="root";
-	$password="usbw";
-	$dbname="StreamNRoll";
+	$hostname="192.185.223.140";
+	$username="raffoz89_Project";
+	$password="13!~GFnWT^@B";
+	$dbname="raffoz89_StreamNRoll";
 	
-	mysqli_connect($hostname,$username, $password) or die 
-	("Erro ao conectar ao bando de dados");
-	mysqli_select_db($dbname);
-	
-	
-	
+	try {
+	  $conn = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
+	  // set the PDO error mode to exception
+	  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	  echo "foi porra";
+	  echo "Connected successfully";
+	} catch(PDOException $e) {
+	  echo "Connection failed: " . $e->getMessage();
+	}
+	return;
 	/*
 	//Criando conexão com o Banco de Dados e Verificando a conexão
 	$hostname="localhost";

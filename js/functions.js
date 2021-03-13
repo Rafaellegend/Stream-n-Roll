@@ -18,18 +18,42 @@ function Roll(d,Atr1,Atr2,Atr3,pos){
 function Cam(){
   var myWindow = window.open("overlay.php", "myWindow", "width=1920,height=1080");
 }
+
+//Testes de reload
 function reload(){
 	window.opener.location.reload();
 }
 function start(){
 	setInterval();
 }
-function XMLRequest(url){
+//Xml JS
+function XMLRequest(url,tag,id,cid){
 	obj.onreadystatechange = function(){
 		if(this.readyState ==4 && this.status == 200){
-			document.
-		}
-	}
+			XMLquery(this,tag,id,cid);
+		};
+	};
 	obj.open("GET",url,false);
 	obj.send();
 } 
+function XMLquery(xml,tag,id,cid){
+	var xmlDoc = xml.responseXML;
+	var x = xmlDoc.getElementsByTagName(tag)[id].childNodes[cid];
+	var res = x.nodeValue;
+}
+//Animações de barra : AniBar(Id da tag, Posição Atual, Posição Final)
+function AniBar(eid,apos,fpos) {
+	var id = null;
+	var elem = document.getElementById(eid);   
+	var pos = apos;
+	clearInterval(id);
+	id = setInterval(frame, 5);
+	function frame() {
+		if (pos == fpos) {
+			clearInterval(id);
+		} else {
+			pos++; 
+			elem.style.width = fpos + "px";
+		}
+	}
+}
