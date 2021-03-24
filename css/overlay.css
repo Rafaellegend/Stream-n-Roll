@@ -1,5 +1,6 @@
 body{
-	background-image: url("../img/overlay/base-01.png");
+	/*background-image: url("../img/overlay/base-01.png");*/
+	background-color: #05fa1f;
 }
 #hostcam{
 	background-color: #05fa1f;
@@ -9,8 +10,8 @@ body{
 }
 
 #pcam{
-	background-color: #05fa1f;
-	/*position:relative;
+	/*background-color: #05fa1f;
+	position:relative;
 	top:112px;
 	right:100px;*/
 	margin:25px;
@@ -21,6 +22,11 @@ body{
 	top:167px;
 	left:117px;
 }
+#mdice{
+	position:relative;
+	top:302px;
+	left:36px;
+}
 #players{
 	/*background-color: red;*/
 	height:884px;
@@ -30,15 +36,24 @@ body{
 	right:80px;
 }
 .dados{
+	color:white;
+	-webkit-text-stroke-width: 3px;
+-webkit-text-stroke-color: #000;
+	font-family:'Arial Rounded MT Bold', sans-serif;
 	text-align:center;
 	width:60px;
 	height:60px;
 	font-size:50px;
-	background-color: pink;
+	/*background-color: pink;*/
 
 }
-.bar{
+.HPBar{
 	text-align:center;
+	font-size:20px;
+	font-weight: bold;
+}
+.bar{
+	z-index: -1;
 }
 .image-fluid{
 	max-height:100%;

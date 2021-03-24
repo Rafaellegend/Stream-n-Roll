@@ -1,4 +1,8 @@
 <?php
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
+
 //Abrindo o HTML
 include_once("php/head.php");
 
@@ -12,7 +16,8 @@ include_once("php/header.php");
 };
 
 //Criando conexão com o Banco de Dados e Verificando a conexão
-//include_once("php/conection.php");
+include_once("php/conection.php");
+//dbconnect();
 
 //verificação da varaiavel page para redirecionamento de pagina
 	//Menu principal
@@ -29,6 +34,8 @@ if($page=='ddedit'){include_once'php/dd_edit.php';};
 if($page=='reglogm'){include_once'php/reglogm.php';};
 	//Perfil do Usuário
 if($page=='userprofile'){include_once'php/userprofile.php';};
+	//Submit 
+if($page=='submit'){include_once'php/submit.php';};
 
 	//Tela de Registro
 // if($page=='register'){include_once'php/register.php';};

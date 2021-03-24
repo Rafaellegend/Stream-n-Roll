@@ -12,48 +12,38 @@ function readURL(input,id) {
         }
 function Roll(d,Atr1,Atr2,Atr3,pos){
 	var r = (Math.floor(Math.random() * d) + 1) + Atr1 + Atr2 + Atr3;
-	var Res = document.getElementById("dado").innerHTML = r;
+	var Res = document.getElementById(pos).innerHTML = r;
 	return Res;
 }
-function Cam(){
-  var myWindow = window.open("overlay.php", "myWindow", "width=1920,height=1080");
-}
-
-//Testes de reload
-function reload(){
-	window.opener.location.reload();
-}
-function start(){
-	setInterval();
-}
 //Xml JS
-function XMLRequest(url,tag,id,cid){
+function XMLRequest(url,tag,id,cid,to){
+	var obj = new XMLHttpRequest();
 	obj.onreadystatechange = function(){
 		if(this.readyState ==4 && this.status == 200){
-			XMLquery(this,tag,id,cid);
+			XMLquery(this,tag,id,cid,to);
 		};
 	};
-	obj.open("GET",url,false);
+	obj.open("GET",url,true);
 	obj.send();
 } 
-function XMLquery(xml,tag,id,cid){
+function XMLquery(xml,tag,id,cid,to){
 	var xmlDoc = xml.responseXML;
 	var x = xmlDoc.getElementsByTagName(tag)[id].childNodes[cid];
 	var res = x.nodeValue;
+	document.getElementById(to).innerHTML = res;
 }
 //Animações de barra : AniBar(Id da tag, Posição Atual, Posição Final)
 function AniBar(eid,apos,fpos) {
-	var id = null;
 	var elem = document.getElementById(eid);   
 	var pos = apos;
 	clearInterval(id);
-	id = setInterval(frame, 5);
+	var id = setInterval(frame, 5);
 	function frame() {
 		if (pos == fpos) {
 			clearInterval(id);
 		} else {
 			pos++; 
-			elem.style.width = fpos + "px";
+			elem.style.width = pos + "px";
 		}
 	}
 }

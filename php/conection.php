@@ -1,22 +1,29 @@
 <?php
-
-	
-	//Criando conexão com o Banco de Dados e Verificando a conexão
-	$hostname="192.185.223.140";
-	$username="raffoz89_Project";
-	$password="13!~GFnWT^@B";
-	$dbname="raffoz89_StreamNRoll";
-	
-	try {
-	  $conn = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
-	  // set the PDO error mode to exception
-	  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	  echo "foi porra";
-	  echo "Connected successfully";
-	} catch(PDOException $e) {
-	  echo "Connection failed: " . $e->getMessage();
+	function dbconnect(){
+		//Criando conexão com o Banco de Dados e Verificando a conexão
+		$hostname="192.185.223.140";
+		$username="raffoz89_Project";
+		$password="13!~GFnWT^@B";
+		$dbname="raffoz89_StreamNRoll";
+		
+		try {
+		  $conn = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
+		  // set the PDO error mode to exception
+		  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		} catch(PDOException $e) {
+		  echo "Connection failed: " . $e->getMessage();
+		}
+		return;
 	}
-	return;
+	function dbclose(){
+		$conn->close();
+	}
+	function dbquery($act,$tab,$where,$what){
+		Switch($act){
+			case 'INSERT': $sql = "INSERT INTO '$tab' () VALUES ('')";
+		}
+		
+	}
 	/*
 	//Criando conexão com o Banco de Dados e Verificando a conexão
 	$hostname="localhost";

@@ -3,7 +3,7 @@
 	
 </script>
 <?php
-	$t='dtfl';
+	$t='dnd';
 	$players = 8;
 	switch($t){
 			case 'dnd': $theme = 'img\overlay\dnd';
@@ -63,28 +63,46 @@
 		<div class="col-sm-5" style="">
 		<img id="hostcam" src='<?php echo $theme ?>\squarecam.png'>
 		<img id="mview" src='<?php echo $theme ?>\more.png'>
+		<picture>
+			<img class='img-fluid' id="mdice" src='img/dice2.svg' style='width:80px;height:80px;'>
+		</picture>
+		<p class='dados' id='p$i' style='position:absolute;top:$dtop;left:$px;' >20</p> 
 		</div>
 		<div class="col-sm-7" id="players">
 			<?php
+			$un = 1;
 			$px = $cssLeft;
 				for($i = 1; $i <= $players; $i++){
 					$p = $players/2;
 					if($i == $p+1){
 						$px = $cssLeft;
+						$un = 1;
+					}
+					if($i == $p-1){
+						$un = -1;
+					}
+					if($i/2 == $p-1){
+						$un = 0;
 					}
 					if($i <= $p){
 						$dtop = $csstop;
 					}else{ 
 						$dtop = $cssbotton;
 					};
-					$bx= $x - 65 .'px';
-					echo"<picture>
-					<img id='pcam' class='img-fluid' src='$theme\pcam.png' style='height:$y;width:$x;$ex'>
+					$bx= $x - 8 .'px';
+					echo"
+					
+					<p id='bar$i' class='bar' style='background-color: red;height:30px;width:$bx;max-width:$bx;position:absolute;top:".($dtop+30)."px;left:".($px+4)."px;'></p>
+					<p id='HPbar$i' class='HPBar' style='height:30px;width:$bx;position:absolute;top:".($dtop+30)."px;left:".($px+0)."px;'>10/10</p>
+					<picture>
+						<img id='pcam' class='img-fluid' src='$theme\pcam.png' style='height:$y;width:$x;$ex'>
 					</picture>
-					<p class='dados' id='p$i' style='position:absolute;top:$dtop;left:$px;'>20</p> 
-					<p id='bar$i' class='bar' style='background-color: red;height:30px;width:$bx;max-width:$bx;position:absolute;top:".($dtop+30)."px;left:".($px+60)."px;'>10/10</p>";
-					$px = ($px + $x)+5 .'px';
-				
+					<picture>
+						<img class='img-fluid' src='img/dice2.svg' style='position:absolute;top:$dtop;left:$px;width:80px;height:80px;'>
+					</picture>
+					<p class='dados' id='p$i' style='position:absolute;top:$dtop;left:$px;' >20</p> 
+					";
+					$px = ($px + $x +4+$un) .'px';
 				};
 			?>
 		</div>
@@ -92,4 +110,4 @@
 </div>
 <script src="js/functions.js" type="text/javascript"></script>
 
-<button onclick="AniBar(bar1,0,50)">teste</button>
+<button onclick="AniBar('bar1',0,50)">teste</button>
