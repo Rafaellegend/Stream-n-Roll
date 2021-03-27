@@ -61,8 +61,8 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-sm-5" style="">
-		<img id="hostcam" src='<?php echo $theme ?>\squarecam.png'>
-		<img id="mview" src='<?php echo $theme ?>\more.png'>
+		<img id="hostcam" src='<?php echo $theme ?>\sqr_cam.png'>
+		<img id="mview" src='<?php echo $theme ?>\m_cam.png'>
 		<picture>
 			<img class='img-fluid' id="mdice" src='img/dice2.svg' style='width:80px;height:80px;'>
 		</picture>
@@ -95,12 +95,12 @@
 					<p id='bar$i' class='bar' style='background-color: red;height:30px;width:$bx;max-width:$bx;position:absolute;top:".($dtop+30)."px;left:".($px+4)."px;'></p>
 					<p id='HPbar$i' class='HPBar' style='height:30px;width:$bx;position:absolute;top:".($dtop+30)."px;left:".($px+0)."px;'>10/10</p>
 					<picture>
-						<img id='pcam' class='img-fluid' src='$theme\pcam.png' style='height:$y;width:$x;$ex'>
+						<img id='pcam' class='img-fluid' src='$theme\p_cam.png' style='height:$y;width:$x;$ex'>
 					</picture>
 					<picture>
-						<img class='img-fluid' src='img/dice2.svg' style='position:absolute;top:$dtop;left:$px;width:80px;height:80px;'>
+						<img class='img-fluid' src='$theme\dice.svg' style='position:absolute;top:$dtop;left:".($px-5)."px;width:80px;height:80px;'>
 					</picture>
-					<p class='dados' id='p$i' style='position:absolute;top:$dtop;left:$px;' >20</p> 
+					<p class='dados' id='p$i' style='text-align:center;position:absolute;top:".($dtop+6)."px;left:".($px+6)."px;' >20</p> 
 					";
 					$px = ($px + $x +4+$un) .'px';
 				};
@@ -110,4 +110,5 @@
 </div>
 <script src="js/functions.js" type="text/javascript"></script>
 
-<button onclick="AniBar('bar1',0,50)">teste</button>
+<button onclick="AniBar('bar1',r3('<?php echo $bx; ?>',30),r3('<?php echo $bx; ?>',100))">teste</button>
+<button onclick="AniBar('bar1',r3('<?php echo $bx; ?>',100),r3('<?php echo $bx; ?>',30))">teste</button>

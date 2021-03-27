@@ -36,14 +36,21 @@ function XMLquery(xml,tag,id,cid,to){
 function AniBar(eid,apos,fpos) {
 	var elem = document.getElementById(eid);   
 	var pos = apos;
-	clearInterval(id);
+	clearInterval(id);	
 	var id = setInterval(frame, 5);
 	function frame() {
 		if (pos == fpos) {
 			clearInterval(id);
-		} else {
+		}else if(pos+1 < fpos) {
 			pos++; 
+			elem.style.width = pos + "px";
+		}else if(pos-1 > fpos){
+			pos--;
 			elem.style.width = pos + "px";
 		}
 	}
+}
+function r3(max,want){
+	var r =  parseInt(max)*want/100;
+	return r;
 }
