@@ -228,7 +228,7 @@
 	<!-- Acrobacia -->
 		<label for="Cacrbt">Acrobacia (Des)</label><br>
 		<input type="checkbox" id="Cacrbt" name="Cacrbt" onchange='ExectCalc("dnd","per","Cmacrbt","Cmacrbt","Cacrbt","Cpro")'>
-		<input type="text" class='dex' id="Cmacrbt" name="Cmacrbt" value='0' readonly>
+		<input type="text" class='dex' id="Cmacrbt" name="Cmacrbt" value='0' readonly >
 		<br>
 	<!-- Adestrar Animais -->
 		<label for="Canimal">Adestrar Animais (Sab)</label><br>
