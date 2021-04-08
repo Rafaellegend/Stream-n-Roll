@@ -1,20 +1,27 @@
+<script src="js/Autocalc.js" type="text/javascript"></script>
 <script>
-var info = true;
-function showinfo(){
-	if(info == true){
-		info = false;
-		document.getElementById('test').innerHTML = info;
-	}else{
-		info = true;
-		document.getElementById('test').innerHTML = info;
-	}
-}
-if(info == true){
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
-})}
+})
+function sheetload(){
+	ExectCalc("dnd","prof","clevel","cpro");
+	ExectCalc("dnd","mod","cstr","cmstr");
+	ExectCalc("dnd","dis","cstr","str","cpro");
+	ExectCalc("dnd","mod","cdex","cmdex");
+	ExectCalc("dnd","dis","cdex","dex","cpro");
+	ExectCalc("dnd","mod","ccon","cmcon");
+	ExectCalc("dnd","dis","ccon","con","cpro");
+	ExectCalc("dnd","mod","cint","cmint");
+	ExectCalc("dnd","dis","cint","int","cpro");
+	ExectCalc("dnd","mod","cwis","cmwis");
+	ExectCalc("dnd","dis","cwis","wis","cpro");
+	ExectCalc("dnd","mod","ccar","cmcar");
+	ExectCalc("dnd","dis","ccar","car","cpro");
+}
 </script>
-<div class="container-fluid" id="sheet">
+<form onchange="sheetload()">
+<div class="container-fluid" id="sheet" >
+	<!--Informações do Personagem-->
 	<div class="row" >
 	<!--Linha de info de Personagem-->
 		<div class="col-md-1">
@@ -34,7 +41,7 @@ $(function () {
 			<label for="cclass">Classe:</label>
 			<input type="text" id="cclass" value='0' class="imputihidden" style="width:100px;">
 		
-			<input type="text" id="clevel" value='0' class="imputihidden" style="width:20px;">
+			<input type="text" id="clevel" value='0' class="imputihidden" style="width:20px;" onchange='ExectCalc("dnd","prof","clevel","cpro")'>
 			
 			<label for="cback">Antecedente:</label>
 			<input type="text" id="cback" value='0' class="imputihidden" style="width:83px;">
@@ -69,44 +76,45 @@ $(function () {
 		</div>
 	
 	</div>
-	
+	<!--Habilidades e Pericias-->
 	<div class="row">
+	
 		<!--Habilidades-->
 		<div class="col-md-3" id="mainhab" style="column-count: 3;padding-top:20px;padding-bottom:10px;height:275px;">
-			<div id="habbox">
+			<div class="habbox">
 				<label for="cstr">Força</label>
-				<input type="text" id="cstr" class="fullv" style="width:45px;" value="0">
-				<input type="text" id="cmstr" class="modv" style="width:30px;" value="0">
+				<input type="text" id="cstr" class="fullv" style="width:45px;" value="0" onchange='ExectCalc("dnd","mod","cstr","cmstr");ExectCalc("dnd","dis","cstr","str","cpro")'>
+				<input type="text" id="cmstr" class="modv" style="width:30px;" value="0" disabled>
 			</div>
-			<div id="habbox">
+			<div class="habbox">
 				<label for="cdex">Destreza</label>
-				<input type="text" id="cdex" class="fullv" style="width:45px;" value="0">
-				<input type="text" id="cmdex" class="modv" style="width:30px;" value="0">
+				<input type="text" id="cdex" class="fullv" style="width:45px;" value="0" onchange='ExectCalc("dnd","mod","cdex","cmdex");ExectCalc("dnd","dis","cdex","dex","cpro")'>
+				<input type="text" id="cmdex" class="modv" style="width:30px;" value="0" disabled>
 			</div>
-			<div id="habbox">
+			<div class="habbox">
 				<label for="ccon">Constituição</label>
-				<input type="text" id="ccon" class="fullv" style="width:45px;" value="0">
-				<input type="text" id="cmcon" class="modv" style="width:30px;" value="0">
+				<input type="text" id="ccon" class="fullv" style="width:45px;" value="0" onchange='ExectCalc("dnd","mod","ccon","cmcon");ExectCalc("dnd","dis","ccon","con","cpro")'>
+				<input type="text" id="cmcon" class="modv" style="width:30px;" value="0" disabled>
 			</div>
-			<div id="habbox">
+			<div class="habbox">
 				<label for="cint">Inteligência</label>
-				<input type="text" id="cint" class="fullv" style="width:45px;" value="0">
-				<input type="text" id="cmint" class="modv" style="width:30px;" value="0">
+				<input type="text" id="cint" class="fullv" style="width:45px;" value="0" onchange='ExectCalc("dnd","mod","cint","cmint");ExectCalc("dnd","dis","cint","int","cpro")'>
+				<input type="text" id="cmint" class="modv" style="width:30px;" value="0" disabled>
 			</div>
-			<div id="habbox">
+			<div class="habbox">
 				<label for="cwis">Sabedoria</label>
-				<input type="text" id="cwis" class="fullv" style="width:45px;" value="0">
-				<input type="text" id="cmwis" class="modv" style="width:30px;" value="0">
+				<input type="text" id="cwis" class="fullv" style="width:45px;" value="0" onchange='ExectCalc("dnd","mod","cwis","cmwis");ExectCalc("dnd","dis","cwis","wis","cpro")'>
+				<input type="text" id="cmwis" class="modv" style="width:30px;" value="0" disabled>
 			</div>
-			<div id="habbox">
+			<div class="habbox">
 				<label for="ccar">Carisma</label>
-				<input type="text" id="ccar" class="fullv" style="width:45px;" value="0">
-				<input type="text" id="cmcar" class="modv" style="width:30px;" value="0">
+				<input type="text" id="ccar" class="fullv" style="width:45px;" value="0" onchange='ExectCalc("dnd","mod","ccar","cmcar");ExectCalc("dnd","dis","ccar","car","cpro")'>
+				<input type="text" id="cmcar" class="modv" style="width:30px;" value="0" disabled>
 			</div>
 		</div>
 		<!--Caixa de Proficiencia-->
 				<input type="text" class="proflabel" value="   Proficiência" disabled>
-				<input type="text" id="cpro" class="sheetprof" value="0">
+				<input type="text" id="cpro" class="sheetprof" value="2">
 		<!--Caixa de Pericias-->
 		<div class="col-md-6 sheetbox" style="overflow-y:auto;height:275px;">
 			
@@ -115,207 +123,214 @@ $(function () {
 			<div id="perices">
 				<!--Teste de Força-->
 				<div>
-					<input type="checkbox" class="">
-					<label for="ctstr">Força</label>
-					<input type="text" id="ctstr" class="imputihidden" style="width:20px;" value="0">
+					<input type="checkbox" id="ctstr" onchange='ExectCalc("dnd","per","cmtstr","cmtstr","ctstr","cpro")'>
+					<label for="cmtstr">Força</label>
+					<input type="text" id="cmtstr" class="imputihidden str" style="width:20px;" value="0" readonly>
 				</div>
 				<!--Teste de Destreza-->
 				<div>
-					<input type="checkbox" class="">
-					<label for="ctdex">Destreza</label>
-					<input type="text" id="ctdex" class="imputihidden" style="width:20px;" value="0">
+					<input type="checkbox" id="ctdex" onchange='ExectCalc("dnd","per","cmtdex","cmtdex","ctdex","cpro")'>
+					<label for="cmtdex">Destreza</label>
+					<input type="text" id="cmtdex" class="imputihidden dex" style="width:20px;" value="0" readonly>
 				</div>
 				<!--Teste de Constituição-->
 				<div>
-					<input type="checkbox" class="">
-					<label for="ctcon">Constituição</label>
-					<input type="text" id="ctcon" class="imputihidden" style="width:20px;" value="0">
+					<input type="checkbox" id="ctcon" onchange='ExectCalc("dnd","per","cmtcon","cmtcon","ctcon","cpro")'>
+					<label for="cmtcon">Constituição</label>
+					<input type="text" id="cmtcon" class="imputihidden con" style="width:20px;" value="0" readonly>
 				</div>
 				<!--Teste de Inteligência-->
 				<div>
-					<input type="checkbox" class="">
-					<label for="ctint">Inteligência</label>
-					<input type="text" id="ctint" class="imputihidden" style="width:20px;" value="0">
+					<input type="checkbox" id="ctint" onchange='ExectCalc("dnd","per","cmtint","cmtint","ctint","cpro")'>
+					<label for="cmtint">Inteligência</label>
+					<input type="text" id="cmtint" class="imputihidden int" style="width:20px;" value="0" readonly>
 				</div>
 				<!--Teste de Sabedoria-->
 				<div>
-					<input type="checkbox" class="">
-					<label for="ctwis">Sabedoria</label>
-					<input type="text" id="ctwis" class="imputihidden" style="width:20px;" value="0">
+					<input type="checkbox" id="ctwis" onchange='ExectCalc("dnd","per","cmtwis","cmtwis","ctwis","cpro")'>
+					<label for="cmtwis">Sabedoria</label>
+					<input type="text" id="cmtwis" class="imputihidden wis" style="width:20px;" value="0" readonly>
 				</div>
 				<!--Teste de Carisma-->
 				<div>
-					<input type="checkbox" class="">
-					<label for="ctcar">Carisma</label>
-					<input type="text" id="ctcar" class="imputihidden" style="width:20px;" value="0">
+					<input type="checkbox" id="ctcar" onchange='ExectCalc("dnd","per","cmtcar","cmtcar","ctcar","cpro")'>
+					<label for="cmtcar">Carisma</label>
+					<input type="text" id="cmtcar" class="imputihidden car" style="width:20px;" value="0" readonly>
 				</div>
 			</div>
 			<!--Caixa de Pericias-->
 			<h5>Pericias</h5>
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle-fill checkinfo" viewBox="0 0 16 16" data-toggle="tooltip" data-placement="top" title="Dobro: Ative para dobrar o valor da perícia. ( Modificador de Habilidade + (Proficiência * 2)) ">
+			  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"/>
+			</svg>
+			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle-fill checkinfo" viewBox="0 0 16 16" data-toggle="tooltip" data-placement="top" title="Proficiente: Ative para aplicar sua proficiência na perícia. (Modificador de Habilidade + Proficiência)">
+			  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"/>
+			</svg>
+
 			<div id="perices">
 				<!--Acrobacia-->
 				<div>
-					<input type="checkbox" class="" data-toggle="tooltip" data-placement="top" title="Dobro: Ative para dobrar o valor da pericia. ">
-					<input type="checkbox" class="" data-toggle="tooltip" data-placement="top" title="Proficiente: Ative para aplicar sua profiiencia na pericia">
+					<input type="checkbox" id="cdacrbt" onchange='ExectCalc("dnd","doub","cdacrbt","cmacrbt","cacrbt","cpro")'>
+					<input type="checkbox" id="cacrbt" onchange='ExectCalc("dnd","per","cmacrbt","cmacrbt","cacrbt","cpro")'>
 					<label for="cmacrbt">Acrobacia(Des)</label>
-					<input type="text" id="cmacrbt" class="imputihidden" style="width:20px;" value="0">
+					<input type="text" id="cmacrbt" class="imputihidden dex" style="width:20px;" value="0" readonly>
 				</div>
 				
-				<!--Acrobacia-->
+				<!--Adestrar Animais-->
 				<div>
-					<input type="checkbox" class="" data-toggle="tooltip" data-placement="top" title="Dobro: Ative para dobrar o valor da pericia. ">
-					<input type="checkbox" class="" data-toggle="tooltip" data-placement="top" title="Proficiente: Ative para aplicar sua profiiencia na pericia">
+					<input type="checkbox" id="cdanl" onchange='ExectCalc("dnd","doub","cdanl","cmanl","canl","cpro")'>
+					<input type="checkbox" id="canl" onchange='ExectCalc("dnd","per","cmanl","cmanl","canl","cpro")'>
 					<label for="cmanl">Adestrar Animais(Sab)</label>
-					<input type="text" id="cmanl" class="imputihidden" style="width:20px;" value="0">
+					<input type="text" id="cmanl" class="imputihidden wis" style="width:20px;" value="0" readonly>
 				</div>
 				
 				<!--Arcanismo-->
 				<div>
-					<input type="checkbox" class="" data-toggle="tooltip" data-placement="top" title="Dobro: Ative para dobrar o valor da pericia. ">
-					<input type="checkbox" class="" data-toggle="tooltip" data-placement="top" title="Proficiente: Ative para aplicar sua profiiencia na pericia">
+					<input type="checkbox" id="cdarc" onchange='ExectCalc("dnd","doub","cdarc","cmarc","carc","cpro")'>
+					<input type="checkbox" id="carc" onchange='ExectCalc("dnd","per","cmarc","cmarc","carc","cpro")' >
 					<label for="cmarc">Arcanismo(Int)</label>
-					<input type="text" id="cmarc" class="imputihidden" style="width:20px;" value="0">
+					<input type="text" id="cmarc" class="imputihidden int" style="width:20px;" value="0" readonly>
 				</div>
 				
 				<!--Atletismo-->
 				<div>
-					<input type="checkbox" class="" data-toggle="tooltip" data-placement="top" title="Dobro: Ative para dobrar o valor da pericia. ">
-					<input type="checkbox" class="" data-toggle="tooltip" data-placement="top" title="Proficiente: Ative para aplicar sua profiiencia na pericia">
+					<input type="checkbox" id="cdatl" onchange='ExectCalc("dnd","doub","cdatl","cmatl","catl","cpro")'>
+					<input type="checkbox" id="catl" onchange='ExectCalc("dnd","per","cmatl","cmatl","catl","cpro")'>
 					<label for="cmatl">Atletismo(For)</label>
-					<input type="text" id="cmatl" class="imputihidden" style="width:20px;" value="0">
+					<input type="text" id="cmatl" class="imputihidden str" style="width:20px;" value="0" readonly>
 				</div>
 				
 				<!--Atuação-->
 				<div>
-					<input type="checkbox" class="" data-toggle="tooltip" data-placement="top" title="Dobro: Ative para dobrar o valor da pericia. ">
-					<input type="checkbox" class="" data-toggle="tooltip" data-placement="top" title="Proficiente: Ative para aplicar sua profiiencia na pericia">
-					<label for="cmact">Atuação(Car)</label>
-					<input type="text" id="cmact" class="imputihidden" style="width:20px;" value="0">
+					<input type="checkbox" id="cdperf" onchange='ExectCalc("dnd","doub","cdperf","cmperf","cperf","cpro")'>
+					<input type="checkbox" id="cperf" onchange='ExectCalc("dnd","per","cmperf","cmperf","cperf","cpro")'>
+					<label for="cmperf">Atuação(Car)</label>
+					<input type="text" id="cmperf" class="imputihidden car" style="width:20px;" value="0" readonly>
 				</div>
 				
 				<!--Enganação-->
 				<div>
-					<input type="checkbox" class="" data-toggle="tooltip" data-placement="top" title="Dobro: Ative para dobrar o valor da pericia. ">
-					<input type="checkbox" class="" data-toggle="tooltip" data-placement="top" title="Proficiente: Ative para aplicar sua profiiencia na pericia">
+					<input type="checkbox" id="cddec" onchange='ExectCalc("dnd","doub","cddec","cmdec","cdec","cpro")'>
+					<input type="checkbox" id="cdec" onchange='ExectCalc("dnd","per","cmdec","cmdec","cdec","cpro")'>
 					<label for="cmdec">Enganação(Car)</label>
-					<input type="text" id="cmdec" class="imputihidden" style="width:20px;" value="0">
+					<input type="text" id="cmdec" class="imputihidden car" style="width:20px;" value="0" readonly>
 				</div>
 				
 				<!--Furtividade-->
 				<div>
-					<input type="checkbox" class="" data-toggle="tooltip" data-placement="top" title="Dobro: Ative para dobrar o valor da pericia. ">
-					<input type="checkbox" class="" data-toggle="tooltip" data-placement="top" title="Proficiente: Ative para aplicar sua profiiencia na pericia">
+					<input type="checkbox" id="cdsth" onchange='ExectCalc("dnd","doub","cdsth","cmsth","csth","cpro")'>
+					<input type="checkbox" id="csth" onchange='ExectCalc("dnd","per","cmsth","cmsth","csth","cpro")'>
 					<label for="cmsth">Furtividade(Des)</label>
-					<input type="text" id="cmsth" class="imputihidden" style="width:20px;" value="0">
+					<input type="text" id="cmsth" class="imputihidden dex" style="width:20px;" value="0" readonly>
 				</div>
 				
 				<!--Historia-->
 				<div>
-					<input type="checkbox" class="" data-toggle="tooltip" data-placement="top" title="Dobro: Ative para dobrar o valor da pericia. ">
-					<input type="checkbox" class="" data-toggle="tooltip" data-placement="top" title="Proficiente: Ative para aplicar sua profiiencia na pericia">
+					<input type="checkbox" id="cdhis" onchange='ExectCalc("dnd","doub","cdhis","cmhis","chis","cpro")'>
+					<input type="checkbox" id="chis" onchange='ExectCalc("dnd","per","cmhis","cmhis","chis","cpro")'>
 					<label for="cmhis">Historia(Int)</label>
-					<input type="text" id="cmhis" class="imputihidden" style="width:20px;" value="0">
+					<input type="text" id="cmhis" class="imputihidden int" style="width:20px;" value="0" readonly>
 				</div>
 				
 				<!--Intimidação-->
 				<div>
-					<input type="checkbox" class="" data-toggle="tooltip" data-placement="top" title="Dobro: Ative para dobrar o valor da pericia. ">
-					<input type="checkbox" class="" data-toggle="tooltip" data-placement="top" title="Proficiente: Ative para aplicar sua profiiencia na pericia">
+					<input type="checkbox" id="cdintm" onchange='ExectCalc("dnd","doub","cdintm","cmintm","cintm","cpro")'>
+					<input type="checkbox" id="cintm" onchange='ExectCalc("dnd","per","cmintm","cmintm","cintm","cpro")'>
 					<label for="cmintm">Intimidação(Car)</label>
-					<input type="text" id="cmintm" class="imputihidden" style="width:20px;" value="0">
+					<input type="text" id="cmintm" class="imputihidden car" style="width:20px;" value="0" readonly>
 				</div>
 				
 				<!--Intuição-->
 				<div>
-					<input type="checkbox" class="" data-toggle="tooltip" data-placement="top" title="Dobro: Ative para dobrar o valor da pericia. ">
-					<input type="checkbox" class="" data-toggle="tooltip" data-placement="top" title="Proficiente: Ative para aplicar sua profiiencia na pericia">
+					<input type="checkbox" id="cdins" onchange='ExectCalc("dnd","doub","cdins","cmins","cins","cpro")'>
+					<input type="checkbox" id="cins" onchange='ExectCalc("dnd","per","cmins","cmins","cins","cpro")'>
 					<label for="cmins">Intuição(Sab)</label>
-					<input type="text" id="cmins" class="imputihidden" style="width:20px;" value="0">
+					<input type="text" id="cmins" class="imputihidden wis" style="width:20px;" value="0" readonly>
 				</div>
 				
 				<!--Investigação-->
 				<div>
-					<input type="checkbox" class="" data-toggle="tooltip" data-placement="top" title="Dobro: Ative para dobrar o valor da pericia. ">
-					<input type="checkbox" class="" data-toggle="tooltip" data-placement="top" title="Proficiente: Ative para aplicar sua profiiencia na pericia">
+					<input type="checkbox" id="cdinv" onchange='ExectCalc("dnd","doub","cdinv","cminv","cinv","cpro")'>
+					<input type="checkbox" id="cinv" onchange='ExectCalc("dnd","per","cminv","cminv","cinv","cpro")'>
 					<label for="cminv">Investigação(Int)</label>
-					<input type="text" id="cminv" class="imputihidden" style="width:20px;" value="0">
+					<input type="text" id="cminv" class="imputihidden int" style="width:20px;" value="0" readonly>
 				</div>
 				
 				<!--Medicina-->
 				<div>
-					<input type="checkbox" class="" data-toggle="tooltip" data-placement="top" title="Dobro: Ative para dobrar o valor da pericia. ">
-					<input type="checkbox" class="" data-toggle="tooltip" data-placement="top" title="Proficiente: Ative para aplicar sua profiiencia na pericia">
+					<input type="checkbox" id="cdmed" onchange='ExectCalc("dnd","doub","cdmed","cmmed","cmed","cpro")'>
+					<input type="checkbox" id="cmed" onchange='ExectCalc("dnd","per","cmmed","cmmed","cmed","cpro")'>
 					<label for="cmmed">Medicina(Sab)</label>
-					<input type="text" id="cmmed" class="imputihidden" style="width:20px;" value="0">
+					<input type="text" id="cmmed" class="imputihidden wis" style="width:20px;" value="0" readonly>
 				</div>
 				
 				<!--Natureza-->
 				<div>
-					<input type="checkbox" class="" data-toggle="tooltip" data-placement="top" title="Dobro: Ative para dobrar o valor da pericia. ">
-					<input type="checkbox" class="" data-toggle="tooltip" data-placement="top" title="Proficiente: Ative para aplicar sua profiiencia na pericia">
+					<input type="checkbox" id="cdnat" onchange='ExectCalc("dnd","doub","cdnat","cmnat","cnat","cpro")'>
+					<input type="checkbox" id="cnat" onchange='ExectCalc("dnd","per","cmnat","cmnat","cnat","cpro")'>
 					<label for="cmnat">Natureza(Int)</label>
-					<input type="text" id="cmnat" class="imputihidden" style="width:20px;" value="0">
+					<input type="text" id="cmnat" class="imputihidden int" style="width:20px;" value="0" readonly>
 				</div>
 				
 				<!--Percepção-->
 				<div>
-					<input type="checkbox" class="" data-toggle="tooltip" data-placement="top" title="Dobro: Ative para dobrar o valor da pericia. ">
-					<input type="checkbox" class="" data-toggle="tooltip" data-placement="top" title="Proficiente: Ative para aplicar sua profiiencia na pericia">
+					<input type="checkbox" id="cdper" onchange='ExectCalc("dnd","doub","cdper","cmper","cper","cpro")'>
+					<input type="checkbox" id="cper" onchange='ExectCalc("dnd","per","cmper","cmper","cper","cpro")'>
 					<label for="cmper">Percepção(Sab)</label>
-					<input type="text" id="cmper" class="imputihidden" style="width:20px;" value="0">
+					<input type="text" id="cmper" class="imputihidden wis" style="width:20px;" value="0" readonly>
 				</div>
 				
 				<!--Pretidigitação-->
 				<div>
-					<input type="checkbox" class="" data-toggle="tooltip" data-placement="top" title="Dobro: Ative para dobrar o valor da pericia. ">
-					<input type="checkbox" class="" data-toggle="tooltip" data-placement="top" title="Proficiente: Ative para aplicar sua profiiencia na pericia">
+					<input type="checkbox" id="cdsli" onchange='ExectCalc("dnd","doub","cdsli","cmsli","csli","cpro")'>
+					<input type="checkbox" id="csli" onchange='ExectCalc("dnd","per","cmsli","cmsli","csli","cpro")'>
 					<label for="cmsli">Pretidigitação(Des)</label>
-					<input type="text" id="cmsli" class="imputihidden" style="width:20px;" value="0">
+					<input type="text" id="cmsli" class="imputihidden dex" style="width:20px;" value="0" readonly>
 				</div>
 				
 				<!--Religião-->
 				<div>
-					<input type="checkbox" class="" data-toggle="tooltip" data-placement="top" title="Dobro: Ative para dobrar o valor da pericia. ">
-					<input type="checkbox" class="" data-toggle="tooltip" data-placement="top" title="Proficiente: Ative para aplicar sua profiiencia na pericia">
+					<input type="checkbox" id="cdrel" onchange='ExectCalc("dnd","doub","cdrel","cmrel","crel","cpro")' >
+					<input type="checkbox" id="crel" onchange='ExectCalc("dnd","per","cmrel","cmrel","crel","cpro")'>
 					<label for="cmrel">Religião(Int)</label>
-					<input type="text" id="cmrel" class="imputihidden" style="width:20px;" value="0">
+					<input type="text" id="cmrel" class="imputihidden int" style="width:20px;" value="0" readonly>
 				</div>
 				
 				<!--Sobrevivência-->
 				<div>
-					<input type="checkbox" class="" data-toggle="tooltip" data-placement="top" title="Dobro: Ative para dobrar o valor da pericia. ">
-					<input type="checkbox" class="" data-toggle="tooltip" data-placement="top" title="Proficiente: Ative para aplicar sua profiiencia na pericia">
+					<input type="checkbox" id="cdsur" onchange='ExectCalc("dnd","doub","cdsur","cmsur","csur","cpro")'>
+					<input type="checkbox" id="csur" onchange='ExectCalc("dnd","per","cmsur","cmsur","csur","cpro")'>
 					<label for="cmsur">Sobrevivência(Sab)</label>
-					<input type="text" id="cmsur" class="imputihidden" style="width:20px;" value="0">
+					<input type="text" id="cmsur" class="imputihidden wis" style="width:20px;" value="0" readonly>
 				</div>
 			</div>			
 		</div>
 		<!--Info importantes-->
 		<div class="col-md-3" id="charinfo" style="column-count: 3;height:275px;">
-			<div id="habbox">
+			<div class="habbox">
 				<label for="catualhp" data-toggle="tooltip" data-placement="top" title="Pontos de vida" style="width:30px;">PV</label>
 				<input type="text" id="catualhp" class="fullvhp" style="width:66px;" value="0" >
-				<input type="text" id="cmaxhp" class="modvhp" style="width:45px;" placeholder="max" value="0"data-toggle="tooltip" data-placement="top" title="Pontos de vida maximo">
+				<input type="text" id="cmaxhp" class="modvhp" style="width:45px;" placeholder="max" value="0" data-toggle="tooltip" data-placement="top" title="Pontos de vida maximo">
 				<input type="text" id="catemphp" class="modvtemp" style="width:45px;" placeholder="temp" value="0" data-toggle="tooltip" data-placement="top" title="Pontos de vida temporario">
 				
 			</div>
-			<div id="habbox" >
+			<div class="habbox" >
 				<label for="cinit" >Iniciativa</label>
 				<input type="text" id="cinit" class="fullvhp" style="width:45px;" value="0">
 			</div>
-			<div id="habbox">
+			<div class="habbox">
 				<label for="cca" data-toggle="tooltip" data-placement="top" title="Classe de Armadura" style="width:30px;">CA</label>
 				<input type="text" id="cca" class="fullvhp" style="width:45px;" value="0">
 			</div>
-			<div id="habbox">
+			<div class="habbox">
 				<label for="cmov">Deslocamento</label>
 				<input type="text" id="cmov" class="fullvhp" style="width:45px;" value="0">
 			</div>
-			<div id="habbox">
+			<div class="habbox">
 				<label for="clifedice">Dado de Vida</label>
 				<input type="text" id="clifedice" class="fullvhp" style="width:70px;font-size:30px;top:0px;" value="0">
 			</div>
-			<div id="habbox">
+			<div class="habbox">
 				<label for="ds">Teste Contra Morte</label>
 				<div id="ds" >
 					<label for="suc">Sucesso</label>
@@ -334,6 +349,7 @@ $(function () {
 			</div>
 		</div>
 	</div>	
+	<!--Ataques e Equipamentos-->
 	<div class="row">
 	<!--Idiomas-->
 		<div class="col-md-3" style="border: 2px solid black;overflow-y:auto;height:275px;">
@@ -341,13 +357,12 @@ $(function () {
 			<textarea class="langprof" style="height:220px;width:295px;resize:none;"></textarea>
 		</div>
 		<!--Ataques-->
-		<div class="col-md-6" style="overflow-y:auto;height:275px;" id="atksbox">
-			
+		<div class="col-md-6" style="overflow-y:auto;height:275px;" id="atksbox">		
 			<h5>Ataques e Magias</h5><button onclick="atksbox()">add</button>
-			<label for="bscatkname">
 			<input id="bscatkname" type="text" value="Ataque Desarmado">
 			<input id="bscatkhit" type="text" value="1d4">
 			<input id="bscatkfx" type="text" value="Concusão">
+		</div>
 			<script>
 				if (typeof atks !== 'undefined') {
 				  
@@ -365,35 +380,244 @@ $(function () {
 					newbox.innerHTML += "<label for='atk"+atks+"'><input id='atk"+atks+"' type='text'><input id='atkhit"+atks+"' type='text'><input id='atkfx"+atks+"' type='text'>";
 				}
 			</script>
-		</div>
+		
 		<!--Equipamentos-->
 		<div class="col-md-3">
 			<label for="equip">Equipamentos</label>
 			<textarea class="equip" style="height:220px;width:295px;resize:none;"></textarea>
 		</div>
 	</div>
+	<!--História-->
 	<div class="row" >
-		<div class="col-md-3">
+		<div class="col-md-3" style="height:400px;">
 			<label for="cstorie">História</label>
-			<textarea id="cstorie"></textarea>
+			<textarea id="cstorie" style="width:295px;resize:none;"></textarea>
 		</div>
-		<div class="col-md-3" style="border: 2px solid black;height:275px;">
+		<div class="col-md-3" style="height:275px;height:400px;">
 			<label for="cperso">Traços de Personalidade</label>
 			<textarea id="cperso" style="width:295px;resize:none;"></textarea>
-			<label for="cide"style="width:295px;resize:none;">Ideais</label>
+			<label for="cide">Ideais</label>
 			<textarea id="cide" style="width:295px;resize:none;"></textarea>
-			<label for="clink" >Ligações</label>
+			<label for="clink">Ligações</label>
 			<textarea id="clink" style="width:295px;resize:none;"></textarea>
 			<label for="cdef">Defeitos</label>
 			<textarea id="cdef" style="width:295px;resize:none;"></textarea>
 		</div>
-		<div class="col-md-3">
+		<div class="col-md-3" style="height:275px;height:400px;">
 			<label for="carhab">Caracteristicas e Habilidades</label>
 			<textarea id="carhab"></textarea>
 		</div>
-		<div class="col-md-3">
+		<div class="col-md-3" style="height:275px;height:400px;">
 			<label for="calliance">Aliados e Organizações</label>
 			<textarea id="calliance"></textarea>
 		</div>
 	</div>
+	<!--Anotações-->
+	<div class="row">
+		<div class="col-md-6">
+			<label for="notes">Anotações</label>
+			<textarea id="notes" style="height:275px;width:630px;"></textarea>
+		</div>
+		<div class="col-md-6">
+			<label for="treasures">Tesouro</label>
+			<textarea id="treasures" style="height:275px;width:630px;"></textarea>
+		</div>
+	</div>
+	<!--Magias e Truques-->
+	<div class="row">
+		<div class="col-md-3">
+			<label for="cconjclass">Classe de Conjuração</label>
+			<input type="text" id="cconjclass">
+			<label for="keyhab">Habilidade Chave</label>
+			<input type="text" id="keyhab">
+			<label for="cdtr">CD de Resistência<label>
+			<input type="text" id="cdtr">
+			<label for="mbonus">Bonus de Ataque</label>
+			<input type="text" id="mbonus">
+		</div>
+	<!-- Lista de Magias -->
+		<div class="col-md-9" style="height:279px;padding:10px;">	
+			<h3 style="border-bottom:2px solid black;color:black;font-family: 'Metamorphous', cursive;">Lista de Magia</h3>
+			<div style="overflow-y:auto;height:222px;">
+				<div id="magiclist">
+					<div id="nivel0">
+						<div>
+							<input type="text" class="mgtitle" value="Truques" disabled>
+							<input type="text" class="mgmax" id="mag0max">
+							<input type="text" class="mgatual" id="mag0atl">
+							<input class="mgaddbox" disabled>
+							<a onclick='magicsbox("nivel0")' class="mgadd">
+								<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+		  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+								</svg>
+							</a>
+						</div>					
+					</div>
+					<div id="nivel1">
+						<div>
+							<input type="text" class="mgtitle" value="Nivel 1" disabled>
+							<input type="text" class="mgmax" id="mag1max" value="0">
+							<input type="text" class="mgatual" id="mag1atl" value="0">
+							<input class="mgaddbox" disabled>
+							<a onclick='magicsbox("nivel1")' class="mgadd">
+								<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+		  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+								</svg>
+							</a>
+						</div>
+					</div>
+					<div id="nivel2">
+						<div>
+							<input type="text" class="mgtitle" value="Nivel 2" disabled>
+							<input type="text" class="mgmax" id="mag2max" value="0">
+							<input type="text" class="mgatual" id="mag2atl" value="0">
+							<input class="mgaddbox" disabled>
+							<a onclick='magicsbox("nivel2")' class="mgadd">
+								<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+		  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+								</svg>
+							</a>
+						</div>
+					</div>
+					<div id="nivel3">
+						<div>
+							<input type="text" class="mgtitle" value="Nivel 3" disabled>
+							<input type="text" class="mgmax" id="mag3max" value="0">
+							<input type="text" class="mgatual" id="mag3atl" value="0">
+							<input class="mgaddbox" disabled>
+							<a onclick='magicsbox("nivel3")' class="mgadd">
+								<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+		  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+								</svg>
+							</a>
+						</div>
+					</div>
+					<div id="nivel4">
+						<div>
+							<input type="text" class="mgtitle" value="Nivel 4" disabled>
+							<input type="text" class="mgmax" id="mag4max" value="0">
+							<input type="text" class="mgatual" id="mag4atl" value="0">
+							<input class="mgaddbox" disabled>
+							<a onclick='magicsbox("nivel4")' class="mgadd">
+								<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+		  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+								</svg>
+							</a>
+						</div>
+					</div>
+					<div id="nivel5">
+						<div>
+							<input type="text" class="mgtitle" value="Nivel 5" disabled>
+							<input type="text" class="mgmax" id="mag5max" value="0">
+							<input type="text" class="mgatual" id="mag5atl" value="0">
+							<input class="mgaddbox" disabled>
+							<a onclick='magicsbox("nivel5")' class="mgadd">
+								<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+		  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+								</svg>
+							</a>
+						</div>
+					</div>
+					<div id="nivel6">
+						<div>
+							<input type="text" class="mgtitle" value="Nivel 6" disabled>
+							<input type="text" class="mgmax" id="mag6max" value="0">
+							<input type="text" class="mgatual" id="mag6atl" value="0">
+							<input class="mgaddbox" disabled>
+							<a onclick='magicsbox("nivel6")' class="mgadd">
+								<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+		  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+								</svg>
+							</a>
+						</div>
+					</div>
+					<div id="nivel7">
+						<div>
+							<input type="text" class="mgtitle" value="Nivel 7" disabled>
+							<input type="text" class="mgmax" id="mag7max" value="0">
+							<input type="text" class="mgatual" id="mag7atl" value="0">
+							<input class="mgaddbox" disabled>
+							<a onclick='magicsbox("nivel7")' class="mgadd">
+								<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+		  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+								</svg>
+							</a>
+						</div>
+					</div>
+					<div id="nivel8">
+						<div>
+							<input type="text" class="mgtitle" value="Nivel 8" disabled>
+							<input type="text" class="mgmax" id="mag8max" value="0">
+							<input type="text" class="mgatual" id="mag8atl" value="0">
+							<input class="mgaddbox" disabled>
+							<a onclick='magicsbox("nivel8")' class="mgadd">
+								<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+		  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+								</svg>
+							</a>
+						</div>
+					</div>
+					<div id="nivel9">
+						<div>
+							<input type="text" class="mgtitle" value="Nivel 9" disabled>
+							<input type="text" class="mgmax" id="mag9max" value="0">
+							<input type="text" class="mgatual" id="mag9atl" value="0">
+							<input class="mgaddbox" disabled>
+							<a onclick='magicsbox("nivel9")' class="mgadd">
+								<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+		  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+								</svg>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<script>
+			var mg = [];
+				if (typeof mg[0] == 'undefined') {
+					mg[0] = 1;
+					magicsbox("nivel0");
+				}
+				if (typeof mg[1] == 'undefined') {
+					mg[1] = 1;
+					magicsbox("nivel1");
+				}
+				if (typeof mg[2] == 'undefined') {
+					mg[2] = 1;
+					magicsbox("nivel2");
+				}
+				if (typeof mg[3] == 'undefined') {
+					mg[3] = 1;
+					magicsbox("nivel3");
+				}
+				if (typeof mg[4] == 'undefined') {
+					mg[4] = 1;
+					magicsbox("nivel4");
+				}
+				if (typeof mg[5] == 'undefined') {
+					mg[5] = 1;
+					magicsbox("nivel5");
+				}
+				if (typeof mg[6] == 'undefined') {
+					mg[6] = 1;
+					magicsbox("nivel6");
+				}
+				if (typeof mg[7] == 'undefined') {
+					mg[7] = 1;
+					magicsbox("nivel7");
+				}
+				if (typeof mg[8] == 'undefined') {
+					mg[8] = 1;
+					magicsbox("nivel8");
+				}
+				if (typeof mg[9] == 'undefined') {
+					mg[9] = 1;
+					magicsbox("nivel9");
+				}
+				
+				
+			</script>
+		</div>
+	</div>
 </div>
+</form>
