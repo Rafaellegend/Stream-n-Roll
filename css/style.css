@@ -301,6 +301,18 @@
 	position:relative;
 	bottom:10px;
 }
+.atkline{
+	border:none;
+	border-bottom: 2px solid black;
+	border-radius:5px;
+}
+.atkline:focus{
+	outline:none;
+}
+.atktitle{
+	font-size:14px;
+	font-weight:bold;
+}
 #magiclist{
 	column-count:3;
 }
@@ -328,6 +340,9 @@
 	right:25px;
 	z-index:98;
 }
+.mgmax:focus{
+	outline:none;
+}
 .mgatual{
 	text-align:center;
 	width:60px;
@@ -340,6 +355,9 @@
 	position:relative;
 	right:40px;
 	z-index:97;
+}
+.mgatual:focus{
+	outline:none;
 }
 .mgadd{
 	color:black;
@@ -381,6 +399,9 @@
 	margin-bottom:5px;
 	font-size:14px;
 	font-weight:bold;
+}
+.mgname:focus{
+	outline:none;
 }
 .mgconfig{
 	color:black;
