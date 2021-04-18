@@ -17,9 +17,23 @@ function sheetload(){
 	ExectCalc("dnd","dis","cwis","wis","cpro");
 	ExectCalc("dnd","mod","ccar","cmcar");
 	ExectCalc("dnd","dis","ccar","car","cpro");
+	atksbox('load');
+	magicsbox("nivel0","load")
+	magicsbox("nivel1","load")
+	magicsbox("nivel2","load")
+	magicsbox("nivel3","load")
+	magicsbox("nivel4","load")
+	magicsbox("nivel5","load")
+	magicsbox("nivel6","load")
+	magicsbox("nivel7","load")
+	magicsbox("nivel8","load")
+	magicsbox("nivel9","load")
+}
+window.onload = function() {
+	sheetload()
 }
 </script>
-<form onchange="sheetload()">
+<form onchange="sheetload()" >
 <div class="container-fluid" id="sheet" >
 	<!--Informações do Personagem-->
 	<div class="row" >
@@ -357,27 +371,18 @@ function sheetload(){
 			<textarea class="langprof" style="height:220px;width:295px;resize:none;"></textarea>
 		</div>
 		<!--Ataques-->
-		<div class="col-md-6" style="overflow-y:auto;height:275px;" id="atksbox">		
-			<h5>Ataques e Magias</h5><button onclick="atksbox()">add</button>
-			<input id="bscatkname" type="text" value="Ataque Desarmado">
-			<input id="bscatkhit" type="text" value="1d4">
-			<input id="bscatkfx" type="text" value="Concusão">
+		<div class="col-md-6" style="height:275px;">	
+			<h5>Ataques e Magias</h5>
+			<a onclick="atksbox('add')">add</a>
+			<div id="atksbox" style="overflow-y:auto;height:222px;">		
+				
+			</div>
 		</div>
 			<script>
 				if (typeof atks !== 'undefined') {
-				  
+				  atksload();
 				}else{
-					var atks = 1
-				}
-
-				var newbox = document.getElementById("atksbox");
-				for(i = 1; i <= atks; i++){
-					newbox.innerHTML += "<label for='atk"+i+"'><input id='atk"+i+"' type='text'><input id='atkhit"+i+"' type='text'><input id='atkfx"+i+"' type='text'>";
-					}
-				
-				function atksbox(){
-					atks++;
-					newbox.innerHTML += "<label for='atk"+atks+"'><input id='atk"+atks+"' type='text'><input id='atkhit"+atks+"' type='text'><input id='atkfx"+atks+"' type='text'>";
+					var atks = 4
 				}
 			</script>
 		
@@ -446,12 +451,14 @@ function sheetload(){
 							<input type="text" class="mgmax" id="mag0max">
 							<input type="text" class="mgatual" id="mag0atl">
 							<input class="mgaddbox" disabled>
-							<a onclick='magicsbox("nivel0")' class="mgadd">
+							<a onclick='magicsbox("nivel0","add")' class="mgadd">
 								<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
 		  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
 								</svg>
 							</a>
-						</div>					
+						</div>
+						<div id="list0">
+						</div>
 					</div>
 					<div id="nivel1">
 						<div>
@@ -459,11 +466,13 @@ function sheetload(){
 							<input type="text" class="mgmax" id="mag1max" value="0">
 							<input type="text" class="mgatual" id="mag1atl" value="0">
 							<input class="mgaddbox" disabled>
-							<a onclick='magicsbox("nivel1")' class="mgadd">
+							<a onclick='magicsbox("nivel1","add")' class="mgadd">
 								<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
 		  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
 								</svg>
 							</a>
+						</div>
+						<div id="list1">
 						</div>
 					</div>
 					<div id="nivel2">
@@ -472,11 +481,13 @@ function sheetload(){
 							<input type="text" class="mgmax" id="mag2max" value="0">
 							<input type="text" class="mgatual" id="mag2atl" value="0">
 							<input class="mgaddbox" disabled>
-							<a onclick='magicsbox("nivel2")' class="mgadd">
+							<a onclick='magicsbox("nivel2","add")' class="mgadd">
 								<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
 		  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
 								</svg>
 							</a>
+						</div>
+						<div id="list2">
 						</div>
 					</div>
 					<div id="nivel3">
@@ -485,11 +496,13 @@ function sheetload(){
 							<input type="text" class="mgmax" id="mag3max" value="0">
 							<input type="text" class="mgatual" id="mag3atl" value="0">
 							<input class="mgaddbox" disabled>
-							<a onclick='magicsbox("nivel3")' class="mgadd">
+							<a onclick='magicsbox("nivel3","add")' class="mgadd">
 								<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
 		  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
 								</svg>
 							</a>
+						</div>
+						<div id="list3">
 						</div>
 					</div>
 					<div id="nivel4">
@@ -498,11 +511,13 @@ function sheetload(){
 							<input type="text" class="mgmax" id="mag4max" value="0">
 							<input type="text" class="mgatual" id="mag4atl" value="0">
 							<input class="mgaddbox" disabled>
-							<a onclick='magicsbox("nivel4")' class="mgadd">
+							<a onclick='magicsbox("nivel4","add")' class="mgadd">
 								<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
 		  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
 								</svg>
 							</a>
+						</div>
+						<div id="list4">
 						</div>
 					</div>
 					<div id="nivel5">
@@ -511,11 +526,13 @@ function sheetload(){
 							<input type="text" class="mgmax" id="mag5max" value="0">
 							<input type="text" class="mgatual" id="mag5atl" value="0">
 							<input class="mgaddbox" disabled>
-							<a onclick='magicsbox("nivel5")' class="mgadd">
+							<a onclick='magicsbox("nivel5","add")' class="mgadd">
 								<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
 		  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
 								</svg>
 							</a>
+						</div>
+						<div id="list5">
 						</div>
 					</div>
 					<div id="nivel6">
@@ -524,11 +541,13 @@ function sheetload(){
 							<input type="text" class="mgmax" id="mag6max" value="0">
 							<input type="text" class="mgatual" id="mag6atl" value="0">
 							<input class="mgaddbox" disabled>
-							<a onclick='magicsbox("nivel6")' class="mgadd">
+							<a onclick='magicsbox("nivel6","add")' class="mgadd">
 								<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
 		  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
 								</svg>
 							</a>
+						</div>
+						<div id="list6">
 						</div>
 					</div>
 					<div id="nivel7">
@@ -537,11 +556,13 @@ function sheetload(){
 							<input type="text" class="mgmax" id="mag7max" value="0">
 							<input type="text" class="mgatual" id="mag7atl" value="0">
 							<input class="mgaddbox" disabled>
-							<a onclick='magicsbox("nivel7")' class="mgadd">
+							<a onclick='magicsbox("nivel7","add")' class="mgadd">
 								<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
 		  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
 								</svg>
 							</a>
+						</div>
+						<div id="list7">
 						</div>
 					</div>
 					<div id="nivel8">
@@ -550,11 +571,13 @@ function sheetload(){
 							<input type="text" class="mgmax" id="mag8max" value="0">
 							<input type="text" class="mgatual" id="mag8atl" value="0">
 							<input class="mgaddbox" disabled>
-							<a onclick='magicsbox("nivel8")' class="mgadd">
+							<a onclick='magicsbox("nivel8","add")' class="mgadd">
 								<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
 		  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
 								</svg>
 							</a>
+						</div>
+						<div id="list8">
 						</div>
 					</div>
 					<div id="nivel9">
@@ -563,11 +586,13 @@ function sheetload(){
 							<input type="text" class="mgmax" id="mag9max" value="0">
 							<input type="text" class="mgatual" id="mag9atl" value="0">
 							<input class="mgaddbox" disabled>
-							<a onclick='magicsbox("nivel9")' class="mgadd">
+							<a onclick='magicsbox("nivel9","add")' class="mgadd">
 								<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
 		  <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
 								</svg>
 							</a>
+						</div>
+						<div id="list9">
 						</div>
 					</div>
 				</div>

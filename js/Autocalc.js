@@ -144,13 +144,244 @@ function Dnddistribution(hab,length,dtfrom,prof){
 	
 	return res;
 }
+function atksbox(action){
+	var newbox = document.getElementById("atksbox");
+	if(action == "load"){
+		var childs = newbox.childElementCount;
+		var childx = childs + 1;
+		if(atks*3 > childs ){
+			var x = (atks*3) - childs;
+			if(x == childx ){
+			}else{
+				for(y = childs; y < (atks*3); y+=3){
+					addatkBox("atksbox",'text','atk'+y,'atkline','atktitle','Nome Arma');
+					addatkBox("atksbox",'text','atkhit'+y,'atkline','','Dano');
+					addatkBox("atksbox",'text','atkfx'+y,'atkline','','Tipo de Dano');
+					var childs = newbox.childElementCount;
+									
+				}
+			}
+			
+		}else{
+			
+		}
+	}else if(action == "add"){
+			addatkBox("atksbox",'text','atk'+atks,'atkline','atktitle','Nome Arma');
+			addatkBox("atksbox",'text','atkhit'+atks,'atkline','','Dano');
+			addatkBox("atksbox",'text','atkfx'+atks,'atkline','','Tipo de Dano');
+	var childs = newbox.childElementCount;
+		atks++;
+	}
+}
+//Função para adicionar caixa de ataques
+function addatkBox(to,type,id,cla1,cla2,placeholder) {
+	var textEl = document.getElementById(to);
+	var input = document.createElement("input");
+	input.type = type;
+	input.id = id;
+	input.classList.add(cla1);
+	if (cla2 == 'undefined') {
+		input.classList.add(cla2);
+	}else{}
+	
+	input.placeholder = placeholder;
 
-function magicsbox(nivel){
+	textEl.appendChild(input);
+}
+//Função para adicionar caixa de titulo da magia
+function addmgtitle(to,type,id,cla1,cla2,cla3,placeholder){
+	var textEl = document.getElementById(to);
+	var input = document.createElement("input");
+	input.type = type;
+	input.id = id;
+	input.classList.add(cla1);
+	if (cla2 == 'undefined') {
+		input.classList.add(cla2);
+	}else{}
+	
+	input.placeholder = placeholder;
+
+	textEl.appendChild(input);
+}
+//Função para adicionar caixa de informações dos ataques
+function addmgbox(to,type,id,cla1,cla2,cla3,placeholder){
+	var textEl = document.getElementById(to);
+	if(type == "div"){ //div
+	
+		var newelement = document.createElement("div");
+		newelement.id = id;
+		if (cla1 != '') {
+			newelement.classList.add(cla1);
+		}
+		if (cla2 != '') {
+			newelement.classList.add(cla2);
+		}
+		if (cla3 != '') {
+			newelement.classList.add(cla3);
+		}
+		
+	}else if(type == "textarea"){//textarea
+	
+		var newelement = document.createElement("textarea");
+		newelement.id = id;
+		if (cla1 != '') {
+		newelement.classList.add(cla1);
+		}
+		if (cla2 != '') {
+			newelement.classList.add(cla2);
+		}
+		if (cla3 != '') {
+			newelement.classList.add(cla3);
+		}
+		
+	}else if(type == "label"){//label
+		
+		var newelement = document.createElement("label");
+		newelement.type = type;
+		newelement.setAttribute("for",id);
+		if (cla1 != '') {
+		newelement.classList.add(cla1);
+		}
+		newelement.textContent=cla2;
+
+		if (cla3 != '') {
+			newelement.classList.add(cla3);
+		}
+		
+	}else{//input
+		
+		var newelement = document.createElement("input");
+		newelement.type = type;
+		newelement.id = id;
+		if (cla1 != '') {
+		newelement.classList.add(cla1);
+		}
+		if (cla2 != '') {
+			newelement.classList.add(cla2);
+		}
+		if (cla3 != '') {
+			newelement.classList.add(cla3);
+		}
+		
+	}
+	
+	
+	newelement.placeholder = placeholder;
+
+	textEl.appendChild(newelement);
+}
+//Função para criar um arquivo svg com link
+function addsvgbotton(to,code,id,cla1,cla2,cla3,width,height,viewbox,fill){
+	//pegando o elemento pela id recebida pela variavel 'to'
+	var textEl = document.getElementById(to);
+	//Criando a tag 'svg'
+	var svg = document.createElementNS("http://www.w3.org/2000/svg","svg");
+	svg.classList.add(cla1);
+	if (cla2 == 'undefined') {
+		svg.classList.add(cla2);
+	}
+	if (cla3 == 'undefined') {
+		svg.classList.add(cla3);
+	}
+	svg.setAttribute("width",width);
+	svg.setAttribute("height",height);
+	svg.setAttribute("fill",fill);
+	svg.setAttribute("viewbox",viewbox);
+	
+	//Criando a tag 'path' do 'svg'
+	var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+	path.setAttribute("d",code); //Set path's data
+
+	//Criando a tag 'a'
+	var a = document.createElementNS("http://www.w3.org/2000/svg",'a');
+	a.setAttribute("data-toggle","collapse");
+	a.setAttribute("href","#nv"+id+"hab"+mg[id]);
+	a.setAttribute("role","button");
+	a.setAttribute("aria-expanded","false");
+	a.setAttribute("aria-controls","multiCollapse");
+	a.classList.add("mgconfig");
+	//Criando o Elemento child
+	textEl.appendChild(svg).appendChild(a).appendChild(path);
+}
+
+function magicsbox(nivel,action){
 	var me = apenasNumeros(nivel) ;
 	mg[me];
 	var newbox = document.getElementById(nivel);
-	newbox.innerHTML += "<input type='text' id='nv"+me+"hab"+mg[me]+"name' class='mgname' placeholder='Nome da Magia'><a data-toggle='collapse' href='#nv"+me+"hab"+mg[me]+"' role='button' aria-expanded='false' aria-controls='multiCollapseExample1' class='mgconfig'><svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-gear-fill' viewBox='0 0 16 16'><path d='M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z'/></svg></a><div class='collapse multi-collapse mgcollapse' id='nv"+me+"hab"+mg[me]+"'><label for='nv"+me+"hab"+mg[me]+"dano' class='mglabel'>Dano:</label><input type='text' id='nv"+me+"hab"+mg[me]+"dano' class='mgtext'><label for='nv"+me+"hab"+mg[me]+"type' class='mglabel'>Tipo:</label><input type='text' id='nv"+me+"hab"+mg[me]+"type' class='mgtext'><label for='nv"+me+"hab"+mg[me]+"exdano' class='mglabel'>Dano Adicional:</label><input type='text' id='nv"+me+"hab"+mg[me]+"exdano' class='mgtext'><label for='nv"+me+"hab"+mg[me]+"exType' class='mglabel'>Tipo Adicional:</label><input type='text' id='nv"+me+"hab"+mg[me]+"exType' class='mgtext'><label for='nv"+me+"hab"+mg[me]+"desc' class='mglabel'>Descrição:</label><textarea type='text' id='nv"+me+"hab"+mg[me]+"desc' class='mgtext'></textarea></div>";
-	mg[me]++;
+	var path = 'M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z';
+	var childs = document.getElementById('list'+me).childElementCount;
+	
+	if(action == 'add'){
+		addmgtitle('list'+me,'text','nv'+me+'hab'+mg[me]+'name','mgname','','','Nome da Magia');
+		//criando o botão
+		addsvgbotton('list'+me,path,me,'bi','bi-gear-fill','','16','16','0 0 16 16','currentColor');
+		//criando a div 
+		addmgbox('list'+me,'div','nv'+me+'hab'+mg[me],'collapse','multi-collapse','mgcollapse','','');
+		//criando a label para o dano
+		addmgbox('nv'+me+'hab'+mg[me],'label','nv'+me+'hab'+mg[me]+'dano','mglabel','Dano:','','')
+		//criando o input para o dano
+		addmgbox('nv'+me+'hab'+mg[me],'text','nv'+me+'hab'+mg[me]+'dano','mgtext','','','')
+		//criando a label para o tipo
+		addmgbox('nv'+me+'hab'+mg[me],'label','nv'+me+'hab'+mg[me]+'type','mglabel','Tipo:','','')
+		//criando o input para o tipo
+		addmgbox('nv'+me+'hab'+mg[me],'text','nv'+me+'hab'+mg[me]+'type','mgtext','','','')
+		//criando a label para o extra
+		addmgbox('nv'+me+'hab'+mg[me],'label','nv'+me+'hab'+mg[me]+'exdano','mglabel','Dano Extra:','','')
+		//criando o input para o extra
+		addmgbox('nv'+me+'hab'+mg[me],'text','nv'+me+'hab'+mg[me]+'exdano','mgtext','','','')
+		//criando a label para o tipo extra
+		addmgbox('nv'+me+'hab'+mg[me],'label','nv'+me+'hab'+mg[me]+'extype','mglabel','Tipo Adicional:','','')
+		//criando o input para o tipo extra
+		addmgbox('nv'+me+'hab'+mg[me],'text','nv'+me+'hab'+mg[me]+'extype','mgtext','','','')
+		//criando a label para descrição
+		addmgbox('nv'+me+'hab'+mg[me],'label','nv'+me+'hab'+mg[me]+'desc','mglabel','Descrição:','','')
+		//criando o input para descrição
+		addmgbox('nv'+me+'hab'+mg[me],'textarea','nv'+me+'hab'+mg[me]+'desc','mgtext','','','')
+	
+		//adicionar mais um no valor
+		mg[me]++;
+		var childs = document.getElementById('list'+me).childElementCount;
+	}else if(action == 'load'){
+		var childx = childs + 1;
+		var com = mg[me]*3;
+		if(com > childs){
+			var x = com - childs;
+			if(x == childx){
+			}else{
+				for(y = childs; y < com; y+=3){
+					addmgtitle('list'+me,'text','nv'+me+'hab'+mg[me]+'name','mgname','','','Nome da Magia');
+					//criando o botão
+					addsvgbotton('list'+me,path,me,'bi','bi-gear-fill','','16','16','0 0 16 16','currentColor');
+					//criando a div 
+					addmgbox('list'+me,'div','nv'+me+'hab'+mg[me],'collapse','multi-collapse','mgcollapse','','');
+					//criando a label para o dano
+					addmgbox('nv'+me+'hab'+mg[me],'label','nv'+me+'hab'+mg[me]+'dano','mglabel','Dano:','','')
+					//criando o input para o dano
+					addmgbox('nv'+me+'hab'+mg[me],'text','nv'+me+'hab'+mg[me]+'dano','mgtext','','','')
+					//criando a label para o tipo
+					addmgbox('nv'+me+'hab'+mg[me],'label','nv'+me+'hab'+mg[me]+'type','mglabel','Tipo:','','')
+					//criando o input para o tipo
+					addmgbox('nv'+me+'hab'+mg[me],'text','nv'+me+'hab'+mg[me]+'type','mgtext','','','')
+					//criando a label para o extra
+					addmgbox('nv'+me+'hab'+mg[me],'label','nv'+me+'hab'+mg[me]+'exdano','mglabel','Dano Extra:','','')
+					//criando o input para o extra
+					addmgbox('nv'+me+'hab'+mg[me],'text','nv'+me+'hab'+mg[me]+'exdano','mgtext','','','')
+					//criando a label para o tipo extra
+					addmgbox('nv'+me+'hab'+mg[me],'label','nv'+me+'hab'+mg[me]+'extype','mglabel','Tipo Adicional:','','')
+					//criando o input para o tipo extra
+					addmgbox('nv'+me+'hab'+mg[me],'text','nv'+me+'hab'+mg[me]+'extype','mgtext','','','')
+					//criando a label para descrição
+					addmgbox('nv'+me+'hab'+mg[me],'label','nv'+me+'hab'+mg[me]+'desc','mglabel','Descrição:','','')
+					//criando o input para descrição
+					addmgbox('nv'+me+'hab'+mg[me],'textarea','nv'+me+'hab'+mg[me]+'desc','mgtext','','','')
+					//adicionar mais um no valor
+					mg[me]++;
+					var childs = document.getElementById('list'+me).childElementCount;
+				}
+			}
+		}
+	}	
+	console.log('childs:'+childs+',newbox:'+nivel,'me:'+mg[me]);
 }
 function apenasNumeros(string) {
 	var numsStr = string.replace(/[^0-9]/g,'');					
