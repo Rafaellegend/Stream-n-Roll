@@ -1,5 +1,5 @@
 
-	<title>Stream & Roll </title>
+	<title>Stream 'n' Roll </title>
 
 	<form>
 		<label for="Username">Login:</label>

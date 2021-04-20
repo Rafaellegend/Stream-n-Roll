@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-	<title>Stream & Roll</title>
+	<title>Stream 'n' Roll</title>
 	<meta charset="utf-8">
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<link rel="icon" href="favicon.ico">
