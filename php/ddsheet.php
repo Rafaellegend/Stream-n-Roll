@@ -39,7 +39,12 @@ window.onload = function() {
 	<div class="row" >
 	<!--Linha de info de Personagem-->
 		<div class="col-md-1">
-			<img src="http://placehold.it/100x119" id="cimage" class="">
+		<script src="js/functions.js" type="text/javascript"></script>
+			<label class="charperfil">
+				<img id="portrait" href="#pic" src="http://placehold.it/115x115" 
+				style="margin-top:10px;margin-botton:10px; margin-left:-5px;">
+				<input id="pic" class='pic' onchange='readURL(this,"portrait");' type="file" accept=".png,.jpg" >
+			</label>
 		</div>
 		<div class="col-md-5" id="characterinfo">
 			<!--<script src="js/functions.js" type="text/javascript"></script>
@@ -53,7 +58,7 @@ window.onload = function() {
 			<input type="text" id="cname" value='0' class="imputihidden" style="width:150px;">
 			
 			<label for="cclass">Classe:</label>
-			<input type="text" id="cclass" value='0' class="imputihidden" style="width:100px;">
+			<input type="text" id="cclass" Placeholder="Mago 5, Druida 1" class="imputihidden" style="width:100px;" onchange="stringoption(document.getElementById('cclass').value,',')">
 		
 			<input type="text" id="clevel" value='0' class="imputihidden" style="width:20px;" onchange='ExectCalc("dnd","prof","clevel","cpro")'>
 			
@@ -130,10 +135,10 @@ window.onload = function() {
 				<input type="text" class="proflabel" value="   Proficiência" disabled>
 				<input type="text" id="cpro" class="sheetprof" value="2">
 		<!--Caixa de Pericias-->
-		<div class="col-md-6 sheetbox" style="overflow-y:auto;height:275px;">
-			
+		<div class="col-md-6 sheetbox" style="height:275px;padding:10px;">
+			<div style="overflow-y:auto;height:250px;">
 			<!--Caixa de Resistências-->
-			<h5>Teste de Resistências</h5>
+			<h5 class="fantasyfont" style="color:black;border-bottom:1px solid black">Teste de Resistências</h5>
 			<div id="perices">
 				<!--Teste de Força-->
 				<div>
@@ -173,7 +178,7 @@ window.onload = function() {
 				</div>
 			</div>
 			<!--Caixa de Pericias-->
-			<h5>Pericias</h5>
+			<h5 class="fantasyfont" style="color:black;border-bottom:1px solid black">Pericias</h5>
 			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle-fill checkinfo" viewBox="0 0 16 16" data-toggle="tooltip" data-placement="top" title="Dobro: Ative para dobrar o valor da perícia. ( Modificador de Habilidade + (Proficiência * 2)) ">
 			  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.496 6.033h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286a.237.237 0 0 0 .241.247zm2.325 6.443c.61 0 1.029-.394 1.029-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94 0 .533.425.927 1.01.927z"/>
 			</svg>
@@ -317,7 +322,8 @@ window.onload = function() {
 					<label for="cmsur">Sobrevivência(Sab)</label>
 					<input type="text" id="cmsur" class="imputihidden wis" style="width:20px;" value="0" readonly>
 				</div>
-			</div>			
+			</div>
+			</div>
 		</div>
 		<!--Info importantes-->
 		<div class="col-md-3" id="charinfo" style="column-count: 3;height:275px;">
@@ -364,16 +370,23 @@ window.onload = function() {
 		</div>
 	</div>	
 	<!--Ataques e Equipamentos-->
-	<div class="row">
+	<div class="row" style="margin-top:10px">
 	<!--Idiomas-->
-		<div class="col-md-3" style="border: 2px solid black;overflow-y:auto;height:275px;">
-			<label for="langprof">Idiomas e outras Proficiencia</label>
-			<textarea class="langprof" style="height:220px;width:295px;resize:none;"></textarea>
+		<div class="col-md-3" style="overflow-y:auto;height:275px;">
+			<label for="langprof" class="fantasyfont" style="font-weight:bold;color:black;">Idiomas e outras Proficiencia</label>
+			<textarea id="langprof" class="infotextbox" style="height:220px;width:295px;resize:none;"></textarea>
 		</div>
 		<!--Ataques-->
 		<div class="col-md-6" style="height:275px;">	
-			<h5>Ataques e Magias</h5>
-			<a onclick="atksbox('add')">add</a>
+			<div id="atkbanner">
+				<h4 id="atkh3">Ataques</h4>
+				<a href="#atkbanner" onclick="atksbox('add')">
+					<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16" id="addatk" data-toggle="tooltip" data-placement="top" title="Adicionar um novo ataque">
+						<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+					</svg>
+				</a>
+			</div>
+			<!-- Caixa aonde os ataques irão aparecer -->
 			<div id="atksbox" style="overflow-y:auto;height:222px;">		
 				
 			</div>
@@ -388,57 +401,68 @@ window.onload = function() {
 		
 		<!--Equipamentos-->
 		<div class="col-md-3">
-			<label for="equip">Equipamentos</label>
-			<textarea class="equip" style="height:220px;width:295px;resize:none;"></textarea>
+			<label for="equip" class="fantasyfont" style="font-weight:bold;color:black;">Equipamentos</label>
+			<textarea id="equip" class="infotextbox" style="height:220px;width:295px;resize:none;"></textarea>
 		</div>
 	</div>
 	<!--História-->
-	<div class="row" >
+	<div class="row">
 		<div class="col-md-3" style="height:400px;">
-			<label for="cstorie">História</label>
-			<textarea id="cstorie" style="width:295px;resize:none;"></textarea>
+			<label for="cstorie" class="fantasyfont" style="font-weight:bold;color:black;">História</label>
+			<textarea id="cstorie" class="infotextbox" style="width:295px;resize:none;height:341px;"></textarea>
 		</div>
-		<div class="col-md-3" style="height:275px;height:400px;">
-			<label for="cperso">Traços de Personalidade</label>
-			<textarea id="cperso" style="width:295px;resize:none;"></textarea>
-			<label for="cide">Ideais</label>
-			<textarea id="cide" style="width:295px;resize:none;"></textarea>
-			<label for="clink">Ligações</label>
-			<textarea id="clink" style="width:295px;resize:none;"></textarea>
-			<label for="cdef">Defeitos</label>
-			<textarea id="cdef" style="width:295px;resize:none;"></textarea>
+		<div class="col-md-3" style="height:400px;">
+			<label for="cperso" class="fantasyfont" style="font-weight:bold;color:black;">Traços de Personalidade</label>
+			<textarea id="cperso" class="infotextbox" style="width:295px;resize:none;"></textarea>
+			<label for="cide" class="fantasyfont" style="font-weight:bold;color:black;">Ideais</label>
+			<textarea id="cide" class="infotextbox" style="width:295px;resize:none;"></textarea>
+			<label for="clink" class="fantasyfont" style="font-weight:bold;color:black;">Ligações</label>
+			<textarea id="clink" class="infotextbox" style="width:295px;resize:none;"></textarea>
+			<label for="cdef" class="fantasyfont" style="font-weight:bold;color:black;">Defeitos</label>
+			<textarea id="cdef" class="infotextbox" style="width:295px;resize:none;"></textarea>
 		</div>
-		<div class="col-md-3" style="height:275px;height:400px;">
-			<label for="carhab">Caracteristicas e Habilidades</label>
-			<textarea id="carhab"></textarea>
+		<div class="col-md-3" style="height:400px;">
+			<label for="calliance" class="fantasyfont" style="font-weight:bold;color:black;">Aliados e Organizações</label>
+			<textarea id="calliance" class="infotextbox" style="width:295px;resize:none;height:341px;"></textarea>
 		</div>
-		<div class="col-md-3" style="height:275px;height:400px;">
-			<label for="calliance">Aliados e Organizações</label>
-			<textarea id="calliance"></textarea>
+		<div class="col-md-3" style="height:400px;">
+			<label for="carhab" class="fantasyfont" style="font-weight:bold;color:black;">Caracteristicas e Habilidades</label>
+			<textarea id="carhab" class="infotextbox" style="width:295px;resize:none;height:341px;"></textarea>
 		</div>
+		
 	</div>
 	<!--Anotações-->
 	<div class="row">
 		<div class="col-md-6">
-			<label for="notes">Anotações</label>
-			<textarea id="notes" style="height:275px;width:630px;"></textarea>
+			<label for="notes" class="fantasyfont" style="font-weight:bold;color:black;">Anotações</label>
+			<textarea id="notes" class="infotextbox" style="height:275px;width:630px;resize:none;"></textarea>
 		</div>
 		<div class="col-md-6">
-			<label for="treasures">Tesouro</label>
-			<textarea id="treasures" style="height:275px;width:630px;"></textarea>
+			<label for="treasures" class="fantasyfont" style="font-weight:bold;color:black;">Tesouro</label>
+			<textarea id="treasures" class="infotextbox" style="height:275px;width:630px;resize:none;"></textarea>
 		</div>
 	</div>
 	<!--Magias e Truques-->
 	<div class="row">
-		<div class="col-md-3">
-			<label for="cconjclass">Classe de Conjuração</label>
-			<input type="text" id="cconjclass">
-			<label for="keyhab">Habilidade Chave</label>
-			<input type="text" id="keyhab">
-			<label for="cdtr">CD de Resistência<label>
-			<input type="text" id="cdtr">
-			<label for="mbonus">Bonus de Ataque</label>
-			<input type="text" id="mbonus">
+		<div class="col-md-3" id="magicinfo">
+			<div id="cconj">
+				<label for="cconjclass" id="cconjlabel" class="fantasyfont">Classe de Conjuração</label>
+				<input type="text" id="cconjclass">
+			</div>
+			<div style="column-count:3;">
+				<div class="conjbox">
+					<label for="keyhab" class="cmgilabel" >Habilidade Chave</label>
+					<input type="text" id="keyhab" class="mgishow">
+				</div>
+				<div class="conjbox">
+					<label for="cdtr" class="cmgilabel">CD de Resistência</label>
+					<input type="text" id="cdtr" class="mgishow">
+				</div>
+				<div class="conjbox">
+					<label for="mbonus" class="cmgilabel">Bonus de Ataque</label>
+					<input type="text" id="mbonus" class="mgishow">
+				</div>
+			</div>
 		</div>
 	<!-- Lista de Magias -->
 		<div class="col-md-9" style="height:279px;padding:10px;">	

@@ -293,7 +293,7 @@ function addsvgbotton(to,code,id,cla1,cla2,cla3,width,height,viewbox,fill){
 	path.setAttribute("d",code); //Set path's data
 
 	//Criando a tag 'a'
-	var a = document.createElementNS("http://www.w3.org/2000/svg",'a');
+	var a = document.createElement('a');
 	a.setAttribute("data-toggle","collapse");
 	a.setAttribute("href","#nv"+id+"hab"+mg[id]);
 	a.setAttribute("role","button");
@@ -301,7 +301,7 @@ function addsvgbotton(to,code,id,cla1,cla2,cla3,width,height,viewbox,fill){
 	a.setAttribute("aria-controls","multiCollapse");
 	a.classList.add("mgconfig");
 	//Criando o Elemento child
-	textEl.appendChild(svg).appendChild(a).appendChild(path);
+	textEl.appendChild(a).appendChild(svg).appendChild(path);
 }
 
 function magicsbox(nivel,action){
@@ -375,7 +375,6 @@ function magicsbox(nivel,action){
 					//criando o input para descrição
 					addmgbox('nv'+me+'hab'+mg[me],'textarea','nv'+me+'hab'+mg[me]+'desc','mgtext','','','')
 					//adicionar mais um no valor
-					mg[me]++;
 					var childs = document.getElementById('list'+me).childElementCount;
 				}
 			}
