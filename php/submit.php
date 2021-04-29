@@ -1,24 +1,22 @@
 <?Php 
 	$result = array();
-	$game = isset($_POST['game']) ? $_POST['game'] :null;
-	$user = isset($_POST['player']) ? $_POST['player'] :null;
-	$pos = isset($_POST['dpos']) ? $_POST['dpos'] :null;
+	$message = isset($_POST['message']) ? $_POST['message'] :null;
+	$from = isset($_POST['from']) ? $_POST['from'] :null;
+	$mesa = isset($_POST['mesa']) ? $_POST['mesa'] :null;
 	$action = isset($_POST['action']) ? $_POST['action'] :null;
-	$result = isset($_POST['res']) ? $_POST['res'] :null;
 	
-	if(!empty($game) && !empty($user) &&  !empty($action) && !empty($result)){
-		dbconnect();
-		$sql = "INSERT INTO 'actionLOG' ('game','user','pos','action','result') VALUES('$game','$user','$pos','$action','$result')";
-		$result['send_status'] = $conn->query($sql);
+	switch($action){
+		case 'chat': 
+			if(!empty($message) && !empty($from) && !empty($mesa)){
+				if
+				
+				
+				$sql = "INSERT INTO chat (message,id_user,id_mesa) VALUES ('$message','$from','$mesa')";
+				$result['send_status'] = sqlquery($sql);
+			}
+		break
 	}
-		
-		$roll = isset($_GET['roll']) ? intval($_GET['roll']) : 0;
-		$rsql = "SELECT * FROM `actionLOG` WHERE `id` = ".$roll."AND `game` = ".$game;
-		$items = $db->query($rsql);
-		while($row = $items->fetch(PDO::FETCH_ASSOC)){
-			$result['items'][] = $row;
-		}
-		
+	
 		
 		
 		

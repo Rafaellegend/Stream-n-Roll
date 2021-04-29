@@ -54,3 +54,15 @@ function r3(max,want){
 	var r =  parseInt(max)*want/100;
 	return r;
 }
+
+function chatload(to){
+	if(typeof chatopen == 'undefined'){
+		var room = 'Publico';
+		var doc = document.getElementById(to);
+		console.log(to);
+		doc.innerHTML = room;
+		console.log('Foi carregado');
+	}else{
+		console.log('Ja tinha');
+	}
+}

@@ -157,8 +157,7 @@ function atksbox(action){
 					addatkBox("atksbox",'text','atk'+y,'atkline','atktitle','Nome Arma');
 					addatkBox("atksbox",'text','atkhit'+y,'atkline','','Dano');
 					addatkBox("atksbox",'text','atkfx'+y,'atkline','','Tipo de Dano');
-					var childs = newbox.childElementCount;
-									
+					var childs = newbox.childElementCount;									
 				}
 			}
 			
@@ -377,6 +376,7 @@ function magicsbox(nivel,action){
 					//adicionar mais um no valor
 					var childs = document.getElementById('list'+me).childElementCount;
 				}
+				mg[me]++;
 			}
 		}
 	}	

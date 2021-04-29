@@ -33,7 +33,7 @@ window.onload = function() {
 	sheetload()
 }
 </script>
-<form onchange="sheetload()" >
+<form onchange="sheetload()" style="overflow:auto;">
 <div class="container-fluid" id="sheet" >
 	<!--Informações do Personagem-->
 	<div class="row" >
@@ -670,3 +670,24 @@ window.onload = function() {
 	</div>
 </div>
 </form>
+
+
+<div class="sheetactionbar">
+	<a href="#dicesroll" >
+	<picture >
+		<img src="img\dice.svg" width="35" height="35" id="manualroll" data-toggle="tooltip" data-placement="top" title="Rolar Dado" style="margin-bottom:5px;">
+	</picture>
+	</a>
+	<picture>
+		<img src="img\floppy-disk.svg" width="35" height="35" id="manualsave" data-toggle="tooltip" data-placement="top" title="Salvar Manual">
+	</picture>
+</div>
+<div id="dicesroll">
+	<a class="actdices"><img src='img/dices/d4.svg' width='30' height='30'></a>
+	<a class="actdices"><img src='img/dices/d6.svg' width='30' height='30'></a>
+	<a class="actdices"><img src='img/dices/d8.svg' width='30' height='30'></a>
+	<a class="actdices"><img src='img/dices/d10.svg' width='30' height='30'></a>
+	<a class="actdices"><img src='img/dices/d12.svg' width='30' height='30'></a>
+	<a class="actdices"><img src='img/dices/d20.svg' width='30' height='30'></a>
+	<a class="actdices"><img src='img/dices/d100.svg' width='30' height='30'></a>
+</div>

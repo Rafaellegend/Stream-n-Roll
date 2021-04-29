@@ -1,10 +1,11 @@
 		var from = null, start = 0, url = 'http://localhost:8030/Stream-n-Roll/?page=submit';
 		$(document).ready(function(){
-			displayRoll();
 			$('form').submit(function(e){
 				$.post(url, {
+					action: 'chat'
 					message: $('#message').val(),
-					from: from
+					from: '0'
+					mesa: '0'
 				});
 				$('#message').val('')
 				return false;

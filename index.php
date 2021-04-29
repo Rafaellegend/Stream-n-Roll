@@ -1,7 +1,7 @@
 <?php
-//ini_set('display_errors', 1);
-//ini_set('display_startup_errors', 1);
-//error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 //Abrindo o HTML
 include_once("php/head.php");
@@ -10,7 +10,7 @@ include_once("php/head.php");
 if(!isset($_GET['page'])){$page= 'main';} else{$page = $_GET['page'];};
 
 //header
-if($page=='stream'){}
+if($page=='stream' or $page=='chat'){}
 else{
 include_once("php/header.php");
 };
@@ -36,6 +36,8 @@ if($page=='reglogm'){include_once'php/reglogm.php';};
 if($page=='userprofile'){include_once'php/userprofile.php';};
 	//Submit 
 if($page=='submit'){include_once'php/submit.php';};
+	//chat
+if($page=='chat'){include_once'php/chat.php';};
 
 	//Tela de Registro
 // if($page=='register'){include_once'php/register.php';};
@@ -44,7 +46,7 @@ if($page=='submit'){include_once'php/submit.php';};
 if($page=='stream'){include_once'php/overlay.php';};
 
 //Fechando o HTML
-if($page=='stream'){}
+if($page=='stream' or $page =='chat'){}
 else{
 include_once("php/footer.php");
 };

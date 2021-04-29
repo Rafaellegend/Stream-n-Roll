@@ -166,7 +166,12 @@
 /*Ficha*/
 #sheet{	
 	/*background-image: url("../img/customsheetref.png");*/
-	
+	min-width: 1300px;
+}
+@media only screen and (max-width: 600px) {
+  #sheet {
+   min-width: 0px;
+  }
 }
 /*Ficha - input padronizado*/
 .imputihidden{
@@ -520,6 +525,80 @@
 /*Ficha - Outras proficiencia e linguas*/
 #langprof{
 	
+}
+/*Ficha - Barra de ações da ficha*/
+.sheetactionbar{
+	position:fixed;
+	top:80vh;
+	border:1px solid black;
+	background-color:white;
+	width:6.25vh;
+	padding:2px;
+	padding-top:5px;
+	padding-bottom:5px;
+}
+#dicesroll{
+	border:1px solid black;
+	background-color:white;
+	height:45px;
+	display:inline;
+	position:fixed;
+	top:500px;
+	left:39px;
+	font-family:monospace;
+	font-weight:bold;
+	font-size:18px;
+	padding:8px;
+}
+.actdices{
+	color:black;
+	display:inline-block;
+	background-color:green;
+}
+/* Chat */
+/* Navbar chat*/
+#chatnav{
+	display:flex;
+	height:7vh;
+	
+}
+#chatname{
+	text-align:center;
+	margin:auto;
+	color:black;
+}
+#chatlabel{
+	font-weight:bold;
+	font-size:20px;
+	margin-bottom:0px;
+	margin-top:-2px;
+	font-family:'Metamorphous',monospace;
+}
+#chatsession{
+	margin-top:-10px;
+	font-size:18px;
+	font-family:'Open Sans',sans-serif;
+}
+/* Caixa de Mensagens */
+#chat{
+	display:flex;
+	overflow:hidden;
+}
+.msginput{
+	padding: 10px;
+	margin: 10px 5px;
+	-webkit-appearance:none;
+	border:1px solid black;
+	border-radius: 5px;
+}	
+#messages{
+	height:81.9vh;
+	overflow-x:hidden;
+	background-image:url('../img/chatback.png');
+	background-size: 500px 500px;
+}
+#message{
+	flex:1;
 }
 
 /* Scrollbar */
