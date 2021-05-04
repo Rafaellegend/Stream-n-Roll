@@ -61,8 +61,6 @@ function chatload(to){
 		var doc = document.getElementById(to);
 		console.log(to);
 		doc.innerHTML = room;
-		console.log('Foi carregado');
 	}else{
-		console.log('Ja tinha');
 	}
 }

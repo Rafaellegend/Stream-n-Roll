@@ -1,23 +1,23 @@
 <?php
-function dbconnect(){
-	$servername = "localhost";
-	$username = "root";
-	$password = "usbw";
+//function dbconnect(){
+//	$servername = "localhost";
+//	$username = "root";
+//	$password = "usbw";
+//
+//	try {
+//	  $conn = new PDO("mysql:host=$servername;dbname=streamnroll", $username, $password);
+//	  // set the PDO error mode to exception
+//	  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+//	  echo "foi porra";
+//	  echo "Connected successfully";
+//	} catch(PDOException $e) {
+//	  echo "Connection failed: " . $e->getMessage();
+//	}
+//	return;
+//};
 
-	try {
-	  $conn = new PDO("mysql:host=$servername;dbname=streamnroll", $username, $password);
-	  // set the PDO error mode to exception
-	  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	  echo "foi porra";
-	  echo "Connected successfully";
-	} catch(PDOException $e) {
-	  echo "Connection failed: " . $e->getMessage();
-	}
-	return;
-};
-
-function themes(t){
-	switch(t){
+function themes($t){
+	switch($t){
 		case 'dnd': $theme = "img\overlay\dnd";
 		break;
 		default: $theme = "img\overlay\template";
@@ -49,5 +49,10 @@ function XMLget($what,$where,$pos,$file){
 	$xml = simplexml_load_file($file);
 	$res = $xml->$where[$pos]->$what;
 	return $res;
+}
+	//Roll
+function Roll($d){
+	$r = mt_rand(1,$d);
+	return $r;
 }
 ?>

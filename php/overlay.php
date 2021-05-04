@@ -1,6 +1,37 @@
 <head><link rel="stylesheet" href="css/overlay.css"></head>
 <Script>
-	
+	var from = 1, mesa = '1', start = 0, action = 'stream', url = 'http://localhost:8030/Stream-n-Roll/?page=submit';
+		$(document).ready(function(){
+			$('[data-toggle="popover"]').popover();
+			load();
+			$('form').submit(function(e){
+				e.preventDefault();
+				$.post(url, {
+					action: action,
+					message: $('#message').val(),
+					from: from,
+					mesa: mesa
+				});
+				$('#message').val('')
+				return false;
+			})
+		})	
+		function load(){
+			$.get(url + '&start=' + start, function(result){		
+			if(result.items){
+				result.items.forEach(item =>{
+					start = item.id;
+					if(item.mesa == mesa){
+						$('#messages').append(renderMessage(item));
+					}
+				})
+			};
+			load();
+			});
+		}	
+function renderMessage(item){
+		return `<div class="msg"><p>${item.user}</P>${item.msg}</div>`;
+}
 </script>
 <?php
 	$t='dnd';
@@ -109,6 +140,3 @@
 	</div>
 </div>
 <script src="js/functions.js" type="text/javascript"></script>
-
-<button onclick="AniBar('bar1',r3('<?php echo $bx; ?>',30),r3('<?php echo $bx; ?>',100))">teste</button>
-<button onclick="AniBar('bar1',r3('<?php echo $bx; ?>',100),r3('<?php echo $bx; ?>',30))">teste</button>

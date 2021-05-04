@@ -1,16 +1,19 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-//Abrindo o HTML
-include_once("php/head.php");
+//('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
 
 //verificação da url em busca da variavel page
 if(!isset($_GET['page'])){$page= 'main';} else{$page = $_GET['page'];};
 
+//Abrindo o HTML
+if($page == 'submit'){}
+else{
+include_once("php/head.php");
+};
+
 //header
-if($page=='stream' or $page=='chat'){}
+if($page=='stream' or $page=='chat' or $page == 'submit'){}
 else{
 include_once("php/header.php");
 };
@@ -39,6 +42,7 @@ if($page=='submit'){include_once'php/submit.php';};
 	//chat
 if($page=='chat'){include_once'php/chat.php';};
 
+
 	//Tela de Registro
 // if($page=='register'){include_once'php/register.php';};
 	
@@ -46,7 +50,7 @@ if($page=='chat'){include_once'php/chat.php';};
 if($page=='stream'){include_once'php/overlay.php';};
 
 //Fechando o HTML
-if($page=='stream' or $page =='chat'){}
+if($page=='stream' or $page =='chat' or $page == 'submit'){}
 else{
 include_once("php/footer.php");
 };

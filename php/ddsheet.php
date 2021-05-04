@@ -401,8 +401,24 @@ window.onload = function() {
 		
 		<!--Equipamentos-->
 		<div class="col-md-3">
-			<label for="equip" class="fantasyfont" style="font-weight:bold;color:black;">Equipamentos</label>
-			<textarea id="equip" class="infotextbox" style="height:220px;width:295px;resize:none;"></textarea>
+			<label for="equip" class="fantasyfont" style="font-weight:bold;color:black;">Equipamentos</label>			
+			<textarea id="equip" class="infotextbox" style="height:220px;width:252px;resize:none;"></textarea>
+			<div id="monetary">
+				<label for="pc" class="moneylabel">pc</label>
+				<input id="pc" class="moneyinput" type="text">
+				
+				<label for="pp" class="moneylabel">pp</label>
+				<input id="pp" class="moneyinput" type="text">
+				
+				<label for="pe" class="moneylabel">pe</label>
+				<input id="pe" class="moneyinput" type="text">
+				
+				<label for="po" class="moneylabel">po</label>
+				<input id="po" class="moneyinput" type="text">
+				
+				<label for="pl" class="moneylabel">pl</label>
+				<input id="pl" class="moneyinput" type="text">
+			</div>
 		</div>
 	</div>
 	<!--História-->
