@@ -15,7 +15,6 @@
 			Cadastre-se
 		</button>
 		
-		<!-- Area de Login direto a mesa, sem necessitar de login ou registro -->
 			<h2 id="titulo2"> Acesso Direto a Mesa </h2>
 		<div class="container" id="codigosala">
 			<form style="border-width: medium; border-style: solid; border-color: #F00;">
@@ -41,17 +40,19 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+	  
 	  <!-- Formulário Login -->
       <div class="modal-body">
-        <form>
-		<label for="Username">Login:</label>
-		<input type="text" id="Username" name="Username" required><br>
-		<label for="Password">Senha:</label>
-		<input type="password" id="Password" name="Password" required><br>
+        <form method="post" action="php\open.php" id="formlogin" name="formlogin">
+		<label for="login">Login:</label>
+		<input type="text" name="login" id="login" required><br>
+		<label for="password">Senha:</label>
+		<input type="password" name="password" id="password" required><br>
 		
 		<input type="submit" value="Fazer Login">
-	</form>
+		</form>
       </div>
+	  
 	  <!-- Botão transição de Modal - Registro -->
       <div class="modal-footer">
 		<p>Não tem uma conta?</p>
@@ -74,6 +75,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+	  
 	  <!-- Formulário Registro -->
       <div class="modal-body">
         <form>
@@ -98,6 +100,7 @@
 			<input type="submit" value="Cadastrar">
 		</form>
       </div>
+	  
 	  <!-- Botão transição de Modal - Login -->
       <div class="modal-footer">
 		<p>Já possui conta?</p>
