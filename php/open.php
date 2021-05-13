@@ -6,10 +6,10 @@ $login = $_POST['login'];
 $senha = $_POST['password'];
 
 //Criando conexão
-$servername = "localhost"; 
-$database = "server"; 
-$username = "root"; 
-$password = "usbw"; 
+$servername = "192.185.223.140"; 
+$database = "raffoz89_StreamNRoll"; 
+$username = "raffoz89_Project"; 
+$password = "13!~GFnWT^@B"; 
 //Estabelecendo conexão com o serviço e banco
  $conn = mysqli_connect($servername, $username, $password, $database);
 //Verificação de Conexão
