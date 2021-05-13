@@ -18,7 +18,7 @@ $password = "13!~GFnWT^@B";
  mysqli_select_db($conn, "server") or die("<br>Sem acesso ao DB, Entre em contato com o Administrador");
 
 // A variavel $result pega as varias $login e $senha, faz uma pesquisa na tabela de usuarios
-$result = mysqli_query($conn, "SELECT 'id_User' 'username' 'tipo' FROM usuario WHERE username= '$login' AND senha= '$senha'");
+$result = mysqli_query($conn, "SELECT 'id_User' 'username' 'tipo' FROM users WHERE username= '$login' AND senha= '$senha'");
 
 /* Verificação da exitencia dos usuarios */
 if(mysqli_num_rows ($result) > 0 )
