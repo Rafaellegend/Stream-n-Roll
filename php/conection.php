@@ -13,16 +13,26 @@
 		} catch(PDOException $e) {
 		  echo "Connection failed: " . $e->getMessage();
 		}
-		return;
+		return $conn;
 	}
 	function dbclose(){
 		$conn->close();
 	}
 	function dbquery($act,$tab,$where,$what){
 		Switch($act){
-			case 'INSERT': $sql = "INSERT INTO '$tab' () VALUES ('')";
+			case 'SELECT': $sql = "SELECT $where FROM ` $tab`";
+			
+			case 'INSERT': $sql = "INSERT INTO ` $tab`  ($where) VALUES ($what)";
+			
+			case 'DELETE': $sql = "DELETE  FROM ` $tab`  ($where)";
 		}
 		
+	}
+	
+	function sqlquery($sql){
+		$conn = dbconnect();
+		$result = $conn->query($sql);
+		return $result;
 	}
 	/*
 	//Criando conexão com o Banco de Dados e Verificando a conexão

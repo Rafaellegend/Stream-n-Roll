@@ -5,6 +5,128 @@
 .fantasyfont{
 	font-family: 'Metamorphous', cursive;
 }
+/* navbar*/
+.customnav{
+	display: flex;
+	background-color:#111;
+	padding:5px;
+}
+#navprofbox{
+	width:100%;
+	display:block;
+	margin-bottom:1vh;
+}
+#navprofbox img{
+	margin:0 27%;
+}
+#navprofile p{
+	color:white;
+	font-size:20px;
+	overflow-y:hidden;
+	width:100%;	
+	display:block;
+	text-align:center;
+}
+.navprofile{
+	border-bottom:1px solid #474747;
+	border-top:1px solid #474747;
+	padding:2vh;
+	margin-top:-6px;
+}
+.navbutton{
+	text-align:center;
+}
+.navbutton button{
+	width:80px;
+	
+}
+.navbutton div{
+	display:inline-block;
+	width:41.3px;
+}
+#imgsession{
+	height:40px;
+	flex:1;
+}
+#navbutton{
+	flex:0;
+	line-height: 1;
+	font-size:35px;
+	color:white;
+	cursor:pointer;
+	display:inline-block;
+	text-align:center;
+	height:40px;
+	width:40px;
+}
+
+#chatButton{
+	padding:10px 15px 5px 5px;
+	color:white;
+	cursor: pointer;
+}
+#chatButton #notify{
+	color:#ff5959;
+	margin:-30px 0 0 0;
+	position:relative;
+	top:-4px;
+	left:4px;
+	
+}
+/* chatcaller */
+#callchat{
+	width:0;
+	height:100%;
+	border-radius:10px 0 0 10px;
+	border-left:0;
+	border-right:0;
+	position: fixed;
+	top: 0;
+	right: 0;	
+	z-index: 99;
+	background-color:white;
+	transition: 0.3s; 	
+}
+/* sidenavbar */
+.sidenav {
+  height: 100%;
+  width: 0; 
+  position: fixed; 
+  z-index: 1; 
+  top: 0; 
+  left: 0;
+  background-color: #111; 
+  overflow-x: hidden; 
+  padding-top: 60px; 
+  transition: 0.5s; 
+  border-right:1px solid #474747;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: -15px;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
 
 /*Login e Registrar */
 #titulo1 {
@@ -106,10 +228,6 @@
 	font-size:20px;
 }
 
-#imgsession {
-	height:40px;
-}
-
 #userPhoto {
 	width:200px;
 	height:200px;
@@ -167,6 +285,7 @@
 #sheet{	
 	/*background-image: url("../img/customsheetref.png");*/
 	min-width: 1300px;
+	max-width: 1315px;
 }
 @media only screen and (max-width: 600px) {
   #sheet {
@@ -206,16 +325,19 @@
 /*Ficha - Lista de Proficiencia*/
 .sheetprof{
 	font-size:30px;
+	margin-right:-40px;
 	width:40px;
 	height:40px;
+	border-color:black;
 	text-align:center;
 	border-radius:50px;
-	position:absolute;
-	top:230px;
-	right:329px;
-	z-index:99;
+	position:relative;
+	left:635px;
+	bottom:20px;
+	z-index:2;
 }
 .proflabel{
+	margin-right:-105px;
 	height:30px;
 	width:105px;
 	font-size:12px;
@@ -224,10 +346,10 @@
 	color:black;
 	border: 2px solid black;
 	border-radius:10px;
-	position:absolute;
-	top:235px;
-	right:350px;
-	z-index:98;
+	position:relative;
+	left:552px;
+	bottom:14px;
+	z-index:1;
 }
 #perices{
 	column-count: 3;
@@ -565,28 +687,95 @@
 	top:80vh;
 	border:1px solid black;
 	background-color:white;
-	width:6.25vh;
+	width:40px;
 	padding:2px;
 	padding-top:5px;
 	padding-bottom:5px;
+	z-index:1;
+	border-radius: 0 10px 10px 0;
+}
+.sheetactionbar picture{
+	cursor:pointer;
 }
 #dicesroll{
 	border:1px solid black;
 	background-color:white;
 	height:45px;
+	width:0;
+	overflow:hidden;
 	display:inline;
 	position:fixed;
-	top:500px;
-	left:39px;
-	font-family:monospace;
-	font-weight:bold;
-	font-size:18px;
-	padding:8px;
+	top:80vh;
+	left:0;
+	padding:0;
+	border-radius:10px;
+	transition:0.3s;
 }
 .actdices{
 	color:black;
 	display:inline-block;
-	background-color:green;
+	cursor: pointer;
+}
+#diceres{
+	display:block;
+	position:fixed;
+	top:0;
+	left:0;
+	visibility:hidden;
+	margin-left:35vw;
+	margin-top:40vh;
+	padding:20px;
+	width:400px;
+	height:200px;
+	border:4px solid black;
+	background-color:white;
+	z-index:100;
+	color:black;
+}
+#diceresh{
+	text-align:center;
+	font-size:30px;
+	font-weight:bold;
+}
+#diceresclose{
+	position:relative;
+	top:0;
+	left:340px;
+	margin-bottom:-30px;
+	display:block;
+	font-size:30px;
+	font-family:monospace;
+	line-height: 0;
+	width:30px;
+	height:30px;
+	cursor:pointer;
+}
+#diceresclose:hover{
+	color:gray;
+}
+#diceresfull{
+	text-align:center;
+	margin:auto;
+	margin-top:40px;
+	width:100px;
+	line-height: 0.8;
+	font-size:35px;
+	font-family:monospace;
+	font-weight:bold;
+	border-bottom: 3px solid black;
+}
+#darkbg{
+	display:block;
+	position:fixed;
+	top:0;
+	left:0;
+	height:100%;
+	width:100%;
+	background-color:black;
+	visibility:hidden;
+	opacity: 0;
+	z-index:98;
+	transition:0.3s;
 }
 /* Chat */
 /* Navbar chat*/
@@ -594,6 +783,13 @@
 	display:flex;
 	height:7vh;
 	
+}
+#closechat{
+	color:black;
+	font-size:25px;
+	position:relative;
+	left:20px;
+	cursor: pointer;
 }
 #chatname{
 	text-align:center;
@@ -656,6 +852,10 @@
 	-webkit-appearance:none;
 	border:1px solid black;
 	border-radius: 5px;
+	cursor: pointer;
+}
+.msgdices{
+	cursor: pointer;
 }	
 #messages{
 	height:81.9vh;

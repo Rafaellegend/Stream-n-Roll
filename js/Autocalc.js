@@ -154,9 +154,9 @@ function atksbox(action){
 			if(x == childx ){
 			}else{
 				for(y = childs; y < (atks*3); y+=3){
-					addatkBox("atksbox",'text','atk'+y,'atkline','atktitle','Nome Arma');
-					addatkBox("atksbox",'text','atkhit'+y,'atkline','','Dano');
-					addatkBox("atksbox",'text','atkfx'+y,'atkline','','Tipo de Dano');
+					addatkBox("atksbox",'text','atk'+(y/3),'atkline','atktitle','Nome Arma');
+					addatkBox("atksbox",'text','atkhit'+(y/3),'atkline','','Dano');
+					addatkBox("atksbox",'text','atkfx'+(y/3),'atkline','','Tipo de Dano');
 					var childs = newbox.childElementCount;									
 				}
 			}
@@ -342,10 +342,20 @@ function magicsbox(nivel,action){
 		var childs = document.getElementById('list'+me).childElementCount;
 	}else if(action == 'load'){
 		var childx = childs + 1;
-		var com = mg[me]*3;
+		var n = 0;
+		var com;
+		while (n <= mg[me]) {
+		  if(mg[me] == 1){
+			com = mg[me]*3;
+		  }else{
+			com = com+3;
+		  }
+		  n++;
+		  
+		};
 		if(com > childs){
 			var x = com - childs;
-			if(x == childx){
+			if(x == childs){
 			}else{
 				for(y = childs; y < com; y+=3){
 					addmgtitle('list'+me,'text','nv'+me+'hab'+mg[me]+'name','mgname','','','Nome da Magia');
@@ -380,9 +390,48 @@ function magicsbox(nivel,action){
 			}
 		}
 	}	
-	console.log('childs:'+childs+',newbox:'+nivel,'me:'+mg[me]);
 }
 function apenasNumeros(string) {
 	var numsStr = string.replace(/[^0-9]/g,'');					
 	return parseInt(numsStr);
+}
+
+function countatk(ele){
+	var arr = [];
+	for(n = 0; n < ele; n++){
+		arr[n] = ['atk','atkhit','atkfx'];
+		arr[n]['atk'] = document.getElementById("atk"+n).value;
+		arr[n]['atkhit'] = document.getElementById("atkhit"+n).value;
+		arr[n]['atkfx'] = document.getElementById("atkfx"+n).value;
+	}
+	return arr;
+}
+function countmag(nv,ele){
+	var arr = [];
+	for(n = 1; n <= ele; n++){
+	arr[n] = [
+		['habname', document.getElementById('nv'+nv+'hab'+n+'name').value],
+		['habdano', document.getElementById('nv'+nv+'hab'+n+'dano').value],
+		['habtype', document.getElementById('nv'+nv+'hab'+n+'type').value],
+		['habexdano', document.getElementById('nv'+nv+'hab'+n+'exdano').value],
+		['habextype', document.getElementById('nv'+nv+'hab'+n+'extype').value],
+		['habedesc', document.getElementById('nv'+nv+'hab'+n+'desc').value]
+	];
+		//arr[n]['habname'] = document.getElementById('nv'+nv+'hab'+n+'name').value;
+		//arr[n]['habdano'] = document.getElementById('nv'+nv+'hab'+n+'dano').value;
+		//arr[n]['habtype'] = document.getElementById('nv'+nv+'hab'+n+'type').value;
+		//arr[n]['habexdano'] = document.getElementById('nv'+nv+'hab'+n+'exdano').value;
+		//arr[n]['habextype'] = document.getElementById('nv'+nv+'hab'+n+'extype').value;
+		//arr[n]['habedesc'] = document.getElementById('nv'+nv+'hab'+n+'desc').value;
+	//console.log(arr[n][n]);
+	}
+	return arr;
+}
+function countall(ele){
+	var arr = [];
+	for(m = 0; m < ele.length; m++){
+		arr[m] = countmag(m,ele[m]);
+	}
+	console.log('countall('+ele+'):'+arr[0][1][0][1]);
+	return arr;
 }

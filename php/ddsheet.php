@@ -1,5 +1,7 @@
 <script src="js/Autocalc.js" type="text/javascript"></script>
+<script src="js/sheet.js" type="text/javascript"></script>
 <script>
+
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 })
@@ -33,7 +35,7 @@ window.onload = function() {
 	sheetload()
 }
 </script>
-<form onchange="sheetload()" style="overflow:auto;">
+<form onchange="sheetload()" id="formsheet" style="overflow:auto;">
 <div class="container-fluid" id="sheet" >
 	<!--Informações do Personagem-->
 	<div class="row" >
@@ -65,7 +67,7 @@ window.onload = function() {
 			<label for="cback">Antecedente:</label>
 			<input type="text" id="cback" value='0' class="imputihidden" style="width:83px;">
 			
-			<label for="cfolk">Povo:</label>
+			<label for="cfolk">Raça:</label>
 			<input type="text" id="cfolk" value='0' class="imputihidden" style="width:150px;">
 			
 			<label for="calign">Tendência:</label>
@@ -190,7 +192,7 @@ window.onload = function() {
 				<!--Acrobacia-->
 				<div>
 					<input type="checkbox" id="cdacrbt" onchange='ExectCalc("dnd","doub","cdacrbt","cmacrbt","cacrbt","cpro")'>
-					<input type="checkbox" id="cacrbt" onchange='ExectCalc("dnd","per","cmacrbt","cmacrbt","cacrbt","cpro")'>
+					<input type="checkbox" value="1"id="cacrbt" onchange='ExectCalc("dnd","per","cmacrbt","cmacrbt","cacrbt","cpro")'>
 					<label for="cmacrbt">Acrobacia(Des)</label>
 					<input type="text" id="cmacrbt" class="imputihidden dex" style="width:20px;" value="0" readonly>
 				</div>
@@ -679,8 +681,42 @@ window.onload = function() {
 					mg[9] = 1;
 					magicsbox("nivel9");
 				}
-				
-				
+				actshow = false;
+				function actbar(){
+					if(actshow == false){
+						document.getElementById("dicesroll").style.width = "292px";		
+						document.getElementById("dicesroll").style.padding = "8px 8px 8px 45px";		
+						actshow = true;
+					}else if(actshow == true){
+						document.getElementById("dicesroll").style.width = "0";
+						document.getElementById("dicesroll").style.padding = "0";
+						actshow = false;
+					}
+				}
+				function senddice(dice){
+					res = rolldice(dice);
+					str = 'Rolou um '+dice+' e tirou:<p class="res">'+res+'<span>('+res+')</span></p>'
+					message = document.getElementById('message');
+					message.value = str;
+					document.getElementById("diceresh").textContent = 'Rolou um 1'+dice+' e Tirou:';
+					document.getElementById("diceresfull").textContent = res;
+					showres()
+					$( "#chat" ).trigger( "submit" );
+				}
+				resshow = false;
+				function showres(){
+					if(resshow == false){
+						document.getElementById("darkbg").style.opacity = "0.5";			
+						document.getElementById("darkbg").style.visibility = "visible";			
+						document.getElementById("diceres").style.visibility = "visible";			
+						resshow = true;
+					}else if(resshow == true){
+						 document.getElementById("darkbg").style.opacity = "0";
+						 document.getElementById("darkbg").style.visibility = "hidden";
+						 document.getElementById("diceres").style.visibility = "hidden";
+						resshow = false;
+					}
+				}
 			</script>
 		</div>
 	</div>
@@ -689,21 +725,27 @@ window.onload = function() {
 
 
 <div class="sheetactionbar">
-	<a href="#dicesroll" >
+	<a onclick="actbar()">
 	<picture >
 		<img src="img\dice.svg" width="35" height="35" id="manualroll" data-toggle="tooltip" data-placement="top" title="Rolar Dado" style="margin-bottom:5px;">
 	</picture>
 	</a>
 	<picture>
-		<img src="img\floppy-disk.svg" width="35" height="35" id="manualsave" data-toggle="tooltip" data-placement="top" title="Salvar Manual">
+		<img src="img\floppy-disk.svg" width="35" height="35" id="manualsave" data-toggle="tooltip" data-placement="top" title="Salvar Manual" onclick="$( '#formsheet' ).trigger( 'submit' );">
 	</picture>
 </div>
 <div id="dicesroll">
-	<a class="actdices"><img src='img/dices/d4.svg' width='30' height='30'></a>
-	<a class="actdices"><img src='img/dices/d6.svg' width='30' height='30'></a>
-	<a class="actdices"><img src='img/dices/d8.svg' width='30' height='30'></a>
-	<a class="actdices"><img src='img/dices/d10.svg' width='30' height='30'></a>
-	<a class="actdices"><img src='img/dices/d12.svg' width='30' height='30'></a>
-	<a class="actdices"><img src='img/dices/d20.svg' width='30' height='30'></a>
-	<a class="actdices"><img src='img/dices/d100.svg' width='30' height='30'></a>
+	<a class="actdices" onclick="senddice('d4')"><img src='img/dices/d4.svg' width='30' height='30'></a>
+	<a class="actdices" onclick="senddice('d6')"><img src='img/dices/d6.svg' width='30' height='30'></a>
+	<a class="actdices" onclick="senddice('d8')"><img src='img/dices/d8.svg' width='30' height='30'></a>
+	<a class="actdices" onclick="senddice('d10')"><img src='img/dices/d10.svg' width='30' height='30'></a>
+	<a class="actdices" onclick="senddice('d12')"><img src='img/dices/d12.svg' width='30' height='30'></a>
+	<a class="actdices" onclick="senddice('d20')"><img src='img/dices/d20.svg' width='30' height='30'></a>
+	<a class="actdices" onclick="senddice('d100')"><img src='img/dices/d100.svg' width='30' height='30'></a>
+</div>
+<div id="darkbg" onclick="showres()"></div>
+<div id="diceres">
+	<span id="diceresclose" onclick="showres()">x</span>
+	<p id="diceresh">Rolou um XdX e Tirou:</p>
+	<p id="diceresfull">XX</P>
 </div>

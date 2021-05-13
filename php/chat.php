@@ -5,7 +5,7 @@ var from = 1, mesa = '1', start = 0, action = 'chat', url = 'http://localhost:80
 		$(document).ready(function(){
 			$('[data-toggle="popover"]').popover();
 			load();
-			$('form').submit(function(e){
+			$('#chat').submit(function(e){
 				e.preventDefault();
 				$.post(url, {
 					action: action,
@@ -23,9 +23,9 @@ var from = 1, mesa = '1', start = 0, action = 'chat', url = 'http://localhost:80
 				result.items.forEach(item =>{
 					start = item.id;
 					if(item.mesa == mesa){
-						$('#messages').append(renderMessage(item));
+						$('#messages').append(renderMessage(item));	
 					}
-				})
+				})			
 			};
 			load();
 			});
@@ -95,6 +95,7 @@ window.onload = function() {
 </script>
 <!-- Chat Nav Bar -->
 <div id="chatnav">
+	<div id="closechat" onclick="openchat()"><span>&#10095;</span></div>
 	<div id="chatname">
 	<p id="chatlabel">Sala</p>
 	<p id="chatsession"></p>	

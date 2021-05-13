@@ -15,6 +15,12 @@ function Roll(d,Atr1,Atr2,Atr3,pos){
 	var Res = document.getElementById(pos).innerHTML = r;
 	return Res;
 }
+
+function rolldice(strd) {
+	var d = apenasNumeros(strd);
+	var r = Math.floor(Math.random() * (d - 1) + 1);
+	return r;
+}
 //Xml JS
 function XMLRequest(url,tag,id,cid,to){
 	var obj = new XMLHttpRequest();

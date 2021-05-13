@@ -1,7 +1,7 @@
 <?php
-//('display_errors', 1);
-//ini_set('display_startup_errors', 1);
-//error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 //verificação da url em busca da variavel page
 if(!isset($_GET['page'])){$page= 'main';} else{$page = $_GET['page'];};
