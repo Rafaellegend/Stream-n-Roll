@@ -15,7 +15,7 @@ $password = "13!~GFnWT^@B";
 //Verificação de Conexão
  if (!$conn) { die("Connection failed: " . mysqli_connect_error()); } 
  echo "Connected successfully"; 
- mysqli_select_db($conn, "server") or die("<br>Sem acesso ao DB, Entre em contato com o Administrador");
+ mysqli_select_db($conn, "raffoz89_StreamNRoll") or die("<br>Sem acesso ao DB, Entre em contato com o Administrador");
 
 // A variavel $result pega as varias $login e $senha, faz uma pesquisa na tabela de usuarios
 $result = mysqli_query($conn, "SELECT 'id_User' 'username' 'tipo' FROM users WHERE username= '$login' AND senha= '$senha'");
