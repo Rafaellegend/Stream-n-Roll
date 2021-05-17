@@ -1,9 +1,8 @@
 <?php
-//Inicio da Sessão
-session_start();
-//Guardando as variaveis de Login e Senha dos dados inseridos anteriormente
-$login = $_POST['login'];
-$senha = $_POST['password'];
+// Verifica se houve POST e se o usuário ou a senha é(são) vazio(s)
+  if (!empty($_POST) AND (empty($_POST['usuario']) OR empty($_POST['senha']))) {
+      header('location:../index.php/?page=userprofile'); exit;
+  }
 
 //Criando conexão
 $servername = "192.185.223.140"; 
@@ -17,24 +16,29 @@ $password = "13!~GFnWT^@B";
  echo "Connected successfully"; 
  mysqli_select_db($conn, "raffoz89_StreamNRoll") or die("<br>Sem acesso ao DB, Entre em contato com o Administrador");
 
-// A variavel $result pega as varias $login e $senha, faz uma pesquisa na tabela de usuarios
+//Recebendo os valores digitados pelo usuario
+$usuario = mysqli_real_escape_string($_POST['login']);
+$senha = mysqli_real_escape_string($_POST['password']);
+
+// Validação do usuário/senha digitados
 $result = mysqli_query($conn, "SELECT 'id_User' 'username' 'tipo' FROM users WHERE username= '$login' AND senha= '$senha'");
+  
+  if (mysqli_num_rows($result) != 1) {
+      // Mensagem de erro quando os dados são inválidos e/ou o usuário não foi encontrado
+      echo "Login inválido!"; exit;
+  } else {
+      // Salva os dados encontrados na variável $resultado
+      $resultado = mysqli_fetch_assoc($result);
 
-/* Verificação da exitencia dos usuarios */
-if(mysqli_num_rows ($result) > 0 )
-{
+      // Se a sessão não existir, inicia uma
+      if (!isset($_SESSION)) session_start();
 
-$resultado = mysqli_fetch_assoc($result);	
-	
-$_SESSION['login'] = $login['id_User'];
-$_SESSION['password'] = $senha['username'];
-$_SESSION['tipo'] = $tipo['tipo'];
-header('location:../index.php/?page=userprofile');
-}
-else{
-  unset ($_SESSION['login']);
-  unset ($_SESSION['password']);
-  header('location:../index.php/?page=main');
+      // Salva os dados encontrados na sessão
+      $_SESSION['UsuarioID'] = $resultado['id_User'];
+      $_SESSION['UsuarioNome'] = $resultado['username'];
+      $_SESSION['UsuarioNivel'] = $resultado['tipo'];
 
+      // Redireciona o visitante
+      header('location:../index.php/?page=userprofile'); exit;
   }
 ?>

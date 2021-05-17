@@ -1,13 +1,16 @@
 <?php
-/* Verifica a existência de sessão e evitando o usuario apenas de digitar a URL e acessar a página sem Login */
-session_start();
-if((!isset ($_SESSION['login']) == true) and (!isset ($_SESSION['password']) == true))
-{
-  unset($_SESSION['login']);
-  unset($_SESSION['password']);
-  header('location:../index.php/?page=main');
-}
-$logado = $_SESSION['login'];
+// A sessão precisa ser iniciada em cada página diferente
+  if (!isset($_SESSION)) session_start();
+
+  $nivel_necessario = 1;
+
+  // Verifica se não há a variável da sessão que identifica o usuário
+  if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] > $nivel_necessario)) {
+      // Destrói a sessão por segurança
+      session_destroy();
+      // Redireciona o visitante de volta pro login
+      header('location:../index.php/?page=main'); exit;
+  }
 ?>
 
 <!-- Div que transita entre as Tabs do perfil do usuário -->
@@ -75,19 +78,13 @@ $logado = $_SESSION['login'];
 								</label>
 							</div><br>
 							<label id="txtboxgeral" for="Username"> Username: </label>
-							<input type="text" size="30" id="Username" name="Username">
+							<input type="text" size="30" id="Username" name="Username" value="A">
 							<label id="txtboxgeral" for="Email"> Email: </label>
 							<input type="email" size="30" id="Email" name="Email"><br>
 							<label id="txtboxgeral" for="Nome"> Nome: </label>
 							<input type="text" size="30" id="Nome" name="Nome">
 							<label id="txtboxgeral" for="Sobrenome"> Sobrenome: </label>
 							<input type="text" size="30" id="Sobrenome" name="Sobrenome"><br>
-							<label id="txtboxgeral" for="Genero"> Gênero: </label>
-							<select name="Genero" id="Genero" name="Genero">
-								<option> Não Definido </option>
-								<option> Masculino </option>
-								<option> Feminino </option>
-							</select>
 							<label id="txtboxgeral" for="Aniversário">Data de Nascimento:</label>
 							<input name="Aniversário" type="date" name="Aniversario">				
 							<div>
