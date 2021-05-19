@@ -34,6 +34,25 @@
 		$result = $conn->query($sql);
 		return $result;
 	}
+	
+	function sqlrowcount($sql){
+		$query = sqlfatch($sql);
+		$result = count($query);
+		return $result;
+	}
+	
+	function sqlfatch($sql){
+		$query = sqlquery($sql);
+		$result = $query->fetch(PDO::FETCH_ASSOC);
+		return $result;
+	}
+	function cript($pass){
+		$fphase = base64_encode($pass);
+		$sphase = md5($fphase);
+		$tphase = sha1($sphase);
+		$lphase = base64_encode($tphase);
+		return $lphase;
+	}
 	/*
 	//Criando conexão com o Banco de Dados e Verificando a conexão
 	$hostname="localhost";

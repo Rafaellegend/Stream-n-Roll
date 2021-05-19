@@ -1,7 +1,7 @@
 <script src="js/functions.js" type="text/javascript"></script>
 <script>
 
-var from = 1, mesa = '1', start = 0, action = 'chat', url = 'http://localhost:8030/Stream-n-Roll/?page=submit';
+var from = 1, mesa = '1', start = 0, action = 'chat', url = './?page=submit';
 		$(document).ready(function(){
 			$('[data-toggle="popover"]').popover();
 			load();
@@ -25,7 +25,9 @@ var from = 1, mesa = '1', start = 0, action = 'chat', url = 'http://localhost:80
 					if(item.mesa == mesa){
 						$('#messages').append(renderMessage(item));	
 					}
-				})			
+				})
+				var chatheight = document.getElementById('messages').scrollHeight;
+				$('#messages').scrollTop(chatheight);
 			};
 			load();
 			});

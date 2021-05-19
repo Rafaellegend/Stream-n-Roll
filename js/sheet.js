@@ -1,6 +1,6 @@
-var magsarr = [], url = 'http://localhost:8030/Stream-n-Roll/?page=submit';
+var magsarr = [], url = './?page=submit';
 $(document).ready(function(){
-			load();
+			
 			console.log(
 				'portrait:'+$('#portrait').attr('src') 
 			);
@@ -58,25 +58,41 @@ $(document).ready(function(){
 					cwis: $('#cwis').val(),
 					//Casrisma
 					ccar: $('#ccar').val(),
+				//Teste de Resistência
+					//Resistência Força
+					ctstr: $('#ctstr').val(),
+					//Resistência Destreza
+					ctdex: $('#ctdex').val(),
+					//Resistência Constituição
+					ctcon: $('#ctcon').val(),
+					//Resistência Inteligencia
+					ctint: $('#ctint').val(),
+					//Resistência Sabedoria
+					ctwis: $('#ctwis').val(),
+					//Resistência Casrisma
+					ctcar: $('#ctcar').val(),
 				//Proficiência
 					cpro: $('#cpro').val(),
 				//Pericias
 					//pro
-					cacrbt: $('#cacrbt').val(),
-					canl: $('#canl').val(),
-					carc: $('#carc').val(),
-					catl: $('#catl').val(),
-					cperf: $('#cperf').val(),
-					cdec: $('#cdec').val(),
-					csth: $('#csth').val(),
-					chis: $('#chis').val(),
-					cintm: $('#cintm').val(),
-					cins: $('#cins').val(),
-					cinv: $('#cinv').val(),
-					cmed: $('#cmed').val(),
-					cnat: $('#cnat').val(),
-					cper: $('#cper').val(),
-					csli: $('#csli').val(),
+					cacrbt: $('#cacrbt').val(),// Acrobacia
+					canl: $('#canl').val(),    // Lidar com animais
+					carc: $('#carc').val(),    // Arcanismo
+					catl: $('#catl').val(),    // Atletismo
+					cperf: $('#cperf').val(),  // Atuação
+					cdec: $('#cdec').val(),    // Enganação
+					csth: $('#csth').val(),    // Furtividade
+					chis: $('#chis').val(),    // História
+					cintm: $('#cintm').val(),  // Intimidação
+					cins: $('#cins').val(),    // Intuição
+					cinv: $('#cinv').val(),    // Investigação
+					cmed: $('#cmed').val(),    // Medicina
+					cnat: $('#cnat').val(),    // Natureza
+					cper: $('#cper').val(),    // Percepção
+					cpers: $('#cpers').val(),  // Persuasão
+					csli: $('#csli').val(),    // Prestidigitação
+					crel: $('#crel').val(),    // Religião
+					csur: $('#csur').val(),    // Sobrevivencia
 					//double
 					cdacrbt: $('#cdacrbt').val(),
 					cdanl: $('#cdanl').val(),
@@ -92,7 +108,10 @@ $(document).ready(function(){
 					cdmed: $('#cdmed').val(),
 					cdnat: $('#cdnat').val(),
 					cdper: $('#cdper').val(),
+					cdpers: $('#cdpers').val(),
 					cdsli: $('#cdsli').val(),
+					cdrel: $('#cdrel').val(),
+					cdsur: $('#cdsur').val(),
 				//Informações Importantes
 					//Vida
 					catualhp: $('#catualhp').val(),
@@ -115,7 +134,9 @@ $(document).ready(function(){
 					pe:$('#pe').val(),
 					po:$('#po').val(),
 					pl:$('#pl').val(),
-				//História
+				//Detalhes
+					//Idioma e outras Proeficiencias
+					langprof: $('#langprof').val(),
 					//História
 					cstorie: $('#cstorie').val(),
 					//Traços de Personalidade

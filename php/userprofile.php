@@ -1,17 +1,19 @@
 <?php
-// A sessão precisa ser iniciada em cada página diferente
-  if (!isset($_SESSION)) session_start();
 
   $nivel_necessario = 1;
 
   // Verifica se não há a variável da sessão que identifica o usuário
-  if (!isset($_SESSION['UsuarioID']) OR ($_SESSION['UsuarioNivel'] > $nivel_necessario)) {
-      // Destrói a sessão por segurança
-      session_destroy();
+  /*
+  if (!isset($_SESSION['UsuarioNivel']) OR $_SESSION['UsuarioNivel']!= $nivel_necessario) {
+      echo "Leroy Jeankins! <br>";
+	  // Destrói a sessão por segurança
+       if (isset($_SESSION)) session_destroy();
       // Redireciona o visitante de volta pro login
       header('location:../index.php/?page=main'); exit;
-  }
+  }else{echo "banana Bread <br>";}
+  */
 ?>
+
 
 <!-- Div que transita entre as Tabs do perfil do usuário -->
 <div class="well">
@@ -201,3 +203,44 @@
 		</div>
 	</div>
  </div>
+ 
+ 
+ 
+ <div class="container-fluid">
+	<div class="row"></div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="Pmesas">
+				<div class="pminfo">
+					<h1>Ordem Suprema</h1>
+					<p>Criado por: Lucinho</p>
+				</div>
+				<div class="pmbutton">
+					<button>Entrar</button>
+					<button>Deletar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+ </div>
+ 
+ <style>
+ .Pmesas{
+	 background-color:white;
+	 background-image:url('https://i.pinimg.com/originals/de/f9/70/def97040fcbdd13ee1809d01cc46dc3f.jpg');
+	 background-repeat: no-repeat;
+	 background-size: cover;
+	 height:80px;
+	 width:100%;
+	 border-radius:10px;
+ }
+ .Pmesas .pminfo{
+	 float:left;
+	 width:80%;
+ }
+ .Pmesas .pmbutton{
+	 float:right;
+	 width:70px;
+	 background-color:pink;
+ }
+ </style>

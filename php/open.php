@@ -21,7 +21,7 @@ $usuario = mysqli_real_escape_string($_POST['login']);
 $senha = mysqli_real_escape_string($_POST['password']);
 
 // Validação do usuário/senha digitados
-$result = mysqli_query($conn, "SELECT 'id_User' 'username' 'tipo' FROM users WHERE username= '$login' AND senha= '$senha'");
+$result = mysqli_query($conn, "SELECT 'id_User' 'username' 'tipo' FROM users WHERE username= '$usuario' AND senha= '$senha'");
   
   if (mysqli_num_rows($result) != 1) {
       // Mensagem de erro quando os dados são inválidos e/ou o usuário não foi encontrado

@@ -79,7 +79,8 @@ function openchat(){
 }
 $('#messages').on('DOMNodeInserted', function(e) { 
       if(chatshow == false){
-      document.getElementById("notify").style.visibility = "visible";
+		if(document.getElementById("notify")){
+		document.getElementById("notify").style.visibility = "visible";}
       }
  });
 function closeNav() {

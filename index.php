@@ -3,6 +3,10 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+//Iniciar a Sessão
+ if (!isset($_SESSION)) session_start();
+     
+
 //verificação da url em busca da variavel page
 if(!isset($_GET['page'])){$page= 'main';} else{$page = $_GET['page'];};
 
@@ -21,12 +25,12 @@ include_once("php/header.php");
 //Criando conexão com o Banco de Dados e Verificando a conexão
 include_once("php/conection.php");
 //dbconnect();
-
+include_once'php/open_.php';
 //verificação da varaiavel page para redirecionamento de pagina
 	//Menu principal
 if($page=='main'){include_once'php/main.php';};
-	//Registro e Login
-if($page=='reglogm'){include_once'php/reglogm.php';};
+	//Login
+if($page=='open'){include_once'php/open_.php';};
 	//Criar Sessão
 if($page=='csession'){include_once'php/csession.php';};
 	//d&d - Editar Ficha 

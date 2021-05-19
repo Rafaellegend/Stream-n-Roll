@@ -301,6 +301,14 @@ window.onload = function() {
 					<input type="text" id="cmper" class="imputihidden wis" style="width:20px;" value="0" readonly>
 				</div>
 				
+				<!--Persuasão-->
+				<div>
+					<input type="checkbox" id="cdpers" onchange='ExectCalc("dnd","doub","cdpers","cmpers","cpers","cpro")'>
+					<input type="checkbox" id="cpers" onchange='ExectCalc("dnd","pers","cmper","cmpers","cpers","cpro")'>
+					<label for="cmpers">Persuasão(Car)</label>
+					<input type="text" id="cmpers" class="imputihidden car" style="width:20px;" value="0" readonly>
+				</div>
+				
 				<!--Pretidigitação-->
 				<div>
 					<input type="checkbox" id="cdsli" onchange='ExectCalc("dnd","doub","cdsli","cmsli","csli","cpro")'>
