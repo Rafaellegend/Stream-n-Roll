@@ -5,7 +5,6 @@ error_reporting(E_ALL);
 
 //Iniciar a Sessão
  if (!isset($_SESSION)) session_start();
-     
 
 //verificação da url em busca da variavel page
 if(!isset($_GET['page'])){$page= 'main';} else{$page = $_GET['page'];};
@@ -37,8 +36,6 @@ if($page=='csession'){include_once'php/csession.php';};
 if($page=='ddsheet'){include_once'php/ddsheet.php';};
 	//d&d - Editar Ficha 
 if($page=='ddedit'){include_once'php/dd_edit.php';};
-	//RegLogM - Registro e Login
-if($page=='reglogm'){include_once'php/reglogm.php';};
 	//Perfil do Usuário
 if($page=='userprofile'){include_once'php/userprofile.php';};
 	//Submit 
@@ -46,9 +43,11 @@ if($page=='submit'){include_once'php/submit.php';};
 	//chat
 if($page=='chat'){include_once'php/chat.php';};
 
-
+	//Paginas desativadas
+	//RegLogM - Registro e Login
+	//if($page=='reglogm'){include_once'php/reglogm.php';};
 	//Tela de Registro
-// if($page=='register'){include_once'php/register.php';};
+	// if($page=='register'){include_once'php/register.php';};
 	
 	//Overlay
 if($page=='stream'){include_once'php/overlay.php';};

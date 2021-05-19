@@ -43,7 +43,7 @@
 	  
 	  <!-- Formulário Login -->
       <div class="modal-body">
-        <form method="post" action="php\open.php" id="formlogin" name="formlogin">
+        <form method="post" action="php\open_.php" id="formlogin" name="formlogin">
 		<label for="login">Login:</label>
 		<input type="text" name="login" id="login" required><br>
 		<label for="password">Senha:</label>

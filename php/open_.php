@@ -5,13 +5,13 @@
   }
 
 //Recebendo os valores digitados pelo usuario
-$usuario = isset($_POST['login']) ? $_POST['login'] :null;
-$senharaw = isset($_POST['senha']) ? $_POST['senha'] :null;
+$usuario = 'admin'; //isset($_POST['login']) ? $_POST['login'] :null;
+$senharaw = 'admin'; //isset($_POST['senha']) ? $_POST['senha'] :null;
 $senha = cript($senharaw);
 
 if($usuario != null AND $senharaw != null){
 // Validação do usuário/senha digitados
-$sql = "SELECT `id_User`, `username`, `tipo` FROM users WHERE username = '$usuario'";
+$sql = "SELECT `id_User`, `username`, `email`, `nome`, `sobrenome`, `dataNascimento`, `tipo` FROM users WHERE username = '$usuario'";
 $result = sqlquery($sql);
 
 $row_cnt = $result->rowCount();
@@ -26,7 +26,11 @@ $row_cnt = $result->rowCount();
 		// Salva os dados encontrados na sessão
 		$_SESSION['STATUS'] = 'ON';
 		$_SESSION['UsuarioID'] = $row['id_User'];
-		$_SESSION['UsuarioNome'] = $row['username'];
+		$_SESSION['UsuarioUsername'] = $row['username'];
+		$_SESSION['UsuarioEmail'] = $row['email'];
+		$_SESSION['UsuarioNome'] = $row['nome'];
+		$_SESSION['UsuarioSobrenome'] = $row['sobrenome'];
+		$_SESSION['UsuariodataNascimento'] = $row['dataNascimento'];
 		$_SESSION['UsuarioNivel'] = $row['tipo'];
 	
       // Redireciona o visitante

@@ -1,5 +1,6 @@
 <?php
-
+	$username = "AAAA";
+	$email = "email@email";
   $nivel_necessario = 1;
 
   // Verifica se não há a variável da sessão que identifica o usuário
@@ -80,15 +81,15 @@
 								</label>
 							</div><br>
 							<label id="txtboxgeral" for="Username"> Username: </label>
-							<input type="text" size="30" id="Username" name="Username" value="A">
+							<input type="text" size="30" id="Username" name="Username" value='<?php echo$_SESSION['UsuarioUsername']; ?>' disabled>
 							<label id="txtboxgeral" for="Email"> Email: </label>
-							<input type="email" size="30" id="Email" name="Email"><br>
+							<input type="email" size="30" id="Email" name="Email" value='<?php echo $_SESSION['UsuarioEmail']; ?>' disabled><br>
 							<label id="txtboxgeral" for="Nome"> Nome: </label>
-							<input type="text" size="30" id="Nome" name="Nome">
+							<input type="text" size="30" id="Nome" name="Nome" value='<?php echo $_SESSION['UsuarioNome']; ?>'>
 							<label id="txtboxgeral" for="Sobrenome"> Sobrenome: </label>
-							<input type="text" size="30" id="Sobrenome" name="Sobrenome"><br>
+							<input type="text" size="30" id="Sobrenome" name="Sobrenome" value='<?php echo $_SESSION['UsuarioSobrenome']; ?>'><br>
 							<label id="txtboxgeral" for="Aniversário">Data de Nascimento:</label>
-							<input name="Aniversário" type="date" name="Aniversario">				
+							<input name="Aniversário" type="date" name="Aniversario" value='<?php echo $_SESSION['UsuariodataNascimento']; ?>'>				
 							<div>
 								<p id="btnperfil"><button class="btn btn-primary">Atualizar Dados</button></p>
 							</div>
