@@ -4,41 +4,40 @@
       header('location:../index.php/?page=userprofile'); exit;
   }
 
-//Criando conexão
-$servername = "192.185.223.140"; 
-$database = "raffoz89_StreamNRoll"; 
-$username = "raffoz89_Project"; 
-$password = "13!~GFnWT^@B"; 
-//Estabelecendo conexão com o serviço e banco
- $conn = mysqli_connect($servername, $username, $password, $database);
-//Verificação de Conexão
- if (!$conn) { die("Connection failed: " . mysqli_connect_error()); } 
- echo "Connected successfully"; 
- mysqli_select_db($conn, "raffoz89_StreamNRoll") or die("<br>Sem acesso ao DB, Entre em contato com o Administrador");
-
 //Recebendo os valores digitados pelo usuario
-$usuario = mysqli_real_escape_string($_POST['login']);
-$senha = mysqli_real_escape_string($_POST['password']);
+$usuario = 'admin'; //isset($_POST['login']) ? $_POST['login'] :null;
+$senharaw = 'admin'; //isset($_POST['senha']) ? $_POST['senha'] :null;
+$senha = cript($senharaw);
 
+if($usuario != null AND $senharaw != null){
 // Validação do usuário/senha digitados
-$result = mysqli_query($conn, "SELECT 'id_User' 'username' 'tipo' FROM users WHERE username= '$usuario' AND senha= '$senha'");
-  
-  if (mysqli_num_rows($result) != 1) {
-      // Mensagem de erro quando os dados são inválidos e/ou o usuário não foi encontrado
-      echo "Login inválido!"; exit;
-  } else {
-      // Salva os dados encontrados na variável $resultado
-      $resultado = mysqli_fetch_assoc($result);
+$sql = "SELECT `id_User`, `username`, `email`, `nome`, `sobrenome`, `dataNascimento`, `tipo` FROM users WHERE username = '$usuario'";
+$result = sqlquery($sql);
 
-      // Se a sessão não existir, inicia uma
-      if (!isset($_SESSION)) session_start();
+$row_cnt = $result->rowCount();
 
-      // Salva os dados encontrados na sessão
-      $_SESSION['UsuarioID'] = $resultado['id_User'];
-      $_SESSION['UsuarioNome'] = $resultado['username'];
-      $_SESSION['UsuarioNivel'] = $resultado['tipo'];
+	if ($row_cnt != 1) {
+		// Mensagem de erro quando os dados são inválidos e/ou o usuário não foi encontrado
+		echo "Login inválido!"; exit;
+	} else {
+		// Salva os dados encontrados na variável $resultado
+		$row = $result->fetch(PDO::FETCH_ASSOC);
 
+		// Salva os dados encontrados na sessão
+		$_SESSION['STATUS'] = 'ON';
+		$_SESSION['UsuarioID'] = $row['id_User'];
+		$_SESSION['UsuarioUsername'] = $row['username'];
+		$_SESSION['UsuarioEmail'] = $row['email'];
+		$_SESSION['UsuarioNome'] = $row['nome'];
+		$_SESSION['UsuarioSobrenome'] = $row['sobrenome'];
+		$_SESSION['UsuariodataNascimento'] = $row['dataNascimento'];
+		$_SESSION['UsuarioNivel'] = $row['tipo'];
+	
       // Redireciona o visitante
-      header('location:../index.php/?page=userprofile'); exit;
+      //header('location:../index.php/?page=userprofile'); exit;
   }
+}
+else{
+	session_destroy();
+}
 ?>

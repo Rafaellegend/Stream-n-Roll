@@ -1,8 +1,19 @@
 <?php
-	$username = "AAAA";
-	$email = "email@email";
-  $nivel_necessario = 1;
+	//Verifica se o POST é igual o do Update
+	$nemail = isset($_POST['Nemail']) ? $_POST['Nemail'] :null;
+	$cnemail = isset($_POST['CNemail']) ? $_POST['CNemail'] :null;
+	
+	if ( $nemail != $_SESSION['UsuarioEmail'] AND $nemail != null AND $cnemail != null AND $nemail == $cnemail){
+		$sql = "UPDATE `email` FROM users WHERE username = '$_SESSION['UsuarioUsername']";
+		$result = sqlquery($sql);
+		alert("Troca de Email realizada com sucesso");
+	}else {
+		alert("Troca de Email não realizada, verifique se as informações estão corretas.");
+	}
+		
+  
 
+  //$nivel_necessario = 1;
   // Verifica se não há a variável da sessão que identifica o usuário
   /*
   if (!isset($_SESSION['UsuarioNivel']) OR $_SESSION['UsuarioNivel']!= $nivel_necessario) {
@@ -157,7 +168,7 @@
 			<h2 id="titulogeral"> Painel de Alteração de Email </h2>
 				<div class="row">
 					<div class="col-sm-8" id="formcentralizar">
-						<form>
+						<form method="post" action="?page=userprofile.php" id="formNovoEmail" name="formNovoEmail">
 							<label for="Nemail" id="txtboxgeral">Novo Email:</label>
 							<input type="email" id="Nemail" name="Nemail" required>
 							<label for="CNemail" id="txtboxgeral">Confirmar Novo Email:</label>
