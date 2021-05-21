@@ -1,29 +1,41 @@
 <?php
-	//Verifica se o POST é igual o do Update
+	/* 
+	Verificar se a sessão foi iniciada
+	//$nivel_necessario = 1;
+	if ( $_SESSION['UsuarioNivel'] > $nivel_necessario) {
+		alert("Você precisa estar registrado para acessar essa página");
+		session_destroy();
+		header('location:?page=mesa.php'); exit;
+	}else 
+	*/
+
+	//Criptografia da senha para realizar os Update
+	$senha = isset($_POST['password']) ? $_POST['password'] :null;
+	$senhacript = cript($senha);
+	
+	//Update do Email
 	$nemail = isset($_POST['Nemail']) ? $_POST['Nemail'] :null;
 	$cnemail = isset($_POST['CNemail']) ? $_POST['CNemail'] :null;
 	
 	if ( $nemail != $_SESSION['UsuarioEmail'] AND $nemail != null AND $cnemail != null AND $nemail == $cnemail){
-		$sql = "UPDATE `email` FROM users WHERE username = '$_SESSION['UsuarioUsername']";
+		$sql = "UPDATE `email` FROM users WHERE senha = '$senhacript'";
 		$result = sqlquery($sql);
 		alert("Troca de Email realizada com sucesso");
 	}else {
 		alert("Troca de Email não realizada, verifique se as informações estão corretas.");
 	}
 		
-  
-
-  //$nivel_necessario = 1;
-  // Verifica se não há a variável da sessão que identifica o usuário
-  /*
-  if (!isset($_SESSION['UsuarioNivel']) OR $_SESSION['UsuarioNivel']!= $nivel_necessario) {
-      echo "Leroy Jeankins! <br>";
-	  // Destrói a sessão por segurança
-       if (isset($_SESSION)) session_destroy();
-      // Redireciona o visitante de volta pro login
-      header('location:../index.php/?page=main'); exit;
-  }else{echo "banana Bread <br>";}
-  */
+	//Update da Senha
+	$npassword = isset($_POST['Npassword']) ? $_POST['Npassword'] :null;
+	$cnpassword = isset($_POST['CNpassword']) ? $_POST['CNpassword'] :null;
+	
+	if ( $npassword == $cnpassword){
+		$sql2 = "UPDATE `senha` FROM users WHERE senha = '$senhacript'";
+		$result2 = sqlquery($sql2);
+		alert("Troca de Senha realizada com sucesso");
+	}else {
+		alert("Troca de Senha não realizada, verifique se as informações estão corretas.");
+	}
 ?>
 
 
@@ -109,6 +121,7 @@
 				</div>
 			</div>
 	    </div>
+		
 		<!-- Tab da senha do usuário -->
 		<div class="tab-pane fade" id="senha">
 			<div class="container"	id="containergeral">
