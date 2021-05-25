@@ -50,6 +50,9 @@
 		<input type="password" name="password" id="password" required><br>
 		
 		<input type="submit" value="Fazer Login">
+		
+		<!-- Input Case -->
+		<input type="text" name="start" value="Login" hidden>
 		</form>
       </div>
 	  
@@ -98,6 +101,9 @@
 			<input type="checkbox" required>Eu Aceito os <a href="">Termos de Uso e as politicas de privacidade</a> do site.
 
 			<input type="submit" value="Cadastrar">
+			
+			<!-- Input Case -->
+			<input type="text" name="start" value="Cadastro" hidden>
 		</form>
       </div>
 	  
@@ -106,6 +112,8 @@
 		<p>Já possui conta?</p>
 		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#MdLogin" data-dismiss="modal" data-backdrop="static">
 			Login
+			<!-- Input Case -->
+			<input type="text" name="start" value="AcessoDireto" hidden>
 		</button>
       </div>
     </div>
