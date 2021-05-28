@@ -43,7 +43,7 @@
 	  
 	  <!-- Formulário Login -->
       <div class="modal-body">
-        <form method="post" action="?page=open.php" id="formlogin" name="formlogin">
+        <form method="post" action="?page=open.php" id="formLogin" name="formLogin">
 		<label for="login">Login:</label>
 		<input type="text" name="login" id="login" required><br>
 		<label for="password">Senha:</label>
@@ -81,24 +81,24 @@
 	  
 	  <!-- Formulário Registro -->
       <div class="modal-body">
-        <form>
+        <form method="post" action="?page=open.php" id="formCadastro" name="formCadastro">
 			<label for="Username">Username:</label>
-			<input type="text" id="Username" name="Username" required><br>
+			<input type="text" id="CadUsername" name="CadUsername" required><br>
 
 			<label for="Password">Senha:</label>
-			<input type="password" id="Password" name="Password" required><br>
+			<input type="password" id="CadPassword" name="CadPassword" required><br>
 
 			<label for="Cpassword">Confirmar Senha:</label>
-			<input type="password" id="Cpassword" name="Cpassword" required><br>
+			<input type="password" id="Cadcpassword" name="Cadcpassword" required><br>
 
 			<label for="Email">E-mail:</label>
-			<input type="email" id="Email" name="Email" required><br>
+			<input type="email" id="CadEmail" name="CadEmail" required><br>
 
 			<label for="Cemail">Confirmar E-mail:</label>
-			<input type="email" id="Cemail" name="Cemail" required><br>
+			<input type="email" id="Cadcemail" name="Cadcemail" required><br>
 
 
-			<input type="checkbox" required>Eu Aceito os <a href="">Termos de Uso e as politicas de privacidade</a> do site.
+			<input type="checkbox" required>Eu Aceito os <a href="">Termos de Uso e as politicas de privacidade</a> do site.<br>
 
 			<input type="submit" value="Cadastrar">
 			

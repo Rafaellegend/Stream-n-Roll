@@ -1,76 +1,5 @@
 <?php
 /*
-	//Recebendo os dados do submit
-		$acao = isset($_POST['action']) ? $_POST['action'] :null;
-		$iduser = $_SESSION['UsuarioID'];
-		//Variaveis Novos Dados
-		$nNome = isset($_POST['nNome']) ? $_POST['nNome'] :null;
-		$nSobrenome = isset($_POST['nSobrenome']) ? $_POST['nSobrenome'] :null;
-		$nAniversario = isset($_POST['nAniversario']) ? $_POST['nAniversario'] :null;
-		
-		
-			switch ($acao){
-			
-				//Atualização dos dados do Usuário
-				case "AtualizarDados":
-					if($nNome != null AND $nSobrenome != null AND $nAniversario != null){
-						$updateDados = "UPDATE users SET nome='$nNome', sobrenome='$nSobrenome', dataNascimento='$nAniversario' WHERE usuario = '$iduser' ";
-						$rUpdateDados = sqlquery($updateDados);
-					}
-				
-				
-				//Finalizando
-				break;
-			}
-
-/*
-	//Recebendo os dados do submit
-	$acao = $_POST['action'];
-	//Senha atual para realização ações
-	$senha = isset($_POST['password']) ? $_POST['password'] :null;
-	$senhacript = cript($senha);
-	//Variaveis Novos Dados
-	$nNome = isset($_POST['nNome']) ? $_POST['nNome'] :null;
-	$nSobrenome = isset($_POST['nSobrenome']) ? $_POST['nSobrenome'] :null;
-	$nAniversario = isset($_POST['nAniversario']) ? $_POST['nAniversario'] :null;
-	//Variaveis Nova Senha
-	$npassword = isset($_POST['Npassword']) ? $_POST['Npassword'] :null;
-	$cnpassword = isset($_POST['CNpassword']) ? $_POST['CNpassword'] :null;
-	$nsenhacript = cript($npassword);
-	//Variaveis Novo Email
-	$nemail = isset($_POST['Nemail']) ? $_POST['Nemail'] :null;
-	$cnemail = isset($_POST['CNemail']) ? $_POST['CNemail'] :null;
-	
-	//Ações que podem ser realizadas com o submit do usuario
-	switch ($acao){
-		
-		//Atualização dos dados do Usuário
-		case "AtualizarDados":
-		$consulta1 = "UPDATE users SET nome='$nNome', sobrenome='$nSobrenome', dataNascimento='$nAniversario' WHERE usuario = $_SESSION['UsuarioID']";
-		$resultado1 = sqlquery($consulta1);
-		
-		//Finalizando
-		break;
-		
-		//Atualização da Senha
-		case "AtualizarSenha":
-		
-		$consulta2 = "UPDATE users SET senha='$npasswordcript' WHERE senha = '$senhacript'";
-		$resultado2 = sqlquery($consulta2);
-		
-		//Finalizando
-		break;
-		
-		//Atualização do Email
-		case "AtualizarEmail":
-		
-		$consulta3 = "UPDATE users SET email='$nemail' WHERE senha = '$senhacript'";
-		$resultado3 = sqlquery($consulta3);
-		
-		//Finalizando
-		break;
-	}
-	/* 
 	Verificar se a sessão foi iniciada
 	//$nivel_necessario = 1;
 	if ( $_SESSION['UsuarioNivel'] > $nivel_necessario) {
@@ -78,7 +7,7 @@
 		session_destroy();
 		header('location:?page=mesa.php'); exit;
 	}
-	*/
+*/
 ?>
 
 
@@ -115,19 +44,22 @@
 	
 		<!-- Tab das Sessões que usuário está participando (SERÁ ALTERADO)-->
 		<div class="tab-pane active in" id="sessoes">
-			<div>
-				<h5>Sessões que o usuário criou:</h5>
-				<p>Para criar uma nova sessão:
-				<button>Criar Campanha</button></p>
-				<p>Sessão do Mestre "Usuário" - "Nome campanha"
-				<button>Participar</button><button>Deletar</button></p>
-				<h5>Sessões que o usuário participa:</h5>
-				<p>Sessão do Mestre Lucinho - Ordem Suprema
-				<button>Participar</button><button>Deletar</button></p>
-				<p>Sessão do Mestre Raffozo - Ordem Nazistas
-				<button>Participar</button><button>Deletar</button></p>
-				<p>Sessão do Mestre Matheus - Fronteiras da Magia
-				<button>Participar</button><button>Deletar</button></p>
+			<div class="container-fluid">
+				<div class="row"></div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="Pmesas">
+							<div class="pminfo">
+								<h1>Ordem Suprema</h1>
+								<p>Criado por: Lucinho</p>
+							</div>
+							<div class="pmbutton">
+								<button>Entrar</button>
+								<button>Deletar</button>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	
@@ -137,6 +69,7 @@
 			<h2 id="titulogeral"> Painel do Usuário </h2>
 				<div class="row">
 					<div class="col-sm-8" id="formcentralizar">
+					<!-- Form mudança de Dados -->
 						<form method="post" action="?page=open.php" id="formDados" name="formDados">
 							<!-- Envio de imagem -->
 							<div id="avatarimg">
@@ -150,12 +83,17 @@
 							<input type="text" size="30" id="Username" name="Username" value='<?php echo $_SESSION['UsuarioUsername']; ?>' disabled>
 							<label id="txtboxgeral" for="Email"> Email: </label>
 							<input type="email" size="30" id="Email" name="Email" value='<?php echo $_SESSION['UsuarioEmail']; ?>' disabled><br>
+							
+							<!-- Remover depois-->
+							<label id="txtboxgeral" for="Senha"> Senha Criptografada: </label>
+							<input type="text" size="30" id="Senha" name="Senha" value='<?php echo $_SESSION['UsuarioSenha']; ?>' disabled><br>
+							
 							<label id="txtboxgeral" for="Nome"> Nome: </label>
 							<input type="text" size="30" id="nNome" name="nNome" value='<?php echo $_SESSION['UsuarioNome']; ?>'>
 							<label id="txtboxgeral" for="Sobrenome"> Sobrenome: </label>
 							<input type="text" size="30" id="nNobrenome" name="nSobrenome" value='<?php echo $_SESSION['UsuarioSobrenome']; ?>'><br>
-							<label id="txtboxgeral" for="Aniversário">Data de Nascimento:</label>
-							<input name="Aniversário" type="date" id="nAniversario" name="nAniversario" value='<?php echo $_SESSION['UsuariodataNascimento']; ?>'>				
+							<label id="txtboxgeral" for="Aniversario">Data de Nascimento:</label>
+							<input type="date" id="nAniversario" name="nAniversario" value='<?php echo $_SESSION['UsuariodataNascimento']; ?>'>				
 							
 							<!-- Input Case -->
 							<input type="text" name="action" value="AtualizarDados" hidden>
@@ -175,51 +113,24 @@
 			<h2 id="titulogeral"> Painel de Alteração de Senha </h2>
 				<div class="row">
 					<div class="col-sm-8" id="formcentralizar">
-						<form>
+						<!-- Form mudança de senha -->
+						<form  method="post" action="?page=open.php" id="formSenha" name="formSenha">
 							<label for="Npassword" id="txtboxgeral">Nova Senha:</label>
 							<input type="password" id="Npassword" name="Npassword" required>
 							<label for="CNpassword" id="txtboxgeral">Confirmar Nova Senha:</label>
 							<input type="password" id="CNpassword" name="CNpassword" required>
 							
+							<h5 class="modal-title" id="exampleModalLabel">Confirme a Mudança de Senha</h5>
+							<label for="password">Senha Atual:</label>
+							<input type="password" id="password" name="password" required>
 							
-							<!-- Modal alteração de senha -->
+							<!-- Input Case -->
+							<input type="text" name="action" value="AtualizarSenha" hidden>
+							
 							<div>
-								<p id="btnsenha"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ASenha" data-backdrop="static">
-								Alterar Senha
-								</button></p>
-								<!-- Modal de Senha -->
-								<div class="modal fade" id="ASenha" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-								<div class="modal-dialog" role="document">
-								<div class="modal-content">
-								<div class="modal-header">
-								<h5 class="modal-title" id="exampleModalLabel">Confirme a Mudança de Senha</h5>
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-								</div>
-								<!-- Confirmação da Alteração de Senha -->
-								<div class="modal-body">
-									<form>
-										<label for="password">Senha Atual:</label>
-										<input type="password" id="password" name="password" required>
-										<button>Atualizar Senha</button>
-										
-										<!-- Input Case -->
-										<input type="text" name="action" value="AtualizarSenha" hidden>
-			
-									</form>
-									  </div>
-									  <!-- Botão de Confirmação -->
-									  <div class="modal-footer">
-										<p>Não fazer nada e cancelar a alteração</p>
-										<button type="refresh" class="btn btn-primary" data-toggle="modal" data-dismiss="modal" data-backdrop="static">
-											Cancelar
-										</button>
-									  </div>
-									</div>
-								  </div>
-								</div>
+								<p id="btnsenha"><button class="btn btn-primary">Atualizar Senha</button></p>
 							</div>
+							
 						</form>
 					</div>
 				</div>
@@ -232,50 +143,24 @@
 			<h2 id="titulogeral"> Painel de Alteração de Email </h2>
 				<div class="row">
 					<div class="col-sm-8" id="formcentralizar">
-						<form method="post" action="?page=userprofile.php" id="formNovoEmail" name="formNovoEmail">
+					<!-- Form mudança de email -->
+						<form method="post" action="?page=open.php" id="formNovoEmail" name="formNovoEmail">
 							<label for="Nemail" id="txtboxgeral">Novo Email:</label>
 							<input type="email" id="Nemail" name="Nemail" required>
 							<label for="CNemail" id="txtboxgeral">Confirmar Novo Email:</label>
 							<input type="email" id="CNemail" name="CNemail" required>
 							
-							<!-- Modal alteração de Email -->
+							<h5 class="modal-title" id="exampleModalLabel">Confirme a Mudança de Email</h5>
+							<label for="password">Senha Atual:</label>
+							<input type="password" id="password" name="password" required>
+							
+							<!-- Input Case -->
+							<input type="text" name="action" value="AtualizarEmail" hidden>
+							
 							<div>
-								<p id="btnemail"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AEmail" data-backdrop="static">
-								Alterar Email
-								</button></p>
-								<!-- Modal de Email -->
-								<div class="modal fade" id="AEmail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-								<div class="modal-dialog" role="document">
-								<div class="modal-content">
-								<div class="modal-header">
-								<h5 class="modal-title" id="exampleModalLabel">Confirme a Mudança de Email</h5>
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-								</div>
-								<!-- Confirmação da Alteração de Email -->
-								<div class="modal-body">
-									<form>
-										<label for="password">Senha Atual:</label>
-										<input type="password" id="password" name="password" required>
-										<button>Atualizar Email</button>
-										
-										<!-- Input Case -->
-										<input type="text" name="action" value="AtualizarEmail" hidden>
-									
-									</form>
-									  </div>
-									  <!-- Botão de Confirmação -->
-									  <div class="modal-footer">
-										<p>Não fazer nada e cancelar a alteração</p>
-										<button type="refresh" class="btn btn-primary" data-toggle="modal" data-dismiss="modal" data-backdrop="static">
-											Cancelar
-										</button>
-									  </div>
-									</div>
-								  </div>
-								</div>
+								<p id="btnemail"><button class="btn btn-primary">Atualizar Email</button></p>
 							</div>
+							
 						</form>
 					</div>
 				</div>
@@ -286,23 +171,7 @@
  
  
  
- <div class="container-fluid">
-	<div class="row"></div>
-	<div class="row">
-		<div class="col-md-12">
-			<div class="Pmesas">
-				<div class="pminfo">
-					<h1>Ordem Suprema</h1>
-					<p>Criado por: Lucinho</p>
-				</div>
-				<div class="pmbutton">
-					<button>Entrar</button>
-					<button>Deletar</button>
-				</div>
-			</div>
-		</div>
-	</div>
- </div>
+ 
  
  <style>
  .Pmesas{
