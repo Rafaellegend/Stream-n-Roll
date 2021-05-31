@@ -145,6 +145,9 @@
 
 						// Salva a atualização do Nome
 						$_SESSION['UsuarioNome'] = $rowNS['nome'];
+						
+						echo "<script language='javascript' type='text/javascript'>
+						alert('Nome atualizado com sucesso');</script>";
 					}
 					//Atualiza Sobrenome
 					if( $nSobrenome != null ){
@@ -160,6 +163,9 @@
 
 						// Salva a atualização do Sobrenome 
 						$_SESSION['UsuarioSobrenome'] = $rowSS['sobrenome'];
+						
+						echo "<script language='javascript' type='text/javascript'>
+						alert('Sobrenome atualizado com sucesso');</script>";
 					}
 					//Atualiza Data
 					if( $nAniversario != null ){
@@ -176,6 +182,9 @@
 
 						// Salva a atualização da Data de Nascimento
 						$_SESSION['UsuariodataNascimento'] = $rowAS['dataNascimento'];
+						
+						echo "<script language='javascript' type='text/javascript'>
+						alert('Data de Aniversário atualizado com sucesso');</script>";
 					}
 			
 				
@@ -211,6 +220,9 @@
 
 						// Salva a atualização da Data de Nascimento
 						$_SESSION['UsuarioSenha'] = $rowPS['senha'];
+						
+						echo "<script language='javascript' type='text/javascript'>
+						alert('Senha atualizada com sucesso');</script>";
 					}
 					
 				//Finalizando
@@ -242,6 +254,9 @@
 
 						// Salva a atualização da Data de Nascimento
 						$_SESSION['UsuarioEmail'] = $rowES['email'];
+						
+						echo "<script language='javascript' type='text/javascript'>
+						alert('Email atualizado com sucesso');</script>";
 					}
 					
 				//Finalizando
