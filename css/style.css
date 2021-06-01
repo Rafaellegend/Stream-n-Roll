@@ -5,6 +5,9 @@
 .fantasyfont{
 	font-family: 'Metamorphous', cursive;
 }
+.txtbreak{
+	word-break: break-word;
+}
 /* navbar*/
 .customnav{
 	display: flex;
@@ -47,9 +50,10 @@
 #imgsession{
 	height:40px;
 	flex:1;
+	cursor:pointer;
 }
 #navbutton{
-	flex:0;
+	flex:0.05;
 	line-height: 1;
 	font-size:35px;
 	color:white;
@@ -99,7 +103,7 @@
   overflow-x: hidden; 
   padding-top: 60px; 
   transition: 0.5s; 
-  border-right:1px solid #474747;
+  border-right:0px solid #474747;
 }
 
 .sidenav a {
@@ -875,19 +879,21 @@
 }
 /* Track */
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #0f0f0f;
+  border-radius:0 0 5px 5px;
 }
 ::-webkit-scrollbar-track:hover{
-  background: lightgray;
+  background: #0f0f0f;
 }
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: lightgray; 
-  border-radius: 10px;  
+  background: #3f3f3f; 
+  border-radius: 10px; 
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #555;
+  
 }

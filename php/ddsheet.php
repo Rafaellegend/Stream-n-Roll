@@ -36,6 +36,9 @@ window.onload = function() {
 }
 </script>
 <form onchange="sheetload()" id="formsheet" style="overflow:auto;">
+<input type="text" id="idficha" hidden>
+<input type="text" id="nmesa" hidden>
+<input type="text" id="idmesa" hidden>
 <div class="container-fluid" id="sheet" >
 	<!--Informações do Personagem-->
 	<div class="row" >
@@ -60,7 +63,7 @@ window.onload = function() {
 			<input type="text" id="cname" value='0' class="imputihidden" style="width:150px;">
 			
 			<label for="cclass">Classe:</label>
-			<input type="text" id="cclass" Placeholder="Mago 5, Druida 1" class="imputihidden" style="width:100px;" onchange="stringoption(document.getElementById('cclass').value,',')">
+			<input type="text" id="cclass" Placeholder="Mago 5, Druida 1" class="imputihidden" style="width:100px;">
 		
 			<input type="text" id="clevel" value='0' class="imputihidden" style="width:20px;" onchange='ExectCalc("dnd","prof","clevel","cpro")'>
 			
@@ -192,7 +195,7 @@ window.onload = function() {
 				<!--Acrobacia-->
 				<div>
 					<input type="checkbox" id="cdacrbt" onchange='ExectCalc("dnd","doub","cdacrbt","cmacrbt","cacrbt","cpro")'>
-					<input type="checkbox" value="1"id="cacrbt" onchange='ExectCalc("dnd","per","cmacrbt","cmacrbt","cacrbt","cpro")'>
+					<input type="checkbox" id="cacrbt" onchange='ExectCalc("dnd","per","cmacrbt","cmacrbt","cacrbt","cpro")'>
 					<label for="cmacrbt">Acrobacia(Des)</label>
 					<input type="text" id="cmacrbt" class="imputihidden dex" style="width:20px;" value="0" readonly>
 				</div>
@@ -384,7 +387,9 @@ window.onload = function() {
 	<!--Idiomas-->
 		<div class="col-md-3" style="overflow-y:auto;height:275px;">
 			<label for="langprof" class="fantasyfont" style="font-weight:bold;color:black;">Idiomas e outras Proficiencia</label>
-			<textarea id="langprof" class="infotextbox" style="height:220px;width:295px;resize:none;"></textarea>
+			<textarea id="langprof" class="infotextbox" style="height:220px;width:295px;resize:none;">Idioma:
+Equipamentos:
+Ferramentas:</textarea>
 		</div>
 		<!--Ataques-->
 		<div class="col-md-6" style="height:275px;">	
@@ -405,7 +410,7 @@ window.onload = function() {
 				if (typeof atks !== 'undefined') {
 				  atksload();
 				}else{
-					var atks = 4
+					var atks = 1
 				}
 			</script>
 		

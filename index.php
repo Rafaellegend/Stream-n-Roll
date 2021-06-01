@@ -1,7 +1,7 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
 
 //Iniciar a Sessão
  if (!isset($_SESSION)) session_start();
@@ -43,7 +43,7 @@ if($page=='submit'){include_once'php/submit.php';};
 	//chat
 if($page=='chat'){include_once'php/chat.php';};
 	//Overlay
-if($page=='stream'){include_once'php/overlay.php';};
+if($page=='stream'){include_once'php/stream.php';};
 
 
 //Fechando o HTML

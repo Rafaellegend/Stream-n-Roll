@@ -18,9 +18,9 @@ var from = 1, mesa = '1', start = 0, action = 'chat', url = './?page=submit';
 			})
 		})	
 		function load(){
-			$.get(url + '&start=' + start, function(result){		
-			if(result.items){
-				result.items.forEach(item =>{
+			$.get(url + '&start=' + start + '&load=chat', function(result){		
+			if(result.chats){
+				result.chats.forEach(item =>{
 					start = item.id;
 					if(item.mesa == mesa){
 						$('#messages').append(renderMessage(item));	
@@ -29,7 +29,7 @@ var from = 1, mesa = '1', start = 0, action = 'chat', url = './?page=submit';
 				var chatheight = document.getElementById('messages').scrollHeight;
 				$('#messages').scrollTop(chatheight);
 			};
-			load();
+			//load();
 			});
 		}	
 function renderMessage(item){

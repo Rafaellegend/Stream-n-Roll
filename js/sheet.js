@@ -1,10 +1,11 @@
 var magsarr = [], url = './?page=submit';
 $(document).ready(function(){
-			
+			loadSheet();
 			console.log(
 				'portrait:'+$('#portrait').attr('src') 
 			);
 			$('#formsheet').submit(function(e){
+				console.log('foi enviado');
 				var action = 'sheet';
 				e.preventDefault();
 				for(n = 0; n < 10; n++){
@@ -14,9 +15,13 @@ $(document).ready(function(){
 				console.log('Array:'+magsarr[0]);
 				$.post(url, {
 					//Ação do submit
-					action: action,
+					action: 'sheet',
 					//src da foto
 					cphoto: $('#portrait').attr('src'),
+				//Informações da ficha
+					//from: $('#idficha').val(),
+					nmesa: $('#nmesa').val(),
+					//mesa: $('#idmesa').val(),
 				//Informações do personagem
 					//nome
 					cname: $('#cname').val(),
@@ -60,58 +65,58 @@ $(document).ready(function(){
 					ccar: $('#ccar').val(),
 				//Teste de Resistência
 					//Resistência Força
-					ctstr: $('#ctstr').val(),
+					ctstr: $('#ctstr').prop('checked'),
 					//Resistência Destreza
-					ctdex: $('#ctdex').val(),
+					ctdex: $('#ctdex').prop('checked'),
 					//Resistência Constituição
-					ctcon: $('#ctcon').val(),
+					ctcon: $('#ctcon').prop('checked'),
 					//Resistência Inteligencia
-					ctint: $('#ctint').val(),
+					ctint: $('#ctint').prop('checked'),
 					//Resistência Sabedoria
-					ctwis: $('#ctwis').val(),
+					ctwis: $('#ctwis').prop('checked'),
 					//Resistência Casrisma
-					ctcar: $('#ctcar').val(),
+					ctcar: $('#ctcar').prop('checked'),
 				//Proficiência
-					cpro: $('#cpro').val(),
+					cpro: $('#cpro').prop('checked'),
 				//Pericias
 					//pro
-					cacrbt: $('#cacrbt').val(),// Acrobacia
-					canl: $('#canl').val(),    // Lidar com animais
-					carc: $('#carc').val(),    // Arcanismo
-					catl: $('#catl').val(),    // Atletismo
-					cperf: $('#cperf').val(),  // Atuação
-					cdec: $('#cdec').val(),    // Enganação
-					csth: $('#csth').val(),    // Furtividade
-					chis: $('#chis').val(),    // História
-					cintm: $('#cintm').val(),  // Intimidação
-					cins: $('#cins').val(),    // Intuição
-					cinv: $('#cinv').val(),    // Investigação
-					cmed: $('#cmed').val(),    // Medicina
-					cnat: $('#cnat').val(),    // Natureza
-					cper: $('#cper').val(),    // Percepção
-					cpers: $('#cpers').val(),  // Persuasão
-					csli: $('#csli').val(),    // Prestidigitação
-					crel: $('#crel').val(),    // Religião
-					csur: $('#csur').val(),    // Sobrevivencia
+					cacrbt: $('#cacrbt').prop('checked'),// Acrobacia
+					canl: $('#canl').prop('checked'),    // Lidar com animais
+					carc: $('#carc').prop('checked'),    // Arcanismo
+					catl: $('#catl').prop('checked'),    // Atletismo
+					cperf: $('#cperf').prop('checked'), // Atuação
+					cdec: $('#cdec').prop('checked'),    // Enganação
+					csth: $('#csth').prop('checked'),    // Furtividade
+					chis: $('#chis').prop('checked'),    // História
+					cintm: $('#cintm').prop('checked'),  // Intimidação
+					cins: $('#cins').prop('checked'),    // Intuição
+					cinv: $('#cinv').prop('checked'),    // Investigação
+					cmed: $('#cmed').prop('checked'),    // Medicina
+					cnat: $('#cnat').prop('checked'),    // Natureza
+					cper: $('#cper').prop('checked'),    // Percepção
+					cpers: $('#cpers').prop('checked'),  // Persuasão
+					csli: $('#csli').prop('checked'),    // Prestidigitação
+					crel: $('#crel').prop('checked'),    // Religião
+					csur: $('#csur').prop('checked'),    // Sobrevivencia
 					//double
-					cdacrbt: $('#cdacrbt').val(),
-					cdanl: $('#cdanl').val(),
-					cdarc: $('#cdarc').val(),
-					cdatl: $('#cdatl').val(),
-					cdperf: $('#cdperf').val(),
-					cddec: $('#cddec').val(),
-					cdsth: $('#cdsth').val(),
-					cdhis: $('#cdhis').val(),
-					cdintm: $('#cdintm').val(),
-					cdins: $('#cdins').val(),
-					cdinv: $('#cdinv').val(),
-					cdmed: $('#cdmed').val(),
-					cdnat: $('#cdnat').val(),
-					cdper: $('#cdper').val(),
-					cdpers: $('#cdpers').val(),
-					cdsli: $('#cdsli').val(),
-					cdrel: $('#cdrel').val(),
-					cdsur: $('#cdsur').val(),
+					cdacrbt: $('#cdacrbt').prop('checked'),
+					cdanl: $('#cdanl').prop('checked'),
+					cdarc: $('#cdarc').prop('checked'),
+					cdatl: $('#cdatl').prop('checked'),
+					cdperf: $('#cdperf').prop('checked'),
+					cddec: $('#cddec').prop('checked'),
+					cdsth: $('#cdsth').prop('checked'),
+					cdhis: $('#cdhis').prop('checked'),
+					cdintm: $('#cdintm').prop('checked'),
+					cdins: $('#cdins').prop('checked'),
+					cdinv: $('#cdinv').prop('checked'),
+					cdmed: $('#cdmed').prop('checked'),
+					cdnat: $('#cdnat').prop('checked'),
+					cdper: $('#cdper').prop('checked'),
+					cdpers: $('#cdpers').prop('checked'),
+					cdsli: $('#cdsli').prop('checked'),
+					cdrel: $('#cdrel').prop('checked'),
+					cdsur: $('#cdsur').prop('checked'),
 				//Informações Importantes
 					//Vida
 					catualhp: $('#catualhp').val(),
@@ -222,4 +227,304 @@ $(document).ready(function(){
 				});
 				return false;
 			})
-		})	
+		})
+function loadSheet(){
+	$.get(url + '&start=' + start + '&load=chat', function(result){		
+		if(result.sheet){
+			result.sheet.forEach(item =>{
+			start = item.id;
+				if(item.id_User == 1){
+//Info importantes
+					$('#idficha').val(`${item.id_Ficha}`); // Id da ficha
+					$('#nmesa').val(`${item.num_Mesa}`); // Numero na mesa
+					$('#idmesa').val(`${item.id_Mesa}`); // Numero na mesa
+//Foto de Personagem
+					$('#portrait').attr('src', `${item.Aparencia}`);
+//Informações do personagem
+					$('#cname').val(`${item.nome}`); // Nome
+					$('#cclass').val(`${item.classe}`); // Classe
+					$('#clevel').val(`${item.nivel}`); // Nivel
+					$('#cback').val(`${item.antecedentes}`); // Antecedentes
+					$('#cfolk').val(`${item.raca}`); // Raça
+					$('#calign').val(`${item.alinhamento}`); // Tendência
+					$('#cxp').val(`${item.experiencia}`); // Expêriencia
+//Detalhes do Personagem
+					$('#cage').val(`${item.idade}`); // Idade
+					$('#cheight').val(`${item.altura}`); // Altura
+					$('#cweight').val(`${item.peso}`); // Peso
+					$('#ceyes').val(`${item.olhos}`); // Olhos
+					$('#cskin').val(`${item.pele}`); // Pele
+					$('#chair').val(`${item.cabelo}`); // Cabelo
+//Habilidades
+					$('#cstr').val(`${item.forca}`); // Força
+					$('#cdex').val(`${item.destreza}`); // Destreza
+					$('#ccon').val(`${item.constituicao}`); // Constituição
+					$('#cint').val(`${item.inteligencia}`); // Inteligência
+					$('#cwis').val(`${item.sabedoria}`); // Sabedoria
+					$('#ccar').val(`${item.carisma}`); // Carisma
+//Salvaguardas
+					// Força
+				if(`${item.res_Forca}` == 1){
+					document.getElementById("ctstr").checked = true; 
+					}
+					// Destresa
+				if(`${item.res_Destreza}` == 1){
+					document.getElementById("ctdex").checked = true; 
+					}
+					// Constituição
+				if(`${item.res_Constituicao}` == 1){
+					document.getElementById("ctcon").checked = true; 
+					}
+					// Inteligencia
+				if(`${item.res_Inteligencia}` == 1){
+					document.getElementById("ctint").checked = true; 
+					}
+					// Sabedoria
+				if(`${item.res_Sabedoria}` == 1){
+					document.getElementById("ctwis").checked = true; 
+					}
+					// Carisma
+				if(`${item.res_Carisma}` == 1){
+					document.getElementById("ctcar").checked = true; 
+					}
+//Proficiencias
+					// Acrobacia
+				if(`${item.pro_Acrobacia}` == 1){
+					document.getElementById("cacrbt").checked = true; 
+					}
+					// Adestrar Animais
+				if(`${item.pro_Adestrar_Animais}` == 1){
+					document.getElementById("canl").checked = true; 
+					}
+					// Arcanismo
+				if(`${item.pro_Arcanismo}` == 1){
+					document.getElementById("carc").checked = true; 
+					}
+					// Atletismo
+				if(`${item.pro_Atletismo}` == 1){
+					document.getElementById("catl").checked = true; 
+					}	
+					// Atuação
+				if(`${item.pro_Atuacao}` == 1){
+					document.getElementById("cperf").checked = true; 
+					}
+					// Enganação
+				if(`${item.pro_Enganacao}` == 1){
+					document.getElementById("cdec").checked = true; 
+					}
+					// Furtividade
+				if(`${item.pro_Furtividade}` == 1){
+					document.getElementById("csth").checked = true; 
+					}
+					// Historia
+				if(`${item.pro_Historia}` == 1){
+					document.getElementById("chis").checked = true; 
+					}
+					// Intimidação
+				if(`${item.pro_Intimidacao}` == 1){
+					document.getElementById("cintm").checked = true; 
+					}
+					// Intuição
+				if(`${item.pro_Intuicao}` == 1){
+					document.getElementById("cins").checked = true; 
+					}
+					// Investigação
+				if(`${item.pro_Investigacao}` == 1){
+					document.getElementById("cinv").checked = true; 
+					}
+					// Medicina
+				if(`${item.pro_Medicina}` == 1){
+					document.getElementById("cmed").checked = true; 
+					}
+					// Natureza
+				if(`${item.pro_Natureza}` == 1){
+					document.getElementById("cnat").checked = true; 
+					}
+					// Percepção
+				if(`${item.pro_Percepcao}` == 1){
+					document.getElementById("cper").checked = true; 
+					}
+					// Persuasão
+				if(`${item.pro_Persuasao}` == 1){
+					document.getElementById("cpers").checked = true; 
+					}
+					// Prestidigitação~
+				if(`${item.pro_Prestidigitacao}` == 1){
+					document.getElementById("csli").checked = true; 
+					}
+					// Religião
+				if(`${item.pro_Religiao}` == 1){
+					document.getElementById("crel").checked = true; 
+					}
+					// Sobrevivencia
+				if(`${item.pro_Sobrevivencia}` == 1){
+					document.getElementById("csur").checked = true; 
+					}
+//Experiente - Dobro Proeficiencias
+					// Acrobacia
+				if(`${item.dobro_Acrobacia}` == 1){
+					document.getElementById("cdacrbt").checked = true; 
+					}
+					// Adestrar Animais
+				if(`${item.dobro_Adestrar_Animais}` == 1){
+					document.getElementById("cdanl").checked = true; 
+					}
+					// Arcanismo
+				if(`${item.dobro_Arcanismo}` == 1){
+					document.getElementById("cdarc").checked = true; 
+					}
+					// Atletismo
+				if(`${item.dobro_Atletismo}` == 1){
+					document.getElementById("cdatl").checked = true; 
+					}	
+					// Atuação
+				if(`${item.dobro_Atuacao}` == 1){
+					document.getElementById("cdperf").checked = true; 
+					}
+					// Enganação
+				if(`${item.dobro_Enganacao}` == 1){
+					document.getElementById("cddec").checked = true; 
+					}
+					// Furtividade
+				if(`${item.dobro_Furtividade}` == 1){
+					document.getElementById("cdsth").checked = true; 
+					}
+					// Historia
+				if(`${item.dobro_Historia}` == 1){
+					document.getElementById("cdhis").checked = true; 
+					}
+					// Intimidação
+				if(`${item.dobro_Intimidacao}` == 1){
+					document.getElementById("cdintm").checked = true; 
+					}
+					// Intuição
+				if(`${item.dobro_Intuicao}` == 1){
+					document.getElementById("cdins").checked = true; 
+					}
+					// Investigação
+				if(`${item.dobro_Investigacao}` == 1){
+					document.getElementById("cdinv").checked = true; 
+					}
+					// Medicina
+				if(`${item.dobro_Medicina}` == 1){
+					document.getElementById("cdmed").checked = true; 
+					}
+					// Natureza
+				if(`${item.dobro_Natureza}` == 1){
+					document.getElementById("cdnat").checked = true; 
+					}
+					// Percepção
+				if(`${item.dobro_Percepcao}` == 1){
+					document.getElementById("cdper").checked = true; 
+					}
+					// Persuasão
+				if(`${item.dobro_Persuasao}` == 1){
+					document.getElementById("cdpers").checked = true; 
+					}
+					// Prestidigitação~
+				if(`${item.dobro_Prestidigitacao}` == 1){
+					document.getElementById("cdsli").checked = true; 
+					}
+					// Religião
+				if(`${item.dobro_Religiao}` == 1){
+					document.getElementById("cdrel").checked = true; 
+					}
+					// Sobrevivencia
+				if(`${item.dobro_Sobrevivencia}` == 1){
+					document.getElementById("cdsur").checked = true; 
+					}
+//Informações inportantes
+				// Vida Atual
+				$('#catualhp').val(`${item.vida_Atual}`); 
+				// Vida Maxima
+				$('#cmaxhp').val(`${item.vida_Maxima}`); 
+				// Vida Temporaria
+				$('#catemphp').val(`${item.vida_Temporaria}`);
+				// Dado de Vida
+				$('#clifedice').val(`${item.dado_Vida}`);
+				// Classe de Armadura
+				$('#cca').val(`${item.CA}`);
+				// Iniciativa
+				$('#cinit').val(`${item.iniciativa}`);
+				// Deslocamento
+				$('#cmov').val(`${item.deslocamento}`);
+//Equipamentos e Outras Proeficiencias
+				// Idiomas e Proeficiencias
+				$('#langprof').text(`${item.proficiencias}`);
+				// Equipamentos
+				$('#equip').text(`${item.equipamento}`);
+				// Peças de Cobre
+				$('#pc').val(`${item.pecas_Cobre}`);
+				// Peças de Prata
+				$('#pp').val(`${item.pecas_Prata}`);
+				// Peças de Esmeralda
+				$('#pe').val(`${item.pecas_Esmeralda}`);
+				// Peças de Ouro
+				$('#po').val(`${item.pecas_Ouro}`);
+				// Peças de Platina
+				$('#pl').val(`${item.pecas_Platina}`);
+//Detalhes
+				//História
+				$('#cstorie').val(`${item.historia}`);
+				//Traços de Personalidade
+				$('#cperso').val(`${item.tracos}`);
+				//Ideais
+				$('#cide').val(`${item.ideais}`);
+				//Ligações
+				$('#clink').val(`${item.vinculos}`);
+				//Defeito
+				$('#cdef').val(`${item.defeitos}`);
+				//Aliados e Organizaçõoes
+				$('#calliance').val(`${item.aliados_Organizacoes}`);
+				//Caracteristicas
+				$('#calliance').val(`${item.caracteristicas}`);
+//Anotações
+				//Diario
+				$('#notes').val(`${item.diario}`);
+				//Tesouro
+				$('#treasures').val(`${item.tesouro}`);
+//Conjuração
+				//Classe de Conjuração
+				$('#cconjclass').val(`${item.classe_conjuração}`);
+				//Habilidades das chaves
+				$('#keyhab').val(`${item.hab_chave}`);
+				//CD de Resistência
+				$('#cdtr').val(`${item.resistencia_Magica}`);
+				//Bonus de Ataque
+				$('#mbonus').val(`${item.bonus_habMagica}`);
+//Espaços de Magias
+				//Nivel 1
+				$('#mag1max').val(`${item.espacomagia1_max}`);
+				$('#mag1atl').val(`${item.espacomagia1_atual}`);
+				//Nivel 2
+				$('#mag2max').val(`${item.espacomagia2_max}`);
+				$('#mag2atl').val(`${item.espacomagia2_atual}`);
+				//Nivel 3
+				$('#mag3max').val(`${item.espacomagia3_max}`);
+				$('#mag3atl').val(`${item.espacomagia3_atual}`);
+				//Nivel 4
+				$('#mag4max').val(`${item.espacomagia4_max}`);
+				$('#mag4atl').val(`${item.espacomagia4_atual}`);
+				//Nivel 5
+				$('#mag5max').val(`${item.espacomagia5_max}`);
+				$('#mag5atl').val(`${item.espacomagia5_atual}`);
+				//Nivel 6
+				$('#mag6max').val(`${item.espacomagia6_max}`);
+				$('#mag6atl').val(`${item.espacomagia6_atual}`);
+				//Nivel 7
+				$('#mag7max').val(`${item.espacomagia7_max}`);
+				$('#mag7atl').val(`${item.espacomagia7_atual}`);
+				//Nivel 8
+				$('#mag8max').val(`${item.espacomagia8_max}`);
+				$('#mag8atl').val(`${item.espacomagia8_atual}`);
+				//Nivel 9
+				$('#mag9max').val(`${item.espacomagia9_max}`);
+				$('#mag9atl').val(`${item.espacomagia9_atual}`);
+//Carregar a Ficha
+				sheetload();
+				}
+			})
+		};
+		});
+}		
+

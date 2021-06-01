@@ -1,21 +1,11 @@
-<!--<div class="top bg-dark text-light py-3">
-    <div class="container-nav topheader">
-        <div class="d-flex justify-content-between">
-            <div class="left">
-               <p style="text-align:center;"> <a id="returnMain" class="text-light logo lead" href="#" data-toggle="tab"> <img id="imgsession" src="img\dark_f_logo.svg" class="img-fluid" alt="Responsive image"></a> <p>
-            </div>
-        </div>
-    </div>
- </div>
- -->
-
 <div id="menu" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <!-- Informações do Perfil // Visivel apenas se logado -->
   <div class="navprofile" id="navprofile">
-	<picture id="navprofbox">
-		<img id="" src="http://placehold.it/100x100" style="border-radius:100px;" class="img-fluid" alt="Responsive image">
+	<picture id="navprofbox">		
+		<img id="" src="http://placehold.it/100x100" style="border-radius:100px;" class="img-fluid" alt="Responsive image">		
 	</picture>
+	
 	<p id="navusername">Dummy</p>
 	<div class="navbutton">
 		<button class="btn btn-primary">Logout</button>
@@ -32,7 +22,7 @@
 	<!-- botão para abrir o sidenavbar -->
 	<span id="navbutton" onclick="openNav()" class="contentleft">&#9776;</span>
 	<!-- Logo do Site -->
-	<img id="imgsession" src="img\dark_f_logo.svg" class="img-fluid" alt="Responsive image">
+	<img href="#" id="imgsession" src="img\dark_f_logo.svg" alt="Responsive image" onclick="window.location.href = '?page=main';">
 	<!-- botão de chat // Apenas na pagina de ficha -->
 	<?php if($page=='ddsheet'){
 		echo
@@ -63,6 +53,7 @@ show = false;
 chatshow = false;
 function openNav() {
 	document.getElementById("menu").style.width = "250px";
+	document.getElementById("menu").style.borderRight = "1px solid #474747";	
 }
 function openchat(){
 	if(chatshow == false){
@@ -85,6 +76,7 @@ $('#messages').on('DOMNodeInserted', function(e) {
  });
 function closeNav() {
 	document.getElementById("menu").style.width = "0";
+	document.getElementById("menu").style.borderRight = "0";
 }
 </script>
 <?php
@@ -97,14 +89,16 @@ function closeNav() {
 	<button onclick="showres()" class="btn btn-dark">dice</button>
 	<h4>Chat Call</h4>
 	<button onclick="openchat()" class="btn btn-dark">chat</button>
+	<h4>Mesa Info</h4>
+	<button onclick="opendesc()" class="btn btn-dark">chat</button>
 </div>
 <style>
 	#adminnav{
 		width:auto;
 		position:fixed;
-		right:0;
+		left:0;
 		bottom:0;
-		z-index:401;
+		z-index:9999;
 		padding:10px;
 		background-color:white;
 		border:2px solid black;
@@ -114,9 +108,9 @@ function closeNav() {
 	}
 	#adminbtn{
 		position:fixed;
-		right:0;
+		left:0;
 		bottom:0;
-		z-index:400;
+		z-index:9998;
 	}
 </style>
 <script>

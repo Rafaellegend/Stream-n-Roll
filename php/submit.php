@@ -6,11 +6,12 @@ error_reporting(E_ALL);
 	include_once('php/functions.php');
 	$result = array();
 //Geral
-	$mesa = isset($_POST['mesa']) ? $_POST['mesa'] :null;
+	$mesa = "1";//isset($_POST['mesa']) ? $_POST['mesa'] :null;
 	$action = isset($_POST['action']) ? $_POST['action'] :null;
-	$from = isset($_POST['from']) ? $_POST['from'] :null;
+	$from = "1";//isset($_POST['from']) ? $_POST['from'] :null;
 //Chat
 	$message = isset($_POST['message']) ? $_POST['message'] :null;
+if($action == 'sheet'){
 //Ficha	
   //src da foto
 	$cphoto = isset($_POST['cphoto']) ? $_POST['cphoto'] :null;
@@ -39,51 +40,134 @@ error_reporting(E_ALL);
 	$ccar = isset($_POST['ccar']) ? $_POST['ccar'] :null;
   //Teste de Resistencia de Habilidades
 	$ctstr = isset($_POST['ctstr']) ? $_POST['ctstr'] :null;
+	if($ctstr == 'true'){$ctstr=1;};
+	
 	$ctdex = isset($_POST['ctdex']) ? $_POST['ctdex'] :null;
+	if($ctdex == 'true'){$ctdex=1;};
+	
 	$ctcon = isset($_POST['ctcon']) ? $_POST['ctcon'] :null;
+	if($ctcon == 'true'){$ctcon=1;};
+	
 	$ctint = isset($_POST['ctint']) ? $_POST['ctint'] :null;
-	$ctwis = isset($_POST['ctwis']) ? $_POST['cwis'] :null;
+	if($ctint == 'true'){$ctint=1;};
+	
+	$ctwis = isset($_POST['ctwis']) ? $_POST['ctwis'] :null;
+	if($ctwis == 'true'){$ctwis=1;};
+	
 	$ctcar = isset($_POST['ctcar']) ? $_POST['ctcar'] :null;
+	if($ctcar == 'true'){$ctcar=1;};
   //Proficiência
 	$cpro = isset($_POST['cpro']) ? $_POST['cpro'] :null;
   //Pericias - Proficiênte
 	$cacrbt = isset($_POST['cacrbt']) ? $_POST['cacrbt'] :null;    // Acrobacia
+	if($cacrbt == 'true'){$cacrbt=1;};
+	
 	$canl = isset($_POST['canl']) ? $_POST['canl'] :null;          // Lidar com animais
+	if($canl == 'true'){$canl=1;};
+	
 	$carc = isset($_POST['carc']) ? $_POST['carc'] :null;          // Arcanismo
+	if($carc == 'true'){$carc=1;};
+	
 	$catl = isset($_POST['catl']) ? $_POST['catl'] :null;          // Atletismo
+	if($catl == 'true'){$catk=1;};
+	
 	$cperf = isset($_POST['cperf']) ? $_POST['cperf'] :null;       // Atuação
+	if($cperf == 'true'){$cperf=1;};
+	
 	$cdec = isset($_POST['cdec']) ? $_POST['cdec'] :null;          // Enganação
+	if($cdec == 'true'){$cdec=1;};
+	
 	$csth = isset($_POST['csth']) ? $_POST['csth'] :null;          // Furtividade
+	if($csth == 'true'){$csth=1;};
+	
 	$chis = isset($_POST['chis']) ? $_POST['chis'] :null;          // História
+	if($chis == 'true'){$chis=1;};
+	
 	$cintm = isset($_POST['cintm']) ? $_POST['cintm'] :null;       // Intimidação
+	if($cintm == 'true'){$cintm=1;};
+	
 	$cins = isset($_POST['cins']) ? $_POST['cins'] :null;          // Intuição
+	if($cins == 'true'){$cins=1;};
+	
 	$cinv = isset($_POST['cinv']) ? $_POST['cinv'] :null;          // Investigação
+	if($cinv == 'true'){$cinv=1;};
+	
 	$cmed = isset($_POST['cmed']) ? $_POST['cmed'] :null;          // Medicina
+	if($cmed == 'true'){$cmed=1;};
+	
 	$cnat = isset($_POST['cnat']) ? $_POST['cnat'] :null;          // Natureza
+	if($cnat == 'true'){$cnat=1;};
+	
 	$cper = isset($_POST['cper']) ? $_POST['cper'] :null;          // Percepção
+	if($cper == 'true'){$cper=1;};
+	
 	$cpers = isset($_POST['cpers']) ? $_POST['cpers'] :null;       // Persuasão
+	if($cpers == 'true'){$cpers=1;};
+	
 	$csli = isset($_POST['csli']) ? $_POST['csli'] :null;          // Prestidigitação
+	if($csli == 'true'){$csli=1;};
+	
 	$crel = isset($_POST['crel']) ? $_POST['crel'] :null;          // Religião
+	if($crel == 'true'){$crel=1;};
+	
 	$csur = isset($_POST['csur']) ? $_POST['csur'] :null;          // Sobrevivencia
+	if($csur == 'true'){$csur=1;};
+	
   //Pericias - Experiente
 	$cdacrbt = isset($_POST['cdacrbt']) ? $_POST['cdacrbt'] :null; // Acrobacia
+	if($cdacrbt == 'true'){$cdacrbt=1;};
+	
 	$cdanl = isset($_POST['cdanl']) ? $_POST['cdanl'] :null;       // Lidar com animais
+	if($cdanl == 'true'){$cdanl=1;};
+	
 	$cdarc = isset($_POST['cdarc']) ? $_POST['cdarc'] :null;       // Arcanismo
+	if($cdarc == 'true'){$cdarc=1;};
+	
 	$cdatl = isset($_POST['cdatl']) ? $_POST['cdatl'] :null;       // Atletismo
+	if($cdatl == 'true'){$cdatl=1;};
+	
 	$cdperf = isset($_POST['cdperf']) ? $_POST['cdperf'] :null;    // Atuação
+	if($cdperf == 'true'){$cdperf=1;};
+	
 	$cddec = isset($_POST['cddec']) ? $_POST['cddec'] :null;       // Enganação
+	if($cddec == 'true'){$cddec=1;};
+	
 	$cdsth = isset($_POST['cdsth']) ? $_POST['cdsth'] :null;       // Furtividade
+	if($cdsth == 'true'){$cdsth=1;};
+	
 	$cdhis = isset($_POST['cdhis']) ? $_POST['cdhis'] :null;       // História
+	if($cdhis == 'true'){$cdhis=1;};
+	
 	$cdintm = isset($_POST['cdintm']) ? $_POST['cdintm'] :null;    // Intimidação
+	if($cdintm == 'true'){$cdintm=1;};
+	
 	$cdins = isset($_POST['cdins']) ? $_POST['cdins'] :null;       // Intuição
+	if($cdins == 'true'){$cdins=1;};
+	
 	$cdinv = isset($_POST['cdinv']) ? $_POST['cdinv'] :null;       // Investigação
+	if($cdinv == 'true'){$cdinv=1;};
+	
 	$cdmed = isset($_POST['cdmed']) ? $_POST['cdmed'] :null;       // Medicina
+	if($cdmed == 'true'){$cdmed=1;};
+	
 	$cdnat = isset($_POST['cdnat']) ? $_POST['cdnat'] :null;       // Natureza
+	if($cdnat == 'true'){$cdnat=1;};
+	
 	$cdper = isset($_POST['cdper']) ? $_POST['cdper'] :null;       // Percepção
+	if($cdper == 'true'){$cdper=1;};
+	
 	$cdpers = isset($_POST['cdpers']) ? $_POST['cdpers'] :null;    // Persuasão
+	if($cdpers == 'true'){$cdpers=1;};
+	
 	$cdsli = isset($_POST['cdsli']) ? $_POST['cdsli'] :null;       // Prestidigitação
+	if($cdsli == 'true'){$cdsli=1;};
+	
 	$cdrel = isset($_POST['cdrel']) ? $_POST['cdrel'] :null;       // Religião
+	if($cdrel == 'true'){$cdrel=1;};
+	
 	$cdsur = isset($_POST['cdsur']) ? $_POST['cdsur'] :null;       // Sobrevivencia
+	if($cdsur == 'true'){$cdsur=1;};
+	
   //Informações Importantes
 	$catualhp = isset($_POST['catualhp']) ? $_POST['catualhp'] :null;
 	$cmaxhp = isset($_POST['cmaxhp']) ? $_POST['cmaxhp'] :null;
@@ -151,6 +235,7 @@ error_reporting(E_ALL);
 	$mag9atl = isset($_POST['mag9atl']) ? $_POST['mag9atl'] :null;
   //Magias	
 	$maginfo = isset($_POST['maginfo']) ? $_POST['maginfo'] :null;
+}
 // ---
 	switch($action){
 		case 'chat': 
@@ -194,29 +279,69 @@ error_reporting(E_ALL);
 		break;
 		case 'sheet':
 			if(!empty($from) && !empty($mesa)){
-				$verify = "SELECT * FROM `ficha` WHERE `id_Mesa` = $mesa AND `id_User` = $from";
+				$verify = "SELECT * FROM `ficha` WHERE `id_Mesa` = '$mesa' AND `id_User` = '$from'";
 				$return['res'] = sqlquery($verify); 
-				if(count($return['res']) == 0){
-					$verify = "SELECT `max_Players` FROM `mesa` WHERE id_Mesa = $mesa";
+				if($return['res']->rowCount() == 0){
+					//SELECT em todas as fichas da mesa
+					$verify = "SELECT `num_Mesa` FROM `ficha` WHERE `id_Mesa` = '$mesa'";
 					$return['res'] = sqlquery($verify);
-					
-					$charn = "SELECT `num_Mesa` FROM `ficha` WHERE `id_Mesa` = $mesa";
-					
-					$sql = "INSERT INTO `ficha` (`id_Ficha`, `num_Mesa`, `nome`, `nivel`, `classe`, `raca`, `alinhamento`, `antecedentes`, `experiencia`, `forca`, `destreza`, `constituicao`, `inteligencia`, `sabedoria`, `carisma`, `bonus_Proficiencia`, `res_Forca`, `res_Destreza`, `res_Constituicao`, `res_Inteligencia`, `res_Sabedoria`, `res_Carisma`, `pro_Acrobacia`, `dobro_Acrobacia`, `pro_Adestrar_Animais`, `dobro_Adestrar_Animais`, `pro_Arcanismo`, `dobro_Arcanismo`, `pro_Atletismo`, `dobro_Atletismo`, `pro_Enganacao`, `dobro_Enganacao`, `pro_Historia`, `dobro_Historia`, `pro_Intuicao`, `dobro_Intuicao`, `pro_Intimidacao`, `dobro_Intimidacao`, `pro_Investigacao`, `dobro_Investigacao`, `pro_Medicina`, `dobro_Medicina`, `pro_Natureza`, `dobro_Natureza`, `pro_Percepcao`, `dobro_Percepcao`, `pro_Atuacao`, `dobro_Atuacao`, `pro_Persuasao`, `dobro_Persuasao`, `pro_Religiao`, `dobro_Religiao`, `pro_Prestidigitacao`, `dobro_Prestidigitacao`, `pro_Furtividade`, `dobro_Furtividade`, `pro_Sobrevivencia`, `dobro_Sobrevivencia`, `CA`, `iniciativa`, `deslocamento`, `vida_Atual`, `vida_Maxima`, `vida_Temporaria`, `dado_Vida`, `equipamento`, `pecas_Cobre`, `pecas_Prata`, `pecas_Esmeralda`, `pecas_Ouro`, `pecas_Platina`, `proficiencias`, `tracos`, `ideais`, `vinculos`, `defeitos`, `caracteristicas`, `idade`, `altura`, `peso`, `olhos`, `pele`, `cabelo`, `Aparencia`, `aliados_Organizacoes`, `tesouro`, `historia`, `diario`, `classe_conjuração`,`hab_chave`, `resistencia_Magica`, `bonus_habMagica`, `espacomagia1_atual`, `espacomagia1_max`, `espacomagia2_atual`, `espacomagia2_max`, `espacomagia3_atual`, `espacomagia3_max`, `espacomagia4_atual`, `espacomagia4_max`, `espacomagia5_atual`, `espacomagia5_max`, `espacomagia6_atual`, `espacomagia6_max`, `espacomagia7_atual`, `espacomagia7_max`, `espacomagia8_atual`, `espacomagia8_max`, `espacomagia9_atual`, `espacomagia9_max`, `id_User`, `id_Mesa`) VALUES (NULL, '$nmesa', '$cname', '$clevel', '$cclass', '$cfolk', '$calign', '$cback', '$cxp', '$cstr', '$cdex', '$ccon', '$cint', '$cwis', '$ccar', '$cpro', '$ctstr', '$ctdex', '$ctcon', '$ctint', '$ctwis', '$ctcar', '$cacrbt', '$cdacrbt', '$canl', '$cdanl', '$carc', '$cdarc', '$catl', '$cdatl', '$cdec', '$cddec', '$chis', '$cdhis', '$cins', '$cdins', '$cintm', '$cdintm', '$cinv', '$cdinv', '$cmed', '$cdmed', '$cnat', '$cdnat', '$cper', '$cdper', '$cperf', '$cdperf', '$cpers', '$cdpers', '$crel', '$cdrel', '$csli', '$cdsli', '$csth', '$cdsth', '$csur', '$cdsur', '$cca', '$cinit', '$cmov', '$catualhp', '$cmaxhp', '$catemphp', '$clifedice', '$equip', '$pc', '$pp', '$pe', '$po', '$pl', '$langprof', '$cperso', '$cide', '$clink', '$cdef', '$carhab', '$cage', '$cheight', '$cweight', '$ceyes', '$cskin', '$chair', '$cphoto', '$calliance', '$treasures', '$cstorie', '$notes', '$cconjclass', '$keyhab', '$cdtr', '$mbonus', '$mag1atl', '$mag1max', '$mag2atl', '$mag2max', '$mag3atl', '$mag3max', '$mag4atl', '$mag4max', '$mag5atl', '$mag5max', '$mag6atl', '$mag6max', '$mag7atl', '$mag7max', '$mag8atl', '$mag8max', '$mag9atl', '$mag9max', '$from', '$mesa')" ;
-					//$result['send_status'] = sqlquery($sql);
-					
-					$atks = "INSERT INTO `ataquesmagias` (`id_atkmag`, `nome`, `tipo`, `nivel`, `dano`, `dano_Tipo`, `dano_Extra`, `dano_Extra_Tipo`, `descricao`, `id_ficha`) VALUES (NULL, '$maginfo', '$atktype', '$maginfo', '$maginfo', '$maginfo', '$maginfo', '$maginfo', '$maginfo', '$ficha')";
+					//SELECT na quantidade maxima de jogadores da mesa
+					$maxp = "SELECT `max_Players` FROM `mesa` WHERE id_Mesa = '$mesa'";
+					$return['maxp'] = sqlquery($maxp);
+					//Contando as linhas do primeiro SELECT
+					$rows = $return['res']->rowCount();
+					$num = $return['res']->fetch(PDO::FETCH_ASSOC);			
+					$max = $return['maxp']->fetch(PDO::FETCH_ASSOC);
+					echo "ué";
+					var_dump($num['num_mesa']);
+					if($rows < $max['max_Players']){
+						for($i = 1; $i < $max['max_Players']; $i++){
+							echo "ta no for:".$max['max_Players'];
+							echo "test".$num[0][0];
+							if($num['num_mesa'] != NULL){
+								if(in_array($i, $num['num_Mesa'])){
+									
+								}else{
+									$nmesa = $i;
+									break;
+									echo "chegou no else";
+								}
+							}else{
+								$nmesa = $i;
+								echo '$num é nulo, o valor de $nmesa:'.$nmesa;
+								break;
+								
+							}
+						}
+						$sql = "INSERT INTO `ficha` (`id_Ficha`, `num_Mesa`, `nome`, `nivel`, `classe`, `raca`, `alinhamento`, `antecedentes`, `experiencia`, `forca`, `destreza`, `constituicao`, `inteligencia`, `sabedoria`, `carisma`, `bonus_Proficiencia`, `res_Forca`, `res_Destreza`, `res_Constituicao`, `res_Inteligencia`, `res_Sabedoria`, `res_Carisma`, `pro_Acrobacia`, `dobro_Acrobacia`, `pro_Adestrar_Animais`, `dobro_Adestrar_Animais`, `pro_Arcanismo`, `dobro_Arcanismo`, `pro_Atletismo`, `dobro_Atletismo`, `pro_Enganacao`, `dobro_Enganacao`, `pro_Historia`, `dobro_Historia`, `pro_Intuicao`, `dobro_Intuicao`, `pro_Intimidacao`, `dobro_Intimidacao`, `pro_Investigacao`, `dobro_Investigacao`, `pro_Medicina`, `dobro_Medicina`, `pro_Natureza`, `dobro_Natureza`, `pro_Percepcao`, `dobro_Percepcao`, `pro_Atuacao`, `dobro_Atuacao`, `pro_Persuasao`, `dobro_Persuasao`, `pro_Religiao`, `dobro_Religiao`, `pro_Prestidigitacao`, `dobro_Prestidigitacao`, `pro_Furtividade`, `dobro_Furtividade`, `pro_Sobrevivencia`, `dobro_Sobrevivencia`, `CA`, `iniciativa`, `deslocamento`, `vida_Atual`, `vida_Maxima`, `vida_Temporaria`, `dado_Vida`, `equipamento`, `pecas_Cobre`, `pecas_Prata`, `pecas_Esmeralda`, `pecas_Ouro`, `pecas_Platina`, `proficiencias`, `tracos`, `ideais`, `vinculos`, `defeitos`, `caracteristicas`, `idade`, `altura`, `peso`, `olhos`, `pele`, `cabelo`, `Aparencia`, `aliados_Organizacoes`, `tesouro`, `historia`, `diario`, `classe_conjuração`,`hab_chave`, `resistencia_Magica`, `bonus_habMagica`, `espacomagia1_atual`, `espacomagia1_max`, `espacomagia2_atual`, `espacomagia2_max`, `espacomagia3_atual`, `espacomagia3_max`, `espacomagia4_atual`, `espacomagia4_max`, `espacomagia5_atual`, `espacomagia5_max`, `espacomagia6_atual`, `espacomagia6_max`, `espacomagia7_atual`, `espacomagia7_max`, `espacomagia8_atual`, `espacomagia8_max`, `espacomagia9_atual`, `espacomagia9_max`, `id_User`, `id_Mesa`) VALUES (NULL, '$nmesa', '$cname', '$clevel', '$cclass', '$cfolk', '$calign', '$cback', '$cxp', '$cstr', '$cdex', '$ccon', '$cint', '$cwis', '$ccar', '$cpro', '$ctstr', '$ctdex', '$ctcon', '$ctint', '$ctwis', '$ctcar', '$cacrbt', '$cdacrbt', '$canl', '$cdanl', '$carc', '$cdarc', '$catl', '$cdatl', '$cdec', '$cddec', '$chis', '$cdhis', '$cins', '$cdins', '$cintm', '$cdintm', '$cinv', '$cdinv', '$cmed', '$cdmed', '$cnat', '$cdnat', '$cper', '$cdper', '$cperf', '$cdperf', '$cpers', '$cdpers', '$crel', '$cdrel', '$csli', '$cdsli', '$csth', '$cdsth', '$csur', '$cdsur', '$cca', '$cinit', '$cmov', '$catualhp', '$cmaxhp', '$catemphp', '$clifedice', '$equip', '$pc', '$pp', '$pe', '$po', '$pl', '$langprof', '$cperso', '$cide', '$clink', '$cdef', '$carhab', '$cage', '$cheight', '$cweight', '$ceyes', '$cskin', '$chair', '$cphoto', '$calliance', '$treasures', '$cstorie', '$notes', '$cconjclass', '$keyhab', '$cdtr', '$mbonus', '$mag1atl', '$mag1max', '$mag2atl', '$mag2max', '$mag3atl', '$mag3max', '$mag4atl', '$mag4max', '$mag5atl', '$mag5max', '$mag6atl', '$mag6max', '$mag7atl', '$mag7max', '$mag8atl', '$mag8max', '$mag9atl', '$mag9max', '$from', '$mesa')" ;
+						$result['send_status'] = sqlquery($sql);
+						
+						//$atks = "INSERT INTO `ataquesmagias` (`id_atkmag`, `nome`, `tipo`, `nivel`, `dano`, `dano_Tipo`, `dano_Extra`, `dano_Extra_Tipo`, `descricao`, `id_ficha`) VALUES (NULL, '$maginfo', '$atktype', '$maginfo', '$maginfo', '$maginfo', '$maginfo', '$maginfo', '$maginfo', '$ficha')";
+					};
 				}else{
-					$sql= "UPDATE `ficha` SET `id_Ficha`=[value-1],`num_Mesa`=[value-2],`nome`=[value-3],`nivel`=[value-4],`classe`=[value-5],`raca`=[value-6],`alinhamento`=[value-7],`antecedentes`=[value-8],`experiencia`=[value-9],`forca`=[value-10],`destreza`=[value-11],`constituicao`=[value-12],`inteligencia`=[value-13],`sabedoria`=[value-14],`carisma`=[value-15],`bonus_Proficiencia`=[value-16],`res_Forca`=[value-17],`res_Destreza`=[value-18],`res_Constituicao`=[value-19],`res_Inteligencia`=[value-20],`res_Sabedoria`=[value-21],`res_Carisma`=[value-22],`pro_Acrobacia`=[value-23],`dobro_Acrobacia`=[value-24],`pro_Adestrar_Animais`=[value-25],`dobro_Adestrar_Animais`=[value-26],`pro_Arcanismo`=[value-27],`dobro_Arcanismo`=[value-28],`pro_Atletismo`=[value-29],`dobro_Atletismo`=[value-30],`pro_Enganacao`=[value-31],`dobro_Enganacao`=[value-32],`pro_Historia`=[value-33],`dobro_Historia`=[value-34],`pro_Intuicao`=[value-35],`dobro_Intuicao`=[value-36],`pro_Intimidacao`=[value-37],`dobro_Intimidacao`=[value-38],`pro_Investigacao`=[value-39],`dobro_Investigacao`=[value-40],`pro_Medicina`=[value-41],`dobro_Medicina`=[value-42],`pro_Natureza`=[value-43],`dobro_Natureza`=[value-44],`pro_Percepcao`=[value-45],`dobro_Percepcao`=[value-46],`pro_Atuacao`=[value-47],`dobro_Atuacao`=[value-48],`pro_Persuasao`=[value-49],`dobro_Persuasao`=[value-50],`pro_Religiao`=[value-51],`dobro_Religiao`=[value-52],`pro_Prestidigitacao`=[value-53],`dobro_Prestidigitacao`=[value-54],`pro_Furtividade`=[value-55],`dobro_Furtividade`=[value-56],`pro_Sobrevivencia`=[value-57],`dobro_Sobrevivencia`=[value-58],`CA`=[value-59],`iniciativa`=[value-60],`deslocamento`=[value-61],`vida_Atual`=[value-62],`vida_Maxima`=[value-63],`vida_Temporaria`=[value-64],`dado_Vida`=[value-65],`equipamento`=[value-66],`pecas_Cobre`=[value-67],`pecas_Prata`=[value-68],`pecas_Esmeralda`=[value-69],`pecas_Ouro`=[value-70],`pecas_Platina`=[value-71],`proficiencias`=[value-72],`tracos`=[value-73],`ideais`=[value-74],`vinculos`=[value-75],`defeitos`=[value-76],`caracteristicas`=[value-77],`idade`=[value-78],`altura`=[value-79],`peso`=[value-80],`olhos`=[value-81],`pele`=[value-82],`cabelo`=[value-83],`Aparencia`=[value-84],`aliados_Organizacoes`=[value-85],`tesouro`=[value-86],`historia`=[value-87],`diario`=[value-88],`classe_conjuração`=[value-89],`hab_chave`=[value-90],`resistencia_Magica`=[value-91],`bonus_habMagica`=[value-92],`espacomagia1_atual`=[value-93],`espacomagia1_max`=[value-94],`espacomagia2_atual`=[value-95],`espacomagia2_max`=[value-96],`espacomagia3_atual`=[value-97],`espacomagia3_max`=[value-98],`espacomagia4_atual`=[value-99],`espacomagia4_max`=[value-100],`espacomagia5_atual`=[value-101],`espacomagia5_max`=[value-102],`espacomagia6_atual`=[value-103],`espacomagia6_max`=[value-104],`espacomagia7_atual`=[value-105],`espacomagia7_max`=[value-106],`espacomagia8_atual`=[value-107],`espacomagia8_max`=[value-108],`espacomagia9_atual`=[value-109],`espacomagia9_max`=[value-110],`id_User`=[value-111],`id_Mesa`=[value-112] WHERE 1";
+					$sql= "UPDATE `ficha` SET `nome`='$cname', `nivel`= '$clevel', `classe`= '$cclass', `raca`= '$cfolk', `alinhamento`= '$calign', `antecedentes`= '$cback', `experiencia`= '$cxp', `forca`= '$cstr', `destreza`= '$cdex', `constituicao`= '$ccon', `inteligencia`= '$cint', `sabedoria`= '$cwis', `carisma`= '$ccar', `bonus_Proficiencia`= '$cpro', `res_Forca`= '$ctstr', `res_Destreza`= '$ctdex', `res_Constituicao`= '$ctcon', `res_Inteligencia`= '$ctint', `res_Sabedoria`= '$ctwis', `res_Carisma`= '$ctcar', `pro_Acrobacia`= '$cacrbt', `dobro_Acrobacia`= '$cdacrbt', `pro_Adestrar_Animais`= '$canl', `dobro_Adestrar_Animais`= '$cdanl', `pro_Arcanismo`= '$carc', `dobro_Arcanismo`= '$cdarc', `pro_Atletismo`= '$catl', `dobro_Atletismo`= '$cdatl', `pro_Enganacao`= '$cdec', `dobro_Enganacao`= '$cddec', `pro_Historia`= '$chis', `dobro_Historia`= '$cdhis', `pro_Intuicao`= '$cins', `dobro_Intuicao`= '$cdins', `pro_Intimidacao`= '$cintm', `dobro_Intimidacao`= '$cdintm', `pro_Investigacao`= '$cinv', `dobro_Investigacao`= '$cdinv', `pro_Medicina`= '$cmed', `dobro_Medicina`= '$cdmed', `pro_Natureza`= '$cnat', `dobro_Natureza`= '$cdnat', `pro_Percepcao`= '$cper', `dobro_Percepcao`= '$cdper', `pro_Atuacao`= '$cperf', `dobro_Atuacao`= '$cdperf', `pro_Persuasao`= '$cpers', `dobro_Persuasao`= '$cdpers', `pro_Religiao`= '$crel', `dobro_Religiao`= '$cdrel', `pro_Prestidigitacao`= '$csli', `dobro_Prestidigitacao`= '$cdsli', `pro_Furtividade`= '$csth', `dobro_Furtividade`= '$cdsth', `pro_Sobrevivencia`= '$csur', `dobro_Sobrevivencia`= '$cdsur', `CA`= '$cca', `iniciativa`= '$cinit', `deslocamento`= '$cmov', `vida_Atual`= '$catualhp', `vida_Maxima`= '$cmaxhp', `vida_Temporaria`= '$catemphp', `dado_Vida`= '$clifedice', `equipamento`= '$equip', `pecas_Cobre`= '$pc', `pecas_Prata`= '$pp', `pecas_Esmeralda`= '$pe', `pecas_Ouro`= '$po', `pecas_Platina`= '$pl', `proficiencias`= '$langprof', `tracos`= '$cperso', `ideais`='$cide', `vinculos`='$clink', `defeitos`='$cdef', `caracteristicas`='$carhab', `idade`='$cage', `altura`='$cheight', `peso`='$cweight', `olhos`='$ceyes', `pele`='$cskin', `cabelo`='$chair', `Aparencia`='$cphoto', `aliados_Organizacoes`='$calliance', `tesouro`='$treasures', `historia`='$cstorie', `diario`='$notes', `classe_conjuração`='$cconjclass', `hab_chave`='$keyhab', `resistencia_Magica`='$cdtr', `bonus_habMagica`='$mbonus', `espacomagia1_atual`='$mag1atl', `espacomagia1_max`='$mag1max', `espacomagia2_atual`='$mag2atl', `espacomagia2_max`='$mag2max', `espacomagia3_atual`='$mag3atl', `espacomagia3_max`='$mag3max', `espacomagia4_atual`='$mag4atl', `espacomagia4_max`='$mag4max', `espacomagia5_atual`='$mag5atl', `espacomagia5_max`='$mag5max', `espacomagia6_atual`='$mag6atl', `espacomagia6_max`='$mag6max', `espacomagia7_atual`='$mag7atl', `espacomagia7_max`='$mag7max', `espacomagia8_atual`='$mag8atl', `espacomagia8_max`='$mag8max', `espacomagia9_atual`='$mag9atl', `espacomagia9_max`='$mag9max' WHERE `ficha`.`id_User` = $from AND `ficha`.`id_mesa` = $mesa";
+					$result['send_status'] = sqlquery($sql);
 				}
 			}
 			break;
 	}
 		$start = isset($_GET['start']) ? intval($_GET['start']) : 0;
-		$stsql ="SELECT chat.id_Chat AS `id`,chat.message AS `msg`,users.username AS `user`,chat.id_mesa AS `mesa` FROM `chat` INNER JOIN `users` ON chat.id_User = users.id_User WHERE `id_Chat` > ".$start;
-		$items = sqlquery($stsql);
-		while($row = $items->fetch(PDO::FETCH_ASSOC)){
-			$result['items'][] = $row;
+		//chat
+		if(isset($_GET['load']) == 'chat'){
+			$stsql ="SELECT chat.id_Chat AS `id`,chat.message AS `msg`,users.username AS `user`,chat.id_mesa AS `mesa` FROM `chat` INNER JOIN `users` ON chat.id_User = users.id_User WHERE `id_Chat` > ".$start;
+			$items = sqlquery($stsql);
+			while($row = $items->fetch(PDO::FETCH_ASSOC)){
+				$result['chats'][] = $row;
+			}
+		}
+		
+		//ficha
+		if(isset($_GET['load']) == 'sheet'){
+			$stsql ="SELECT * FROM `ficha` WHERE `id_User` = $from AND `id_mesa` = $mesa";
+			$items = sqlquery($stsql);
+			while($row = $items->fetch(PDO::FETCH_ASSOC)){
+				$result['sheet'][] = $row;
+			}
 		}
 		header("Acess-Control-Allow-Origin: *");
 		header("Content-Type: application/json");
