@@ -4,28 +4,23 @@
 	<div class="center">
 		<!-- Texto de Teste - Login -->
 		<h2 id="titulo2"> Role sua Iniciativa </h2>
-		<!-- Botão Modal de Login -->
-		<button id="btnlogin" type="button" class="btn btn-primary" data-toggle="modal" data-target="#MdLogin" data-backdrop="static">
-			Login
-		</button>
-		<!-- Parte apenas para indicar um "ou" -->
-		<button id="btnor" class="btn btn-outline-warning" disabled>OU</button>
-		<!-- Botão Modal de Registro -->
-		<button  id="btnregister" type="button" class="btn btn-success" data-toggle="modal" data-target="#MdRegister" data-backdrop="static">
-			Cadastre-se
-		</button>
-		
-			<h2 id="titulo2"> Acesso Direto a Mesa </h2>
-		<div class="container" id="codigosala">
-			<form style="border-width: medium; border-style: solid; border-color: #F00;">
-				<label for="Tempname">Nome de Jogador:</label>
-				<input type="text" id="Tempname" name="Tempname"><br>
-				<label for="Codesession">Codigo de Sala:</label>
-				<input type="text" id="Codesession" name="Codesession"><br>
-				<input type="submit" value="Entrar na Sessão">
-			</form>
+			<!-- Botão Modal de Login -->
+			<button id="btnlogin" type="button" class="btn btn-primary" data-toggle="modal" data-target="#MdLogin" data-backdrop="static">
+				Login
+			</button>
+			<!-- Parte apenas para indicar um "ou" -->
+			<button id="btnor" class="btn btn-outline-warning" disabled>OU</button>
+			<!-- Botão Modal de Registro -->
+			<button  id="btnregister" type="button" class="btn btn-success" data-toggle="modal" data-target="#MdRegister" data-backdrop="static">
+				Cadastre-se
+			</button>
+			<h5 id="titulo2"> Tem o código? Acesse a mesa: </h5>
+			<div class="d-flex justify-content-center" id="codigosala">
+			<!-- Botão Modal de Acesso Direto -->
+			<button  id="btnDireto" type="button" class="btn btn-danger" data-toggle="modal" data-target="#MdDireto" data-backdrop="static">
+				Acesse Direto
+			</button>
 		</div>
-
 	</div>
 </div>
 
@@ -61,6 +56,10 @@
 		<p>Não tem uma conta?</p>
 		<button type="button" class="btn btn-success" data-toggle="modal" data-target="#MdRegister" data-dismiss="modal" data-backdrop="static">
 			Cadastre-se
+		</button>
+		<p>Possui o código de uma mesa?</p>
+		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#MdDireto" data-dismiss="modal" data-backdrop="static">
+			Acesso Direto
 		</button>
       </div>
     </div>
@@ -112,8 +111,51 @@
 		<p>Já possui conta?</p>
 		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#MdLogin" data-dismiss="modal" data-backdrop="static">
 			Login
-			<!-- Input Case -->
-			<input type="text" name="start" value="AcessoDireto" hidden>
+		</button>
+		<br>
+		<p>Tem um código?</p>
+		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#MdDireto" data-dismiss="modal" data-backdrop="static">
+			Acesso Direto
+		</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de Acesso Direto -->
+<div class="modal fade" id="MdDireto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Acesse uma Mesa Diretamente</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+	  
+	  <!-- Formulário Acesso a Mesa -->
+      <div class="modal-body">
+        <form method="post" action="?page=open.php" id="formDireto" name="formDireto">
+				<label for="Tempname">Nome de Jogador:</label>
+				<input type="text" id="Tempname" name="Tempname"><br>
+				<label for="Codesession">Codigo de Sala:</label>
+				<input type="text" id="Codesession" name="Codesession"><br>
+				<input type="submit" value="Entrar na Sessão">
+				
+				<!-- Input Case -->
+				<input type="text" name="start" value="AcessoDireto" hidden>
+			</form>
+      </div>
+	  
+	  <!-- Botão transição de Modal - Login -->
+      <div class="modal-footer">
+		<p>Já possui conta?</p>
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#MdLogin" data-dismiss="modal" data-backdrop="static">
+			Login
+		</button>
+		<p>Não tem uma conta?</p>
+		<button type="button" class="btn btn-success" data-toggle="modal" data-target="#MdRegister" data-dismiss="modal" data-backdrop="static">
+			Cadastre-se
 		</button>
       </div>
     </div>

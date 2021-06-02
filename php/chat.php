@@ -4,7 +4,7 @@
 var from = 1, mesa = '1', start = 0, action = 'chat', url = './?page=submit';
 		$(document).ready(function(){
 			$('[data-toggle="popover"]').popover();
-			load();
+			//load();
 			$('#chat').submit(function(e){
 				e.preventDefault();
 				$.post(url, {

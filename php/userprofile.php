@@ -1,13 +1,17 @@
 <?php
-/*
-	Verificar se a sessão foi iniciada
-	//$nivel_necessario = 1;
-	if ( $_SESSION['UsuarioNivel'] > $nivel_necessario) {
-		alert("Você precisa estar registrado para acessar essa página");
-		session_destroy();
-		header('location:?page=mesa.php'); exit;
+
+	$status = 'ON';
+	$nivel_necessario = 1;
+	
+	if ($_SESSION['STATUS'] != $status){
+		echo "<script>alert('Você precisa estar logado pra acessar essa página');</script>";
+		header("Location: ?page=main.php");
 	}
-*/
+	else if ($_SESSION['UsuarioNivel'] > $nivel_necessario){
+		echo "<script>alert('Seu nível de usuário não permite acessar essa página');</script>";
+		header("Location: ?page=main.php");
+	}
+
 ?>
 <script>
 window.onload = function() {
@@ -75,6 +79,19 @@ function opendesc(){
                 <li class="nav-item">
                     <a class="nav-link text-dark" id="namesession" href="#email" data-toggle="tab"> Alterar Email </a>
                 </li>
+				
+				<a href='?page=close'>
+				<button id="btnlogout" type="button" class="btn btn-danger">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+						<path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
+						<path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+					</svg> Sair
+				</button>
+				</a>
+				<!--
+				<form action="?page=close.php">
+				<input type="submit" value="Logout">
+				</form>
 				<a href="?page=close.php">
 				<button id="btnlogout" type="button" class="btn btn-success">
 					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
@@ -83,6 +100,7 @@ function opendesc(){
 					</svg> Sair
 				</button>
 				</a>
+				-->
         </div>
     </div>
 	<!-- Div que armazena as Tabs -->
@@ -225,7 +243,7 @@ function opendesc(){
 							<label id="txtboxgeral" for="Nome"> Nome: </label>
 							<input type="text" size="30" id="nNome" name="nNome" value='<?php echo $_SESSION['UsuarioNome']; ?>'>
 							<label id="txtboxgeral" for="Sobrenome"> Sobrenome: </label>
-							<input type="text" size="30" id="nNobrenome" name="nSobrenome" value='<?php echo $_SESSION['UsuarioSobrenome']; ?>'><br>
+							<input type="text" size="30" id="nSobrenome" name="nSobrenome" value='<?php echo $_SESSION['UsuarioSobrenome']; ?>'><br>
 							<label id="txtboxgeral" for="Aniversario">Data de Nascimento:</label>
 							<input type="date" id="nAniversario" name="nAniversario" value='<?php echo $_SESSION['UsuariodataNascimento']; ?>'>				
 							
