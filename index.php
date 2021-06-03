@@ -1,7 +1,7 @@
 <?php
-//ini_set('display_errors', 1);
-//ini_set('display_startup_errors', 1);
-//error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 //Iniciar a Sessão
  if (!isset($_SESSION)) session_start();
@@ -30,6 +30,8 @@ include_once'php/open.php';
 if($page=='main'){include_once'php/main.php';};
 	//Login
 if($page=='open'){include_once'php/open.php';};
+	//Logout
+if($page=='close'){include_once'php/close.php';};
 	//Criar Sessão
 if($page=='csession'){include_once'php/csession.php';};
 	//d&d - Editar Ficha 
@@ -38,6 +40,8 @@ if($page=='ddsheet'){include_once'php/ddsheet.php';};
 if($page=='tabletop'){include_once'php/tabletop.php';};
 	//Perfil do Usuário
 if($page=='userprofile'){include_once'php/userprofile.php';};
+	//Registro de Usuario Temporário
+if($page=='register'){include_once'php/register.php';};
 	//Submit 
 if($page=='submit'){include_once'php/submit.php';};
 	//chat
@@ -51,10 +55,4 @@ if($page=='stream' or $page =='chat' or $page == 'submit'){}
 else{
 include_once("php/footer.php");
 };
-
-//Paginas desativadas
-	//RegLogM - Registro e Login
-	//if($page=='reglogm'){include_once'php/reglogm.php';};
-	//Tela de Registro
-	// if($page=='register'){include_once'php/register.php';};
 ?>
