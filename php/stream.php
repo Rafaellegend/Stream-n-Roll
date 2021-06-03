@@ -1,4 +1,82 @@
 <script src="js/functions.js" type="text/javascript"></script>
+<script>
+var theme = <?php echo '"'.$_GET['theme'].'"'; ?>, players = <?php echo $_GET['players']; ?>, show = <?php echo '"'.$_GET['view'].'"'; ?>, portraits= <?php echo '"'.$_GET['portraits'].'"'; ?>;
+console.log('theme='+theme+' players='+players+' view='+show+' portraits='+portraits)
+$(document).ready(function(){
+	creatplayer(players,show);
+	if(portraits == 'on'){
+		$(".pportrait").css('background-repeat','no-repeat');
+		$(".pportrait").css('background-size','contain');
+		$(".pportrait").css('background-position','bottom right');
+	}else{
+		$(".pportrait").css('background-image','none');
+	}
+	receivedata();		
+})	
+function receivedata(){
+	$.get('./?page=submit' + '&load=stream', function(result){		
+		if(result.charinfo){
+			console.log(result.charinfo);
+			
+			result.charinfo.forEach(item =>{
+				var streamnmesa = `${item.num_Mesa}`;
+				console.log(streamnmesa);
+				if(streamnmesa<=players && streamnmesa != 'undefined'){
+					if(portraits == 'on'){
+						$("#p"+streamnmesa).children(".pportrait").css('background-image',`url(${item.Aparencia})`);
+						$("#p"+streamnmesa).children(".pportrait").css('background-repeat','no-repeat');
+						$("#p"+streamnmesa).children(".pportrait").css('background-size','contain');
+						$("#p"+streamnmesa).children(".pportrait").css('background-position','bottom right');
+					}else{
+						$("#p"+streamnmesa).children(".pportrait").css('background-image','none');
+					}
+					$("#p"+streamnmesa).children(".pname").text(`${item.nome}`);
+					var hpattp = Math.floor(item.vida_Atual) + Math.floor(item.vida_Temporaria);
+					$("#p"+streamnmesa).children(".php").text(hpattp+'/'+ item.vida_Maxima);
+					
+				}
+			})
+		};
+		if(result.rolls){
+			//console.log(result.rolls);
+			result.rolls.forEach(item =>{
+				//console.log(item.valor);
+				if(getCookie('p'+item.nFicha+'oldroll') != item.valor){
+					console.log("valor guardado="+getCookie('p'+item.nFicha+'oldroll')+" valor do item="+item.valor)
+					$("#p"+item.nFicha+"dice").text(item.valor);
+					roda(Math.floor(item.nFicha));
+					setCookie('p'+item.nFicha+'oldroll',item.valor,360);
+					
+				}else{}
+				
+			})
+		};
+		receivedata();		
+	});
+}
+ console.log(players+' '+show)
+ dadosshow = false;
+ function roda(n){
+	 var elecls = document.getElementsByClassName('pdados');
+	 var eleid = document.getElementById('p'+n+'dice');
+	 if(dadosshow == true){
+	 eleid.style.opacity = '0';
+	 setTimeout(function(){
+	 elecls[n-1].style.transform = "rotate(0deg)";
+	 elecls[n-1].style.opacity = "0";
+	 }, 3);
+	 
+	 dadosshow= false;
+	 }else{
+	  elecls[n-1].style.transform = "rotate(360deg)";
+	  elecls[n-1].style.opacity = "1";
+	  dadosshow= true;	  
+	  setTimeout(function(){ eleid.style.opacity = '1';},0500);
+	  setTimeout(function(){roda(n)}, 3000);
+	 }
+ };	
+
+</script>
 <div class="overlay">
 	<div class="master">
 		<div class="mwebcam"></div>
@@ -59,7 +137,7 @@
 .mdados{
 	background-image:url('./img/diceb.svg');
 	background-repeat: no-repeat;
-	background-size: content;
+	background-size: contain;
 	background-position: center;
 	position:relative;
 }
@@ -126,29 +204,10 @@
 }
 </style>
 <script>
- creatplayer(8,'player');
- dadosshow = false;
- function roda(n){
-	 var elecls = document.getElementsByClassName('pdados');
-	 var eleid = document.getElementById('p'+n+'dice');
-	 if(dadosshow == true){
-	 eleid.style.opacity = '0';
-	 setTimeout(function(){
-	 elecls[n-1].style.transform = "rotate(0deg)";
-	 elecls[n-1].style.opacity = "0";
-	 }, 3);
-	 
-	 dadosshow= false;
-	 }else{
-	  elecls[n-1].style.transform = "rotate(360deg)";
-	  elecls[n-1].style.opacity = "1";
-	  dadosshow= true;	  
-	  setTimeout(function(){ eleid.style.opacity = '1';},0500);
-	  setTimeout(function(){roda(n)}, 3000);
-	 }
- };
+
 </script>
 <button onclick="roda(2)">rodar</button>
 <button onclick="playercss(6,'full')">full</button>
 <button onclick="playercss(6,'map')">map</button>
 <button onclick="playercss(6,'player')">player</button>
+<button onclick="fazerRequisicao();">player</button>

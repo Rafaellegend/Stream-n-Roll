@@ -1,14 +1,14 @@
 <script src="js/functions.js" type="text/javascript"></script>
 <script>
 
-var from = 1, mesa = '1', start = 0, action = 'chat', url = './?page=submit';
+var from = 1, mesa = '1', start = 0;
 		$(document).ready(function(){
 			$('[data-toggle="popover"]').popover();
 			load();
 			$('#chat').submit(function(e){
 				e.preventDefault();
-				$.post(url, {
-					action: action,
+				$.post('./?page=submit', {
+					action: 'chat',
 					message: $('#message').val(),
 					from: from,
 					mesa: mesa
@@ -18,7 +18,7 @@ var from = 1, mesa = '1', start = 0, action = 'chat', url = './?page=submit';
 			})
 		})	
 		function load(){
-			$.get(url + '&start=' + start + '&load=chat', function(result){		
+			$.get('./?page=submit' + '&start=' + start + '&load=chat', function(result){		
 			if(result.chats){
 				result.chats.forEach(item =>{
 					start = item.id;

@@ -146,17 +146,20 @@ function Dnddistribution(hab,length,dtfrom,prof){
 }
 function atksbox(action){
 	var newbox = document.getElementById("atksbox");
+	
 	if(action == "load"){
 		var childs = newbox.childElementCount;
-		var childx = childs + 1;
-		if(atks*3 > childs ){
-			var x = (atks*3) - childs;
+		var childx = childs;
+		console.log(atks+"atksbox \n")
+		if(atks*4 > childs ){
+			var x = (atks*4) - childs;
 			if(x == childx ){
 			}else{
-				for(y = childs; y < (atks*3); y+=3){
-					addatkBox("atksbox",'text','atk'+(y/3),'atkline','atktitle','Nome Arma');
-					addatkBox("atksbox",'text','atkhit'+(y/3),'atkline','','Dano');
-					addatkBox("atksbox",'text','atkfx'+(y/3),'atkline','','Tipo de Dano');
+				for(y = childs; y < (atks*4); y+=4){
+					addatkBox("atksbox",'text','atkid'+(y/4),'','','','hidden');
+					addatkBox("atksbox",'text','atk'+(y/4),'atkline','atktitle','Nome Arma');
+					addatkBox("atksbox",'text','atkhit'+(y/4),'atkline','','Dano');
+					addatkBox("atksbox",'text','atkfx'+(y/4),'atkline','','Tipo de Dano');
 					var childs = newbox.childElementCount;									
 				}
 			}
@@ -165,24 +168,31 @@ function atksbox(action){
 			
 		}
 	}else if(action == "add"){
+		atks++;
+		console.log(atks);
+			addatkBox("atksbox",'text','atkid'+atks,'','','','hidden');
 			addatkBox("atksbox",'text','atk'+atks,'atkline','atktitle','Nome Arma');
 			addatkBox("atksbox",'text','atkhit'+atks,'atkline','','Dano');
 			addatkBox("atksbox",'text','atkfx'+atks,'atkline','','Tipo de Dano');
-	var childs = newbox.childElementCount;
-		atks++;
+		var childs = newbox.childElementCount;
+		
 	}
 }
 //Função para adicionar caixa de ataques
-function addatkBox(to,type,id,cla1,cla2,placeholder) {
+function addatkBox(to,type,id,cla1,cla2,placeholder,hidden) {
 	var textEl = document.getElementById(to);
 	var input = document.createElement("input");
 	input.type = type;
 	input.id = id;
+	if (cla1 != '') {
 	input.classList.add(cla1);
-	if (cla2 == 'undefined') {
+	}else{}
+	if (cla2 != '') {
 		input.classList.add(cla2);
 	}else{}
-	
+	if (hidden != null) {
+		input.setAttribute("hidden",true);
+	}else{}
 	input.placeholder = placeholder;
 
 	textEl.appendChild(input);
@@ -247,6 +257,24 @@ function addmgbox(to,type,id,cla1,cla2,cla3,placeholder){
 			newelement.classList.add(cla3);
 		}
 		
+	}	
+	else if(type == "hidden"){//input
+		
+		var newelement = document.createElement("input");
+		newelement.type = 'text';
+		newelement.id = id;
+		newelement.setAttribute("hidden",true);
+		if (cla1 != '') {
+		newelement.classList.add(cla1);
+		}
+		if (cla2 != '') {
+			newelement.classList.add(cla2);
+		}
+
+		if (cla3 != '') {
+			newelement.classList.add(cla3);
+		}
+		
 	}else{//input
 		
 		var newelement = document.createElement("input");
@@ -270,7 +298,7 @@ function addmgbox(to,type,id,cla1,cla2,cla3,placeholder){
 	textEl.appendChild(newelement);
 }
 //Função para criar um arquivo svg com link
-function addsvgbotton(to,code,id,cla1,cla2,cla3,width,height,viewbox,fill){
+function addsvgbotton(to,code,id,cla1,cla2,cla3,width,height,viewbox,fill,action){
 	//pegando o elemento pela id recebida pela variavel 'to'
 	var textEl = document.getElementById(to);
 	//Criando a tag 'svg'
@@ -293,12 +321,14 @@ function addsvgbotton(to,code,id,cla1,cla2,cla3,width,height,viewbox,fill){
 
 	//Criando a tag 'a'
 	var a = document.createElement('a');
-	a.setAttribute("data-toggle","collapse");
-	a.setAttribute("href","#nv"+id+"hab"+mg[id]);
-	a.setAttribute("role","button");
-	a.setAttribute("aria-expanded","false");
-	a.setAttribute("aria-controls","multiCollapse");
-	a.classList.add("mgconfig");
+	
+		a.setAttribute("data-toggle","collapse");
+		a.setAttribute("href","#nv"+id+"hab"+mg[id]);
+		a.setAttribute("role","button");
+		a.setAttribute("aria-expanded","false");
+		a.setAttribute("aria-controls","multiCollapse");
+		a.classList.add("mgconfig");
+	
 	//Criando o Elemento child
 	textEl.appendChild(a).appendChild(svg).appendChild(path);
 }
@@ -311,11 +341,16 @@ function magicsbox(nivel,action){
 	var childs = document.getElementById('list'+me).childElementCount;
 	
 	if(action == 'add'){
+		//adicionar mais um no valor
+		mg[me]++;
+		
 		addmgtitle('list'+me,'text','nv'+me+'hab'+mg[me]+'name','mgname','','','Nome da Magia');
 		//criando o botão
 		addsvgbotton('list'+me,path,me,'bi','bi-gear-fill','','16','16','0 0 16 16','currentColor');
 		//criando a div 
 		addmgbox('list'+me,'div','nv'+me+'hab'+mg[me],'collapse','multi-collapse','mgcollapse','','');
+		//input hidden para guardar o id
+		addmgbox('nv'+me+'hab'+mg[me],'hidden','nv'+me+'hab'+mg[me]+'id','','','','');
 		//criando a label para o dano
 		addmgbox('nv'+me+'hab'+mg[me],'label','nv'+me+'hab'+mg[me]+'dano','mglabel','Dano:','','')
 		//criando o input para o dano
@@ -337,8 +372,7 @@ function magicsbox(nivel,action){
 		//criando o input para descrição
 		addmgbox('nv'+me+'hab'+mg[me],'textarea','nv'+me+'hab'+mg[me]+'desc','mgtext','','','')
 	
-		//adicionar mais um no valor
-		mg[me]++;
+		
 		var childs = document.getElementById('list'+me).childElementCount;
 	}else if(action == 'load'){
 		var childx = childs + 1;
@@ -363,6 +397,9 @@ function magicsbox(nivel,action){
 					addsvgbotton('list'+me,path,me,'bi','bi-gear-fill','','16','16','0 0 16 16','currentColor');
 					//criando a div 
 					addmgbox('list'+me,'div','nv'+me+'hab'+mg[me],'collapse','multi-collapse','mgcollapse','','');
+					//input hidden para guardar o id
+					addmgbox('nv'+me+'hab'+mg[me],'hidden','nv'+me+'hab'+mg[me]+'id','','','','');
+					
 					//criando a label para o dano
 					addmgbox('nv'+me+'hab'+mg[me],'label','nv'+me+'hab'+mg[me]+'dano','mglabel','Dano:','','')
 					//criando o input para o dano
@@ -385,8 +422,9 @@ function magicsbox(nivel,action){
 					addmgbox('nv'+me+'hab'+mg[me],'textarea','nv'+me+'hab'+mg[me]+'desc','mgtext','','','')
 					//adicionar mais um no valor
 					var childs = document.getElementById('list'+me).childElementCount;
+					//mg[me]++;
 				}
-				mg[me]++;
+				
 			}
 		}
 	}	
@@ -398,11 +436,14 @@ function apenasNumeros(string) {
 
 function countatk(ele){
 	var arr = [];
-	for(n = 0; n < ele; n++){
-		arr[n] = ['atk','atkhit','atkfx'];
-		arr[n]['atk'] = document.getElementById("atk"+n).value;
-		arr[n]['atkhit'] = document.getElementById("atkhit"+n).value;
-		arr[n]['atkfx'] = document.getElementById("atkfx"+n).value;
+	console.log(ele);
+	for(n = 1; n <= ele; n++){
+		arr[n] = [
+		['atkid', document.getElementById("atkid"+n).value],
+		['atk', document.getElementById("atk"+n).value],
+		['atkhit', document.getElementById("atkhit"+n).value],
+		['atkfx', document.getElementById("atkfx"+n).value]
+		];
 	}
 	return arr;
 }
@@ -410,6 +451,7 @@ function countmag(nv,ele){
 	var arr = [];
 	for(n = 1; n <= ele; n++){
 	arr[n] = [
+		['habid', document.getElementById('nv'+nv+'hab'+n+'id').value],
 		['habname', document.getElementById('nv'+nv+'hab'+n+'name').value],
 		['habdano', document.getElementById('nv'+nv+'hab'+n+'dano').value],
 		['habtype', document.getElementById('nv'+nv+'hab'+n+'type').value],

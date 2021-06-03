@@ -34,8 +34,8 @@ if($page=='open'){include_once'php/open.php';};
 if($page=='csession'){include_once'php/csession.php';};
 	//d&d - Editar Ficha 
 if($page=='ddsheet'){include_once'php/ddsheet.php';};
-	//d&d - Editar Ficha 
-if($page=='ddedit'){include_once'php/dd_edit.php';};
+	//Editar Mesa 
+if($page=='tabletop'){include_once'php/tabletop.php';};
 	//Perfil do Usuário
 if($page=='userprofile'){include_once'php/userprofile.php';};
 	//Submit 
