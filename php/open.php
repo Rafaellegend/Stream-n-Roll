@@ -1,11 +1,13 @@
 <?php
   
+  /*
   if (!empty($_POST) AND (empty($_POST['login']) OR empty($_POST['password']))) {
 	  
 		//Redireciona o usuário
 		//header("Location: ?page=main"); exit;
 		echo "<script>window.location.href = '?page=userprofile';</script>";
   }
+  */
  
 	//Recebendo os dados do submit
 	$iniciando = isset($_POST['start']) ? $_POST['start'] :null;
@@ -26,8 +28,13 @@
 
 				$row_cnt = $result->rowCount();
 				if ($row_cnt != 1) {
-						// Mensagem de erro quando os dados são inválidos e/ou o usuário não foi encontrado
-						echo "Login inválido!"; exit;
+					
+						//Aviso de Cadastro
+						echo "<script>alert('Login Inválido');</script>";
+						//Redireciona o usuário
+						//header("Location: ?page=main"); exit;
+					  echo "<script>window.location.href = '?page=main';</script>";
+					  
 					} else {
 						// Salva os dados encontrados na variável $resultado
 						$row = $result->fetch(PDO::FETCH_ASSOC);
@@ -130,69 +137,86 @@
 				
 				if ($code != null){
 					
-					$seMesa = "SELECT `id_Mesa`, `nomeMesa`, `sistema`, `estilo` FROM mesa WHERE codigoMesa = '$code'";
-					$SelectMesa = sqlquery($seMesa);
+					$TseMesa = "SELECT `id_Mesa`, `nomeMesa`, `codigoMesa` , `sistema`, `descricao`, DATE_FORMAT(`dataCriacao`, '%d %m %Y'), `max_Players`, `id_User` FROM mesa WHERE codigoMesa = '$code'";
+					$TmesaSelect = sqlquery($TseMesa);
+										
+					$row_TMesaS = $TmesaSelect->rowCount();
 					
-					//Email Aleatorio
-						function randEmail($size){
-							$Rnumeros = '0123456789';
-							$random= "";
-							for($count= 0; $size > $count; $count++){
-								$random.= $Rnumeros[rand(0, strlen($Rnumeros) - 1)];
-							}
-							return $random;
-						}
-						$tempemail = ("$tempuser".randEmail(10).'@email.com');
-
-					//Senha Aleatoria
-					$tempsenharaw = "senhatemporaria";
-						function randsenha($size){
-							$Rnumeros = '0123456789';
-							$random= "";
-							for($count= 0; $size > $count; $count++){
-								$random.= $Rnumeros[rand(0, strlen($Rnumeros) - 1)];
-							}
-							return $random;
-						}
-						$tempsenha = ("$tempsenharaw".randsenha(10));
+					$rowTMS = $TmesaSelect->fetch(PDO::FETCH_ASSOC);
 					
-					//Usuario Aleatorio
-						function randUser($size){
-							$Rnumeros = '0123456789';
-							$random= "";
-							for($count= 0; $size > $count; $count++){
-								$random.= $Rnumeros[rand(0, strlen($Rnumeros) - 1)];
-							}
-							return $random;
-						}
-						$tempusuario = ("$tempuser".randUser(10));
+					// Salva os dados na sessão após a criação
+						$_SESSION['MesaID'] = $rowTMS['id_Mesa'];
+						$_SESSION['MesaNome'] = $rowTMS['nomeMesa'];
+						$_SESSION['MesaCodigo'] = $rowTMS['codigoMesa'];
+						$_SESSION['MesaSistema'] = $rowTMS['sistema'];
+						$_SESSION['MesaDescricao'] = $rowTMS['descricao'];
+						$_SESSION['MesaData'] = $rowTMS['dataCriacao'];
+						$_SESSION['MesaJogadores'] = $rowTMS['max_Players'];
+						$_SESSION['MesaDono'] = $rowTMS['id_User'];
 						
-						if ($tempusuario != null){
-							
-							$criarTempuser = "INSERT INTO users (username, senha, email, tipo) VALUES ('$tempusuario', '$tempsenha' ,'$tempemail', '2')";
-							$TempuserCriado = sqlquery($criarTempuser);
-							
-							$seTempuser = "SELECT `id_User`, `username`, `senha` ,`email` , `tipo` FROM users WHERE username = '$tempusuario'"; 	
-							$SelectTempUser = sqlquery($seTempuser);
-							
-							$row_TempSelect = $SelectTempUser->rowCount();
-								
-							$rowTemp = $SelectTempUser->fetch(PDO::FETCH_ASSOC);
-								
-							// Salva os dados na sessão após a criação
-							$_SESSION['STATUS'] = 'ON';
-							$_SESSION['UsuarioID'] = $rowTemp['id_User'];
-							$_SESSION['UsuarioUsername'] = $rowTemp['username'];
-							$_SESSION['UsuarioSenha'] = $rowCS['senha'];
-							$_SESSION['UsuarioEmail'] = $rowCS['email'];
-							$_SESSION['UsuarioNivel'] = $rowTemp['tipo'];
-							
-							//Redireciona o usuário
-							//header("Location: ?page=mesa"); exit;
-							echo "<script>window.location.href = '?page=mesa';</script>";
-							
+						
+						if ($tempuser != null){
+						//Email Aleatorio
+							function randEmail($size){
+								$Rnumeros = '0123456789';
+								$random= "";
+								for($count= 0; $size > $count; $count++){
+									$random.= $Rnumeros[rand(0, strlen($Rnumeros) - 1)];
+								}
+								return $random;
 							}
-					}
+							$tempemail = ("$tempuser".randEmail(5).'@email.com');
+
+						//Senha Aleatoria
+						$tempsenharaw = "senhatemporaria";
+							function randsenha($size){
+								$Rnumeros = '0123456789';
+								$random= "";
+								for($count= 0; $size > $count; $count++){
+									$random.= $Rnumeros[rand(0, strlen($Rnumeros) - 1)];
+								}
+								return $random;
+							}
+							$tempsenha = ("$tempsenharaw".randsenha(5));
+						
+						//Usuario Aleatorio
+							function randUser($size){
+								$Rnumeros = '0123456789';
+								$random= "";
+								for($count= 0; $size > $count; $count++){
+									$random.= $Rnumeros[rand(0, strlen($Rnumeros) - 1)];
+								}
+								return $random;
+							}
+							$tempusuario = ("$tempuser".randUser(5));
+							
+							if ($tempusuario != null){
+								
+								$criarTempuser = "INSERT INTO users (username, senha, email, tipo) VALUES ('$tempusuario', '$tempsenha' ,'$tempemail', '2')";
+								$TempuserCriado = sqlquery($criarTempuser);
+								
+								$seTempuser = "SELECT `id_User`, `username`, `senha` ,`email` , `tipo` FROM users WHERE username = '$tempusuario'"; 	
+								$SelectTempUser = sqlquery($seTempuser);
+								
+								$row_TempSelect = $SelectTempUser->rowCount();
+									
+								$rowTemp = $SelectTempUser->fetch(PDO::FETCH_ASSOC);
+									
+								// Salva os dados na sessão após a criação
+								$_SESSION['STATUS'] = 'ON';
+								$_SESSION['UsuarioID'] = $rowTemp['id_User'];
+								$_SESSION['UsuarioUsername'] = $rowTemp['username'];
+								$_SESSION['UsuarioSenha'] = $rowCS['senha'];
+								$_SESSION['UsuarioEmail'] = $rowCS['email'];
+								$_SESSION['UsuarioNivel'] = $rowTemp['tipo'];
+								
+								//Redireciona o usuário
+								//header("Location: ?page=mesa"); exit;
+								echo "<script>window.location.href = '?page=mesa';</script>";
+								
+								}
+						}
+				}
 					
 				
 			//Finalizando
@@ -269,6 +293,10 @@
 						//Aviso de Alteração
 						echo "<script>alert('Data de Aniversário atualizado com sucesso');</script>";
 					}
+					
+						//Redireciona o usuário
+						//header("Location: ?page=userprofile"); exit;
+						echo "<script>window.location.href = '?page=userprofile';</script>";
 				
 				//Finalizando
 				break;
@@ -304,6 +332,10 @@
 						
 						//Aviso de Alteração
 						echo "<script>alert('Senha atualizada com sucesso');</script>";
+						
+						//Redireciona o usuário
+						//header("Location: ?page=userprofile"); exit;
+						echo "<script>window.location.href = '?page=userprofile';</script>";
 					}
 					
 					
@@ -344,6 +376,11 @@
 							
 							//Aviso de Alteração
 							echo "<script>alert('Email atualizado com sucesso');</script>";
+							
+							//Redireciona o usuário
+							//header("Location: ?page=userprofile"); exit;
+							echo "<script>window.location.href = '?page=userprofile';</script>";
+						
 						}else{
 							//Aviso de Falha
 							echo "<script>alert('Esse Email já está sendo utilizado');</script>";
@@ -377,9 +414,9 @@
 				$Tcadaniversario = isset($_POST['TCadAniversario']) ? $_POST['TCadAniversario'] :null;
 				
 				//Verificação da Existencia do Username/Email
-				$verificaExisteUser = "SELECT `username` FROM users WHERE username = '$Cadusuario'";
+				$verificaExisteUser = "SELECT `username` FROM users WHERE username = '$Tcadusername'";
 				$SelectExistUser = sqlquery($verificaExisteUser);
-				$verificaExisteEmail = "SELECT `email` FROM users WHERE email = '$Cademail'";
+				$verificaExisteEmail = "SELECT `email` FROM users WHERE email = '$Tcademail'";
 				$SelectExistEmail = sqlquery($verificaExisteEmail);
 				
 				if ($Tcadusername == $SelectExistUser){
@@ -394,10 +431,7 @@
 					}else{
 						if($Tcadpasswordraw == $Tcadcpassword AND $Tcademail == $Tcadcemail){
 						
-						$criarRegistro = "INSERT INTO users (nome, sobrenome, aniversario) VALUES ('$Tcadnome', '$Tcadsobrenome', '$Tcadaniversario')";
-						$RegistroCriado = sqlquery ($criarRegistro);
-						
-						$upRegistro = "UPDATE users SET username='$Tcadusername', senha='$Tcadpassword', email='$Tcademail', tipo='$nivel' WHERE id_User = '$iduser' ";
+						$upRegistro = "UPDATE users SET username='$Tcadusername', senha='$Tcadpassword', nome='$Tcadnome', sobrenome='$Tcadsobrenome', dataNascimento='$Tcadaniversario', email='$Tcademail', tipo='$nivel' WHERE id_User = '$iduser' ";
 						$UpdateRegistro = sqlquery($upRegistro);
 						
 						$seRegistro = "SELECT `id_User`, `username`, `senha` , `email`, `nome`, `sobrenome`, `dataNascimento`, `tipo` FROM users WHERE username = '$Tcadusername'";
@@ -455,6 +489,67 @@
 						echo "<script>alert('Usuário deletado com Sucesso');</script>";
 						
 					}
+				
+				//Finalizando
+				break;
+				
+				//Criar mesa
+				case "CCampanha":
+				
+				//Recebendo dados
+				$iduser = $_SESSION['UsuarioID'];
+				
+				//Dados criação de mesa
+				$Cmesa = isset($_POST['NomeCampanha']) ? $_POST['NomeCampanha'] :null;
+				$Cdescricao = isset($_POST['DescCampanha']) ? $_POST['DescCampanha'] :null;
+				$Csistema = isset($_POST['RPGsistema']) ? $_POST['RPGsistema'] :null;
+				$Cjogadores = isset($_POST['QJogadores']) ? $_POST['QJogadores'] :null;
+				
+				
+				if ($Cmesa != null AND $Csistema != null AND $Cjogadores != null){
+					
+					//Cria código da mesa
+						function secure_random_string($length) {
+						$rand_string = '';
+						for($i = 0; $i < $length; $i++) {
+							$number = random_int(0, 36);
+							$character = base_convert($number, 10, 36);
+							$rand_string .= $character;
+						}
+					 
+						return $rand_string;
+						}
+						
+					$Ccodigo = (secure_random_string(5));
+					
+					$criarMesa = "INSERT INTO mesa (nomeMesa, codigoMesa, sistema, descricao, max_Players, id_User) VALUES ('$Cmesa', '$Ccodigo', '$Csistema', '$Cdescricao', '$Cjogadores', '$iduser')";
+					$mesaCreate = sqlquery($criarMesa);
+					
+					$seMesa = "SELECT `id_Mesa`, `nomeMesa`, `codigoMesa` , `sistema`, `descricao`, DATE_FORMAT(`dataCriacao`, '%d %m %Y'), `max_Players`, `id_User` FROM mesa WHERE codigoMesa = '$Ccodigo'";
+					$mesaSelect = sqlquery($seMesa);
+										
+					$row_MesaS = $mesaSelect->rowCount();
+					
+					$rowMS = $mesaSelect->fetch(PDO::FETCH_ASSOC);
+					
+					// Salva os dados na sessão após a criação
+						$_SESSION['MesaID'] = $rowMS['id_Mesa'];
+						$_SESSION['MesaNome'] = $rowMS['nomeMesa'];
+						$_SESSION['MesaCodigo'] = $rowMS['codigoMesa'];
+						$_SESSION['MesaSistema'] = $rowMS['sistema'];
+						$_SESSION['MesaDescricao'] = $rowMS['descricao'];
+						$_SESSION['MesaData'] = $rowMS['dataCriacao'];
+						$_SESSION['MesaJogadores'] = $rowMS['max_Players'];
+						$_SESSION['MesaDono'] = $rowMS['id_User'];
+					
+					//Redireciona o usuário
+					//header("Location: ?page=mesa"); exit;
+					echo "<script>window.location.href = '?page=mesa';</script>";
+						
+					//Aviso de Registro
+					echo "<script>alert('Mesa criada com sucesso');</script>";
+					
+				}
 				
 				//Finalizando
 				break;

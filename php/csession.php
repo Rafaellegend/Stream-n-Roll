@@ -30,19 +30,22 @@
 ?>
 <h5>Perfil de usuário: <a href="?page=userprofile"><button>Voltar</button></a></h5>
 
-<form>
+<form method="post" action="?page=open" name="createMesa" id="createMesa">
 <h1>Crie sua própria Campanha</h1>
 
-<!-- Digite Nome da Campanha-->
-<label for="Campaing">Nome da Campanha:</label>
-<input type="text" id="Campaing" name="Campaing" required>
+<!-- Nome da Campanha -->
+<label for="NomeCampanha">Nome da Campanha:</label>
+<input type="text" size="30" id="NomeCampanha" name="NomeCampanha" required><br>
+<!-- Descrição da Campanha -->
+<label for="DescCampanha">Descrição da Campanha:</label>
+<input type="text" size="30" id="DescCampanha" name="DescCampanha" required><br>
 
 <!-- Escolha o Sistema--->
-<label for="Rpgsys">Escolha o Sistema:</label>
-<select id="Rpgsys" name="Rpgsys" required>
+<label for="RPGsistema">Escolha o Sistema:</label>
+<select id="RPGsistema" name="RPGsistema" required>
 	<option value="" disabled selected>Selecione...</option>
 	<optgroup label="Dungeons & Dragons">
-		<option value="dd5e">Dungeons & Dragons: 5 edição</option>
+		<option value="D&D 5e">Dungeons & Dragons: 5 edição</option>
 	</optgroup>
 	<optgroup label="Tormenta RPG">
 		<option value="" disabled >Em Breve</option>
@@ -50,10 +53,11 @@
 	<optgroup label="Call of Cthulhu">
 		<option value="" disabled >Em Breve</option>
 	</optgroup>
-</select>
+</select><br>
+
 <!--Defina a quantidade de Jogadores-->
-<label for="Qplayer">Quantidades de Jogadores(Mestre não Incluso)</label>
-<select id="Qplayer" name="Qplayer" required>
+<label for="QJogadores">Quantidades de Jogadores(Mestre não Incluso)</label>
+<select id="QJogadores" name="QJogadores" required>
 	<option value="" disabled selected>Selecione...</option>
 	<option value="2">2 Jogadores</option>
 	<option value="3">3 Jogadores</option>
@@ -62,7 +66,11 @@
 	<option value="6">6 Jogadores</option>
 	<option value="7">7 Jogadores</option>
 	<option value="8">8 Jogadores</option>	
-</select>
+</select><br>
+
+<!-- Input Case -->
+<input type="text" name="action" value="CCampanha" hidden>
 
 <input type="submit" value="Criar Campanha">
+
 </form>
