@@ -1,17 +1,56 @@
 <?php
 
+	//Verificação se o usuário está logado e também se pode acessar a área devido ao nível dele
 	$status = 'ON';
 	$nivel_necessario = 1;
 	
 	if ($_SESSION['STATUS'] != $status){
+		
+		//Aviso
 		echo "<script>alert('Você precisa estar logado pra acessar essa página');</script>";
-		header("Location: ?page=main.php");
+		//Redireciona o Usuário
+		//header("Location: ?page=main");
+		echo "<script>window.location.href = '?page=main';</script>";
+		
 	}
 	else if ($_SESSION['UsuarioNivel'] > $nivel_necessario){
+		
+		//Aviso
 		echo "<script>alert('Seu nível de usuário não permite acessar essa página');</script>";
-		header("Location: ?page=main.php");
+		//Redireciona o Usuário
+		//header("Location: ?page=register");
+		echo "<script>window.location.href = '?page=register';</script>";
+		
 	}
 
+	//ADM Online
+	$nivel = $_SESSION['UsuarioNivel'];
+	$ADM = 0;
+	if ($nivel == $ADM){
+	echo '<button id="adminbtn" onclick="adm()">Usuário Admnistrador Logado</button>	
+			<style>
+				#adminbtn{
+					position:fixed;
+					left:0;
+					bottom:0;
+					z-index:9998;
+				}
+			</style>';
+	}else if ($nivel != $ADM){
+			'<script>
+				admshow = false;
+				function adm(){
+					if(admshow == false){			
+						document.getElementById("adminnav").style.visibility = "visible";
+						admshow = true;
+					}					
+			</script>';
+	}
+	
+	/*
+	
+	*/
+	
 ?>
 <script>
 window.onload = function() {
@@ -61,6 +100,7 @@ function opendesc(){
 	};
 }
 </script>
+
 <!-- Div que transita entre as Tabs do perfil do usuário -->
 <div class="well">
 	<!-- Tabs determinadas -->
@@ -88,19 +128,6 @@ function opendesc(){
 					</svg> Sair
 				</button>
 				</a>
-				<!--
-				<form action="?page=close.php">
-				<input type="submit" value="Logout">
-				</form>
-				<a href="?page=close.php">
-				<button id="btnlogout" type="button" class="btn btn-success">
-					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
-						<path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
-						<path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
-					</svg> Sair
-				</button>
-				</a>
-				-->
         </div>
     </div>
 	<!-- Div que armazena as Tabs -->
@@ -110,109 +137,117 @@ function opendesc(){
 		<div class="tab-pane active in" id="sessoes">
 
 
-			<!-- mesas -->
- <div id="mesas">
- <div class="container">
-	<div class="row"></div>
-	<div class="row">
-		<div class="col-md-12">
-			<div class="Pbmesas" id="mx">
-				<input type="text" id="m1picture" value="https://s3.amazonaws.com/files.d20.io/images/205057049/3z-SsNxVAaC0hWcApkjvKQ/max.png?1614639154364" hidden>
-				<input type="text" id="m1title" value="Ordem Suprema" hidden>
-				<input type="text" id="m1creator" value="Lucinho" hidden>
-				<input type="text" id="m1desc" value="Testando um texto"hidden>
-				<input type="text" id="m1users" value="6" hidden>
-				<div class="Pbminfo" onclick="changedesc('1');opendesc()">
-					<p class="Pbmtitle">Ordem Suprema</p>
-					<p class="Pbmcreator">Criado por: Lucinho</p>
+		<!-- mesas -->
+		 <div id="mesas">
+		 <div class="container">
+			<div class="row"></div>
+			<div class="row">
+			
+				<!-- Criar mesa -->
+				<div class="col-md-12">
+				<h3>Crie sua mesa</h3>
+				<a href="?page=csession"><button>Criar</button></a>
 				</div>
-				<div class="Pbmbutton">
-					<p>
-					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-						<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-					</svg>
-					6
-					</P>
-					<button class="Pbmenter">
-						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
-							<path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
-							<path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-						</svg>
-					</button>
+				
+				<div class="col-md-12">
+					<h3>Suas Mesas</h3>
+					<div class="Pbmesas" id="mx">
+						<input type="text" id="m1picture" value="https://s3.amazonaws.com/files.d20.io/images/205057049/3z-SsNxVAaC0hWcApkjvKQ/max.png?1614639154364" hidden>
+						<input type="text" id="m1title" value="Ordem Suprema" hidden>
+						<input type="text" id="m1creator" value="Lucinho" hidden>
+						<input type="text" id="m1desc" value="Testando um texto"hidden>
+						<input type="text" id="m1users" value="6" hidden>
+						<div class="Pbminfo" onclick="changedesc('1');opendesc()">
+							<p class="Pbmtitle">Ordem Suprema</p>
+							<p class="Pbmcreator">Criado por: Lucinho</p>
+						</div>
+						<div class="Pbmbutton">
+							<p>
+							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+								<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+							</svg>
+							6
+							</p>
+							<button class="Pbmenter">
+								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+									<path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+									<path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+								</svg>
+							</button>
+						</div>
+					</div>
+					<!-- div 2 para test -->
+					<div class="Pbmesas" id="mx">
+						<input type="text" id="m2picture" value="https://s3.amazonaws.com/files.d20.io/images/217565789/Eics9egb326rnXnW7VhMKQ/max.png?1619142697235" hidden>
+						<input type="text" id="m2title" value="Cidade Mistério" hidden>
+						<input type="text" id="m2creator" value="Rafael" hidden>
+						<input type="text" id="m2desc" value="Testando um texto"hidden>
+						<input type="text" id="m2users" value="6" hidden>
+						<div class="Pbminfo" onclick="changedesc('2');opendesc()">
+							<p class="Pbmtitle">Cidade Mistério</p>
+							<p class="Pbmcreator">Criado por: Rafael</p>
+						</div>
+						<div class="Pbmbutton">
+							<p>
+							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+								<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+							</svg>
+							6
+							</P>
+							<button class="Pbmenter">
+								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+									<path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+									<path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+								</svg>
+							</button>
+						</div>
+					</div>
+					<!-- div 3 para test -->
+					<div class="Pbmesas">
+						<div class="Pbminfo">
+							<p class="Pbmtitle">Fronteiras da Magia</p>
+							<p class="Pbmcreator">Criado por: Matheus </p>
+						</div>
+						<div class="Pbmbutton">
+							<p>
+							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+								<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+							</svg>
+							6
+							</P>
+							<button class="Pbmenter">
+								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+									<path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+									<path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+								</svg>
+							</button>
+						</div>
+					</div>
+					<!-- div 4 para test -->
+					<div class="Pbmesas">
+						<div class="Pbminfo">
+							<p class="Pbmtitle">Chamado da Tormenta</p>
+							<p class="Pbmcreator">Criado por: Rafael </p>
+						</div>
+						<div class="Pbmbutton">
+							<p>
+							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+								<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+							</svg>
+							6
+							</P>
+							<button class="Pbmenter">
+								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+									<path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+									<path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+								</svg>
+							</button>
+						</div>
+					</div>
 				</div>
 			</div>
-			<!-- div 2 para test -->
-			<div class="Pbmesas" id="mx">
-				<input type="text" id="m2picture" value="https://s3.amazonaws.com/files.d20.io/images/217565789/Eics9egb326rnXnW7VhMKQ/max.png?1619142697235" hidden>
-				<input type="text" id="m2title" value="Cidade Mistério" hidden>
-				<input type="text" id="m2creator" value="Rafael" hidden>
-				<input type="text" id="m2desc" value="Testando um texto"hidden>
-				<input type="text" id="m2users" value="6" hidden>
-				<div class="Pbminfo" onclick="changedesc('2');opendesc()">
-					<p class="Pbmtitle">Cidade Mistério</p>
-					<p class="Pbmcreator">Criado por: Rafael</p>
-				</div>
-				<div class="Pbmbutton">
-					<p>
-					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-						<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-					</svg>
-					6
-					</P>
-					<button class="Pbmenter">
-						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
-							<path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
-							<path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-						</svg>
-					</button>
-				</div>
-			</div>
-			<!-- div 3 para test -->
-			<div class="Pbmesas">
-				<div class="Pbminfo">
-					<p class="Pbmtitle">Fronteiras da Magia</p>
-					<p class="Pbmcreator">Criado por: Matheus </p>
-				</div>
-				<div class="Pbmbutton">
-					<p>
-					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-						<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-					</svg>
-					6
-					</P>
-					<button class="Pbmenter">
-						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
-							<path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
-							<path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-						</svg>
-					</button>
-				</div>
-			</div>
-			<!-- div 4 para test -->
-			<div class="Pbmesas">
-				<div class="Pbminfo">
-					<p class="Pbmtitle">Chamado da Tormenta</p>
-					<p class="Pbmcreator">Criado por: Rafael </p>
-				</div>
-				<div class="Pbmbutton">
-					<p>
-					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-						<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-					</svg>
-					6
-					</P>
-					<button class="Pbmenter">
-						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
-							<path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
-							<path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-						</svg>
-					</button>
-				</div>
-			</div>
-		</div>
-	</div>
- </div>
- </div>
+		 </div>
+		 </div>
 		</div>
 	
 		<!-- Tab do perfil do usuário e informações pessoais -->
@@ -222,7 +257,7 @@ function opendesc(){
 				<div class="row">
 					<div class="col-sm-8" id="formcentralizar">
 					<!-- Form mudança de Dados -->
-						<form method="post" action="?page=open.php" id="formDados" name="formDados">
+						<form method="post" action="?page=open" id="formDados" name="formDados">
 							<!-- Envio de imagem -->
 							<div id="avatarimg">
 								<script src="js/functions.js" type="text/javascript"></script>
@@ -266,7 +301,7 @@ function opendesc(){
 				<div class="row">
 					<div class="col-sm-8" id="formcentralizar">
 						<!-- Form mudança de senha -->
-						<form  method="post" action="?page=open.php" id="formSenha" name="formSenha">
+						<form  method="post" action="?page=open" id="formSenha" name="formSenha">
 							<label for="Npassword" id="txtboxgeral">Nova Senha:</label>
 							<input type="password" id="Npassword" name="Npassword" required>
 							<label for="CNpassword" id="txtboxgeral">Confirmar Nova Senha:</label>
@@ -296,7 +331,7 @@ function opendesc(){
 				<div class="row">
 					<div class="col-sm-8" id="formcentralizar">
 					<!-- Form mudança de email -->
-						<form method="post" action="?page=open.php" id="formNovoEmail" name="formNovoEmail">
+						<form method="post" action="?page=open" id="formNovoEmail" name="formNovoEmail">
 							<label for="Nemail" id="txtboxgeral">Novo Email:</label>
 							<input type="email" id="Nemail" name="Nemail" required>
 							<label for="CNemail" id="txtboxgeral">Confirmar Novo Email:</label>

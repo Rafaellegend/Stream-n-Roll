@@ -1,11 +1,12 @@
 <?php
-  /* 
+  
   if (!empty($_POST) AND (empty($_POST['login']) OR empty($_POST['password']))) {
-     header("Location: ?page=main"); exit;
-	 echo "<script>window.location.href = '?page=userprofile';</script>";
+	  
+		//Redireciona o usuário
+		//header("Location: ?page=main"); exit;
+		echo "<script>window.location.href = '?page=userprofile';</script>";
   }
-  */
-
+ 
 	//Recebendo os dados do submit
 	$iniciando = isset($_POST['start']) ? $_POST['start'] :null;
 	$usuario = isset($_POST['login']) ? $_POST['login'] :null;
@@ -42,61 +43,16 @@
 						$_SESSION['UsuariodataNascimento'] = $row['dataNascimento'];
 						$_SESSION['UsuarioNivel'] = $row['tipo'];
 					
-					  //Redireciona o visitante
-					  header("Location: ?page=userprofile"); exit;
+					  //Redireciona o usuário
+					  //header("Location: ?page=userprofile"); exit;
+					  echo "<script>window.location.href = '?page=userprofile';</script>";
+					  
 					}
 				}
 				else{
 					session_destroy();
 				}
-				/*
-				if($usuario != null AND $senha != null){
-				// Validação do usuário/senha digitados
-				$sql = "SELECT `id_User`, `username`, `senha` , `email`, `nome`, `sobrenome`, `dataNascimento`, `tipo` FROM users WHERE username = '$usuario'";
-				$result = sqlquery($sql);
-
-				$row_cnt = $result->rowCount();
 				
-				
-				$seUser = "SELECT `username` FROM users WHERE username = '$usuario'";
-				$UserSelect = sqlquery($seUser);
-				
-				$seSenha = "SELECT `senha` FROM users WHERE username = '$usuario'";
-				$SenhaSelect = sqlquery($seSenha);
-				
-				if($usuario != null){
-
-					echo "<script>alert('Usuário Inválido');</script>";
-					header("Location: ?page=main"); exit;
-					
-				}else{
-					if ($senha != null){
-						// Validação do usuário/senha digitados
-						$seLogin = "SELECT `id_User`, `username`, `senha` , `email`, `nome`, `sobrenome`, `dataNascimento`, `tipo` FROM users WHERE username = '$usuario'";
-						$LoginSelect = sqlquery($seLogin);
-						// Salva os dados encontrados na variável $resultado
-						$row_Login = $LoginSelect->rowCount();
-						
-						$rowLU = $LoginSelect->fetch(PDO::FETCH_ASSOC);
-						
-						// Salva os dados encontrados na sessão
-							$_SESSION['STATUS'] = 'ON';
-							$_SESSION['UsuarioID'] = $rowLU['id_User'];
-							$_SESSION['UsuarioUsername'] = $rowLU['username'];
-							$_SESSION['UsuarioSenha'] = $rowLU['senha'];
-							$_SESSION['UsuarioEmail'] = $rowLU['email'];
-							$_SESSION['UsuarioNome'] = $rowLU['nome'];
-							$_SESSION['UsuarioSobrenome'] = $rowLU['sobrenome'];
-							$_SESSION['UsuariodataNascimento'] = $rowLU['dataNascimento'];
-							$_SESSION['UsuarioNivel'] = $rowLU['tipo'];
-						
-						  // Redireciona o usuario
-						  header("Location: ?page=userprofile");
-					}else{
-						session_destroy();
-					}
-				}
-			*/
 			//Finalizando
 			break;
 			
@@ -150,6 +106,15 @@
 						$_SESSION['UsuarioSobrenome'] = $rowCS['sobrenome'];
 						$_SESSION['UsuariodataNascimento'] = $rowCS['dataNascimento'];
 						$_SESSION['UsuarioNivel'] = $rowCS['tipo'];
+						
+						
+						//Redireciona o usuário
+						//header("Location: ?page=userprofile"); exit;
+						echo "<script>window.location.href = '?page=userprofile';</script>";
+						
+						//Aviso de Cadastro
+						echo "<script>alert('Conta registrada com sucesso');</script>";
+						
 						}
 					}
 				}
@@ -169,7 +134,6 @@
 					$SelectMesa = sqlquery($seMesa);
 					
 					//Email Aleatorio
-					$tempuser = "usuariotemporario";
 						function randEmail($size){
 							$Rnumeros = '0123456789';
 							$random= "";
@@ -192,13 +156,23 @@
 						}
 						$tempsenha = ("$tempsenharaw".randsenha(10));
 					
-					
-						if ($tempuser != null){
+					//Usuario Aleatorio
+						function randUser($size){
+							$Rnumeros = '0123456789';
+							$random= "";
+							for($count= 0; $size > $count; $count++){
+								$random.= $Rnumeros[rand(0, strlen($Rnumeros) - 1)];
+							}
+							return $random;
+						}
+						$tempusuario = ("$tempuser".randUser(10));
+						
+						if ($tempusuario != null){
 							
-							$criarTempuser = "INSERT INTO users (username, senha, email, tipo) VALUES ('$tempuser', '$tempemail', '2')";
+							$criarTempuser = "INSERT INTO users (username, senha, email, tipo) VALUES ('$tempusuario', '$tempsenha' ,'$tempemail', '2')";
 							$TempuserCriado = sqlquery($criarTempuser);
 							
-							$seTempuser = "SELECT `id_User`, `username`, `senha` ,`email` , `tipo` FROM users WHERE username = '$tempuser'"; 	
+							$seTempuser = "SELECT `id_User`, `username`, `senha` ,`email` , `tipo` FROM users WHERE username = '$tempusuario'"; 	
 							$SelectTempUser = sqlquery($seTempuser);
 							
 							$row_TempSelect = $SelectTempUser->rowCount();
@@ -212,10 +186,14 @@
 							$_SESSION['UsuarioSenha'] = $rowCS['senha'];
 							$_SESSION['UsuarioEmail'] = $rowCS['email'];
 							$_SESSION['UsuarioNivel'] = $rowTemp['tipo'];
+							
+							//Redireciona o usuário
+							//header("Location: ?page=mesa"); exit;
+							echo "<script>window.location.href = '?page=mesa';</script>";
+							
 							}
 					}
-					// Redireciona o visitante
-					//header('location:?page=mesa.php');
+					
 				
 			//Finalizando
 			break;
@@ -251,6 +229,7 @@
 						// Salva a atualização do Nome
 						$_SESSION['UsuarioNome'] = $rowNS['nome'];
 						
+						//Aviso de Alteração
 						echo "<script>alert('Nome atualizado com sucesso');</script>";
 					}
 					//Atualiza Sobrenome
@@ -268,6 +247,7 @@
 						// Salva a atualização do Sobrenome 
 						$_SESSION['UsuarioSobrenome'] = $rowSS['sobrenome'];
 						
+						//Aviso de Alteração
 						echo "<script>alert('Sobrenome atualizado com sucesso');</script>";
 					}
 					//Atualiza Data
@@ -286,10 +266,9 @@
 						// Salva a atualização da Data de Nascimento
 						$_SESSION['UsuariodataNascimento'] = $rowAS['dataNascimento'];
 						
+						//Aviso de Alteração
 						echo "<script>alert('Data de Aniversário atualizado com sucesso');</script>";
 					}
-				echo "<script>alert('Dados atualizados com sucesso');</script>";
-				
 				
 				//Finalizando
 				break;
@@ -323,9 +302,10 @@
 						// Salva a atualização da Data de Nascimento
 						$_SESSION['UsuarioSenha'] = $rowPS['senha'];
 						
+						//Aviso de Alteração
 						echo "<script>alert('Senha atualizada com sucesso');</script>";
 					}
-					echo "<script>alert('Senha atualizada com sucesso');</script>";
+					
 					
 				//Finalizando
 				break;
@@ -343,24 +323,139 @@
 					$nemail = isset($_POST['Nemail']) ? $_POST['Nemail'] :null;
 					$cnemail = isset($_POST['CNemail']) ? $_POST['CNemail'] :null;
 					
-					if($nemail != null AND $cnemail != null AND $nemail == $cnemail AND $senhaBanco == $SenhaAtual){
-						$Upemail = "UPDATE users SET email='$nemail' WHERE senha = '$SenhaAtual' ";
-						$UpdatEmail = sqlquery($Upemail);
-						
-						$Seemail = "SELECT `email` FROM users WHERE id_User = '$iduser'";
-						$SelectEmail = sqlquery($Seemail);
-						
-						$row_ESelect = $SelectEmail->rowCount();
-						
-						$rowES = $SelectEmail->fetch(PDO::FETCH_ASSOC);
-
-						// Salva a atualização da Data de Nascimento
-						$_SESSION['UsuarioEmail'] = $rowES['email'];
-						
-						echo "<script>alert('Email atualizado com sucesso');</script>";
-					}
-					echo "<script>alert('Email atualizado com sucesso');</script>";
+					//Verificação da Existencia do Email
+					$verificaExisteEmail = "SELECT `email` FROM users WHERE email = '$Cademail'";
+					$SelectExistEmail = sqlquery($verificaExisteEmail);
 					
+					if($nemail != null AND $cnemail != null AND $nemail == $cnemail AND $senhaBanco == $SenhaAtual){
+						if ($nemail != $SelectExistEmail){
+							$Upemail = "UPDATE users SET email='$nemail' WHERE senha = '$SenhaAtual' ";
+							$UpdatEmail = sqlquery($Upemail);
+							
+							$Seemail = "SELECT `email` FROM users WHERE id_User = '$iduser'";
+							$SelectEmail = sqlquery($Seemail);
+							
+							$row_ESelect = $SelectEmail->rowCount();
+							
+							$rowES = $SelectEmail->fetch(PDO::FETCH_ASSOC);
+
+							// Salva a atualização da Data de Nascimento
+							$_SESSION['UsuarioEmail'] = $rowES['email'];
+							
+							//Aviso de Alteração
+							echo "<script>alert('Email atualizado com sucesso');</script>";
+						}else{
+							//Aviso de Falha
+							echo "<script>alert('Esse Email já está sendo utilizado');</script>";
+						}
+					}
+					
+					
+				//Finalizando
+				break;
+				
+				//Cadastrar Usuário Temporário
+				case "CadTemp":
+				
+				//Verificação dos Dados Existentes
+				$iduser = $_SESSION['UsuarioID'];
+				$nivel = '1';
+				$TTempusername = $_SESSION['UsuarioUsername'];
+				$TTempemail = $_SESSION['UsuarioEmail'];
+				$TTempsenha = $_SESSION['UsuarioSenha'];
+				$TTempnivel = $_SESSION['UsuarioNivel'];
+				
+				//Recebimento dos dados e criptografia da senha
+				$Tcadusername = isset($_POST['TCadUsername']) ? $_POST['TCadUsername'] :null;
+				$Tcadpasswordraw = isset($_POST['TCadPassword']) ? $_POST['TCadPassword'] :null;
+				$Tcadpassword = cript($Tcadpasswordraw);
+				$Tcadcpassword = isset($_POST['TCadcpassword']) ? $_POST['TCadcpassword'] :null;
+				$Tcademail = isset($_POST['TCadEmail']) ? $_POST['TCadEmail'] :null;
+				$Tcadcemail = isset($_POST['TCadcemail']) ? $_POST['TCadcemail'] :null;
+				$Tcadnome = isset($_POST['TCadNome']) ? $_POST['TCadNome'] :null;
+				$Tcadsobrenome = isset($_POST['TCadSobrenome']) ? $_POST['TCadSobrenome'] :null;
+				$Tcadaniversario = isset($_POST['TCadAniversario']) ? $_POST['TCadAniversario'] :null;
+				
+				//Verificação da Existencia do Username/Email
+				$verificaExisteUser = "SELECT `username` FROM users WHERE username = '$Cadusuario'";
+				$SelectExistUser = sqlquery($verificaExisteUser);
+				$verificaExisteEmail = "SELECT `email` FROM users WHERE email = '$Cademail'";
+				$SelectExistEmail = sqlquery($verificaExisteEmail);
+				
+				if ($Tcadusername == $SelectExistUser){
+					
+					echo "<script>alert('Esse Username já está sendo utilizado');</script>";
+					
+				}else{
+					if ($Tcademail == $SelectExistEmail){
+						
+						echo "<script>alert('Esse Email já está sendo utilizado');</script>";
+						
+					}else{
+						if($Tcadpasswordraw == $Tcadcpassword AND $Tcademail == $Tcadcemail){
+						
+						$criarRegistro = "INSERT INTO users (nome, sobrenome, aniversario) VALUES ('$Tcadnome', '$Tcadsobrenome', '$Tcadaniversario')";
+						$RegistroCriado = sqlquery ($criarRegistro);
+						
+						$upRegistro = "UPDATE users SET username='$Tcadusername', senha='$Tcadpassword', email='$Tcademail', tipo='$nivel' WHERE id_User = '$iduser' ";
+						$UpdateRegistro = sqlquery($upRegistro);
+						
+						$seRegistro = "SELECT `id_User`, `username`, `senha` , `email`, `nome`, `sobrenome`, `dataNascimento`, `tipo` FROM users WHERE username = '$Tcadusername'";
+						$SelectRegistro = sqlquery($seRegistro);
+						
+						$row_TTSelect = $SelectRegistro->rowCount();
+							
+						$rowTTS = $SelectRegistro->fetch(PDO::FETCH_ASSOC);
+							
+						// Salva os dados na sessão após a criação
+						$_SESSION['STATUS'] = 'ON';
+						$_SESSION['UsuarioID'] = $rowTTS['id_User'];
+						$_SESSION['UsuarioUsername'] = $rowTTS['username'];
+						$_SESSION['UsuarioSenha'] = $rowTTS['senha'];
+						$_SESSION['UsuarioEmail'] = $rowTTS['email'];
+						$_SESSION['UsuarioNome'] = $rowTTS['nome'];
+						$_SESSION['UsuarioSobrenome'] = $rowTTS['sobrenome'];
+						$_SESSION['UsuariodataNascimento'] = $rowTTS['dataNascimento'];
+						$_SESSION['UsuarioNivel'] = $rowTTS['tipo'];
+						
+						//Redireciona o usuário
+						//header("Location: ?page=userprofile"); exit;
+						echo "<script>window.location.href = '?page=userprofile';</script>";
+						
+						//Aviso de Registro
+						echo "<script>alert('Conta registrada com sucesso');</script>";
+							
+						}
+						
+					}
+				}
+				
+				//Finalizando
+				break;
+				
+				//Deletar Usuário Temporário
+				case "TempDel":
+					
+					//Receber os dados pra realizar as ações
+					$iduser = $_SESSION['UsuarioID'];
+					$DelUser = $_SESSION['UsuarioUsername'];
+					
+					$deletarUsuario = isset($_POST['UserDelete']) ? $_POST['UserDelete'] :null;
+					
+					if ($DelUser == $deletarUsuario) {
+						
+						$deUser = " DELETE FROM users WHERE id_User = '$iduser'";
+						$UsuarioDeletado = sqlquery($deUser);
+						
+						//Redireciona o usuário
+						//header("Location: ?page=main"); exit;
+						echo "<script>window.location.href = '?page=main';</script>";
+						
+						//Aviso de Usuário Deletado
+						echo "<script>alert('Usuário deletado com Sucesso');</script>";
+						
+					}
+				
 				//Finalizando
 				break;
 			}

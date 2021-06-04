@@ -1,9 +1,38 @@
-<!--Modal-->
-<div class="modal" id="Csinfo">
-  <div class="modal-dialog">
-    <div class="modal-content">
+<?php
+
+	//Verificação se o usuário está logado e também se pode acessar a área devido ao nível dele
+		$status = 'ON';
+		$nivel_necessario = 1;
+		
+		if ($_SESSION['STATUS'] != $status){
+			
+			//Aviso
+			echo "<script>alert('Você precisa estar logado pra acessar essa página');</script>";
+			//Redireciona o Usuário
+			//header("Location: ?page=main");
+			echo "<script>window.location.href = '?page=main';</script>";
+			
+		}
+		else if ($_SESSION['UsuarioNivel'] > $nivel_necessario){
+			
+			//Aviso
+			echo "<script>alert('Seu nível de usuário não permite acessar essa página');</script>";
+			//Redireciona o Usuário
+			//header("Location: ?page=register");
+			echo "<script>window.location.href = '?page=register';</script>";
+			
+		}
+
+	/*
 	
+	*/
+	
+?>
+<h5>Perfil de usuário: <a href="?page=userprofile"><button>Voltar</button></a></h5>
+
 <form>
+<h1>Crie sua própria Campanha</h1>
+
 <!-- Digite Nome da Campanha-->
 <label for="Campaing">Nome da Campanha:</label>
 <input type="text" id="Campaing" name="Campaing" required>
@@ -37,8 +66,3 @@
 
 <input type="submit" value="Criar Campanha">
 </form>
-
-<!-- Fechando modal-->	
-</div>
-</div>
-</div>

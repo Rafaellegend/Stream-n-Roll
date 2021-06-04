@@ -38,7 +38,7 @@
 	  
 	  <!-- Formulário Login -->
       <div class="modal-body">
-        <form method="post" action="?page=open.php" id="formLogin" name="formLogin">
+        <form method="post" action="?page=open" id="formLogin" name="formLogin">
 		<label for="login">Login:</label>
 		<input type="text" name="login" id="login" required><br>
 		<label for="password">Senha:</label>
@@ -80,7 +80,7 @@
 	  
 	  <!-- Formulário Registro -->
       <div class="modal-body">
-        <form method="post" action="?page=open.php" id="formCadastro" name="formCadastro">
+        <form method="post" action="?page=open" id="formCadastro" name="formCadastro">
 			<label for="Username">Username:</label>
 			<input type="text" id="CadUsername" name="CadUsername" required><br>
 
@@ -135,7 +135,7 @@
 	  
 	  <!-- Formulário Acesso a Mesa -->
       <div class="modal-body">
-        <form method="post" action="?page=open.php" id="formDireto" name="formDireto">
+        <form method="post" action="?page=open" id="formDireto" name="formDireto">
 				<label for="Tempname">Nome de Jogador:</label>
 				<input type="text" id="Tempname" name="Tempname"><br>
 				<label for="Codesession">Codigo de Sala:</label>
