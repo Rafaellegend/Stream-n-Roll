@@ -1,15 +1,13 @@
 function readURL(input,id) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
 
-                reader.onload = function (e) {
-                    $('#'+id)
-                        .attr('src', e.target.result);
-                };
-
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
+        reader.onload = function (e) {
+            $('#'+id).attr('src', e.target.result);
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
 function Roll(d,Atr1,Atr2,Atr3,pos){
 	var r = (Math.floor(Math.random() * d) + 1) + Atr1 + Atr2 + Atr3;
 	var Res = document.getElementById(pos).innerHTML = r;
@@ -21,22 +19,31 @@ function rolldice(strd) {
 	var r = Math.floor(Math.random() * (d - 1) + 1);
 	return r;
 }
-//Xml JS
-function XMLRequest(url,tag,id,cid,to){
-	var obj = new XMLHttpRequest();
-	obj.onreadystatechange = function(){
-		if(this.readyState ==4 && this.status == 200){
-			XMLquery(this,tag,id,cid,to);
-		};
-	};
-	obj.open("GET",url,true);
-	obj.send();
-} 
-function XMLquery(xml,tag,id,cid,to){
-	var xmlDoc = xml.responseXML;
-	var x = xmlDoc.getElementsByTagName(tag)[id].childNodes[cid];
-	var res = x.nodeValue;
-	document.getElementById(to).innerHTML = res;
+//Cookie JS
+function setCookie(cname, cvalue, exdays) {
+	var d = new Date();
+	d.setTime(d.getTime() + (exdays*24*60*60*1000));
+	var expires = "expires="+ d.toUTCString();
+	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+function getCookie(cname) {
+	var name = cname + "=";
+	var decodedCookie = decodeURIComponent(document.cookie);
+	var ca = decodedCookie.split(';');
+	for(var i = 0; i <ca.length; i++) {
+		var c = ca[i];
+		while (c.charAt(0) == ' ') {
+		c = c.substring(1);
+		}
+		if (c.indexOf(name) == 0) {
+			return c.substring(name.length, c.length);
+		}
+	}
+	return "";
+}
+function deleteCookie(cname){
+	var name = cname + "=";
+	document.cookie = name+"; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 }
 //Animações de barra : AniBar(Id da tag, Posição Atual, Posição Final)
 function AniBar(eid,apos,fpos) {
@@ -101,7 +108,7 @@ function chatload(to){
 		textEl.appendChild(divout).appendChild(div5);
 	}
 	function creatplayer(pnum,type){
-		
+		console.log('pnum'+pnum+' type'+type)
 		for(i = 1; i <= pnum; i++){
 			addelement('lplayers',i);
 			playatrb(i,'pname',"Default");
@@ -114,7 +121,7 @@ function chatload(to){
 		var textEl = document.getElementById('p'+n);
 		var pname = textEl.getElementsByClassName(cls);
 		pname[0].innerHTML= value;
-		console.log(pname);
+		
 	}
 	function playercss(pnum,type){
 		switch(type){

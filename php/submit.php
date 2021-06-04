@@ -16,6 +16,7 @@ if($action == 'sheet'){
   //src da foto
 	$cphoto = isset($_POST['cphoto']) ? $_POST['cphoto'] :null;
   //Informações do personagem
+	$idficha = isset($_POST['idsheet']) ? $_POST['idsheet'] :null;
 	$nmesa = isset($_POST['nmesa']) ? $_POST['nmesa'] :null;
 	$cname = isset($_POST['cname']) ? $_POST['cname'] :null;
 	$cclass = isset($_POST['cclass']) ? $_POST['cclass'] :null;
@@ -201,7 +202,7 @@ if($action == 'sheet'){
 	$cdtr = isset($_POST['cdtr']) ? $_POST['cdtr'] :null;
 	$mbonus = isset($_POST['mbonus']) ? $_POST['mbonus'] :null;
   //Ataques	
-	$atks = isset($_POST['atks']) ? $_POST['atks'] :null;
+	$atklist = isset($_POST['atks']) ? $_POST['atks'] :null;
 	$atksinfo = isset($_POST['atksinfo']) ? $_POST['atksinfo'] :null;
   //Espaços de Magias	
 	$mag0max = isset($_POST['mag0max']) ? $_POST['mag0max'] :null;
@@ -271,6 +272,13 @@ if($action == 'sheet'){
 					$newstring = 'Rolou os dados e tirou:<p class="res">'.$total.'<span>('.$resume.')</span></p>';
 					$sql = "INSERT INTO chat (message,id_user,id_mesa) VALUES ('$newstring','$from','$mesa')";
 					$result['send_status'] = sqlquery($sql);
+					
+					$verify= "SELECT `num_Mesa` FROM `ficha` WHERE `id_User` = $from AND `id_mesa` = $mesa";
+					$return['res'] = sqlquery($verify)->fetch(PDO::FETCH_ASSOC);
+					$nficha= $return['res']['num_Mesa'];
+					
+					$sql= "INSERT INTO `rolls` (`id_Roll`, `valor`, `base`, `nFicha`, `id_Mesa`) VALUES (NULL, '$total', '$resume', '$nficha', '$mesa')";
+					$result['send_status'] = sqlquery($sql);
 				}else{
 					$sql = "INSERT INTO chat (message,id_user,id_mesa) VALUES ('$message','$from','$mesa')";
 					$result['send_status'] = sqlquery($sql);
@@ -316,11 +324,71 @@ if($action == 'sheet'){
 						$sql = "INSERT INTO `ficha` (`id_Ficha`, `num_Mesa`, `nome`, `nivel`, `classe`, `raca`, `alinhamento`, `antecedentes`, `experiencia`, `forca`, `destreza`, `constituicao`, `inteligencia`, `sabedoria`, `carisma`, `bonus_Proficiencia`, `res_Forca`, `res_Destreza`, `res_Constituicao`, `res_Inteligencia`, `res_Sabedoria`, `res_Carisma`, `pro_Acrobacia`, `dobro_Acrobacia`, `pro_Adestrar_Animais`, `dobro_Adestrar_Animais`, `pro_Arcanismo`, `dobro_Arcanismo`, `pro_Atletismo`, `dobro_Atletismo`, `pro_Enganacao`, `dobro_Enganacao`, `pro_Historia`, `dobro_Historia`, `pro_Intuicao`, `dobro_Intuicao`, `pro_Intimidacao`, `dobro_Intimidacao`, `pro_Investigacao`, `dobro_Investigacao`, `pro_Medicina`, `dobro_Medicina`, `pro_Natureza`, `dobro_Natureza`, `pro_Percepcao`, `dobro_Percepcao`, `pro_Atuacao`, `dobro_Atuacao`, `pro_Persuasao`, `dobro_Persuasao`, `pro_Religiao`, `dobro_Religiao`, `pro_Prestidigitacao`, `dobro_Prestidigitacao`, `pro_Furtividade`, `dobro_Furtividade`, `pro_Sobrevivencia`, `dobro_Sobrevivencia`, `CA`, `iniciativa`, `deslocamento`, `vida_Atual`, `vida_Maxima`, `vida_Temporaria`, `dado_Vida`, `equipamento`, `pecas_Cobre`, `pecas_Prata`, `pecas_Esmeralda`, `pecas_Ouro`, `pecas_Platina`, `proficiencias`, `tracos`, `ideais`, `vinculos`, `defeitos`, `caracteristicas`, `idade`, `altura`, `peso`, `olhos`, `pele`, `cabelo`, `Aparencia`, `aliados_Organizacoes`, `tesouro`, `historia`, `diario`, `classe_conjuração`,`hab_chave`, `resistencia_Magica`, `bonus_habMagica`, `espacomagia1_atual`, `espacomagia1_max`, `espacomagia2_atual`, `espacomagia2_max`, `espacomagia3_atual`, `espacomagia3_max`, `espacomagia4_atual`, `espacomagia4_max`, `espacomagia5_atual`, `espacomagia5_max`, `espacomagia6_atual`, `espacomagia6_max`, `espacomagia7_atual`, `espacomagia7_max`, `espacomagia8_atual`, `espacomagia8_max`, `espacomagia9_atual`, `espacomagia9_max`, `id_User`, `id_Mesa`) VALUES (NULL, '$nmesa', '$cname', '$clevel', '$cclass', '$cfolk', '$calign', '$cback', '$cxp', '$cstr', '$cdex', '$ccon', '$cint', '$cwis', '$ccar', '$cpro', '$ctstr', '$ctdex', '$ctcon', '$ctint', '$ctwis', '$ctcar', '$cacrbt', '$cdacrbt', '$canl', '$cdanl', '$carc', '$cdarc', '$catl', '$cdatl', '$cdec', '$cddec', '$chis', '$cdhis', '$cins', '$cdins', '$cintm', '$cdintm', '$cinv', '$cdinv', '$cmed', '$cdmed', '$cnat', '$cdnat', '$cper', '$cdper', '$cperf', '$cdperf', '$cpers', '$cdpers', '$crel', '$cdrel', '$csli', '$cdsli', '$csth', '$cdsth', '$csur', '$cdsur', '$cca', '$cinit', '$cmov', '$catualhp', '$cmaxhp', '$catemphp', '$clifedice', '$equip', '$pc', '$pp', '$pe', '$po', '$pl', '$langprof', '$cperso', '$cide', '$clink', '$cdef', '$carhab', '$cage', '$cheight', '$cweight', '$ceyes', '$cskin', '$chair', '$cphoto', '$calliance', '$treasures', '$cstorie', '$notes', '$cconjclass', '$keyhab', '$cdtr', '$mbonus', '$mag1atl', '$mag1max', '$mag2atl', '$mag2max', '$mag3atl', '$mag3max', '$mag4atl', '$mag4max', '$mag5atl', '$mag5max', '$mag6atl', '$mag6max', '$mag7atl', '$mag7max', '$mag8atl', '$mag8max', '$mag9atl', '$mag9max', '$from', '$mesa')" ;
 						$result['send_status'] = sqlquery($sql);
 						
+						var_dump($atksinfo);
+						for($x = 0; $x < count($atksinfo); $x++){
+							
+						}
+						
+						for($x = 0; $x < count($maginfo); $x++){
+						
+						
+						for($y =0; $y < 7;$y++){
+							$hab[$y]=$maginfo[$x][1][$y][1];
+							//echo $hab[$y]."\n";
+						}
+						if($hab[1] != ''){
+							$atks = "INSERT INTO `ataquesmagias` (`id_atkmag`, `nome`, `tipo`, `nivel`, `dano`, `dano_Tipo`, `dano_Extra`, `dano_Extra_Tipo`, `descricao`, `id_ficha`) VALUES ('$hab[0]', '$hab[1]', '1', '$x', '$hab[2]', '$hab[3]', '$hab[4]', '$hab[5]', '$hab[6]', '$val') ON DUPLICATE KEY UPDATE `nome` = '$hab[1]' , `tipo` = '1', `nivel` = '$x', `dano` = '$hab[2]', `dano_Tipo` = '$hab[3]', `dano_Extra` = '$hab[4]', `dano_Extra_Tipo` = '$hab[5]', `descricao` = '$hab[6]'";
+							
+							$result['send_status'] = sqlquery($atks);
+						}
+					}
+						
 						//$atks = "INSERT INTO `ataquesmagias` (`id_atkmag`, `nome`, `tipo`, `nivel`, `dano`, `dano_Tipo`, `dano_Extra`, `dano_Extra_Tipo`, `descricao`, `id_ficha`) VALUES (NULL, '$maginfo', '$atktype', '$maginfo', '$maginfo', '$maginfo', '$maginfo', '$maginfo', '$maginfo', '$ficha')";
 					};
 				}else{
 					$sql= "UPDATE `ficha` SET `nome`='$cname', `nivel`= '$clevel', `classe`= '$cclass', `raca`= '$cfolk', `alinhamento`= '$calign', `antecedentes`= '$cback', `experiencia`= '$cxp', `forca`= '$cstr', `destreza`= '$cdex', `constituicao`= '$ccon', `inteligencia`= '$cint', `sabedoria`= '$cwis', `carisma`= '$ccar', `bonus_Proficiencia`= '$cpro', `res_Forca`= '$ctstr', `res_Destreza`= '$ctdex', `res_Constituicao`= '$ctcon', `res_Inteligencia`= '$ctint', `res_Sabedoria`= '$ctwis', `res_Carisma`= '$ctcar', `pro_Acrobacia`= '$cacrbt', `dobro_Acrobacia`= '$cdacrbt', `pro_Adestrar_Animais`= '$canl', `dobro_Adestrar_Animais`= '$cdanl', `pro_Arcanismo`= '$carc', `dobro_Arcanismo`= '$cdarc', `pro_Atletismo`= '$catl', `dobro_Atletismo`= '$cdatl', `pro_Enganacao`= '$cdec', `dobro_Enganacao`= '$cddec', `pro_Historia`= '$chis', `dobro_Historia`= '$cdhis', `pro_Intuicao`= '$cins', `dobro_Intuicao`= '$cdins', `pro_Intimidacao`= '$cintm', `dobro_Intimidacao`= '$cdintm', `pro_Investigacao`= '$cinv', `dobro_Investigacao`= '$cdinv', `pro_Medicina`= '$cmed', `dobro_Medicina`= '$cdmed', `pro_Natureza`= '$cnat', `dobro_Natureza`= '$cdnat', `pro_Percepcao`= '$cper', `dobro_Percepcao`= '$cdper', `pro_Atuacao`= '$cperf', `dobro_Atuacao`= '$cdperf', `pro_Persuasao`= '$cpers', `dobro_Persuasao`= '$cdpers', `pro_Religiao`= '$crel', `dobro_Religiao`= '$cdrel', `pro_Prestidigitacao`= '$csli', `dobro_Prestidigitacao`= '$cdsli', `pro_Furtividade`= '$csth', `dobro_Furtividade`= '$cdsth', `pro_Sobrevivencia`= '$csur', `dobro_Sobrevivencia`= '$cdsur', `CA`= '$cca', `iniciativa`= '$cinit', `deslocamento`= '$cmov', `vida_Atual`= '$catualhp', `vida_Maxima`= '$cmaxhp', `vida_Temporaria`= '$catemphp', `dado_Vida`= '$clifedice', `equipamento`= '$equip', `pecas_Cobre`= '$pc', `pecas_Prata`= '$pp', `pecas_Esmeralda`= '$pe', `pecas_Ouro`= '$po', `pecas_Platina`= '$pl', `proficiencias`= '$langprof', `tracos`= '$cperso', `ideais`='$cide', `vinculos`='$clink', `defeitos`='$cdef', `caracteristicas`='$carhab', `idade`='$cage', `altura`='$cheight', `peso`='$cweight', `olhos`='$ceyes', `pele`='$cskin', `cabelo`='$chair', `Aparencia`='$cphoto', `aliados_Organizacoes`='$calliance', `tesouro`='$treasures', `historia`='$cstorie', `diario`='$notes', `classe_conjuração`='$cconjclass', `hab_chave`='$keyhab', `resistencia_Magica`='$cdtr', `bonus_habMagica`='$mbonus', `espacomagia1_atual`='$mag1atl', `espacomagia1_max`='$mag1max', `espacomagia2_atual`='$mag2atl', `espacomagia2_max`='$mag2max', `espacomagia3_atual`='$mag3atl', `espacomagia3_max`='$mag3max', `espacomagia4_atual`='$mag4atl', `espacomagia4_max`='$mag4max', `espacomagia5_atual`='$mag5atl', `espacomagia5_max`='$mag5max', `espacomagia6_atual`='$mag6atl', `espacomagia6_max`='$mag6max', `espacomagia7_atual`='$mag7atl', `espacomagia7_max`='$mag7max', `espacomagia8_atual`='$mag8atl', `espacomagia8_max`='$mag8max', `espacomagia9_atual`='$mag9atl', `espacomagia9_max`='$mag9max' WHERE `ficha`.`id_User` = $from AND `ficha`.`id_mesa` = $mesa";
 					$result['send_status'] = sqlquery($sql);
+					
+					//var_dump(count($maginfo));
+					$verify = "SELECT `id_Ficha` FROM `ficha` WHERE `ficha`.`id_User` = $from AND `ficha`.`id_mesa` = $mesa";
+					$numeroficha = sqlquery($verify);
+					$ficha = $numeroficha->fetch(PDO::FETCH_ASSOC);
+					$val = $ficha['id_Ficha'];
+					
+					var_dump($atksinfo);
+					for($x = 0; $x < count($atksinfo); $x++){
+						for($y =0; $y < 4;$y++){
+							if($atksinfo[$x][$y][1] == 'undefined'){
+								$hab[$y]=null;
+							}else{
+								$hab[$y]=$atksinfo[$x][$y][1];
+							}
+							echo $hab[$y]."\n";
+						}	
+						if($hab[1] != ''){
+							$atks = "INSERT INTO `ataquesmagias` (`id_atkmag`, `nome`, `tipo`, `nivel`, `dano`, `dano_Tipo`, `dano_Extra`, `dano_Extra_Tipo`, `descricao`, `id_ficha`) VALUES ('$hab[0]', '$hab[1]', '0', '0', '$hab[2]', '$hab[3]', '', '', '', '$val') ON DUPLICATE KEY UPDATE `nome` = '$hab[1]' , `tipo` = '0', `nivel` = '0', `dano` = '$hab[2]', `dano_Tipo` = '$hab[3]', `dano_Extra` = '', `dano_Extra_Tipo` = '', `descricao` = ''";
+							$result['send_status'] = sqlquery($atks);
+							//echo $atks."\n";
+						}
+					}
+
+					for($x = 0; $x < count($maginfo); $x++){
+						
+						
+						for($y =0; $y < 7;$y++){
+							if($maginfo[$x][1][$y][1] == 'undefined'){
+								$hab[$y]=null;
+							}else{
+								$hab[$y]=$maginfo[$x][1][$y][1];
+							}
+							//echo $hab[$y]."\n";
+						}
+						if($hab[1] != ''){
+							$atks = "INSERT INTO `ataquesmagias` (`id_atkmag`, `nome`, `tipo`, `nivel`, `dano`, `dano_Tipo`, `dano_Extra`, `dano_Extra_Tipo`, `descricao`, `id_ficha`) VALUES ('$hab[0]', '$hab[1]', '1', '$x', '$hab[2]', '$hab[3]', '$hab[4]', '$hab[5]', '$hab[6]', '$val') ON DUPLICATE KEY UPDATE `nome` = '$hab[1]' , `tipo` = '1', `nivel` = '$x', `dano` = '$hab[2]', `dano_Tipo` = '$hab[3]', `dano_Extra` = '$hab[4]', `dano_Extra_Tipo` = '$hab[5]', `descricao` = '$hab[6]'";
+							$result['send_status'] = sqlquery($atks);
+							
+						}
+					}
 				}
 			}
 			break;
@@ -342,7 +410,30 @@ if($action == 'sheet'){
 			while($row = $items->fetch(PDO::FETCH_ASSOC)){
 				$result['sheet'][] = $row;
 			}
+			//var_dump($result['sheet']);
+			$ficha = $result['sheet'][0]['id_Ficha'];
+			
+			$stsql ="SELECT * FROM `ataquesmagias` WHERE `id_ficha` = $ficha ORDER BY `tipo`";
+			$items = sqlquery($stsql);
+			while($row = $items->fetch(PDO::FETCH_ASSOC)){
+				$result['mgatks'][] = $row;
+			}
+			//var_dump($result['atks'][0]);
 		}
+		//Overlay
+		if(isset($_GET['load']) == 'stream'){
+			$stsql ="SELECT `num_Mesa`, `nome`,`vida_Atual`,`vida_Maxima`,`vida_Temporaria`,`Aparencia` FROM `ficha` WHERE `id_mesa` = $mesa ORDER BY `num_Mesa`";
+			$items = sqlquery($stsql);
+			while($row = $items->fetch(PDO::FETCH_ASSOC)){
+				$result['charinfo'][] = $row;
+			}
+			$stsql = "SELECT * FROM `rolls` WHERE `id_mesa` = $mesa AND `id_Roll` = (SELECT MAX(`id_Roll`) FROM `rolls` WHERE `id_mesa` = $mesa)";
+			$items = sqlquery($stsql);
+			while($row = $items->fetch(PDO::FETCH_ASSOC)){
+				$result['rolls'][] = $row;
+			}
+		}
+		
 		header("Acess-Control-Allow-Origin: *");
 		header("Content-Type: application/json");
 		

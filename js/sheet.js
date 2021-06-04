@@ -1,4 +1,4 @@
-var magsarr = [], url = './?page=submit';
+var magsarr = [];
 $(document).ready(function(){
 			loadSheet();
 			console.log(
@@ -13,13 +13,13 @@ $(document).ready(function(){
 				}
 				
 				console.log('Array:'+magsarr[0]);
-				$.post(url, {
+				$.post('./?page=submit', {
 					//Ação do submit
 					action: 'sheet',
 					//src da foto
 					cphoto: $('#portrait').attr('src'),
 				//Informações da ficha
-					//from: $('#idficha').val(),
+					idsheet: $('#idficha').val(),
 					nmesa: $('#nmesa').val(),
 					//mesa: $('#idmesa').val(),
 				//Informações do personagem
@@ -168,7 +168,7 @@ $(document).ready(function(){
 					cdtr: $('#cdtr').val(),
 					mbonus: $('#mbonus').val(),
 				//Ataques
-					atks: (document.getElementById("atksbox").childElementCount /3),	
+					atks: (document.getElementById("atksbox").childElementCount /4),	
 					atksinfo : countatk(atks),
 				//Espaços de Magias
 					//nv0
@@ -225,11 +225,12 @@ $(document).ready(function(){
 					//
 					maginfo: countall(magsarr),
 				});
+				loadSheet();
 				return false;
 			})
 		})
 function loadSheet(){
-	$.get(url + '&start=' + start + '&load=chat', function(result){		
+	$.get('./?page=submit' + '&start=' + start + '&load=sheet', function(result){		
 		if(result.sheet){
 			result.sheet.forEach(item =>{
 			start = item.id;
@@ -525,6 +526,103 @@ function loadSheet(){
 				}
 			})
 		};
+		if(result.mgatks){
+			var i = 1;
+			var oldvalue =0;
+			var a = document.getElementById("atksbox").childElementCount /4;
+			var normalatk =0, magiasnv = [];
+			
+			result.mgatks.forEach(item =>{
+				if(item.tipo == 0){
+					normalatk++;
+				}else if(item.tipo == 1){
+					var inv =item.nivel;
+					if(typeof magiasnv[inv] == 'undefined'){
+						magiasnv[inv] = 1;
+					}else{
+						magiasnv[inv]++;	
+					}
+					//console.log('quantidade de magia'+inv+": "+magiasnv[inv]);
+				}
+				
+			})
+			//console.log(normalatk);
+			
+			result.mgatks.forEach(item =>{
+				var tp = `${item.tipo}`;
+				var nv = `${item.nivel}`;
+				
+				//console.log(`${item.nivel}`);
+				if(tp == 0){ //ATAQUES
+					var tatk = $("#atksbox").children().length;
+					if(normalatk == Math.floor(tatk/4) ){distrib();}else{
+						//console.log("tatk="+tatk);
+						//console.log('atks='+atks+' i='+i);
+						//console.log('ataques:'+`${item.nome}`+' atks'+atks+ 'valor antigo'+oldvalue)
+						if(atks == 0){atksbox("add");distrib();}else if(atks == i){distrib();}else{
+							atksbox("add");
+							distrib();
+						}
+					}
+					function distrib(){
+						$("#atkid"+i).val(`${item.id_atkmag}`); //id
+						$("#atk"+i).val(`${item.nome}`); //nome da habilidade
+						
+						if(item.dano == null){$('#atkhit'+i+'').val('');}
+						else{$('#atkhit'+i+'').val(`${item.dano}`);} //dano
+						
+						if(item.dano_Tipo == null){$('#atkfx'+i+'').val('');}
+						else{$('#atkfx'+i+'').val(`${item.dano_Tipo}`);} //tipo de dano
+						
+						oldvalue = 3;
+						if(atks !=0){i++;}
+					}
+				}else{ //MAGIAS 
+					var tmg = $("#list"+item.nivel).children().length;
+					if(oldvalue != nv){
+							i = 1;
+						}
+					if(magiasnv[item.nivel] == tmg/3){
+						//console.log('igual');
+						distribmg();
+					}else{
+						//console.log('diferente');
+						//console.log('magia'+item.nivel+'='+(tmg/3));
+						//console.log(magiasnv[item.nivel]);
+						
+						console.log("nivel"+nv);
+						//console.log(oldvalue+" diferente de "+nv+":"+ (oldvalue != nv));
+						//console.log("magiasnv["+item.nivel+"]="+magiasnv[item.nivel]+" + i="+i+":"+(magiasnv[item.nivel] == i));
+						if(magiasnv[item.nivel]==i){distribmg();}else{
+							var mgnv = "nivel"+nv;
+							magicsbox(mgnv,'add');
+							distribmg();
+							
+						}
+					}
+					function distribmg(){
+						$('#nv'+nv+'hab'+i+'id').val(`${item.id_atkmag}`); //id
+						$('#nv'+nv+'hab'+i+'name').val(`${item.nome}`); //nome da habilidade
+						
+						if(item.dano == null){$('#nv'+nv+'hab'+i+'dano').val('');}
+						else{$('#nv'+nv+'hab'+i+'dano').val(`${item.dano}`);} //dano
+						
+						if(item.dano_Tipo == null){$('#nv'+nv+'hab'+i+'type').val('');}
+						else{$('#nv'+nv+'hab'+i+'type').val(`${item.dano_Tipo}`);} //tipo de dano
+						
+						if(item.dano_Extra == null){$('#nv'+nv+'hab'+i+'exdano').val('');}
+						else{$('#nv'+nv+'hab'+i+'exdano').val(`${item.dano_Extra}`);} //dano extra
+						
+						if(item.dano_Extra_Tipo == null){$('#nv'+nv+'hab'+i+'extyp').val('');}
+						else{$('#nv'+nv+'hab'+i+'extype').val(`${item.dano_Extra_Tipo}`);} //tipo de dano extra
+						
+						if(item.descricao == null){$('#nv'+nv+'hab'+i+'desc').val('');}
+						else{$('#nv'+nv+'hab'+i+'desc').val(`${item.descricao}`);} //descrição
+						i++;
+						oldvalue = nv;
+					}
+				}
+			})}
 		});
 }		
 

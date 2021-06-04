@@ -41,6 +41,8 @@ include_once'php/open.php';
 	if($page=='ddedit'){include_once'php/dd_edit.php';};
 	//Página da Mesa
 	if($page=='mesa'){include_once'php/mesa.php';};
+	//Editar Mesa 
+	if($page=='tabletop'){include_once'php/tabletop.php';};
 	//Perfil do Usuário
 	if($page=='userprofile'){include_once'php/userprofile.php';};
 	//Registro de Usuario Temporário
