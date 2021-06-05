@@ -274,10 +274,10 @@ function sendmesainfo(n){
 							<label id="txtboxgeral" for="Email"> Email: </label>
 							<input type="email" size="30" id="Email" name="Email" value='<?php echo $_SESSION['UsuarioEmail']; ?>' disabled><br>
 							
-							<!-- Remover depois-->
+							<!-- Remover depois
 							<label id="txtboxgeral" for="Senha"> Senha Criptografada: </label>
 							<input type="text" size="30" id="Senha" name="Senha" value='<?php echo $_SESSION['UsuarioSenha']; ?>' disabled><br>
-							
+							-->
 							<label id="txtboxgeral" for="Nome"> Nome: </label>
 							<input type="text" size="30" id="nNome" name="nNome" value='<?php echo $_SESSION['UsuarioNome']; ?>'>
 							<label id="txtboxgeral" for="Sobrenome"> Sobrenome: </label>

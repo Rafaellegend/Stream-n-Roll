@@ -139,7 +139,7 @@
 				
 				//Redireciona o usuário
 				//header("Location: ?page=mesa"); exit;
-				echo "<script>window.location.href = '?page=tabletop';</script>";
+				echo "<script>window.location.href = '?page=ddsheet';</script>";
 				}
 			
 			//Finalizando
@@ -155,21 +155,10 @@
 					
 					$TseMesa = "SELECT `id_Mesa`, `nomeMesa`, `codigoMesa` , `sistema`, `descricao`, DATE_FORMAT(`dataCriacao`, '%d %m %Y'), `max_Players`, `id_User` FROM mesa WHERE codigoMesa = '$code'";
 					$TmesaSelect = sqlquery($TseMesa);
-										
-					$row_TMesaS = $TmesaSelect->rowCount();
 					
-					$rowTMS = $TmesaSelect->fetch(PDO::FETCH_ASSOC);
-					
-					// Salva os dados na sessão após a criação
-						$_SESSION['MesaID'] = $rowTMS['id_Mesa'];
-						$_SESSION['MesaNome'] = $rowTMS['nomeMesa'];
-						$_SESSION['MesaCodigo'] = $rowTMS['codigoMesa'];
-						$_SESSION['MesaSistema'] = $rowTMS['sistema'];
-						$_SESSION['MesaDescricao'] = $rowTMS['descricao'];
-						$_SESSION['MesaData'] = $rowTMS['dataCriacao'];
-						$_SESSION['MesaJogadores'] = $rowTMS['max_Players'];
-						$_SESSION['MesaDono'] = $rowTMS['id_User'];
-						
+						//Redireciona o usuário
+								//header("Location: ?page=mesa"); exit;
+								echo "<script>window.location.href = '?page=ddsheet';</script>";
 						
 						if ($tempuser != null){
 						//Email Aleatorio
@@ -226,9 +215,7 @@
 								$_SESSION['UsuarioEmail'] = $rowCS['email'];
 								$_SESSION['UsuarioNivel'] = $rowTemp['tipo'];
 								
-								//Redireciona o usuário
-								//header("Location: ?page=mesa"); exit;
-								echo "<script>window.location.href = '?page=tabletop';</script>";
+								
 								
 								}
 						}
