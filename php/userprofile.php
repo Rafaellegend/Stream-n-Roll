@@ -63,13 +63,16 @@
 		$i = 1;
 		if(!isset($result)){}else{
 		foreach($result as list($item)){
+			if($item['creator'] == $_SESSION['UsuarioUsername']){$role = 'mestre'; }else{$role = 'jogador';}
 			echo '<div class="Pbmesas" id="mx'.$i.'">
 				<input type="text" id="m'.$i.'picture" value="https://s3.amazonaws.com/files.d20.io/images/205057049/3z-SsNxVAaC0hWcApkjvKQ/max.png?1614639154364" hidden>
+				<input type="text" id="m'.$i.'id" value="'.$item['id'].'" hidden>
 				<input type="text" id="m'.$i.'title" value="'.$item['nome'].'" hidden>
 				<input type="text" id="m'.$i.'creator" value="'.$item['creator'].'" hidden>
 				<input type="text" id="m'.$i.'desc" value="'.$item['desc'].'" hidden>
 				<input type="text" id="m'.$i.'users" value="'.$item['max'].'" hidden>
 				<input type="text" id="m'.$i.'data" value="'.$item['data'].'" hidden>
+				<input type="text" id="m'.$i.'role" value="'.$role.'" hidden>
 				<div class="Pbminfo" onclick="changedesc('.$i.');opendesc()">
 					<p class="Pbmtitle">'.$item['nome'].'</p>
 					<p class="Pbmcreator">Criado por: '.$item['creator'].'</p>
@@ -81,12 +84,14 @@
 					</svg>
 					6
 					</P>
+					<a id="Pbhref" onclick="sendmesainfo('.$item['id'].')">
 					<button class="Pbmenter">
 						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
 							<path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
 							<path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
 						</svg>
 					</button>
+					</a>
 				</div>
 			</div>';
 			$i++;
@@ -95,9 +100,10 @@
 		return;
 	}
 ?>
+<script src="js/functions.js" type="text/javascript"></script>
 <script>
 window.onload = function() {
-	fontresize(".Pbmtitle")
+	fontresize(".Pbmtitle");
 }
 function fontresize(w){
 	if ( $(w).get(0).scrollHeight > $(w).height() ) {
@@ -109,12 +115,22 @@ function fontresize(w){
 }
 
 function changedesc(n){
+	if(document.getElementById('m'+n+'role').value == 'jogador'){
+		var ele = document.getElementsByClassName("mdlt");
+		ele[0].style.visibility = "hidden";
+		
+		document.getElementById('menthref').href = "?page=ddsheet";
+		document.getElementById('Pbhref').href = "?page=ddsheet";
+	}else{
+		document.getElementById('Pbhref').href = "?page=tabletop";
+		document.getElementById('menthref').href = "?page=tabletop";
+	}
 	var pic = document.getElementById('m'+n+'picture').value;
 	var title = document.getElementById('m'+n+'title').value;
 	var creator = document.getElementById('m'+n+'creator').value;
 	var desc = document.getElementById('m'+n+'desc').value;
 	var users = document.getElementById('m'+n+'users').value;
-	var data = document.getElementById('m'+n+'data').value;
+	var data = document.getElementById('m'+n+'data').value.replace(/ /gi,'/' );
 							
 	document.getElementById('imgmesa').style.backgroundImage = "url('"+pic+"'),url('img/degrade.png')";
 	document.getElementById('mtitle').textContent = title;
@@ -122,6 +138,7 @@ function changedesc(n){
 	document.getElementById('mdesc').textContent = desc;
 	document.getElementById('musers').textContent = users;
 	document.getElementById('mcreated').textContent = data;
+	document.getElementById('menthref').setAttribute("onclick", "sendmesainfo("+n+")");
 	fontresize('#mtitle');
 }
 var descopen = false;
@@ -143,6 +160,15 @@ function opendesc(){
 		document.getElementById('clickbg').style.visibility = "hidden";
 		descopen = false;							
 	};
+}
+function sendmesainfo(n){
+	setCookie('idMesa',document.getElementById('m'+n+'id').value,25);
+	setCookie('NomeMesa',document.getElementById('m'+n+'title').value,25);
+	setCookie('criadorMesa',document.getElementById('m'+n+'creator').value,25);
+	setCookie('descMesa',document.getElementById('m'+n+'desc').value,25);
+	setCookie('maxMesa',document.getElementById('m'+n+'users').value,25);
+	setCookie('dataMesa',document.getElementById('m'+n+'data').value,25);
+	console.log('enviado os cookie')
 }
 </script>
 
@@ -328,13 +354,16 @@ function opendesc(){
 		</div>
 		<div id="mdesc" class="txtbreak"></div>
 		<div class="mdescbtn">
-		<button class="ment">
-			<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
-				<path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
-				<path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-			</svg>			
-			Entrar na Sala
-		</button>
+		<a href='#' id='menthref'>
+			<button class="ment" id='mentbnt'>
+				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+					<path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+					<path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+				</svg>			
+				Entrar na Sala
+			</button>
+		</a>
+		<a href='#' id='mdlthref'>
 		<button class="mdlt">
 			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
 				<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
@@ -343,6 +372,6 @@ function opendesc(){
 			Deletar
 			</button>
 		</div>
-		
+		</a>
 	</div>
  </div>

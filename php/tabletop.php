@@ -2,11 +2,31 @@
 <script src="js/marked.min.js"></script>
 <script>
 $(document).ready(function(){
-	$('form').submit(function(e){
+	loadmesa();
+	$('#mesa').submit(function(e){
 		e.preventDefault();
+		
+		$.post('./?page=submit',{
+			action: 'mesa',
+			systemaMesa: $('#system').val(),
+			maxMesa: $('#maxp').val(),
+			nomeMesa: $('#nomemesa').val(),
+			descMesa: $('#desc').val(),
+			mesa: getCookie('idMesa')
+		});
 	})
 })
+
+
+		
 var theme = [];
+function loadmesa(){
+	document.getElementById('creator').value = getCookie('criadorMesa');
+	document.getElementById('nomemesa').value = getCookie('NomeMesa');
+	document.getElementById('desc').value = getCookie('descMesa');
+	document.getElementById('maxp').value = getCookie('maxMesa');
+	document.getElementById('created').value = getCookie('dataMesa').replace(/ /gi,'/' );
+}
 function gerarurl(){
 	var createdurl = "http://localhost:8030/"
 	var border = $('#mborder option:selected').val();console.log(border);
@@ -21,8 +41,8 @@ function gerarurl(){
 	}else{
 		var view = 'player';
 	}
-	var createdurl = createdurl+"Stream-n-Roll/?page=stream&border="+border+"&bg="+background+"&players=8&view="+view+"&portraits="+portrait;
-	console.log(createdurl);
+	var createdurl = createdurl+"Stream-n-Roll/?page=stream&idmesa="+getCookie('idMesa')+"&border="+border+"&bg="+background+"&players=8&view="+view+"&portraits="+portrait;
+	Testandoaq(createdurl);
 }
 	function mark(){
 		document.getElementById('preview').innerHTML =
@@ -44,9 +64,34 @@ function gerarurl(){
 			preview = 'off';
 		}
 	}
-
+	var urlshow = false;
+	function Testandoaq(url){
+		console.log(urlshow);
+		if(urlshow == false){
+			console.log("urlshow = true");
+			console.log("url = "+url);
+			document.getElementById('tutourl').value = url;
+			document.getElementById('tutobg').style.visibility = "visible";
+			document.getElementById('tutostream').style.visibility = "visible";
+			urlshow = true;
+		}else if(urlshow == true){
+			document.getElementById('tutobg').style.visibility = "hidden";
+			document.getElementById('tutostream').style.visibility = "hidden";
+			console.log("urlshow = false");
+			urlshow = false;
+		}
+		
+	}
+	
+	function sendtoclip(id){
+		var copyText = document.getElementById(id);
+		copyText.select();
+		copyText.setSelectionRange(0, 99999); 
+		document.execCommand("copy");
+		alert("Link Copiado");
+	}
 </script>
-<form>
+<form id="mesa">
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-6 description">
@@ -133,12 +178,12 @@ function gerarurl(){
 			<tbody>
 				<tr>
 					<th scope="row">Criador</th>
-					<td><input type="text" class="tableinputtext" value="Default" name="creator" readonly></td>
+					<td><input type="text" class="tableinputtext" value="Default" id="creator" name="creator" readonly></td>
 				</tr>
 				<tr>
 					<th scope="row">Sistema</th>
 					<td>
-						<select name="system" id="mbackground" class="form-control">
+						<select name="system" id="system" class="form-control" >
 							<option value="dnd5e">D&D 5e</option>
 						</select>
 					</td>
@@ -146,7 +191,7 @@ function gerarurl(){
 				<tr>
 					<th scope="row">Max Players</th>
 					<td>
-						<select name="maxp" id="mbackground" class="form-control">
+						<select name="maxp" id="maxp" class="form-control">
 							<option value="6">6</option>
 							<option value="8">8</option>
 						</select>
@@ -154,7 +199,7 @@ function gerarurl(){
 				</tr>
 				<tr>
 					<th scope="row">Data de Criação</th>
-					<td><input type="text" class="tableinputtext" value="xx/xx/xxxx" name="created" readonly></td>
+					<td><input type="text" class="tableinputtext" value="xx/xx/xxxx" name="created" id="created" readonly></td>
 				</tr>
 			</tbody>
 			
@@ -207,13 +252,84 @@ function gerarurl(){
 				</tr>
 			</tbody>
 		</table>
-		
-		
-		
-		
-		
-			
 		</div>
 	</div>
 </div>
 </form>
+<div id="tutobg" onclick="Testandoaq('')"></div>
+<div class="tutostream" id="tutostream">
+	<a class="exit" onclick="Testandoaq('')">x</a>
+	<h3> Como utilizar</h3>
+	<input type="text" id="tutourl" readonly>
+	<button onclick="sendtoclip('tutourl')">copiar</button>
+	<p>
+		1º Copie o link acima.<br>
+		2º Abra o software de trasmissão a sua escolha. Caso não possuas, recomendamos <a href='https://obsproject.com/pt-br/download'>Open Broadcast Software(OBS)</a>.<br>
+		3º Crie um objeto de navegador, e coloque o link copiado, certifique-se de colocar a altura em 1080px e a largura em 1920px.<br>
+
+	</p>
+</div>
+<style>
+#tutobg{
+	width:100%;
+	height:100%;
+	position:fixed;
+	left:0;
+	top:0;
+	background-color:black;
+	opacity:10%;
+	visibility: hidden;
+}
+.tutostream{
+	width:500px;
+	height:300px;
+	position:fixed;
+	top:28%;
+	left:30%;
+	border:2px solid #adb5bd;
+	border-radius:10px;
+	background-color:white;
+	padding:20px;
+	visibility: hidden;
+}
+.tutostream h3{
+	width:100%;
+	text-align:center;
+	margin-top:-10px;
+	margin-bottom:20px;
+}
+.tutostream input{
+	border:1px solid #adb5bd;
+	border-radius:5px;
+	width:79.5%;
+	height:40px;
+	margin-right:20px;
+}
+.tutostream button{
+	border:1px solid #adb5bd;
+	border-radius:5px;
+	width:15%;
+	height:40px;
+}
+.tutostream p{
+	position:relative;
+	top:20px;
+	padding-left:10px;
+	line-height:1.4;
+	font-weight:bold;
+	height:60%;
+	overflow-y:auto;
+	border: 1px solid transparente;
+	border-radius:5px;
+}
+.tutostream .exit{
+	position:relative;
+	top:10px;
+	left:470px;
+	margin:-30px;
+	color:black;
+	font-size:30px;
+	font-family:monospace;
+	display:block;
+}
+</style>

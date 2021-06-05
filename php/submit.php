@@ -6,11 +6,16 @@ error_reporting(E_ALL);
 	include_once('php/functions.php');
 	$result = array();
 //Geral
-	$mesa = "1";//isset($_POST['mesa']) ? $_POST['mesa'] :null;
+	$mesa = isset($_POST['mesa']) ? $_POST['mesa'] :null;
 	$action = isset($_POST['action']) ? $_POST['action'] :null;
 	$from = "1";//isset($_POST['from']) ? $_POST['from'] :null;
 //Chat
 	$message = isset($_POST['message']) ? $_POST['message'] :null;
+//Mesa
+	$nomeMesa = isset($_POST['nomeMesa']) ? $_POST['nomeMesa'] :null;
+	$maxMesa = isset($_POST['maxMesa']) ? $_POST['maxMesa'] :null;
+	$descMesa = isset($_POST['descMesa']) ? $_POST['descMesa'] :null;
+	$systemaMesa = isset($_POST['systemaMesa']) ? $_POST['systemaMesa'] :null;
 if($action == 'sheet'){
 //Ficha	
   //src da foto
@@ -391,6 +396,10 @@ if($action == 'sheet'){
 					}
 				}
 			}
+			break;
+			case 'mesa':
+				$sql="UPDATE `mesa` SET `nomeMesa`= '$nomeMesa', `sistema`='$systemaMesa', `descricao`='$descMesa', `max_Players`= '$maxMesa' WHERE `id_Mesa` = '$mesa'";
+				$result['send_status'] = sqlquery($sql);
 			break;
 	}
 		$start = isset($_GET['start']) ? intval($_GET['start']) : 0;
