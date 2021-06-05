@@ -79,11 +79,13 @@ function loadmesa(){
 	document.getElementById('desc').value = getCookie('descMesa');
 	document.getElementById('maxp').value = getCookie('maxMesa');
 	document.getElementById('created').value = getCookie('dataMesa').replace(/ /gi,'/' );
+	document.getElementById('code').value = getCookie('codeMesa');
 }
 function gerarurl(){
 	var createdurl = "http://localhost:8030/"
-	var border = $('#mborder option:selected').val();console.log(border);
-	var background = $('#mbackground option:selected').val();console.log(background);
+	var border = $('#mborder option:selected').val();
+	var background = $('#mbackground option:selected').val();
+	var maxplay = $('#maxp option:selected').val();
 	if($('#mportraits').prop('checked')){
 		var portrait = 'on';
 	}else{
@@ -94,7 +96,7 @@ function gerarurl(){
 	}else{
 		var view = 'player';
 	}
-	var createdurl = createdurl+"Stream-n-Roll/?page=stream&idmesa="+getCookie('idMesa')+"&border="+border+"&bg="+background+"&players=8&view="+view+"&portraits="+portrait;
+	var createdurl = createdurl+"Stream-n-Roll/?page=stream&idmesa="+getCookie('idMesa')+"&border="+border+"&bg="+background+"&players="+maxplay+"&view="+view+"&portraits="+portrait;
 	Testandoaq(createdurl);
 }
 	function mark(){
@@ -229,6 +231,10 @@ function gerarurl(){
 				</tr>
 			</thead>
 			<tbody>
+				<tr>
+					<th scope="row">Codigo da Mesa</th>
+					<td><input type="text" class="tableinputtext" value="Default" id="code" name="code" readonly></td>
+				</tr>
 				<tr>
 					<th scope="row">Criador</th>
 					<td><input type="text" class="tableinputtext" value="Default" id="creator" name="creator" readonly></td>

@@ -1,9 +1,13 @@
 var magsarr = [];
 $(document).ready(function(){
-			loadSheet();
+	var start = 0;
+	var mesa = getCookie('idMesa');
+	var from = getCookie('idUser');
+		loadSheet();
 			console.log(
 				'portrait:'+$('#portrait').attr('src') 
 			);
+			console.log(getCookie('idMesa'));
 			$('#formsheet').submit(function(e){
 				console.log('foi enviado');
 				var action = 'sheet';
@@ -11,9 +15,10 @@ $(document).ready(function(){
 				for(n = 0; n < 10; n++){
 					magsarr[n] = (document.getElementById("list"+n).childElementCount /3)
 				}
-				
-				console.log('Array:'+magsarr[0]);
 				$.post('./?page=submit', {
+					//Informações importantes
+					from: from,
+					mesa: mesa,
 					//Ação do submit
 					action: 'sheet',
 					//src da foto
