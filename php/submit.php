@@ -6,10 +6,12 @@ error_reporting(E_ALL);
 	include_once('php/functions.php');
 	$result = array();
 //Geral
+	if(isset($_GET['mesa'])){$mesa = $_GET['mesa'];}else{
 	$mesa = isset($_SESSION['idMesa']) ? $_SESSION['idMesa'] :null;
+	};
 	//var_dump($_SESSION['idMesa']);
 	$action = isset($_POST['action']) ? $_POST['action'] :null;
-	$from = isset($_SESSION['UsuarioID']) ? $_SESSION['UsuarioID'] :null;
+	$from =  isset($_SESSION['UsuarioID']) ? $_SESSION['UsuarioID'] :null;
 //Chat
 	$message = isset($_POST['message']) ? $_POST['message'] :null;
 //Mesa

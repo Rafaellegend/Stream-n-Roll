@@ -122,8 +122,8 @@ function chatload(to){
 		console.log('pnum'+pnum+' type'+type)
 		for(i = 1; i <= pnum; i++){
 			addelement('lplayers',i);
-			playatrb(i,'pname',"Default");
-			playatrb(i,'php',"<p>atl/max</p>");
+			playatrb(i,'pname',"Desconhecido");
+			playatrb(i,'php',"<p>0/0</p>");
 			playatrb(i,'pdados',"<p id='p"+i+"dice'>20</p>");
 		}
 		playercss(pnum,type);
@@ -454,6 +454,10 @@ function chatload(to){
 						elecls[0].style.width = '280px';
 						elecls[0].style.height = '640px';
 						elecls[0].style.visibility = 'hidden';
+						
+						//fundo
+						var elecls = document.getElementsByClassName('overlay');
+						elecls[0].style.backgroundImage = 'url(./img/temas/fundos/map6cidadeflutuante.png)';
 					break;
 					case 8:
 						var vau = 630;
@@ -559,7 +563,11 @@ function chatload(to){
 						elecls[0].style.width = '280px';
 						elecls[0].style.height = '640px';
 						elecls[0].style.visibility = 'hidden';
-
+						
+						//fundo
+						var elecls = document.getElementsByClassName('overlay');
+						elecls[0].style.backgroundImage = 'url(./img/temas/fundos/map8cidadeflutuante.png)';
+						
 					break;
 				}
 			break;
@@ -665,6 +673,10 @@ function chatload(to){
 						elecls[0].style.width = '280px';
 						elecls[0].style.height = '640px';
 						elecls[0].style.visibility = 'hidden';
+						
+						//fundo
+						var elecls = document.getElementsByClassName('overlay');
+						elecls[0].style.backgroundImage = 'url(./img/temas/fundos/player6cidadeflutuante.png)';
 					break;
 					case 8:
 						var vau = 510;
@@ -766,7 +778,10 @@ function chatload(to){
 						elecls[0].style.width = '280px';
 						elecls[0].style.height = '640px';
 						elecls[0].style.visibility = 'hidden';
-
+						
+						//fundo
+						var elecls = document.getElementsByClassName('overlay');
+						elecls[0].style.backgroundImage = 'url(./img/temas/fundos/player8cidadeflutuante.png)';
 					break;
 				}
 			break;

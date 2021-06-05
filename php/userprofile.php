@@ -69,7 +69,7 @@
 				<input type="text" id="m'.$i.'id" value="'.$item['id'].'" hidden>
 				<input type="text" id="m'.$i.'title" value="'.$item['nome'].'" hidden>
 				<input type="text" id="m'.$i.'creator" value="'.$item['creator'].'" hidden>
-				<input type="text" id="m'.$i.'desc" value="'.$item['desc'].'" hidden>
+				<textarea id="m'.$i.'desc" hidden>'.$item['desc'].'</textarea>
 				<input type="text" id="m'.$i.'users" value="'.$item['max'].'" hidden>
 				<input type="text" id="m'.$i.'data" value="'.$item['data'].'" hidden>
 				<input type="text" id="m'.$i.'code" value="'.$item['codigo'].'" hidden>

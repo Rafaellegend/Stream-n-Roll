@@ -15,7 +15,7 @@ $(document).ready(function(){
 	receivedata();		
 })	
 function receivedata(){
-	$.get('./?page=submit' + '&load=stream'+ '&mesa'+mesa, function(result){		
+	$.get('./?page=submit' + '&load=stream'+ '&mesa='+mesa, function(result){		
 		if(result.charinfo){
 			console.log(result.charinfo);
 			
@@ -33,7 +33,7 @@ function receivedata(){
 					}
 					$("#p"+streamnmesa).children(".pname").text(`${item.nome}`);
 					var hpattp = Math.floor(item.vida_Atual) + Math.floor(item.vida_Temporaria);
-					$("#p"+streamnmesa).children(".php").text(hpattp+'/'+ item.vida_Maxima);
+					$("#p"+streamnmesa).children(".php").children("p").text(hpattp+'/'+ item.vida_Maxima);
 					
 				}
 			})
@@ -98,7 +98,7 @@ function receivedata(){
 	width:1920px;
 	height:1080px;
 	//padding:50px; 
-	background-color:#ff00ff;
+	//background-color:#ff00ff;
 }
 .bigscreen{
 	float:left;
@@ -149,17 +149,19 @@ function receivedata(){
 	background-size: contain;
 	background-position: center;
 	position:relative;
+	visibility:hidden;
 }
 .mdados p{
 	position:relative;
 	text-align:center;
-	transition:0.3s;	
+	transition:0.3s;
+	
 }
 .player{
 	position:absolute;
 	top:700px;
 	transition:0.3s;
-	background-color:#00ff00;
+	//background-color:#00ff00;
 }
 .pwebcam{
 	width:280px;
@@ -182,6 +184,8 @@ function receivedata(){
 }
 .pname{
 	font-size:30px;
+	font-weight:bold;
+	font-family: 'Metamorphous',monospace;
 	margin-top:-30px;
 	padding:0 6px;
 	position:relative;
@@ -196,6 +200,13 @@ function receivedata(){
 	margin-top:-30px;
 	border-top:6px solid black;
 	border-image:url('./img/temas/bordas/stone.png')30 round;;
+}
+.php p{
+	line-height:1;
+	font-size:30px;
+	font-weight:bold;
+	font-family: monospace;
+	text-align:center;
 }
 .pdados{
 	background-image:url('./img/diceb.svg');
