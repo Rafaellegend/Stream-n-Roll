@@ -137,6 +137,13 @@
 				$TseMesa = "SELECT `id_Mesa`, `nomeMesa`, `codigoMesa` , `sistema`, `descricao`, DATE_FORMAT(`dataCriacao`, '%d %m %Y'), `max_Players`, `id_User` FROM mesa WHERE codigoMesa = '$code'";
 				$TmesaSelect = sqlquery($TseMesa);
 				
+				$row_TMesaS = $TmesaSelect->rowCount();
+					
+					$rowTMS = $TmesaSelect->fetch(PDO::FETCH_ASSOC);
+					
+					// Salva os dados na sessão após a criação
+						$_SESSION['MesaID'] = $rowTMS['id_Mesa'];
+				
 				//Redireciona o usuário
 				//header("Location: ?page=mesa"); exit;
 				echo "<script>window.location.href = '?page=ddsheet';</script>";
@@ -155,6 +162,13 @@
 					
 					$TseMesa = "SELECT `id_Mesa`, `nomeMesa`, `codigoMesa` , `sistema`, `descricao`, DATE_FORMAT(`dataCriacao`, '%d %m %Y'), `max_Players`, `id_User` FROM mesa WHERE codigoMesa = '$code'";
 					$TmesaSelect = sqlquery($TseMesa);
+					
+					$row_TMesaS = $TmesaSelect->rowCount();
+					
+					$rowTMS = $TmesaSelect->fetch(PDO::FETCH_ASSOC);
+					
+					// Salva os dados na sessão após a criação
+						$_SESSION['MesaID'] = $rowTMS['id_Mesa'];
 					
 						//Redireciona o usuário
 								//header("Location: ?page=mesa"); exit;
