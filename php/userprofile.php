@@ -226,6 +226,19 @@ function sendmesainfo(n){
 		</div>
 
 		
+		<div class="col-md-12">
+			<h3>Entre em uma mesa utilizando o código:</h3>
+				<form method="post" action="?page=open" id="acessomesa" name="acessomesa">
+				<input type="text" name="codMesaOn" id="codMesaOn"></input>
+				<input type="submit" value="Entrar na Mesa">
+				<!-- Input Case -->
+				<input type="text" name="start" value="AcessoMesa" hidden>
+				</form>
+		</div>
+
+	</div>
+	
+	<div class="row">
 
 		
 		<div class="col-md-12">
