@@ -393,7 +393,7 @@ function sendmesainfo(n){
 			</svg>
 			Deletar
 			</button>
-		</div>
 		</a>
+		</div>		
 	</div>
  </div>
