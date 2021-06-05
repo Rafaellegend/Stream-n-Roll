@@ -1064,6 +1064,7 @@
 	margin-top:12px;
 	height:400px;
 	overflow-y: auto;
+	white-space: pre-wrap;
 }
 #preview{
 	height:0px;
@@ -1088,7 +1089,6 @@
 	border:2px solid #adb5bd;
 	border-radius:5px;
 	color:gray;
-	white-space: pre-wrap;
 }
 #markdownhelp{
 	margin-top:10px;

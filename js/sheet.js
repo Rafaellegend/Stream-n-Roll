@@ -239,7 +239,7 @@ function loadSheet(){
 		if(result.sheet){
 			result.sheet.forEach(item =>{
 			start = item.id;
-				if(item.id_User == 1){
+				if(item.id_User == from){
 //Info importantes
 					$('#idficha').val(`${item.id_Ficha}`); // Id da ficha
 					$('#nmesa').val(`${item.num_Mesa}`); // Numero na mesa

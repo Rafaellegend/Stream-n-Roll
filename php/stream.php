@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="css/overlay.css">
 <script src="js/functions.js" type="text/javascript"></script>
 <script>
-var bg = <?php echo '"'.$_GET['bg'].'"'; ?>, border = <?php echo '"'.$_GET['border'].'"'; ?>, players = <?php echo $_GET['players']; ?>, show = <?php echo '"'.$_GET['view'].'"'; ?>, portraits= <?php echo '"'.$_GET['portraits'].'"'; ?>;
+var mesa=<?php echo '"'.$_GET['idmesa'].'"'; ?>,bg = <?php echo '"'.$_GET['bg'].'"'; ?>, border = <?php echo '"'.$_GET['border'].'"'; ?>, players = <?php echo $_GET['players']; ?>, show = <?php echo '"'.$_GET['view'].'"'; ?>, portraits= <?php echo '"'.$_GET['portraits'].'"'; ?>;
 console.log('bg='+bg+' players='+players+' view='+show+' portraits='+portraits);
 $(document).ready(function(){
 	creatplayer(players,show);
@@ -15,7 +15,7 @@ $(document).ready(function(){
 	receivedata();		
 })	
 function receivedata(){
-	$.get('./?page=submit' + '&load=stream', function(result){		
+	$.get('./?page=submit' + '&load=stream'+ '&mesa'+mesa, function(result){		
 		if(result.charinfo){
 			console.log(result.charinfo);
 			
