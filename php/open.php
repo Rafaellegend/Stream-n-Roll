@@ -129,6 +129,22 @@
 			//Finalizando
 			break;
 			
+			case "AcessoMesa":
+			
+				$code = isset($_POST['codMesaOn']) ? $_POST['codMesaOn'] :null;
+				
+				if ($code != null){
+				$TseMesa = "SELECT `id_Mesa`, `nomeMesa`, `codigoMesa` , `sistema`, `descricao`, DATE_FORMAT(`dataCriacao`, '%d %m %Y'), `max_Players`, `id_User` FROM mesa WHERE codigoMesa = '$code'";
+				$TmesaSelect = sqlquery($TseMesa);
+				
+				//Redireciona o usuário
+				//header("Location: ?page=mesa"); exit;
+				echo "<script>window.location.href = '?page=tabletop';</script>";
+				}
+			
+			//Finalizando
+			break;
+			
 			//Realização do Acesso Direto
 			case "AcessoDireto":
 				
@@ -212,7 +228,7 @@
 								
 								//Redireciona o usuário
 								//header("Location: ?page=mesa"); exit;
-								echo "<script>window.location.href = '?page=mesa';</script>";
+								echo "<script>window.location.href = '?page=tabletop';</script>";
 								
 								}
 						}
@@ -488,6 +504,9 @@
 						//Aviso de Usuário Deletado
 						echo "<script>alert('Usuário deletado com Sucesso');</script>";
 						
+						session_unset();
+						session_destroy(); 
+						
 					}
 				
 				//Finalizando
@@ -543,8 +562,8 @@
 						$_SESSION['MesaDono'] = $rowMS['id_User'];
 					
 					//Redireciona o usuário
-					//header("Location: ?page=mesa"); exit;
-					echo "<script>window.location.href = '?page=mesa';</script>";
+					//header("Location: ?page=tabletop"); exit;
+					echo "<script>window.location.href = '?page=tabletop';</script>";
 						
 					//Aviso de Registro
 					echo "<script>alert('Mesa criada com sucesso');</script>";

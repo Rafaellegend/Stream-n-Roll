@@ -1,3 +1,29 @@
+<?php
+
+	/*
+	
+	//Valores
+	$Sstatus = isset($_SESSION['STATUS']) ? $_SESSION['STATUS'] :null;
+	$Univel = isset($_SESSION['UsuarioNivel']) ? $_SESSION['UsuarioNivel'] :null;
+	
+	$status = 'ON';
+	
+	if ($Sstatus == $status){
+		//Redireciona o Usuário
+		//header("Location: ?page=userprofile");
+		echo "<script>window.location.href = '?page=userprofile';</script>";
+		
+	}else{
+		//Redireciona o Usuário
+		//header("Location: ?page=main");
+		echo "<script>window.location.href = '?page=main';</script>";
+	}
+	
+	*/
+
+?>
+
+
 <h1 id="titulo1"> Stream & Roll -  Seu coração é livre, tenha coragem de segui-lo...  </h1>
 <!-- Caixa do Login -->
 <div class="container" id="clogin">

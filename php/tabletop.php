@@ -1,3 +1,56 @@
+<?php
+
+//Temporario Create
+	$nivel = $_SESSION['UsuarioNivel'];
+	$TEMP = 2;
+	if ($nivel == $TEMP){
+	echo '<a href="?page=register"><button id="adminbtn">Sair da Mesa</button></a>	
+			<style>
+				#adminbtn{
+					position:fixed;
+					left:0;
+					bottom:0;
+					z-index:9998;
+				}
+			</style>';
+	}else if ($nivel != $TEMP){
+			'<script>
+				admshow = false;
+				function adm(){
+					if(admshow == false){			
+						document.getElementById("adminnav").style.visibility = "visible";
+						admshow = true;
+					}					
+			</script>';
+	}
+	
+	//Users
+	$nivel = $_SESSION['UsuarioNivel'];
+	$USERS = 1;
+	if ($nivel <= $USERS){
+	echo '<a href="?page=userprofile"><button id="adminbtn">Sair da Mesa</button></a>	
+			<style>
+				#adminbtn{
+					position:fixed;
+					left:0;
+					bottom:0;
+					z-index:9998;
+				}
+			</style>';
+	}else if ($nivel == $TEMP){
+			'<script>
+				admshow = false;
+				function adm(){
+					if(admshow == false){			
+						document.getElementById("adminnav").style.visibility = "visible";
+						admshow = true;
+					}					
+			</script>';
+	}
+
+?>
+
+
 <script src="js/functions.js" type="text/javascript"></script>
 <script src="js/marked.min.js"></script>
 <script>

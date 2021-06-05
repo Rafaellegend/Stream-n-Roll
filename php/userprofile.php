@@ -224,9 +224,22 @@ function sendmesainfo(n){
 			<h3>Crie sua mesa</h3>
 			<a href="?page=csession"><button>Criar</button></a>
 		</div>
+
+		
+		<div class="col-md-12">
+			<h3>Entre em uma mesa utilizando o código:</h3>
+				<form method="post" action="?page=open" id="acessomesa" name="acessomesa">
+				<input type="text" name="codMesaOn" id="codMesaOn"></input>
+				<input type="submit" value="Entrar na Mesa">
+				<!-- Input Case -->
+				<input type="text" name="start" value="AcessoMesa" hidden>
+				</form>
+		</div>
+
 	</div>
 	
 	<div class="row">
+
 		
 		<div class="col-md-12">
 			<h3>Suas mesas</h3>
