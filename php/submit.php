@@ -7,11 +7,17 @@ error_reporting(E_ALL);
 	$result = array();
 //Geral
 	if(isset($_GET['mesa'])){$mesa = $_GET['mesa'];}else{
-	$mesa = isset($_SESSION['idMesa']) ? $_SESSION['idMesa'] :null;
+		$mesa = isset($_SESSION['idMesa']) ? $_SESSION['idMesa'] :null;
 	};
 	//var_dump($_SESSION['idMesa']);
 	$action = isset($_POST['action']) ? $_POST['action'] :null;
-	$from =  isset($_SESSION['UsuarioID']) ? $_SESSION['UsuarioID'] :null;
+	if(isset($_GET['banana'])){
+		$from = $_GET['banana'];
+	}else if(isset($_SESSION['UsuarioID'])){
+		$from = $_SESSION['UsuarioID'];
+	}else{
+	$from = isset($_POST['from']) ? $_POST['from'] :null;
+	}
 //Chat
 	$message = isset($_POST['message']) ? $_POST['message'] :null;
 //Mesa

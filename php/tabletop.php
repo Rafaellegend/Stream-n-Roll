@@ -96,7 +96,9 @@ function gerarurl(){
 	}else{
 		var view = 'player';
 	}
-	var createdurl = createdurl+"Stream-n-Roll/?page=stream&idmesa="+getCookie('idMesa')+"&border="+border+"&bg="+background+"&players="+maxplay+"&view="+view+"&portraits="+portrait;
+	var banana= getCookie('idUser');
+    //console.log(getCookie('idUser'));
+	var createdurl = createdurl+"Stream-n-Roll/?page=stream&idmesa="+getCookie('idMesa')+"&border="+border+"&bg="+background+"&players="+maxplay+"&view="+view+"&portraits="+portrait+"&banana="+banana;
 	Testandoaq(createdurl);
 }
 	function mark(){
