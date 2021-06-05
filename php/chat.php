@@ -6,7 +6,7 @@ var from = getCookie('idUser');
 console.log('mesa='+mesa +' from='+ from);
 		$(document).ready(function(){
 			$('[data-toggle="popover"]').popover();
-			load();
+			//load();
 			$('#chat').submit(function(e){
 				e.preventDefault();
 				$.post('./?page=submit', {

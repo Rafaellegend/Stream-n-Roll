@@ -50,16 +50,19 @@
 	// Carregar Mesa
 	function loadmesas(){
 		$user = $_SESSION['UsuarioID'];
+		//echo $user;
 		$sql= "SELECT mesa.id_Mesa AS `id`, mesa.nomeMesa AS `nome` , mesa.codigoMesa AS `codigo`, mesa.sistema AS `sitema`, mesa.descricao AS `desc`, DATE_FORMAT(mesa.dataCriacao, '%d %m %Y') AS `data`, mesa.estilo AS `tema`, mesa.max_Players AS `max`, users.username AS `creator`, ficha.id_User AS `player` FROM `mesa` 
-		INNER JOIN `users` ON mesa.id_User = users.id_User 
-		INNER JOIN `ficha` ON mesa.id_Mesa = ficha.id_Mesa 
-		WHERE ficha.id_User = $user ORDER BY mesa.dataCriacao";
+		LEFT JOIN `users` ON mesa.id_User = users.id_User 
+		LEFT JOIN `ficha` ON mesa.id_Mesa = ficha.id_Mesa 
+		WHERE ficha.id_User = $user OR mesa.id_User = $user
+		ORDER BY mesa.dataCriacao";
 		
 		$items=sqlquery($sql);
 		while($row = $items->fetch(PDO::FETCH_ASSOC)){
 				$result['mesas'][] = $row;
-				//var_dump($row);
+				
 		}
+		//var_dump($result['mesas']);
 		$i = 1;
 		if(!isset($result)){}else{
 		foreach($result as list($item)){
@@ -105,8 +108,19 @@
 <script src="js/marked.min.js"></script>
 <script>
 window.onload = function() {
-	fontresize(".Pbmtitle");
+	//fontresize(".Pbmtitle");
 }
+	setCookie('idUser',<?php echo isset($_SESSION['UsuarioID']); ?>,25);
+	setCookie('idMesa',<?php echo isset($_SESSION['MesaID']); ?>,25);
+	setCookie('nomeMesa',<?php echo isset($_SESSION['MesaNome']); ?>,25);
+	setCookie('codeMesa',<?php echo isset($_SESSION['MesaCodigo']); ?>,25);
+	setCookie('descMesa',<?php echo isset($_SESSION['MesaDescricao']); ?>,25);
+	setCookie('maxMesa',<?php echo isset($_SESSION['MesaJogadores']); ?>,25);
+	setCookie('dataMesa','xx/xx/xxxx',25);
+
+
+
+
 function fontresize(w){
 	if ( $(w).get(0).scrollHeight > $(w).height() ) {
 		var x = $(w).get(0).scrollHeight;
@@ -163,8 +177,8 @@ function opendesc(){
 		descopen = false;							
 	};
 }
+
 function sendmesainfo(n){
-	
 	setCookie('idUser',<?php echo $_SESSION['UsuarioID']; ?>,25);
 	setCookie('idMesa',document.getElementById('m'+n+'id').value,25);
 	setCookie('NomeMesa',document.getElementById('m'+n+'title').value,25);
@@ -173,7 +187,7 @@ function sendmesainfo(n){
 	setCookie('maxMesa',document.getElementById('m'+n+'users').value,25);
 	setCookie('dataMesa',document.getElementById('m'+n+'data').value,25);
 	setCookie('codeMesa',document.getElementById('m'+n+'code').value,25);
-	<?php $_SESSION['idMesa'] = "1"; ?>
+	<?php $_SESSION['idMesa'] = "<script>getCookie('idMesa')</script>"; ?>
 	console.log('enviado os cookie')
 }
 </script>
@@ -376,24 +390,24 @@ function sendmesainfo(n){
 		</div>
 		<div id="mdesc" class="txtbreak"></div>
 		<div class="mdescbtn">
-		<a href='#' id='menthref'>
-			<button class="ment" id='mentbnt'>
-				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
-					<path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
-					<path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-				</svg>			
-				Entrar na Sala
-			</button>
-		</a>
-		<a href='#' id='mdlthref'>
-		<button class="mdlt">
-			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-				<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
-				<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-			</svg>
-			Deletar
-			</button>
-		</a>
+			<a href='#' id='menthref'>
+				<button class="ment" id='mentbnt'>
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+						<path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+						<path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+					</svg>			
+					Entrar na Sala
+				</button>
+			</a>
+			<a href='#' id='mdlthref'>
+				<button class="mdlt">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+						<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+						<path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+					</svg>
+				Deletar
+				</button>
+			</a>
 		</div>		
 	</div>
  </div>

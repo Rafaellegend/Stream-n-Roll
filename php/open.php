@@ -143,10 +143,17 @@
 					
 					// Salva os dados na sessão após a criação
 						$_SESSION['MesaID'] = $rowTMS['id_Mesa'];
+						$_SESSION['MesaNome'] = $rowTMS['nomeMesa'];
+						$_SESSION['MesaCodigo'] = $rowTMS['codigoMesa'];
+						$_SESSION['MesaSistema'] = $rowTMS['sistema'];
+						$_SESSION['MesaDescricao'] = $rowTMS['descricao'];
+						$_SESSION['MesaData'] = $rowTMS['dataCriacao'];
+						$_SESSION['MesaJogadores'] = $rowTMS['max_Players'];
+						$_SESSION['MesaDono'] = $rowTMS['id_User'];
 				
 				//Redireciona o usuário
 				//header("Location: ?page=mesa"); exit;
-				echo "<script>window.location.href = '?page=ddsheet';</script>";
+				echo "<script>window.location.href = '?page=userprofile';</script>";
 				}
 			
 			//Finalizando
@@ -564,7 +571,7 @@
 					
 					//Redireciona o usuário
 					//header("Location: ?page=tabletop"); exit;
-					echo "<script>window.location.href = '?page=tabletop';</script>";
+					echo "<script>window.location.href = '?page=userprofile';</script>";
 						
 					//Aviso de Registro
 					echo "<script>alert('Mesa criada com sucesso');</script>";
