@@ -35,6 +35,9 @@
 <div class="container">
 <h4> Aqui você pode REGISTRAR sua conta temporária: </h4>
 <form method="post" action="?page=open" id="tempCadastro" name="tempCadastro">
+
+	<label for="antigoUser">Username Antigo: (Use-o para Deletar sua conta)</label>
+	<input type="text" id="antigoUser" name="antigoUser" value='<?php echo $_SESSION['UsuarioUsername']; ?>' disabled><br>
 	
 	<label for="TUsername">Username:</label>
 	<input type="text" id="TCadUsername" name="TCadUsername" value='<?php echo $_SESSION['UsuarioUsername']; ?>' required><br>
