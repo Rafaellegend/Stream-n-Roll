@@ -39,8 +39,8 @@
 	<label for="antigoUser">Username Antigo: (Use-o para Deletar sua conta)</label>
 	<input type="text" id="antigoUser" name="antigoUser" value='<?php echo $_SESSION['UsuarioUsername']; ?>' disabled><br>
 	
-	<label for="TUsername">Username:</label>
-	<input type="text" id="TCadUsername" name="TCadUsername" value='<?php echo $_SESSION['UsuarioUsername']; ?>' required><br>
+	<label for="TUsername">Seu novo Username:</label>
+	<input type="text" id="TCadUsername" name="TCadUsername" required><br>
 	
 	<label for="TPassword">Senha:</label>
 	<input type="password" id="TCadPassword" name="TCadPassword"  required><br>
@@ -95,7 +95,7 @@
 			<form method="post" action="?page=open" id="tempDelete" name="tempDelete">
 				
 				<label for="deletarUser">Insira o seu Username Temporário:</label><br>
-				<input type="text" id="UserDelete" name="UserDelete" required>
+				<input type="text" id="UserDelete" name="UserDelete" value='<?php echo $_SESSION['UsuarioUsername']; ?>' required>
 				
 				<!-- Input Case -->
 				<input type="text" name="action" value="TempDel" hidden>
