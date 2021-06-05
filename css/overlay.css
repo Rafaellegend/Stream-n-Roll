@@ -1,60 +1,180 @@
-body{
-	/*background-image: url("../img/overlay/base-01.png");*/
-	background-color: #fff;
-}
-#hostcam{
-	background-color: #05fa1f;
+#mesas{
+	transition:0.3s;
+	height:76vh;
+ }
+ .clickbg{
+	position:fixed;
+	top:0;
+	left:0;
+	display:block;
+	background-color:pink;
+	height:100%;
+	width:100%;
+	z-index:9996;
+	opacity:0;
+	visibility: hidden;
+ }
+ #infomesa{
+	position:fixed;
+	bottom:0;
+	right:0;
+	height:84.5vh;
+	width:0;
+	background-color:white;
+	z-index:9997;
+	padding:0;
+	box-shadow: -3px 0 3px #ededec;
+	//border-left: 1px solid gray;
+ }
+ #imgmesa{
+	height:150px;
+	width:300px;
+	margin:0 -10px;
+	background-image: 
+	url('http://placehold.it/300x150'), url('img/degrade.png');
+	background-repeat: no-repeat, repeat;
+	background-size: cover,contain;
+	background-blend-mode:screen;
+	box-shadow:inset 20px 0 20px -6px white;
+ }
+ .smbox{
+ }
+ .smbox p{
+	display:inline-block;
+ }
+ .mdescl{
+	font-weight:bold;
+ }
+ #mtitle{
+	width:280px;
+	height:70px;
+	font-size:35px;
+	font-weight:bold;
+	line-height:0.8;
+	overflow-y:hidden;
 	position:relative;
-	top:137px;
-	left:117px;
-}
-
-#pcam{
-	/*background-color: #05fa1f;
-	position:relative;
-	top:112px;
-	right:100px;*/
-	margin:25px;
-}
-#mview{
-	background-color: #05fa1f;
-	position:relative;
-	top:167px;
-	left:117px;
-}
-#mdice{
-	position:relative;
-	top:302px;
-	left:36px;
-}
-#players{
-	/*background-color: red;*/
-	height:884px;
-	width:1090px;
-	position:relative;
-	top:114px;
-	right:80px;
-}
-.dados{
+	bottom:40px;
+	margin-bottom:-45px;
+	text-align:center;
+ }
+ #mcreator{
+	 
+ }
+ #mcreated{
+	 
+ }
+ #muser{
+	 
+ }
+ #mdesc{
+	 overflow-y:auto;
+	 padding: 5px 10px;
+	 border-radius:10px;
+	 height:30vh;
+	 box-shadow: 0 0 3px 1px #c4c1c0;
+ }
+ .mdescbtn{
+	padding:10px 0;
+ }
+ .ment{
+	background-color:#3dac4c;
 	color:white;
-	-webkit-text-stroke-width: 3px;
--webkit-text-stroke-color: #000;
-	font-family:'Arial Rounded MT Bold', sans-serif;
+	font-size:16px;
+	border:none;
 	text-align:center;
-	width:60px;
-	height:60px;
-	font-size:50px;
-	/*background-color: pink;*/
-
-}
-.HPBar{
+	height:40px;
+	width:135px;
+	border-radius:5px;
+	float:left;
+ }
+ .mdlt{
+	background-color:#cf2d3a;
+	color:white;
+	font-size:16px;
+	border:none;
 	text-align:center;
-	font-size:20px;
-	font-weight: bold;
+	height:40px;
+	width:135px;
+	border-radius:5px;
+	float:right;
+ }
+ .Pbmesas{
+	display:inline-block;
+	background-image: url('https://i.pinimg.com/originals/de/f9/70/def97040fcbdd13ee1809d01cc46dc3f.jpg'), url('img/degrade.png');
+	background-repeat: no-repeat, repeat;
+	background-size: cover,contain;
+	background-blend-mode:screen;
+	height:180px;
+	width:250px;
+	padding:10px;
+	margin:10px;
+	border-radius:10px;
+	box-shadow: 5px 5px 3px #888888;
+	transition:0.3s;
+ }
+ .Pbmesas:hover{
+	height:185px;
+	width:255px; 
+ }
+.Pbminfo{
+	 width:250px;
+	 height:70%;
+ }
+.Pbmtitle{
+	width:230px;
+	height:75px;
+	font-size:35px;
+	font-weight:bold;
+	line-height:0.8;
+	color:#f1f1f1;
+	overflow: hidden;
+	transition:0.3s;
+	text-align:center;
+	text-shadow: 2px 2px 4px #000000;
 }
-.bar{
-	z-index: -1;
+.Pbmesas:hover .Pbmtitle{
+	width:235px;
 }
-.image-fluid{
-	max-height:100%;
+.Pbmcreator{
+	color:#222;
+	font-weight:bold;
+	font-family:monospace;
+	position:relative;
+	top:10px;	
+	transition:0.3s;
+}
+.Pbmesas:hover .Pbmcreator{
+	top:15px;
+}
+.Pbmbutton{
+	 width:230px;
+	 height:30%;
+	 padding-top:20px;
+ }
+.Pbmbutton p{
+	 display:inline;
+	 
+ }
+ .Pbmesas:hover .Pbmbutton{
+	 width:235px;
+ }
+.Pbmenter{
+	background-color:#3dac4c;
+	border:none;
+	text-align:center;
+	height:30px;
+	width:30px;
+	border-radius:5px;
+	color:white;
+	position:relative;
+	left:165px;
+	transition:0.3s;
+}
+.Pbmesas:hover .Pbmenter{
+	left:170px;
+}
+.Pbmenter svg{
+	position:relative;
+	left:-3px;
+	top:-2px;
 }

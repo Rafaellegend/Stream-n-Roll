@@ -16,7 +16,7 @@ include_once("php/head.php");
 };
 
 //header
-if($page=='stream' or $page=='chat' or $page == 'submit'){}
+if($page=='stream' or $page=='chat' or $page == 'submit' or $page=='open'){}
 else{
 include_once("php/header.php");
 };
@@ -24,8 +24,9 @@ include_once("php/header.php");
 //Criando conexão com o Banco de Dados e Verificando a conexão
 include_once("php/conection.php");
 //dbconnect();
-include_once'php/open.php';
-//Verificação da varaiavel page para redirecionamento de pagina
+
+//include_once'php/open.php';
+//verificação da varaiavel page para redirecionamento de pagina
 
 	//Menu principal
 	if($page=='main'){include_once'php/main.php';};

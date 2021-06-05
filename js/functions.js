@@ -45,6 +45,17 @@ function deleteCookie(cname){
 	var name = cname + "=";
 	document.cookie = name+"; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 }
+// Criar ID
+function makeid(length) {
+    var result           = [];
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+      result.push(characters.charAt(Math.floor(Math.random() * 
+ charactersLength)));
+   }
+   return result.join('');
+}
 //Animações de barra : AniBar(Id da tag, Posição Atual, Posição Final)
 function AniBar(eid,apos,fpos) {
 	var elem = document.getElementById(eid);   

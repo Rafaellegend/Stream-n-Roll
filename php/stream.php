@@ -1,7 +1,8 @@
+<link rel="stylesheet" href="css/overlay.css">
 <script src="js/functions.js" type="text/javascript"></script>
 <script>
-var theme = <?php echo '"'.$_GET['theme'].'"'; ?>, players = <?php echo $_GET['players']; ?>, show = <?php echo '"'.$_GET['view'].'"'; ?>, portraits= <?php echo '"'.$_GET['portraits'].'"'; ?>;
-console.log('theme='+theme+' players='+players+' view='+show+' portraits='+portraits)
+var bg = <?php echo '"'.$_GET['bg'].'"'; ?>, border = <?php echo '"'.$_GET['border'].'"'; ?>, players = <?php echo $_GET['players']; ?>, show = <?php echo '"'.$_GET['view'].'"'; ?>, portraits= <?php echo '"'.$_GET['portraits'].'"'; ?>;
+console.log('bg='+bg+' players='+players+' view='+show+' portraits='+portraits);
 $(document).ready(function(){
 	creatplayer(players,show);
 	if(portraits == 'on'){
@@ -108,8 +109,11 @@ function receivedata(){
 	left:600px;
 	width:1270px;
 	height:600px;
-	border:6px solid black;
+	border:12px solid black;
 	transition:0.3s;
+	
+	border-image:url('./img/temas/bordas/stone.png')30 round;
+	border-image-outset: 6px;
 }
 .infos{
 	position:absolute;
@@ -117,8 +121,10 @@ function receivedata(){
 	left:50px;
 	width:500px;
 	height:630px;
-	border:6px solid black;
+	border:12px solid black;
 	transition:0.3s;
+	border-image:url('./img/temas/bordas/stone.png')30 round;
+	 border-image-outset: 6px;
 }
 .master{
 	position:absolute;
@@ -129,10 +135,13 @@ function receivedata(){
 .mwebcam{
 	width:500px;
 	height:300px;
-	border:6px solid black;
+	border:12px solid black;
 	margin-right:30px;
 	z-index:9998;
-	background-color:#00ff00;
+	//background-color:#00ff00;
+	border-image:url('./img/temas/bordas/stone.png')30 round;
+	border-image-outset: 6px;
+	
 }
 .mdados{
 	background-image:url('./img/diceb.svg');
@@ -155,7 +164,10 @@ function receivedata(){
 .pwebcam{
 	width:280px;
 	height:330px;
-	border:6px solid black;
+	border:12px solid black;
+	border-image:url('./img/temas/bordas/stone.png')30 round;
+	border-image-outset: 6px;
+	box-shadow: 0 0 14px 1px #c4c1c0;
 }
 .pportrait{
 	background-image:url('./img/portrait/art1.png');
@@ -182,6 +194,8 @@ function receivedata(){
 	bottom:30px;
 	height:30px;
 	margin-top:-30px;
+	border-top:6px solid black;
+	border-image:url('./img/temas/bordas/stone.png')30 round;;
 }
 .pdados{
 	background-image:url('./img/diceb.svg');

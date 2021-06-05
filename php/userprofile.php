@@ -1,6 +1,7 @@
 <?php
 
 	//Verificação se o usuário está logado e também se pode acessar a área devido ao nível dele
+
 	$status = 'ON';
 	$nivel_necessario = 1;
 	
@@ -11,7 +12,6 @@
 		//Redireciona o Usuário
 		//header("Location: ?page=main");
 		echo "<script>window.location.href = '?page=main';</script>";
-		
 	}
 	else if ($_SESSION['UsuarioNivel'] > $nivel_necessario){
 		
@@ -47,10 +47,53 @@
 			</script>';
 	}
 	
-	/*
-	
-	*/
-	
+	// Carregar Mesa
+	function loadmesas(){
+		$user = $_SESSION['UsuarioID'];
+		$sql= "SELECT mesa.id_Mesa AS `id`, mesa.nomeMesa AS `nome` , mesa.codigoMesa AS `codigo`, mesa.sistema AS `sitema`, mesa.descricao AS `desc`, DATE_FORMAT(mesa.dataCriacao, '%d %m %Y') AS `data`, mesa.estilo AS `tema`, mesa.max_Players AS `max`, users.username AS `creator`, ficha.id_User AS `player` FROM `mesa` 
+		INNER JOIN `users` ON mesa.id_User = users.id_User 
+		INNER JOIN `ficha` ON mesa.id_Mesa = ficha.id_Mesa 
+		WHERE ficha.id_User = $user ORDER BY mesa.dataCriacao";
+		
+		$items=sqlquery($sql);
+		while($row = $items->fetch(PDO::FETCH_ASSOC)){
+				$result['mesas'][] = $row;
+				//var_dump($row);
+		}
+		$i = 1;
+		if(!isset($result)){}else{
+		foreach($result as list($item)){
+			echo '<div class="Pbmesas" id="mx'.$i.'">
+				<input type="text" id="m'.$i.'picture" value="https://s3.amazonaws.com/files.d20.io/images/205057049/3z-SsNxVAaC0hWcApkjvKQ/max.png?1614639154364" hidden>
+				<input type="text" id="m'.$i.'title" value="'.$item['nome'].'" hidden>
+				<input type="text" id="m'.$i.'creator" value="'.$item['creator'].'" hidden>
+				<input type="text" id="m'.$i.'desc" value="'.$item['desc'].'" hidden>
+				<input type="text" id="m'.$i.'users" value="'.$item['max'].'" hidden>
+				<input type="text" id="m'.$i.'data" value="'.$item['data'].'" hidden>
+				<div class="Pbminfo" onclick="changedesc('.$i.');opendesc()">
+					<p class="Pbmtitle">'.$item['nome'].'</p>
+					<p class="Pbmcreator">Criado por: '.$item['creator'].'</p>
+				</div>
+				<div class="Pbmbutton">
+					<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+						<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+					</svg>
+					6
+					</P>
+					<button class="Pbmenter">
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+							<path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+							<path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+						</svg>
+					</button>
+				</div>
+			</div>';
+			$i++;
+		} 
+		}
+		return;
+	}
 ?>
 <script>
 window.onload = function() {
@@ -71,12 +114,14 @@ function changedesc(n){
 	var creator = document.getElementById('m'+n+'creator').value;
 	var desc = document.getElementById('m'+n+'desc').value;
 	var users = document.getElementById('m'+n+'users').value;
+	var data = document.getElementById('m'+n+'data').value;
 							
 	document.getElementById('imgmesa').style.backgroundImage = "url('"+pic+"'),url('img/degrade.png')";
 	document.getElementById('mtitle').textContent = title;
 	document.getElementById('mcreator').textContent = creator;
 	document.getElementById('mdesc').textContent = desc;
 	document.getElementById('musers').textContent = users;
+	document.getElementById('mcreated').textContent = data;
 	fontresize('#mtitle');
 }
 var descopen = false;
@@ -137,119 +182,27 @@ function opendesc(){
 		<div class="tab-pane active in" id="sessoes">
 
 
-		<!-- mesas -->
-		 <div id="mesas">
-		 <div class="container">
-			<div class="row"></div>
-			<div class="row">
-			
-				<!-- Criar mesa -->
-				<div class="col-md-12">
-				<h3>Crie sua mesa</h3>
+
+			<!-- mesas -->	
+ <div id="mesas">
+ <div class="container">
+	<div class="row"></div>
+	<div class="row">
+		<div class="col-md-12">
+		<!-- Criar mesa -->
+			<h3>Crie sua mesa</h3>
 				<a href="?page=csession"><button>Criar</button></a>
-				</div>
-				
-				
-				
-				<div class="col-md-12">
-					<h3>Suas Mesas</h3>
-					<div class="Pbmesas" id="mx">
-						<input type="text" id="m1picture" value="https://s3.amazonaws.com/files.d20.io/images/205057049/3z-SsNxVAaC0hWcApkjvKQ/max.png?1614639154364" hidden>
-						<input type="text" id="m1title" value="Ordem Suprema" hidden>
-						<input type="text" id="m1creator" value="Lucinho" hidden>
-						<input type="text" id="m1desc" value="Testando um texto"hidden>
-						<input type="text" id="m1users" value="6" hidden>
-						<div class="Pbminfo" onclick="changedesc('1');opendesc()">
-							<p class="Pbmtitle">Ordem Suprema</p>
-							<p class="Pbmcreator">Criado por: Lucinho</p>
-						</div>
-						<div class="Pbmbutton">
-							<p>
-							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-								<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-							</svg>
-							6
-							</p>
-							<button class="Pbmenter">
-								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
-									<path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
-									<path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-								</svg>
-							</button>
-						</div>
-					</div>
-					<!-- div 2 para test -->
-					<div class="Pbmesas" id="mx">
-						<input type="text" id="m2picture" value="https://s3.amazonaws.com/files.d20.io/images/217565789/Eics9egb326rnXnW7VhMKQ/max.png?1619142697235" hidden>
-						<input type="text" id="m2title" value="Cidade Mistério" hidden>
-						<input type="text" id="m2creator" value="Rafael" hidden>
-						<input type="text" id="m2desc" value="Testando um texto"hidden>
-						<input type="text" id="m2users" value="6" hidden>
-						<div class="Pbminfo" onclick="changedesc('2');opendesc()">
-							<p class="Pbmtitle">Cidade Mistério</p>
-							<p class="Pbmcreator">Criado por: Rafael</p>
-						</div>
-						<div class="Pbmbutton">
-							<p>
-							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-								<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-							</svg>
-							6
-							</P>
-							<button class="Pbmenter">
-								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
-									<path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
-									<path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-								</svg>
-							</button>
-						</div>
-					</div>
-					<!-- div 3 para test -->
-					<div class="Pbmesas">
-						<div class="Pbminfo">
-							<p class="Pbmtitle">Fronteiras da Magia</p>
-							<p class="Pbmcreator">Criado por: Matheus </p>
-						</div>
-						<div class="Pbmbutton">
-							<p>
-							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-								<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-							</svg>
-							6
-							</P>
-							<button class="Pbmenter">
-								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
-									<path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
-									<path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-								</svg>
-							</button>
-						</div>
-					</div>
-					<!-- div 4 para test -->
-					<div class="Pbmesas">
-						<div class="Pbminfo">
-							<p class="Pbmtitle">Chamado da Tormenta</p>
-							<p class="Pbmcreator">Criado por: Rafael </p>
-						</div>
-						<div class="Pbmbutton">
-							<p>
-							<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
-								<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-							</svg>
-							6
-							</P>
-							<button class="Pbmenter">
-								<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
-									<path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
-									<path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
-								</svg>
-							</button>
-						</div>
-					</div>
-				</div>
-			</div>
-		 </div>
-		 </div>
+		</div>
+		<div class="col-md-12">
+			<h3>Suas mesas</h3>
+			<?php 
+			loadmesas();
+			?>
+		</div>
+	</div>
+ </div>
+ </div>
+
 		</div>
 	
 		<!-- Tab do perfil do usuário e informações pessoais -->
@@ -393,187 +346,3 @@ function opendesc(){
 		
 	</div>
  </div>
-
- 
- <style>
- #mesas{
-	transition:0.3s;
-	height:76vh;
- }
- .clickbg{
-	position:fixed;
-	top:0;
-	left:0;
-	display:block;
-	background-color:pink;
-	height:100%;
-	width:100%;
-	z-index:9996;
-	opacity:0;
-	visibility: hidden;
- }
- #infomesa{
-	position:fixed;
-	bottom:0;
-	right:0;
-	height:84.5vh;
-	width:0;
-	background-color:white;
-	z-index:9997;
-	padding:0;
-	box-shadow: -3px 0 3px #ededec;
-	//border-left: 1px solid gray;
- }
- #imgmesa{
-	height:150px;
-	width:300px;
-	margin:0 -10px;
-	background-image: 
-	url('http://placehold.it/300x150'), url('img/degrade.png');
-	background-repeat: no-repeat, repeat;
-	background-size: cover,contain;
-	background-blend-mode:screen;
-	box-shadow:inset 20px 0 20px -6px white;
- }
- .smbox{
- }
- .smbox p{
-	display:inline-block;
- }
- .mdescl{
-	font-weight:bold;
- }
- #mtitle{
-	width:280px;
-	height:70px;
-	font-size:35px;
-	font-weight:bold;
-	line-height:0.8;
-	overflow-y:hidden;
-	position:relative;
-	bottom:40px;
-	margin-bottom:-45px;
-	text-align:center;
- }
- #mcreator{
-	 
- }
- #mcreated{
-	 
- }
- #muser{
-	 
- }
- #mdesc{
-	 overflow-y:auto;
-	 padding: 5px 10px;
-	 border-radius:10px;
-	 height:30vh;
-	 box-shadow: 0 0 3px 1px #c4c1c0;
- }
- .mdescbtn{
-	padding:10px 0;
- }
- .ment{
-	background-color:#3dac4c;
-	color:white;
-	font-size:16px;
-	border:none;
-	text-align:center;
-	height:40px;
-	width:135px;
-	border-radius:5px;
-	float:left;
- }
- .mdlt{
-	background-color:#cf2d3a;
-	color:white;
-	font-size:16px;
-	border:none;
-	text-align:center;
-	height:40px;
-	width:135px;
-	border-radius:5px;
-	float:right;
- }
- .Pbmesas{
-	display:inline-block;
-	background-image: url('https://i.pinimg.com/originals/de/f9/70/def97040fcbdd13ee1809d01cc46dc3f.jpg'), url('img/degrade.png');
-	background-repeat: no-repeat, repeat;
-	background-size: cover,contain;
-	background-blend-mode:screen;
-	height:180px;
-	width:250px;
-	padding:10px;
-	margin:10px;
-	border-radius:10px;
-	box-shadow: 5px 5px 3px #888888;
-	transition:0.3s;
- }
- .Pbmesas:hover{
-	height:185px;
-	width:255px; 
- }
-.Pbminfo{
-	 width:250px;
-	 height:70%;
- }
-.Pbmtitle{
-	width:230px;
-	height:75px;
-	font-size:35px;
-	font-weight:bold;
-	line-height:0.8;
-	color:#f1f1f1;
-	overflow: hidden;
-	transition:0.3s;
-	text-align:center;
-	text-shadow: 2px 2px 4px #000000;
-}
-.Pbmesas:hover .Pbmtitle{
-	width:235px;
-}
-.Pbmcreator{
-	color:#222;
-	font-weight:bold;
-	font-family:monospace;
-	position:relative;
-	top:10px;	
-	transition:0.3s;
-}
-.Pbmesas:hover .Pbmcreator{
-	top:15px;
-}
-.Pbmbutton{
-	 width:230px;
-	 height:30%;
-	 padding-top:20px;
- }
-.Pbmbutton p{
-	 display:inline;
-	 
- }
- .Pbmesas:hover .Pbmbutton{
-	 width:235px;
- }
-.Pbmenter{
-	background-color:#3dac4c;
-	border:none;
-	text-align:center;
-	height:30px;
-	width:30px;
-	border-radius:5px;
-	color:white;
-	position:relative;
-	left:165px;
-	transition:0.3s;
-}
-.Pbmesas:hover .Pbmenter{
-	left:170px;
-}
-.Pbmenter svg{
-	position:relative;
-	left:-3px;
-	top:-2px;
-}
- </style>
