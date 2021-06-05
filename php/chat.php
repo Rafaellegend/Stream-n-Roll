@@ -1,7 +1,9 @@
 <script src="js/functions.js" type="text/javascript"></script>
 <script>
-
-var from = 1, mesa = '1', start = 0;
+var start = 0;
+var mesa = getCookie('idMesa');
+var from = getCookie('idUser');
+console.log('mesa='+mesa +' from='+ from);
 		$(document).ready(function(){
 			$('[data-toggle="popover"]').popover();
 			//load();

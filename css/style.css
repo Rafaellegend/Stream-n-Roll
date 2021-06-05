@@ -1088,6 +1088,7 @@
 	border:2px solid #adb5bd;
 	border-radius:5px;
 	color:gray;
+	white-space: pre-wrap;
 }
 #markdownhelp{
 	margin-top:10px;

@@ -72,6 +72,7 @@
 				<input type="text" id="m'.$i.'desc" value="'.$item['desc'].'" hidden>
 				<input type="text" id="m'.$i.'users" value="'.$item['max'].'" hidden>
 				<input type="text" id="m'.$i.'data" value="'.$item['data'].'" hidden>
+				<input type="text" id="m'.$i.'code" value="'.$item['codigo'].'" hidden>
 				<input type="text" id="m'.$i.'role" value="'.$role.'" hidden>
 				<div class="Pbminfo" onclick="changedesc('.$i.');opendesc()">
 					<p class="Pbmtitle">'.$item['nome'].'</p>
@@ -101,6 +102,7 @@
 	}
 ?>
 <script src="js/functions.js" type="text/javascript"></script>
+<script src="js/marked.min.js"></script>
 <script>
 window.onload = function() {
 	fontresize(".Pbmtitle");
@@ -162,12 +164,16 @@ function opendesc(){
 	};
 }
 function sendmesainfo(n){
+	
+	setCookie('idUser',<?php echo $_SESSION['UsuarioID']; ?>,25);
 	setCookie('idMesa',document.getElementById('m'+n+'id').value,25);
 	setCookie('NomeMesa',document.getElementById('m'+n+'title').value,25);
 	setCookie('criadorMesa',document.getElementById('m'+n+'creator').value,25);
 	setCookie('descMesa',document.getElementById('m'+n+'desc').value,25);
 	setCookie('maxMesa',document.getElementById('m'+n+'users').value,25);
 	setCookie('dataMesa',document.getElementById('m'+n+'data').value,25);
+	setCookie('codeMesa',document.getElementById('m'+n+'code').value,25);
+	<?php $_SESSION['idMesa'] = "1"; ?>
 	console.log('enviado os cookie')
 }
 </script>
@@ -212,13 +218,16 @@ function sendmesainfo(n){
 			<!-- mesas -->	
  <div id="mesas">
  <div class="container">
-	<div class="row"></div>
 	<div class="row">
 		<div class="col-md-12">
 		<!-- Criar mesa -->
 			<h3>Crie sua mesa</h3>
-				<a href="?page=csession"><button>Criar</button></a>
+			<a href="?page=csession"><button>Criar</button></a>
 		</div>
+	</div>
+	
+	<div class="row">
+		
 		<div class="col-md-12">
 			<h3>Suas mesas</h3>
 			<?php 
