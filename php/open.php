@@ -134,7 +134,7 @@
 				$code = isset($_POST['codMesaOn']) ? $_POST['codMesaOn'] :null;
 				
 				if ($code != null){
-				$TseMesa = "SELECT `id_Mesa`, `nomeMesa`, `codigoMesa` , `sistema`, `descricao`, DATE_FORMAT(`dataCriacao`, '%d %m %Y'), `max_Players`, `id_User` FROM mesa WHERE codigoMesa = '$code'";
+				$TseMesa = "SELECT `id_Mesa`, `nomeMesa`, `codigoMesa` , `sistema`, `descricao`, `dataCriacao`, `max_Players`, `id_User` FROM mesa WHERE codigoMesa = '$code'";
 				$TmesaSelect = sqlquery($TseMesa);
 				
 				$row_TMesaS = $TmesaSelect->rowCount();
