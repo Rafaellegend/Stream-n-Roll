@@ -165,12 +165,12 @@
 					$max = $return['maxp']->fetch(PDO::FETCH_ASSOC);
 					//echo "ué";
 					//var_dump($num['num_mesa']);
-					
 					if($rows <= $max['max_Players']){
-						for($i = 1; $i < $max['max_Players']; $i++){
-							$verify = "SELECT `num_Mesa` FROM `ficha` WHERE `num_Mesa` = '$egua' AND `id_Mesa` = '$egua'";
+						for($i = 1; $i <= $max['max_Players']; $i++){
+							$verify = "SELECT * FROM `ficha` WHERE `num_Mesa` = '$i' AND `id_Mesa` = '$egua'";
 							$return['res'] = sqlquery($verify);
 							$rows = $return['res']->rowCount();
+							echo $rows;
 							if($rows == 0){
 								$nmesa = $i;
 								break;
