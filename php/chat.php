@@ -6,7 +6,7 @@ var from = getCookie('idUser');
 console.log('mesa='+mesa +' from='+ from);
 		$(document).ready(function(){
 			$('[data-toggle="popover"]').popover();
-			//load();
+			load();
 			$('#chat').submit(function(e){
 				e.preventDefault();
 				$.post('./?page=submit', {
@@ -20,7 +20,9 @@ console.log('mesa='+mesa +' from='+ from);
 			})
 		})	
 		function load(){
-			$.get('./?page=submit' + '&start=' + start + '&load=chat', function(result){		
+			
+			$.get('./?page=submit' + '&start=' + start + '&load=chat', function(result){
+			console.log('chat porra');
 			if(result.chats){
 				result.chats.forEach(item =>{
 					start = item.id;
