@@ -7,7 +7,9 @@ error_reporting(E_ALL);
 	$result = array();
 //Geral
 	if(isset($_GET['mesa'])){$mesa = $_GET['mesa'];}else{
-		$mesa = isset($_SESSION['idMesa']) ? $_SESSION['idMesa'] :null;
+		
+		$mesa = isset($_COOKIE["idMesa"]) ? $_COOKIE["idMesa"] :null;
+		var_dump('mesa ='.$mesa);
 	};
 	//var_dump($_SESSION['idMesa']);
 	$action = isset($_POST['action']) ? $_POST['action'] :null;
@@ -315,24 +317,15 @@ if($action == 'sheet'){
 					$num = $return['res']->fetch(PDO::FETCH_ASSOC);			
 					$max = $return['maxp']->fetch(PDO::FETCH_ASSOC);
 					echo "ué";
-					var_dump($num['num_mesa']);
+					//var_dump($num['num_mesa']);
+					
 					if($rows < $max['max_Players']){
 						for($i = 1; $i < $max['max_Players']; $i++){
-							echo "ta no for:".$max['max_Players'];
-							echo "test".$num[0][0];
-							if($num['num_mesa'] != NULL){
-								if(in_array($i, $num['num_Mesa'])){
-									
-								}else{
-									$nmesa = $i;
-									break;
-									echo "chegou no else";
-								}
-							}else{
-								$nmesa = $i;
-								echo '$num é nulo, o valor de $nmesa:'.$nmesa;
-								break;
-								
+							$verify = "SELECT `num_Mesa` FROM `ficha` WHERE `num_Mesa` = '$nmesa' AND `id_Mesa` = '$mesa'";
+							$return['res'] = sqlquery($verify);
+							$rows = $return['res']->rowCount();
+							if($rows == 0){
+								$nmesa == $i;
 							}
 						}
 						$sql = "INSERT INTO `ficha` (`id_Ficha`, `num_Mesa`, `nome`, `nivel`, `classe`, `raca`, `alinhamento`, `antecedentes`, `experiencia`, `forca`, `destreza`, `constituicao`, `inteligencia`, `sabedoria`, `carisma`, `bonus_Proficiencia`, `res_Forca`, `res_Destreza`, `res_Constituicao`, `res_Inteligencia`, `res_Sabedoria`, `res_Carisma`, `pro_Acrobacia`, `dobro_Acrobacia`, `pro_Adestrar_Animais`, `dobro_Adestrar_Animais`, `pro_Arcanismo`, `dobro_Arcanismo`, `pro_Atletismo`, `dobro_Atletismo`, `pro_Enganacao`, `dobro_Enganacao`, `pro_Historia`, `dobro_Historia`, `pro_Intuicao`, `dobro_Intuicao`, `pro_Intimidacao`, `dobro_Intimidacao`, `pro_Investigacao`, `dobro_Investigacao`, `pro_Medicina`, `dobro_Medicina`, `pro_Natureza`, `dobro_Natureza`, `pro_Percepcao`, `dobro_Percepcao`, `pro_Atuacao`, `dobro_Atuacao`, `pro_Persuasao`, `dobro_Persuasao`, `pro_Religiao`, `dobro_Religiao`, `pro_Prestidigitacao`, `dobro_Prestidigitacao`, `pro_Furtividade`, `dobro_Furtividade`, `pro_Sobrevivencia`, `dobro_Sobrevivencia`, `CA`, `iniciativa`, `deslocamento`, `vida_Atual`, `vida_Maxima`, `vida_Temporaria`, `dado_Vida`, `equipamento`, `pecas_Cobre`, `pecas_Prata`, `pecas_Esmeralda`, `pecas_Ouro`, `pecas_Platina`, `proficiencias`, `tracos`, `ideais`, `vinculos`, `defeitos`, `caracteristicas`, `idade`, `altura`, `peso`, `olhos`, `pele`, `cabelo`, `Aparencia`, `aliados_Organizacoes`, `tesouro`, `historia`, `diario`, `classe_conjuração`,`hab_chave`, `resistencia_Magica`, `bonus_habMagica`, `espacomagia1_atual`, `espacomagia1_max`, `espacomagia2_atual`, `espacomagia2_max`, `espacomagia3_atual`, `espacomagia3_max`, `espacomagia4_atual`, `espacomagia4_max`, `espacomagia5_atual`, `espacomagia5_max`, `espacomagia6_atual`, `espacomagia6_max`, `espacomagia7_atual`, `espacomagia7_max`, `espacomagia8_atual`, `espacomagia8_max`, `espacomagia9_atual`, `espacomagia9_max`, `id_User`, `id_Mesa`) VALUES (NULL, '$nmesa', '$cname', '$clevel', '$cclass', '$cfolk', '$calign', '$cback', '$cxp', '$cstr', '$cdex', '$ccon', '$cint', '$cwis', '$ccar', '$cpro', '$ctstr', '$ctdex', '$ctcon', '$ctint', '$ctwis', '$ctcar', '$cacrbt', '$cdacrbt', '$canl', '$cdanl', '$carc', '$cdarc', '$catl', '$cdatl', '$cdec', '$cddec', '$chis', '$cdhis', '$cins', '$cdins', '$cintm', '$cdintm', '$cinv', '$cdinv', '$cmed', '$cdmed', '$cnat', '$cdnat', '$cper', '$cdper', '$cperf', '$cdperf', '$cpers', '$cdpers', '$crel', '$cdrel', '$csli', '$cdsli', '$csth', '$cdsth', '$csur', '$cdsur', '$cca', '$cinit', '$cmov', '$catualhp', '$cmaxhp', '$catemphp', '$clifedice', '$equip', '$pc', '$pp', '$pe', '$po', '$pl', '$langprof', '$cperso', '$cide', '$clink', '$cdef', '$carhab', '$cage', '$cheight', '$cweight', '$ceyes', '$cskin', '$chair', '$cphoto', '$calliance', '$treasures', '$cstorie', '$notes', '$cconjclass', '$keyhab', '$cdtr', '$mbonus', '$mag1atl', '$mag1max', '$mag2atl', '$mag2max', '$mag3atl', '$mag3max', '$mag4atl', '$mag4max', '$mag5atl', '$mag5max', '$mag6atl', '$mag6max', '$mag7atl', '$mag7max', '$mag8atl', '$mag8max', '$mag9atl', '$mag9max', '$from', '$mesa')" ;
@@ -369,7 +362,7 @@ if($action == 'sheet'){
 					$ficha = $numeroficha->fetch(PDO::FETCH_ASSOC);
 					$val = $ficha['id_Ficha'];
 					
-					var_dump($atksinfo);
+					//var_dump($atksinfo);
 					for($x = 0; $x < count($atksinfo); $x++){
 						for($y =0; $y < 4;$y++){
 							if($atksinfo[$x][$y][1] == 'undefined'){

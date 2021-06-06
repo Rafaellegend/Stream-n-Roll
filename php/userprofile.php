@@ -62,10 +62,46 @@
 				$result['mesas'][] = $row;
 				
 		}
-		//var_dump($result['mesas']);
-		$i = 1;
+		//var_dump($result['mesas'][0]);
+		//$i = 1;
 		if(!isset($result)){}else{
-		foreach($result as list($item)){
+			
+		for($i = 1; $i <= count($result['mesas']); $i++){
+			if($result['mesas'][$i-1]['creator'] == $_SESSION['UsuarioUsername']){$role = 'mestre'; }else{$role = 'jogador';}
+			echo '<div class="Pbmesas" id="mx'.$i.'">
+				<input type="text" id="m'.$i.'picture" value="https://s3.amazonaws.com/files.d20.io/images/205057049/3z-SsNxVAaC0hWcApkjvKQ/max.png?1614639154364" hidden>
+				<input type="text" id="m'.$i.'id" value="'.$result['mesas'][$i-1]['id'].'" hidden>
+				<input type="text" id="m'.$i.'title" value="'.$result['mesas'][$i-1]['nome'].'" hidden>
+				<input type="text" id="m'.$i.'creator" value="'.$result['mesas'][$i-1]['creator'].'" hidden>
+				<textarea id="m'.$i.'desc" hidden>'.$result['mesas'][$i-1]['desc'].'</textarea>
+				<input type="text" id="m'.$i.'users" value="'.$result['mesas'][$i-1]['max'].'" hidden>
+				<input type="text" id="m'.$i.'data" value="'.$result['mesas'][$i-1]['data'].'" hidden>
+				<input type="text" id="m'.$i.'code" value="'.$result['mesas'][$i-1]['codigo'].'" hidden>
+				<input type="text" id="m'.$i.'role" value="'.$role.'" hidden>
+				<div class="Pbminfo" onclick="changedesc('.$i.');opendesc()">
+					<p class="Pbmtitle">'.$result['mesas'][$i-1]['nome'].'</p>
+					<p class="Pbmcreator">Criado por: '.$result['mesas'][$i-1]['creator'].'</p>
+				</div>
+				<div class="Pbmbutton">
+					<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+						<path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+					</svg>
+					6
+					</P>
+					<a id="Pbhref" onclick="sendmesainfo('.$result['mesas'][$i-1]['id'].')">
+					<button class="Pbmenter">
+						<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+							<path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"/>
+							<path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+						</svg>
+					</button>
+					</a>
+				</div>
+			</div>';
+		}	
+		/*	
+		foreach($result['mesas'] as list($item)){
 			if($item['creator'] == $_SESSION['UsuarioUsername']){$role = 'mestre'; }else{$role = 'jogador';}
 			echo '<div class="Pbmesas" id="mx'.$i.'">
 				<input type="text" id="m'.$i.'picture" value="https://s3.amazonaws.com/files.d20.io/images/205057049/3z-SsNxVAaC0hWcApkjvKQ/max.png?1614639154364" hidden>
@@ -99,7 +135,7 @@
 				</div>
 			</div>';
 			$i++;
-		} 
+		} */
 		}
 		return;
 	}
@@ -187,7 +223,6 @@ function sendmesainfo(n){
 	setCookie('maxMesa',document.getElementById('m'+n+'users').value,25);
 	setCookie('dataMesa',document.getElementById('m'+n+'data').value,25);
 	setCookie('codeMesa',document.getElementById('m'+n+'code').value,25);
-	<?php $_SESSION['idMesa'] = "<script>getCookie('idMesa')</script>"; ?>
 	console.log('enviado os cookie')
 }
 </script>
