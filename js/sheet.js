@@ -230,7 +230,8 @@ $(document).ready(function(){
 					//
 					maginfo: countall(magsarr),
 				});
-				loadSheet();
+				setTimeout(function(){
+				loadSheet();},5)
 				return false;
 			})
 		})
@@ -485,7 +486,7 @@ function loadSheet(){
 				//Aliados e Organizaçõoes
 				$('#calliance').val(`${item.aliados_Organizacoes}`);
 				//Caracteristicas
-				$('#calliance').val(`${item.caracteristicas}`);
+				$('#carhab').val(`${item.caracteristicas}`);
 //Anotações
 				//Diario
 				$('#notes').val(`${item.diario}`);

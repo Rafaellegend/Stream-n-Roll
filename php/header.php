@@ -24,7 +24,7 @@
 	<!-- Logo do Site -->
 	<img href="#" id="imgsession" src="img\dark_f_logo.svg" alt="Responsive image" onclick="window.location.href = '?page=main';">
 	<!-- botão de chat // Apenas na pagina de ficha -->
-	<?php if($page=='ddsheet'){
+	<?php if($page=='ddsheet' or $page=='tabletop'){
 		echo
 		'<div id="chatButton" onclick="openchat()">
 			<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-chat-left-dots" viewBox="0 0 16 16">
@@ -45,7 +45,7 @@
 	<img id="" src="http://placehold.it/45x45" style="border-radius:45px;"class="img-fluid" alt="Responsive image">
 </nav>
 <div id="callchat">
-<?php include_once('php/chat.php'); ?>
+<?php if($page=='ddsheet' or $page=='tabletop'){include_once('php/chat.php');} ?>
 </div>
 
 <script>

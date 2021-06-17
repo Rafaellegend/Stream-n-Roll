@@ -150,7 +150,7 @@ window.onload = function() {
 	setCookie('idMesa',<?php echo isset($_SESSION['MesaID']); ?>,25);
 	setCookie('nomeMesa',<?php echo isset($_SESSION['MesaNome']); ?>,25);
 	setCookie('codeMesa',<?php echo isset($_SESSION['MesaCodigo']); ?>,25);
-	setCookie('descMesa',<?php echo isset($_SESSION['MesaDescricao']); ?>,25);
+	setCookie('descMesa','',25);
 	setCookie('maxMesa',<?php echo isset($_SESSION['MesaJogadores']); ?>,25);
 	setCookie('dataMesa','xx/xx/xxxx',25);
 
@@ -223,10 +223,9 @@ function sendmesainfo(n){
 	setCookie('maxMesa',document.getElementById('m'+n+'users').value,25);
 	setCookie('dataMesa',document.getElementById('m'+n+'data').value,25);
 	setCookie('codeMesa',document.getElementById('m'+n+'code').value,25);
-	console.log('enviado os cookie')
+	//console.log('enviado os cookie')
 }
 </script>
-
 <!-- Div que transita entre as Tabs do perfil do usuário -->
 <div class="well">
 	<!-- Tabs determinadas -->

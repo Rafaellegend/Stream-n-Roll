@@ -404,9 +404,10 @@ if($action == 'sheet'){
 				$result['send_status'] = sqlquery($sql);
 			break;
 	}
+	if(isset($_GET['load'])){
 		$start = isset($_GET['start']) ? intval($_GET['start']) : 0;
 		//chat
-		if(isset($_GET['load']) == 'chat'){
+		if($_GET['load'] == 'chat'){
 			$stsql ="SELECT chat.id_Chat AS `id`,chat.message AS `msg`,users.username AS `user`,chat.id_mesa AS `mesa` FROM `chat` INNER JOIN `users` ON chat.id_User = users.id_User WHERE `id_Chat` > ".$start;
 			$items = sqlquery($stsql);
 			while($row = $items->fetch(PDO::FETCH_ASSOC)){
@@ -415,13 +416,13 @@ if($action == 'sheet'){
 		}
 		
 		//ficha
-		if(isset($_GET['load']) == 'sheet'){
+		if($_GET['load'] == 'sheet'){
 			$stsql ="SELECT * FROM `ficha` WHERE `id_User` = $from AND `id_mesa` = $mesa";
 			$items = sqlquery($stsql);
 			while($row = $items->fetch(PDO::FETCH_ASSOC)){
 				$result['sheet'][] = $row;
 			}
-			////var_dump($result['sheet']);
+			//var_dump($result['sheet']);
 			$ficha = $result['sheet'][0]['id_Ficha'];
 			
 			$stsql ="SELECT * FROM `ataquesmagias` WHERE `id_ficha` = $ficha ORDER BY `tipo`";
@@ -432,7 +433,7 @@ if($action == 'sheet'){
 			////var_dump($result['atks'][0]);
 		}
 		//Overlay
-		if(isset($_GET['load']) == 'stream'){
+		if($_GET['load'] == 'stream'){
 			$stsql ="SELECT `num_Mesa`, `nome`,`vida_Atual`,`vida_Maxima`,`vida_Temporaria`,`Aparencia` FROM `ficha` WHERE `id_mesa` = $mesa ORDER BY `num_Mesa`";
 			$items = sqlquery($stsql);
 			while($row = $items->fetch(PDO::FETCH_ASSOC)){
@@ -444,7 +445,7 @@ if($action == 'sheet'){
 				$result['rolls'][] = $row;
 			}
 		}
-		
+	}	
 		header("Acess-Control-Allow-Origin: *");
 		header("Content-Type: application/json");
 		

@@ -15,7 +15,8 @@ $(document).ready(function(){
 	receivedata();		
 })	
 function receivedata(){
-	$.get('./?page=submit' + '&load=stream'+ '&mesa='+mesa+ '&banana='+banana, function(result){		
+	$.get('./?page=submit' + '&load=stream'+ '&mesa='+mesa+ '&banana='+banana, function(result){
+		console.log('ta recebendo');
 		if(result.charinfo){
 			console.log(result.charinfo);
 			
@@ -65,7 +66,7 @@ function receivedata(){
 	 setTimeout(function(){
 	 elecls[n-1].style.transform = "rotate(0deg)";
 	 elecls[n-1].style.opacity = "0";
-	 }, 3);
+	 }, 15);
 	 
 	 dadosshow= false;
 	 }else{
