@@ -82,7 +82,7 @@ function loadmesa(){
 	document.getElementById('code').value = getCookie('codeMesa');
 }
 function gerarurl(){
-	var createdurl = "http://localhost:8030/"
+	var createdurl = "Coloque o Url aqui"
 	var border = $('#mborder option:selected').val();
 	var background = $('#mbackground option:selected').val();
 	var maxplay = $('#maxp option:selected').val();
@@ -98,7 +98,7 @@ function gerarurl(){
 	}
 	var banana= getCookie('idUser');
     //console.log(getCookie('idUser'));
-	var createdurl = createdurl+"Stream-n-Roll/?page=stream&idmesa="+getCookie('idMesa')+"&border="+border+"&bg="+background+"&players="+maxplay+"&view="+view+"&portraits="+portrait+"&banana="+banana;
+	var createdurl = createdurl+"?page=stream&idmesa="+getCookie('idMesa')+"&border="+border+"&bg="+background+"&players="+maxplay+"&view="+view+"&portraits="+portrait+"&banana="+banana;
 	Testandoaq(createdurl);
 }
 	function mark(){

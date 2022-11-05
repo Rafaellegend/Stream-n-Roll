@@ -80,13 +80,10 @@ function r3(max,want){
 }
 
 function chatload(to){
-	if(typeof chatopen == 'undefined'){
-		var room = 'Publico';
+		var room = getCookie('NomeMesa');
 		var doc = document.getElementById(to);
-		console.log(to);
+		//console.log(to);
 		doc.innerHTML = room;
-	}else{
-	}
 }
 //
 	function addelement(to,n){
