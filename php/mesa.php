@@ -93,9 +93,6 @@
 	<label id="txtboxgeral" for="MJogadores"> Quantidade de Jogadores: </label>
 	<input type="text" size="30" id="MJogadores" name="MJogadores" value='<?php echo $_SESSION['MesaJogadores']; ?>' disabled><br>
 	
-	<!--
-	<label id="txtboxgeral" for="MDono">Dono da Mesa:</label>
-	<input type="text" id="MDono" name="MDono" value='<?php echo $_SESSION['UsuarioID']; ?>' disabled><br>
-	-->
+	
 	
 </form>

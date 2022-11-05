@@ -42,9 +42,9 @@ function renderMessage(item){
 function splitString(stringToSplit, separator) {
   var arrayOfStrings = stringToSplit.split(separator);
 
-  console.log('A string original é: "' + stringToSplit + '"');
-  console.log('O separador é: "' + separator + '"');
-  console.log('O array tem ' + arrayOfStrings.length + ' elementos: ' + arrayOfStrings.join(' / '));
+ // console.log('A string original é: "' + stringToSplit + '"');
+ // console.log('O separador é: "' + separator + '"');
+ // console.log('O array tem ' + arrayOfStrings.length + ' elementos: ' + arrayOfStrings.join(' / '));
   return arrayOfStrings;
 }
 var dados = [];
@@ -57,8 +57,8 @@ function roll(dice){
 	lastdice = splited[splited.length - 1];
 	dStr = dice.replace(/[0-9]/,'');	
 
-	console.log('lastdice ' + lastdice);
-	console.log('Dice ' + dStr);
+	//console.log('lastdice ' + lastdice);
+	//console.log('Dice ' + dStr);
 	
 	if(rollaready == true){
 		if(typeof dados[dice] == "undefined"){

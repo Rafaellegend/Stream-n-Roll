@@ -4,12 +4,12 @@ $(document).ready(function(){
 	var mesa = getCookie('idMesa');
 	var from = getCookie('idUser');
 		loadSheet();
-			console.log(
+			//console.log(
 				'portrait:'+$('#portrait').attr('src') 
 			);
-			console.log(getCookie('idMesa'));
+			//console.log(getCookie('idMesa'));
 			$('#formsheet').submit(function(e){
-				console.log('foi enviado');
+				//console.log('foi enviado');
 				var action = 'sheet';
 				e.preventDefault();
 				for(n = 0; n < 10; n++){
@@ -598,7 +598,7 @@ function loadSheet(){
 						//console.log('magia'+item.nivel+'='+(tmg/3));
 						//console.log(magiasnv[item.nivel]);
 						
-						console.log("nivel"+nv);
+						//console.log("nivel"+nv);
 						//console.log(oldvalue+" diferente de "+nv+":"+ (oldvalue != nv));
 						//console.log("magiasnv["+item.nivel+"]="+magiasnv[item.nivel]+" + i="+i+":"+(magiasnv[item.nivel] == i));
 						if(magiasnv[item.nivel]==i){distribmg();}else{

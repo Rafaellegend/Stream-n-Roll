@@ -150,7 +150,7 @@ function atksbox(action){
 	if(action == "load"){
 		var childs = newbox.childElementCount;
 		var childx = childs;
-		console.log(atks+"atksbox \n")
+		//console.log(atks+"atksbox \n")
 		if(atks*4 > childs ){
 			var x = (atks*4) - childs;
 			if(x == childx ){
@@ -169,7 +169,7 @@ function atksbox(action){
 		}
 	}else if(action == "add"){
 		atks++;
-		console.log(atks);
+		//console.log(atks);
 			addatkBox("atksbox",'text','atkid'+atks,'','','','hidden');
 			addatkBox("atksbox",'text','atk'+atks,'atkline','atktitle','Nome Arma');
 			addatkBox("atksbox",'text','atkhit'+atks,'atkline','','Dano');
@@ -436,7 +436,7 @@ function apenasNumeros(string) {
 
 function countatk(ele){
 	var arr = [];
-	console.log(ele);
+	//console.log(ele);
 	for(n = 1; n <= ele; n++){
 		arr[n] = [
 		['atkid', document.getElementById("atkid"+n).value],
@@ -459,13 +459,6 @@ function countmag(nv,ele){
 		['habextype', document.getElementById('nv'+nv+'hab'+n+'extype').value],
 		['habedesc', document.getElementById('nv'+nv+'hab'+n+'desc').value]
 	];
-		//arr[n]['habname'] = document.getElementById('nv'+nv+'hab'+n+'name').value;
-		//arr[n]['habdano'] = document.getElementById('nv'+nv+'hab'+n+'dano').value;
-		//arr[n]['habtype'] = document.getElementById('nv'+nv+'hab'+n+'type').value;
-		//arr[n]['habexdano'] = document.getElementById('nv'+nv+'hab'+n+'exdano').value;
-		//arr[n]['habextype'] = document.getElementById('nv'+nv+'hab'+n+'extype').value;
-		//arr[n]['habedesc'] = document.getElementById('nv'+nv+'hab'+n+'desc').value;
-	//console.log(arr[n][n]);
 	}
 	return arr;
 }
@@ -474,6 +467,6 @@ function countall(ele){
 	for(m = 0; m < ele.length; m++){
 		arr[m] = countmag(m,ele[m]);
 	}
-	console.log('countall('+ele+'):'+arr[0][1][0][1]);
+	//console.log('countall('+ele+'):'+arr[0][1][0][1]);
 	return arr;
 }

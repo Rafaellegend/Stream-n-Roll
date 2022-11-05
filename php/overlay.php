@@ -1,6 +1,6 @@
 <head><link rel="stylesheet" href="css/overlay.css"></head>
 <Script>
-	var from = 1, mesa = '1', start = 0, action = 'stream', url = 'http://localhost:8030/Stream-n-Roll/?page=submit';
+	var from = 1, mesa = '1', start = 0, action = 'stream', url = 'Url do Projeto';
 		$(document).ready(function(){
 			$('[data-toggle="popover"]').popover();
 			load();

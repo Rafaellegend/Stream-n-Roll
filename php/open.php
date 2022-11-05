@@ -1,14 +1,4 @@
 <?php
-  
-  /*
-  if (!empty($_POST) AND (empty($_POST['login']) OR empty($_POST['password']))) {
-	  
-		//Redireciona o usuário
-		//header("Location: ?page=main"); exit;
-		echo "<script>window.location.href = '?page=userprofile';</script>";
-  }
-  */
- 
 	//Recebendo os dados do submit
 	$iniciando = isset($_POST['start']) ? $_POST['start'] :null;
 	$usuario = isset($_POST['login']) ? $_POST['login'] :null;

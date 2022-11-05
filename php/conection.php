@@ -1,10 +1,10 @@
 <?php
 	function dbconnect(){
 		//Criando conexão com o Banco de Dados e Verificando a conexão
-		$hostname="192.185.223.140";
-		$username="raffoz89_Project";
-		$password="13!~GFnWT^@B";
-		$dbname="raffoz89_StreamNRoll";
+		$hostname="Coloque seu Host aqui";
+		$username="Username do Banco de dados";
+		$password="Senha do Banco de dados";
+		$dbname="Nome do Banco";
 		
 		try {
 		  $conn = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
@@ -53,20 +53,4 @@
 		$lphase = base64_encode($tphase);
 		return $lphase;
 	}
-	/*
-	//Criando conexão com o Banco de Dados e Verificando a conexão
-	$hostname="localhost";
-	$username="root";
-	$password="usbw";
-	$dbname="StreamNRoll";
-	
-	$conn = mysqli_connect($hostname,$username,$password); 
-	mysqli_select_db($dbname) or die( "Não foi possível conectar ao banco MySQL");
-	if (!$conn) {echo "Não foi possível conectar ao banco MySQL.
-	"; exit;}
-	else {echo "Parabéns!! A conexão ao banco de dados ocorreu normalmente!.
-	";}
-	mysqli_close();
-	
-	*/
 ?>
