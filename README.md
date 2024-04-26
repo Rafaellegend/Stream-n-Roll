@@ -7,7 +7,7 @@ Esse projeto foi feito em 2021, quando ainda estamos na pandemia, sendo assim fo
 
 
 
-## Objetivo
+## 🚩 Objetivo
 
 A ideia principal era fazer uma plataforma para jogar RPG que possuísse uma saída visual para ser transmitida em uma aplicação de Streaming ou para Gravação de conteúdo. 
 Sendo assim, após compararmos com algumas plataformas (na qual tinhamos acesso) setamos um caminho de desenvolvimento para o nosso projeto.
@@ -33,7 +33,7 @@ Apesar de todos os problemas durante o desenvolvimento, conseguimos entregar o p
 Falando por mim, @Rafaellegend, digo que foi uma experiencia importante e que hoje eu vejo o quanto eu progredi como programador, tanto na codificação em si, quanto a parte estética.
 
 
-## Funcionalidades
+## ⚙ Funcionalidades
 
 - Criação de Conta
 - Criação de Mesa/Jogo
