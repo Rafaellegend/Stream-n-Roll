@@ -44,11 +44,12 @@ Falando por mim, @Rafaellegend, digo que foi uma experiencia importante e que ho
 
 ## 💻 Linguagens e FrameWorks
 
-- [HTML](https://developer.mozilla.org/pt-BR/docs/Web/HTML)
-- [JS](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
-- [PHP](https://www.php.net)
-- [JQuery](https://jquery.com)
-- [Bootstrap](https://getbootstrap.com)
+![HTML](https://img.shields.io/badge/HTML5-000?style=for-the-badge&logo=html5)
+![JavaScript](https://img.shields.io/badge/JavaScript-000?style=for-the-badge&logo=javascript)
+[![PHP](https://img.shields.io/badge/PHP-000?style=for-the-badge&logo=php)](https://www.php.net)
+[![JQuery](https://img.shields.io/badge/JQuery-000?style=for-the-badge&logo=jquery)](https://jquery.com)
+[![Bootstrap](https://img.shields.io/badge/Bootstrap-000?style=for-the-badge&logo=bootstrap)](https://getbootstrap.com)
+
 ## 👨‍💻 Autores
 - [@LucianoReisGarcia](https://github.com/LucianoReisGarcia)
 - [@Rafaellegend](https://www.github.com/Rafaellegend)
