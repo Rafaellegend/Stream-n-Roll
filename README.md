@@ -18,7 +18,8 @@ Sendo assim, após compararmos com algumas plataformas (na qual tinhamos acesso)
 - Pode adicionar uma mesa criada por outros via a um código gerado
 - Ter acesso a Ficha para ser acessada ao entrar na mesas/jogos
 - Como criador da mesa/jogo, pode visualizar a saida da overlay, na qual poderia vincular ao seu software de gravação ou streaming desejado
-## Aprendizados
+  
+## 👨‍🎓 Aprendizados
 
 Esse trabalho de Graduação foi uma experiencia, que botou nossos conhecimentos em prática. Apesar de durante a faculdade termos feitos muitos projetos, esse foi de longe o que botamos mais a nossa cabeça para funcionar.
 
